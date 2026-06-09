@@ -1,0 +1,57 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Memories Keeper — Portfolio">
+  <section class="pt-36 pb-20 bg-carbon-canvas">
+    <div class="page-container">
+      <a href="/portfolio" class="font-circularxx font-regular text-caption tracking-caption text-smoke hover:text-bone-white transition-colors no-underline mb-8 inline-flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        Back to Portfolio
+      </a>
+      <p class="font-circularxx font-medium text-caption tracking-caption text-iron-gray uppercase mb-2">Website</p>
+      <h1 class="font-circularxx font-w450 text-display-lg leading-display-lg tracking-display-lg text-bone-white mb-6">Memories Keeper</h1>
+      <p class="font-circularxx font-regular text-body-sm tracking-body-sm text-smoke max-w-xl">Digital memory sharing platform for preserving and sharing moments with loved ones.</p>
+    </div>
+  </section>
+  <section class="section-gap bg-carbon-canvas">
+    <div class="page-container max-w-4xl">
+      <div class="aspect-video bg-ash-veil/10 flex items-center justify-center mb-16" style="border-radius: 17.6px;">
+        <svg class="w-40 h-40 text-iron-gray/30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      </div>
+      <div class="grid md:grid-cols-3 gap-5 mb-16">
+        <div class="review-card text-center">
+          <p class="font-circularxx font-medium text-caption tracking-caption text-iron-gray uppercase mb-1">Tech Stack</p>
+          <p class="review-card-attribution">React, Firebase, Tailwind CSS</p>
+        </div>
+        <div class="review-card text-center">
+          <p class="font-circularxx font-medium text-caption tracking-caption text-iron-gray uppercase mb-1">Timeline</p>
+          <p class="review-card-attribution">3 weeks</p>
+        </div>
+        <div class="review-card text-center">
+          <p class="font-circularxx font-medium text-caption tracking-caption text-iron-gray uppercase mb-1">Role</p>
+          <p class="review-card-attribution">Frontend Developer + UI Designer</p>
+        </div>
+      </div>
+      <div class="space-y-12 max-w-3xl">
+        <div>
+          <h2 class="font-circularxx font-w450 text-heading tracking-heading text-bone-white mb-4">The Challenge</h2>
+          <p class="review-card-quote">The client wanted to create a platform for storing digital memories accessible by family and friends. The main challenge was creating an intimate, warm experience easy to use for all ages.</p>
+        </div>
+        <div>
+          <h2 class="font-circularxx font-w450 text-heading tracking-heading text-bone-white mb-4">The Solution</h2>
+          <p class="review-card-quote">Built a modern web application with authentication, media upload, digital albums, and secure sharing features. The design feels warm and personal with subtle animations.</p>
+        </div>
+        <div>
+          <h2 class="font-circularxx font-w450 text-heading tracking-heading text-bone-white mb-4">Key Features</h2>
+          <ul class="space-y-2 review-card-quote">
+            <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-bone-white rounded-full mt-1.5 shrink-0"></span>Upload photos, videos, and notes</li>
+            <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-bone-white rounded-full mt-1.5 shrink-0"></span>Digital albums with categories</li>
+            <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-bone-white rounded-full mt-1.5 shrink-0"></span>Secure sharing via links</li>
+            <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-bone-white rounded-full mt-1.5 shrink-0"></span>Mobile-friendly responsive design</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

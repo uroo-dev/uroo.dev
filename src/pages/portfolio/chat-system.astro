@@ -1,0 +1,63 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Chat System — Portfolio">
+  <section class="pt-32 pb-20 bg-obsidian">
+    <div class="page-container">
+      <a href="/portfolio" class="inline-flex items-center gap-2 font-switzer text-sm text-fog hover:text-paper-white transition-colors mb-8">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        Back to Portfolio
+      </a>
+      <span class="font-space-mono text-caption text-slate uppercase tracking-wider">Web Application</span>
+      <h1 class="heading-serif-light text-display md:text-display-xl leading-display-xl mt-4 mb-6">Real-Time Chat System</h1>
+      <p class="font-switzer font-regular text-body-lg text-fog max-w-xl leading-body-lg">Real-time messaging platform with modern interface and team collaboration features.</p>
+    </div>
+  </section>
+
+  <section class="section-gap bg-paper-white">
+    <div class="page-container max-w-4xl">
+      <div class="aspect-video bg-ink flex items-center justify-center mb-16" style="border-radius: 4px;">
+        <svg class="w-40 h-40 text-slate/30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 mb-16">
+        <div class="border border-fog p-6 text-center" style="border-radius: 4px;">
+          <span class="font-space-mono text-caption text-slate uppercase">Tech Stack</span>
+          <p class="font-switzer font-regular text-body text-ink mt-2">Socket.io, React, Node.js</p>
+        </div>
+        <div class="border border-fog p-6 text-center" style="border-radius: 4px;">
+          <span class="font-space-mono text-caption text-slate uppercase">Timeline</span>
+          <p class="font-switzer font-regular text-body text-ink mt-2">5 weeks</p>
+        </div>
+        <div class="border border-fog p-6 text-center" style="border-radius: 4px;">
+          <span class="font-space-mono text-caption text-slate uppercase">Role</span>
+          <p class="font-switzer font-regular text-body text-ink mt-2">Full Stack Developer</p>
+        </div>
+      </div>
+
+      <div class="space-y-12">
+        <div>
+          <h2 class="heading-serif text-heading text-ink mb-4">The Challenge</h2>
+          <p class="font-switzer font-regular text-body text-graphite leading-body max-w-2xl">A remote team needed an internal communication tool that supported real-time messaging, file sharing, and team channels to replace scattered communication across multiple platforms.</p>
+        </div>
+
+        <div>
+          <h2 class="heading-serif text-heading text-ink mb-4">The Solution</h2>
+          <p class="font-switzer font-regular text-body text-graphite leading-body max-w-2xl">Built a real-time chat application with WebSocket support, organized team channels, direct messaging, and file sharing capabilities.</p>
+        </div>
+
+        <div>
+          <h2 class="heading-serif text-heading text-ink mb-4">Key Features</h2>
+          <ul class="space-y-3 font-switzer font-regular text-body text-graphite">
+            <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-ink rounded-full mt-1.5 shrink-0"></span>Real-time messaging via WebSockets</li>
+            <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-ink rounded-full mt-1.5 shrink-0"></span>Team channels and direct messages</li>
+            <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-ink rounded-full mt-1.5 shrink-0"></span>File and image sharing</li>
+            <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-ink rounded-full mt-1.5 shrink-0"></span>Message search and history</li>
+            <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-ink rounded-full mt-1.5 shrink-0"></span>Online presence indicators</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

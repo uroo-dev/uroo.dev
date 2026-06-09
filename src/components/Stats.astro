@@ -1,0 +1,42 @@
+---
+import AnimatedCounter from './motion/AnimatedCounter';
+---
+
+<section class="section-gap bg-paper-white">
+  <div class="page-container">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-16">
+      <div class="text-center">
+        <div class="heading-serif text-heading-lg mb-1 text-ink">
+          <AnimatedCounter client:load target={25} suffix="+" />
+        </div>
+        <div class="font-switzer text-sm text-graphite font-regular">
+          Projects Completed
+        </div>
+      </div>
+      <div class="text-center">
+        <div class="heading-serif text-heading-lg mb-1 text-ink">
+          <AnimatedCounter client:load target={99} suffix="%" />
+        </div>
+        <div class="font-switzer text-sm text-graphite font-regular">
+          Client Satisfaction
+        </div>
+      </div>
+      <div class="text-center">
+        <div class="heading-serif text-heading-lg mb-1 text-ink">
+          24/7
+        </div>
+        <div class="font-switzer text-sm text-graphite font-regular">
+          Support
+        </div>
+      </div>
+      <div class="text-center">
+        <div class="heading-serif text-heading-lg mb-1 text-ink">
+          <AnimatedCounter client:load target={5} suffix="+" />
+        </div>
+        <div class="font-switzer text-sm text-graphite font-regular">
+          Years Experience
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

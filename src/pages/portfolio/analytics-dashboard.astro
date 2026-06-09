@@ -1,0 +1,63 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Analytics Dashboard — Portfolio">
+  <section class="pt-32 pb-20 bg-obsidian">
+    <div class="page-container">
+      <a href="/portfolio" class="inline-flex items-center gap-2 font-switzer text-sm text-fog hover:text-paper-white transition-colors mb-8">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        Back to Portfolio
+      </a>
+      <span class="font-space-mono text-caption text-slate uppercase tracking-wider">Dashboard</span>
+      <h1 class="heading-serif-light text-display md:text-display-xl leading-display-xl mt-4 mb-6">Analytics Dashboard</h1>
+      <p class="font-switzer font-regular text-body-lg text-fog max-w-xl leading-body-lg">Comprehensive data visualization and business intelligence dashboard.</p>
+    </div>
+  </section>
+
+  <section class="section-gap bg-paper-white">
+    <div class="page-container max-w-4xl">
+      <div class="aspect-video bg-ink flex items-center justify-center mb-16" style="border-radius: 4px;">
+        <svg class="w-40 h-40 text-slate/30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 mb-16">
+        <div class="border border-fog p-6 text-center" style="border-radius: 4px;">
+          <span class="font-space-mono text-caption text-slate uppercase">Tech Stack</span>
+          <p class="font-switzer font-regular text-body text-ink mt-2">React, D3.js, Express, MongoDB</p>
+        </div>
+        <div class="border border-fog p-6 text-center" style="border-radius: 4px;">
+          <span class="font-space-mono text-caption text-slate uppercase">Timeline</span>
+          <p class="font-switzer font-regular text-body text-ink mt-2">6 weeks</p>
+        </div>
+        <div class="border border-fog p-6 text-center" style="border-radius: 4px;">
+          <span class="font-space-mono text-caption text-slate uppercase">Role</span>
+          <p class="font-switzer font-regular text-body text-ink mt-2">Full Stack Developer</p>
+        </div>
+      </div>
+
+      <div class="space-y-12">
+        <div>
+          <h2 class="heading-serif text-heading text-ink mb-4">The Challenge</h2>
+          <p class="font-switzer font-regular text-body text-graphite leading-body max-w-2xl">A data-driven company needed a centralized dashboard to visualize key business metrics, track KPIs in real-time, and generate custom reports from multiple data sources.</p>
+        </div>
+
+        <div>
+          <h2 class="heading-serif text-heading text-ink mb-4">The Solution</h2>
+          <p class="font-switzer font-regular text-body text-graphite leading-body max-w-2xl">Developed a comprehensive analytics dashboard with interactive charts, real-time data updates, custom date ranges, and exportable reports tailored to different user roles.</p>
+        </div>
+
+        <div>
+          <h2 class="heading-serif text-heading text-ink mb-4">Key Features</h2>
+          <ul class="space-y-3 font-switzer font-regular text-body text-graphite">
+            <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-ink rounded-full mt-1.5 shrink-0"></span>Interactive D3.js visualizations</li>
+            <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-ink rounded-full mt-1.5 shrink-0"></span>Real-time KPI tracking</li>
+            <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-ink rounded-full mt-1.5 shrink-0"></span>Custom report builder</li>
+            <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-ink rounded-full mt-1.5 shrink-0"></span>Role-based data access</li>
+            <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-ink rounded-full mt-1.5 shrink-0"></span>Export to PDF and CSV</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

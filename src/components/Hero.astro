@@ -1,0 +1,23 @@
+---
+import bgVideo from '../assets/bg-uroo.mp4';
+---
+
+<section data-animate="hero" class="relative min-h-screen flex items-center justify-center bg-carbon-canvas overflow-hidden pt-24 section-transition">
+  <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
+    <source src={bgVideo} type="video/mp4" />
+  </video>
+  <div class="absolute inset-0 bg-carbon-canvas/60"></div>
+  <div class="page-container w-full text-center relative z-10">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="font-circularxx font-w450 text-display-lg leading-display-lg tracking-display-lg text-bone-white mb-6">
+        Custom Software<br />That Drives Growth
+      </h1>
+      <p class="font-circularxx font-regular text-body-sm leading-body-sm tracking-body-sm text-smoke max-w-xl mx-auto mb-10">
+        We help businesses and startups solve operational and digital challenges through modern, scalable software solutions.
+      </p>
+      <a href="/contact" class="pill-button font-circularxx">
+        Get Free Consultation
+      </a>
+    </div>
+  </div>
+</section>

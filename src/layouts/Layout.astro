@@ -59,6 +59,8 @@ const pageTitle = `${title} | Uroo.dev`;
     })} />
   </head>
   <body>
+    <div class="noise-overlay"></div>
+    <div class="fixed inset-0 z-[-1] pointer-events-none" style="background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.03) 0%, transparent 60%);"></div>
     <Header />
     <main>
       <slot />

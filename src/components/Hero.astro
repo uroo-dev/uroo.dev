@@ -1,23 +1,71 @@
----
-import bgVideo from '../assets/bg-uroo.mp4';
----
-
 <section data-animate="hero" class="relative min-h-screen flex items-center justify-center bg-carbon-canvas overflow-hidden pt-24 section-transition">
-  <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
-    <source src={bgVideo} type="video/mp4" />
-  </video>
-  <div class="absolute inset-0 bg-carbon-canvas/60"></div>
-  <div class="page-container w-full text-center relative z-10">
+  <div class="hero-grid" data-hero-grid>
+    <div class="hero-grid-line hero-grid-line-h" style="top: 12.5%;"></div>
+    <div class="hero-grid-line hero-grid-line-h" style="top: 25%;"></div>
+    <div class="hero-grid-line hero-grid-line-h" style="top: 37.5%;"></div>
+    <div class="hero-grid-line hero-grid-line-h" style="top: 50%;"></div>
+    <div class="hero-grid-line hero-grid-line-h" style="top: 62.5%;"></div>
+    <div class="hero-grid-line hero-grid-line-h" style="top: 75%;"></div>
+    <div class="hero-grid-line hero-grid-line-h" style="top: 87.5%;"></div>
+    <div class="hero-grid-line hero-grid-line-v" style="left: 14.28%;"></div>
+    <div class="hero-grid-line hero-grid-line-v" style="left: 28.57%;"></div>
+    <div class="hero-grid-line hero-grid-line-v" style="left: 42.85%;"></div>
+    <div class="hero-grid-line hero-grid-line-v" style="left: 57.14%;"></div>
+    <div class="hero-grid-line hero-grid-line-v" style="left: 71.42%;"></div>
+    <div class="hero-grid-line hero-grid-line-v" style="left: 85.71%;"></div>
+  </div>
+
+  <div class="gradient-orb" style="width: 600px; height: 600px; background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%); top: 20%; left: 30%;"></div>
+  <div class="gradient-orb" style="width: 400px; height: 400px; background: radial-gradient(circle, rgba(229,231,235,0.08) 0%, transparent 70%); bottom: 10%; right: 20%;"></div>
+
+  <div class="hero-dashboard-card" style="top: 15%; right: 8%; width: 160px;">
+    <div class="flex items-center justify-between mb-2">
+      <span style="font-size: 10px; color: rgba(255,255,255,0.4); letter-spacing: 1px; text-transform: uppercase;">Revenue</span>
+      <span style="font-size: 11px; color: rgba(255,255,255,0.6);">+24%</span>
+    </div>
+    <div style="font-size: 24px; color: white; font-weight: 500; letter-spacing: -1px; margin-bottom: 8px;">$128K</div>
+    <div class="bar" style="width: 100%;"></div>
+    <div class="bar" style="width: 85%;"></div>
+    <div class="bar fill" style="width: 70%;"></div>
+  </div>
+
+  <div class="hero-dashboard-card" style="top: 55%; left: 6%; width: 140px;">
+    <div class="flex items-center justify-between mb-2">
+      <span style="font-size: 10px; color: rgba(255,255,255,0.4); letter-spacing: 1px; text-transform: uppercase;">Users</span>
+      <span style="font-size: 11px; color: rgba(255,255,255,0.6);">+12%</span>
+    </div>
+    <div style="font-size: 24px; color: white; font-weight: 500; letter-spacing: -1px; margin-bottom: 8px;">3.2K</div>
+    <div class="bar fill" style="width: 90%;"></div>
+    <div class="bar" style="width: 60%;"></div>
+  </div>
+
+  <div class="hero-dashboard-card" style="bottom: 20%; right: 12%; width: 130px;">
+    <div class="flex items-center justify-between mb-2">
+      <span style="font-size: 10px; color: rgba(255,255,255,0.4); letter-spacing: 1px; text-transform: uppercase;">Speed</span>
+      <span style="font-size: 11px; color: rgba(255,255,255,0.6);">98%</span>
+    </div>
+    <div style="font-size: 24px; color: white; font-weight: 500; letter-spacing: -1px; margin-bottom: 8px;">0.4s</div>
+    <div class="bar fill" style="width: 98%;"></div>
+    <div class="bar" style="width: 75%;"></div>
+    <div class="bar" style="width: 88%;"></div>
+  </div>
+
+  <div class="absolute inset-0 bg-gradient-to-b from-carbon-canvas/20 via-transparent to-carbon-canvas/60 pointer-events-none z-[1]"></div>
+
+  <div class="page-container w-full text-center relative z-[5]">
     <div class="max-w-3xl mx-auto">
-      <h1 class="font-circularxx font-w450 text-display-lg leading-display-lg tracking-display-lg text-bone-white mb-6">
+      <p class="text-smoke font-regular text-body-sm tracking-body-sm mb-8" data-hero-sub>Trusted Software House</p>
+      <h1 class="font-circularxx font-w450 text-display-lg leading-display-lg tracking-display-lg text-bone-white mb-6" data-hero-title>
         Custom Software<br />That Drives Growth
       </h1>
-      <p class="font-circularxx font-regular text-body-sm leading-body-sm tracking-body-sm text-smoke max-w-xl mx-auto mb-10">
+      <p class="font-circularxx font-regular text-body-sm leading-body-sm tracking-body-sm text-smoke max-w-xl mx-auto mb-10" data-hero-sub>
         We help businesses and startups solve operational and digital challenges through modern, scalable software solutions.
       </p>
-      <a href="/contact" class="pill-button font-circularxx">
-        Get Free Consultation
-      </a>
+      <div data-hero-cta>
+        <a href="/contact" class="pill-button font-circularxx">
+          Get Free Consultation
+        </a>
+      </div>
     </div>
   </div>
 </section>

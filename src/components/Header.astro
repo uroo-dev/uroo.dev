@@ -2,90 +2,76 @@
 import LanguageToggle from './LanguageToggle.astro';
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50" style="background: linear-gradient(to bottom, #000000 60%, transparent);">
-  <nav class="page-container flex items-center justify-between py-6">
-    <a href="/" class="flex items-center gap-2 no-underline text-bone-white flex-shrink-0">
-      <span class="inline-flex items-center justify-center w-8 h-8 border border-ash-veil/20 text-bone-white text-sm font-medium" style="border-radius: 9999px;">U</span> UROO.DEV
-    </a>
-
-    <div class="hidden lg:flex items-center gap-8">
-      <a href="/" class="nav-link no-underline">Home</a>
-      <a href="/services" class="nav-link no-underline">Solutions</a>
-      <a href="/portfolio" class="nav-link no-underline">Work</a>
-      <a href="/case-studies" class="nav-link no-underline">Case Studies</a>
-      <a href="/about" class="nav-link no-underline">About</a>
-      <a href="/contact" class="nav-link no-underline">Contact</a>
-    </div>
-
-    <div class="flex items-center gap-4">
-      <LanguageToggle />
-      <button id="mobile-menu-btn" class="lg:hidden p-2 text-bone-white">
-        <svg class="w-5 h-5" id="menu-icon-open" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        <svg class="w-5 h-5 hidden" id="menu-icon-close" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-    </div>
+<div id="header-island" class="header-island">
+  <a href="/" class="header-island-logo">
+    <span>U</span> UROO.DEV
+  </a>
+  <nav class="header-island-nav">
+    <a href="/">Home</a>
+    <a href="/services">Solutions</a>
+    <a href="/portfolio">Work</a>
+    <a href="/case-studies">Case Studies</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
   </nav>
+  <div class="flex items-center gap-2">
+    <LanguageToggle />
+    <a href="/contact" class="header-island-cta">Free Consultation</a>
+    <button id="island-menu-btn" class="header-island-btn">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+</div>
 
-  <div id="mobile-menu" class="hidden lg:hidden bg-carbon-canvas border-t border-ash-veil/10">
-    <div class="page-container py-8 flex flex-col gap-6">
-      <a href="/" class="nav-link no-underline text-base">Home</a>
-      <a href="/services" class="nav-link no-underline text-base">Solutions</a>
-      <a href="/portfolio" class="nav-link no-underline text-base">Work</a>
-      <a href="/case-studies" class="nav-link no-underline text-base">Case Studies</a>
-      <a href="/about" class="nav-link no-underline text-base">About</a>
-      <a href="/contact" class="nav-link no-underline text-base">Contact</a>
-      <div class="pt-4 border-t border-ash-veil/10">
-        <a href="/contact" class="pill-button font-circularxx w-full justify-center text-sm">Get Free Consultation</a>
-      </div>
+<div id="mobile-island-menu" class="hidden fixed top-20 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-32px)] max-w-sm bg-black/90 backdrop-blur-2xl border border-white/10 rounded-2xl p-6">
+  <div class="flex flex-col gap-5">
+    <a href="/" class="text-white/70 hover:text-white text-sm no-underline transition-colors">Home</a>
+    <a href="/services" class="text-white/70 hover:text-white text-sm no-underline transition-colors">Solutions</a>
+    <a href="/portfolio" class="text-white/70 hover:text-white text-sm no-underline transition-colors">Work</a>
+    <a href="/case-studies" class="text-white/70 hover:text-white text-sm no-underline transition-colors">Case Studies</a>
+    <a href="/about" class="text-white/70 hover:text-white text-sm no-underline transition-colors">About</a>
+    <a href="/contact" class="text-white/70 hover:text-white text-sm no-underline transition-colors">Contact</a>
+    <div class="pt-4 border-t border-white/10">
+      <a href="/contact" class="block text-center text-sm text-black bg-white px-6 py-3 rounded-full font-medium no-underline">Get Free Consultation</a>
     </div>
   </div>
-</header>
+</div>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const mobileBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const iconOpen = document.getElementById('menu-icon-open');
-    const iconClose = document.getElementById('menu-icon-close');
+    const island = document.getElementById('header-island');
+    const menuBtn = document.getElementById('island-menu-btn');
+    const mobileMenu = document.getElementById('mobile-island-menu');
+    let lastScroll = 0;
 
-    // Improved mobile menu functionality
-    if (mobileBtn && mobileMenu) {
-      const toggleMobileMenu = () => {
-        const isOpen = mobileMenu.classList.toggle('hidden');
-        if (iconOpen && iconClose) {
-          iconOpen.classList.toggle('hidden', isOpen);
-          iconClose.classList.toggle('hidden', !isOpen);
-        }
-        
-        // Prevent body scrolling when menu is open
-        document.body.style.overflow = isOpen ? 'hidden' : '';
-      };
+    const toggleIsland = () => {
+      const sy = window.scrollY;
+      if (sy > 400) {
+        island.classList.add('visible');
+      } else {
+        island.classList.remove('visible');
+        mobileMenu.classList.add('hidden');
+      }
+      lastScroll = sy;
+    };
 
-      mobileBtn.addEventListener('click', toggleMobileMenu);
-      
-      // Close menu when clicking links
-      mobileMenu.querySelectorAll('a').forEach(link => {
+    window.addEventListener('scroll', toggleIsland, { passive: true });
+    toggleIsland();
+
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+      mobileMenu.querySelectorAll('a').forEach((link) => {
         link.addEventListener('click', () => {
           mobileMenu.classList.add('hidden');
-          if (iconOpen && iconClose) {
-            iconOpen.classList.remove('hidden');
-            iconClose.classList.add('hidden');
-          }
-          document.body.style.overflow = '';
         });
       });
-      
-      // // Close menu when clicking outside
-      // document.addEventListener('click', (event) => {
-      //   if (!mobileBtn.contains(event.target) && !mobileMenu.contains(event.target) && !mobileMenu.classList.contains('hidden')) {
-      //     mobileMenu.classList.add('hidden');
-      //     if (iconOpen && iconClose) {
-      //       iconOpen.classList.remove('hidden');
-      //       iconClose.classList.add('hidden');
-      //     }
-      //     document.body.style.overflow = '';
-      //   }
-      // });
+      document.addEventListener('click', (e) => {
+        if (!menuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+          mobileMenu.classList.add('hidden');
+        }
+      });
     }
   });
 </script>

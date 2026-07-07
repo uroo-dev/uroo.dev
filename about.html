@@ -707,20 +707,19 @@
         const menuClose = document.getElementById("mobile-menu-close");
         const mobileMenu = document.getElementById("mobile-menu");
         if (menuBtn && mobileMenu) {
-          menuBtn.addEventListener("click", () =>
-            mobileMenu.classList.remove("-translate-y-full"),
+          const openMenu = () => {
+            mobileMenu.classList.remove("-translate-y-full");
+            document.body.style.overflow = "hidden";
+          };
+          const closeMenu = () => {
+            mobileMenu.classList.add("-translate-y-full");
+            document.body.style.overflow = "";
+          };
+          menuBtn.addEventListener("click", openMenu);
+          if (menuClose) menuClose.addEventListener("click", closeMenu);
+          mobileMenu.querySelectorAll("a").forEach((a) =>
+            a.addEventListener("click", closeMenu),
           );
-          if (menuClose)
-            menuClose.addEventListener("click", () =>
-              mobileMenu.classList.add("-translate-y-full"),
-            );
-          mobileMenu
-            .querySelectorAll("a")
-            .forEach((a) =>
-              a.addEventListener("click", () =>
-                mobileMenu.classList.add("-translate-y-full"),
-              ),
-            );
         }
       });
     </script>

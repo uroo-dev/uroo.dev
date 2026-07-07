@@ -2,7 +2,7 @@
 
 ![Uroo.dev Logo](assets/Uroo.dev-bening.png)
 
-**Studio Pengembangan Digital** — Turning ideas into digital products that improve business efficiency.
+**Uroo.dev** — Turning ideas into digital products that improve business efficiency.
 
 A modern, responsive portfolio website for a small Indonesian software house specializing in digital solutions for startups and UMKM (Small-to-Medium Enterprises).
 

@@ -1,0 +1,1969 @@
+<!doctype html>
+<html class="dark" lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>uroo dev | Solusi Digital untuk Startup & UMKM</title>
+    <meta name="description" content="uroo dev — studio pengembangan website dan aplikasi untuk startup dan UMKM. Fokus pada performa, estetika, dan pengalaman pengguna." />
+    <meta property="og:title" content="uroo dev | Solusi Digital untuk Startup & UMKM" />
+    <meta property="og:description" content="Studio pengembangan website dan aplikasi untuk startup dan UMKM. Fokus pada performa, estetika, dan pengalaman pengguna." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://uroo.dev" />
+    <meta property="og:locale" content="id_ID" />
+    <link rel="canonical" href="https://uroo.dev" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <meta property="og:image" content="https://uroo.dev/assets/Uroo.dev.png" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "uroo dev",
+      "url": "https://uroo.dev",
+      "logo": "https://uroo.dev/assets/Uroo.dev.png",
+      "description": "Studio pengembangan website dan aplikasi untuk startup dan UMKM.",
+      "email": "uroprasetyo@gmail.com",
+      "telephone": "+62 882 0065 33693",
+      "address": { "@type": "PostalAddress", "addressLocality": "Karanganyar", "addressCountry": "ID" }
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      try {
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "on-tertiary-container": "#656464",
+                "outline-variant": "#444748",
+                "primary-fixed-dim": "#c6c6c7",
+                secondary: "#c8c6c5",
+                "on-error": "#690005",
+                primary: "#ffffff",
+                "tertiary-fixed": "#e4e2e1",
+                "on-tertiary-fixed": "#1b1c1c",
+                surface: "#131313",
+                "inverse-surface": "#e5e2e1",
+                "primary-container": "#e2e2e2",
+                "surface-container-lowest": "#0e0e0e",
+                "secondary-fixed-dim": "#c8c6c5",
+                "on-primary-fixed-variant": "#454747",
+                "surface-container-low": "#1c1b1b",
+                "error-container": "#93000a",
+                "inverse-on-surface": "#313030",
+                error: "#ffb4ab",
+                "surface-bright": "#3a3939",
+                "surface-container-high": "#2a2a2a",
+                "inverse-primary": "#5d5f5f",
+                "on-secondary-fixed": "#1c1b1b",
+                "on-tertiary": "#303030",
+                "secondary-container": "#474746",
+                "on-secondary-container": "#b7b5b4",
+                "on-primary-container": "#636565",
+                "on-surface": "#e5e2e1",
+                tertiary: "#ffffff",
+                "secondary-fixed": "#e5e2e1",
+                "surface-tint": "#c6c6c7",
+                "on-error-container": "#ffdad6",
+                "tertiary-container": "#e4e2e1",
+                outline: "#8e9192",
+                "surface-dim": "#131313",
+                "on-secondary": "#313030",
+                "on-primary": "#2f3131",
+                "on-secondary-fixed-variant": "#474746",
+                "on-background": "#e5e2e1",
+                "primary-fixed": "#e2e2e2",
+                background: "#131313",
+                "on-primary-fixed": "#1a1c1c",
+                "surface-container-highest": "#353534",
+                "on-surface-variant": "#c4c7c8",
+                "surface-variant": "#353534",
+                "tertiary-fixed-dim": "#c8c6c6",
+                "on-tertiary-fixed-variant": "#474747",
+                "surface-container": "#201f1f",
+              },
+              borderRadius: {
+                DEFAULT: "0.25rem",
+                lg: "0.5rem",
+                xl: "0.75rem",
+                full: "9999px",
+              },
+              spacing: {
+                "container-max": "1280px",
+                gutter: "24px",
+                xs: "4px",
+                sm: "12px",
+                xl: "80px",
+                base: "8px",
+                md: "24px",
+                lg: "48px",
+              },
+              fontFamily: {
+                "headline-lg": ["Inter"],
+                "label-md": ["Inter"],
+                "body-lg": ["Inter"],
+                "display-lg-mobile": ["Inter"],
+                caption: ["Inter"],
+                "body-md": ["Inter"],
+                "headline-md": ["Inter"],
+                "display-lg": ["Inter"],
+              },
+              fontSize: {
+                "headline-lg": [
+                  "32px",
+                  {
+                    lineHeight: "1.3",
+                    letterSpacing: "-0.02em",
+                    fontWeight: "600",
+                  },
+                ],
+                "label-md": [
+                  "14px",
+                  {
+                    lineHeight: "1.4",
+                    letterSpacing: "0.05em",
+                    fontWeight: "500",
+                  },
+                ],
+                "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+                "display-lg-mobile": [
+                  "40px",
+                  {
+                    lineHeight: "1.2",
+                    letterSpacing: "-0.02em",
+                    fontWeight: "700",
+                  },
+                ],
+                caption: ["12px", { lineHeight: "1.4", fontWeight: "400" }],
+                "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+                "headline-md": [
+                  "24px",
+                  { lineHeight: "1.4", fontWeight: "600" },
+                ],
+                "display-lg": [
+                  "72px",
+                  {
+                    lineHeight: "1.1",
+                    letterSpacing: "-0.04em",
+                    fontWeight: "700",
+                  },
+                ],
+              },
+            },
+          },
+        };
+      } catch (_e) {}
+    </script>
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <style>
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      .animate-float {
+        animation: float 3s ease-in-out infinite;
+      }
+      @keyframes threadMove {
+        0% {
+          top: -33%;
+        }
+        100% {
+          top: 100%;
+        }
+      }
+      .animate-thread {
+        animation: threadMove 2.5s linear infinite;
+      }
+      @keyframes orbMove {
+        0% {
+          top: -10px;
+        }
+        100% {
+          top: calc(100% + 10px);
+        }
+      }
+      .animate-orb {
+        animation: orbMove 2.5s linear infinite;
+      }
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+      .animate-marquee {
+        animation: marquee 30s linear infinite;
+      }
+      .animate-marquee:hover {
+        animation-play-state: paused;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-background selection:bg-primary selection:text-surface"
+  >
+    <nav class="fixed top-0 w-full z-50 bg-white/5 backdrop-blur-xl border-b border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.05)] h-20 transition-all duration-300">
+<div class="max-w-[1280px] mx-auto px-gutter flex justify-between items-center h-full">
+<a class="font-headline-md text-headline-md font-bold tracking-tighter text-primary" href="index.html">uroo dev</a>
+<div class="hidden md:flex items-center gap-lg">
+  <a class="font-body-md text-body-md transition-colors duration-300 text-primary font-bold border-b-2 border-primary pb-1" href="index.html">Beranda</a>
+  <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="services.html">Service</a>
+  <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="portfolio.html">Portofolio</a>
+  <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="about.html">About</a>
+  <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="contact.html">Contact</a>
+</div>
+<button id="mobile-menu-btn" class="md:hidden text-primary p-2" aria-label="Menu">
+  <span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+<div id="mobile-menu" class="fixed inset-0 z-50 bg-surface/95 backdrop-blur-xl flex flex-col items-center justify-center gap-lg transform translate-x-full transition-transform duration-300 md:hidden">
+  <button id="mobile-menu-close" class="absolute top-6 right-6 text-primary p-2" aria-label="Close">
+    <span class="material-symbols-outlined text-2xl">close</span>
+  </button>
+  <a class="font-headline-lg text-headline-lg text-primary font-bold" href="index.html">Beranda</a>
+  <a class="font-headline-lg text-headline-lg text-on-surface-variant" href="services.html">Service</a>
+  <a class="font-headline-lg text-headline-lg text-on-surface-variant" href="portfolio.html">Portofolio</a>
+  <a class="font-headline-lg text-headline-lg text-on-surface-variant" href="about.html">About</a>
+  <a class="font-headline-lg text-headline-lg text-on-surface-variant" href="contact.html">Contact</a>
+</div>
+<a href="contact.html" class="bg-primary text-surface px-md py-sm font-label-md text-label-md rounded-full transition-all duration-200 active:scale-95 hover:opacity-90">Mulai</a>
+</div>
+</nav>
+    <!-- Hero Section -->
+    <header
+      class="relative pt-xl pb-xl overflow-hidden min-h-screen flex items-center"
+    >
+      <div class="absolute inset-0 z-0">
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+          class="absolute inset-0 w-full h-full object-cover opacity-40"
+        >
+          <source src="assets/bg-uroo.mp4" type="video/mp4" />
+        </video>
+        <div class="absolute inset-0"></div>
+        <div
+          class="absolute top-1/4 -left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] opacity-30"
+        ></div>
+        <div
+          class="absolute bottom-1/4 -right-1/4 w-[600px] h-[600px] bg-white/10 rounded-full blur-[120px] opacity-20"
+        ></div>
+      </div>
+      <div
+        class="max-w-[1280px] mx-auto px-gutter relative z-10 grid grid-cols-1 md:grid-cols-12 gap-lg items-center"
+      >
+        <div class="md:col-span-7">
+          <h1
+            class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-md leading-tight"
+          >
+            Bangun Produk Digital yang Siap Membawa Bisnis Anda ke
+            <span class="opacity-50">Level Berikutnya</span>
+          </h1>
+          <p
+            class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-lg"
+          >
+            Kami membantu bisnis mengubah ide menjadi produk digital berkualitas
+            melalui pengembangan website, aplikasi mobile, sistem informasi, dan
+            solusi teknologi yang dirancang khusus. Dari tahap perencanaan
+            hingga peluncuran, Uroo Dev hadir sebagai partner yang dapat Anda
+            percaya.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-md">
+            <a
+              href="contact.html"
+              class="bg-primary text-surface px-lg py-md font-label-md rounded-full transition-all duration-300 active:scale-95 hover:shadow-[0_0_25px_-3px_rgba(255,255,255,0.4)] hover:scale-[1.02]"
+              >Konsultasi Gratis</a
+            >
+            <a
+              href="portfolio.html"
+              class="bg-white/[0.06] backdrop-blur-xl border border-white/15 text-primary px-lg py-md font-label-md rounded-full transition-all duration-300 active:scale-95 hover:bg-white/[0.12] hover:border-white/30 hover:shadow-[0_0_25px_-5px_rgba(255,255,255,0.1)] hover:-translate-y-0.5"
+              >Lihat Portofolio</a
+            >
+          </div>
+        </div>
+        <div class="md:col-span-5 hidden md:flex items-center justify-center">
+          <div class="relative group w-full max-w-[400px]">
+            <div
+              class="absolute -inset-1 bg-gradient-to-r from-primary/20 via-white/10 to-primary/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+            ></div>
+            <div
+              class="absolute -inset-[2px] bg-gradient-to-r from-primary/30 via-white/20 to-primary/30 rounded-2xl opacity-40 group-hover:opacity-70 transition-opacity duration-700"
+            ></div>
+            <div
+              class="relative glass-card p-lg rounded-2xl rotate-3 hover:rotate-0 transition-all duration-700 overflow-hidden"
+            >
+              <div
+                class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent"
+              ></div>
+              <div
+                class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent"
+              ></div>
+              <img
+                alt="Uroo.dev Logo"
+                class="w-full h-auto relative z-10 drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+                src="assets/Uroo.dev-bening.png"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Statistik Section -->
+    <section class="py-xl bg-surface-container-lowest/30">
+      <div class="max-w-[1280px] mx-auto px-gutter grid grid-cols-2 md:grid-cols-4 gap-md">
+        <div class="text-center p-lg bg-white/[0.02] border border-white/[0.06] rounded-2xl backdrop-blur-sm">
+          <h3 class="text-[clamp(2.5rem,5vw,4rem)] text-primary mb-xs font-bold tracking-tight leading-none">
+            <span class="stat-number" data-target="50">0</span><span class="text-primary/60">+</span>
+          </h3>
+          <p class="text-on-surface-variant text-[0.9rem] font-medium">Project Selesai</p>
+        </div>
+        <div class="text-center p-lg bg-white/[0.02] border border-white/[0.06] rounded-2xl backdrop-blur-sm">
+          <h3 class="text-[clamp(2.5rem,5vw,4rem)] text-primary mb-xs font-bold tracking-tight leading-none">
+            <span class="stat-number" data-target="20">0</span><span class="text-primary/60">+</span>
+          </h3>
+          <p class="text-on-surface-variant text-[0.9rem] font-medium">Klien Aktif</p>
+        </div>
+        <div class="text-center p-lg bg-white/[0.02] border border-white/[0.06] rounded-2xl backdrop-blur-sm">
+          <h3 class="text-[clamp(2.5rem,5vw,4rem)] text-primary mb-xs font-bold tracking-tight leading-none">
+            <span class="stat-number" data-target="99">0</span><span class="text-primary/60">%</span>
+          </h3>
+          <p class="text-on-surface-variant text-[0.9rem] font-medium">Kepuasan Klien</p>
+        </div>
+        <div class="text-center p-lg bg-white/[0.02] border border-white/[0.06] rounded-2xl backdrop-blur-sm">
+          <h3 class="text-[clamp(2.5rem,5vw,4rem)] text-primary mb-xs font-bold tracking-tight leading-none">
+            <span class="stat-number" data-target="3">0</span><span class="text-primary/60">+</span>
+          </h3>
+          <p class="text-on-surface-variant text-[0.9rem] font-medium">Core Developers</p>
+        </div>
+      </div>
+    </section>
+    <!-- Tentang Kami Section -->
+    <section class="py-xl bg-surface-container-lowest" id="about">
+      <div
+        class="max-w-[1280px] mx-auto px-gutter grid grid-cols-1 md:grid-cols-2 gap-xl items-center"
+      >
+        <div class="order-2 md:order-1">
+          <div
+            class="aspect-square glass-card rounded-2xl overflow-hidden relative group"
+          >
+            <img
+              alt="Uroo.dev Logo"
+              class="w-full h-full object-contain p-xl grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
+              src="assets/Uroo.dev-bening.png"
+            />
+            <div
+              class="absolute bottom-lg left-lg right-lg p-md glass-card rounded-xl backdrop-blur-md"
+            >
+              <p class="text-caption italic opacity-80">
+                "Mengubah ide menjadi produk digital yang membantu efisiensi
+                bisnis Anda."
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="order-1 md:order-2">
+          <h2 class="font-headline-lg text-headline-lg text-primary mb-md">
+            Siapa Uroo Dev?
+          </h2>
+          <p class="font-body-md text-on-surface-variant mb-lg">
+            Kami membangun solusi digital yang membantu bisnis bekerja lebih
+            efisien, berkembang lebih cepat, dan siap menghadapi masa depan.
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+            <div class="glass-card p-md rounded-xl">
+              <span
+                class="material-symbols-outlined text-primary text-3xl mb-sm"
+                >visibility</span
+              >
+              <h4 class="font-label-md text-primary mb-xs">Visi Kami</h4>
+              <p class="text-caption text-on-surface-variant">
+                Menjadi software house terpercaya yang membantu transformasi
+                digital bisnis di Indonesia.
+              </p>
+            </div>
+            <div class="glass-card p-md rounded-xl">
+              <div class="flex items-center gap-sm mb-sm">
+                <span class="material-symbols-outlined text-primary text-3xl"
+                  >rocket_launch</span
+                >
+                <h4 class="font-label-md text-primary mb-xs">Misi Kami</h4>
+              </div>
+              <ul class="space-y-sm text-caption text-on-surface-variant">
+                <li class="flex items-center gap-xs">
+                  <span class="material-symbols-outlined text-primary text-base"
+                    >check_circle</span
+                  >
+                  Kualitas Tanpa Kompromi
+                </li>
+                <li class="flex items-center gap-xs">
+                  <span class="material-symbols-outlined text-primary text-base"
+                    >check_circle</span
+                  >
+                  Ketepatan Waktu
+                </li>
+                <li class="flex items-center gap-xs">
+                  <span class="material-symbols-outlined text-primary text-base"
+                    >check_circle</span
+                  >
+                  Transparansi Penuh
+                </li>
+                <li class="flex items-center gap-xs">
+                  <span class="material-symbols-outlined text-primary text-base"
+                    >check_circle</span
+                  >
+                  Dukungan Berkelanjutan
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Kenapa Memilih Kami Section -->
+    <section class="py-xl">
+      <div class="max-w-[1280px] mx-auto px-gutter text-center mb-xl">
+        <h2 class="font-headline-lg text-primary mb-sm">
+          Kenapa Memilih Kami?
+        </h2>
+        <p class="text-on-surface-variant max-w-2xl mx-auto">
+          Kami membangun setiap solusi digital dengan standar profesional,
+          proses yang transparan, dan komitmen untuk memberikan hasil terbaik
+          bagi bisnis Anda.
+        </p>
+      </div>
+      <div
+        class="max-w-[1280px] mx-auto px-gutter grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-md"
+      >
+        <div
+          class="glass-card p-lg rounded-xl text-center flex flex-col items-center"
+        >
+          <div
+            class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mb-md"
+          >
+            <span class="material-symbols-outlined text-primary">speed</span>
+          </div>
+          <h3 class="font-label-md text-primary mb-xs">Cepat</h3>
+          <p class="text-caption text-on-surface-variant">
+            Cepat & Terstruktur
+          </p>
+        </div>
+        <div
+          class="glass-card p-lg rounded-xl text-center flex flex-col items-center"
+        >
+          <div
+            class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mb-md"
+          >
+            <span class="material-symbols-outlined text-primary">chat</span>
+          </div>
+          <h3 class="font-label-md text-primary mb-xs">Transparan</h3>
+          <p class="text-caption text-on-surface-variant">
+            Komunikasi Transparan
+          </p>
+        </div>
+        <div
+          class="glass-card p-lg rounded-xl text-center flex flex-col items-center"
+        >
+          <div
+            class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mb-md"
+          >
+            <span class="material-symbols-outlined text-primary"
+              >verified_user</span
+            >
+          </div>
+          <h3 class="font-label-md text-primary mb-xs">Aman</h3>
+          <p class="text-caption text-on-surface-variant">
+            Source code sepenuhnya milik Anda.
+          </p>
+        </div>
+        <div
+          class="glass-card p-lg rounded-xl text-center flex flex-col items-center"
+        >
+          <div
+            class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mb-md"
+          >
+            <span class="material-symbols-outlined text-primary"
+              >dashboard_customize</span
+            >
+          </div>
+          <h3 class="font-label-md text-primary mb-xs">Custom</h3>
+          <p class="text-caption text-on-surface-variant">
+            Fitur dibangun sesuai kebutuhan bisnis.
+          </p>
+        </div>
+        <div
+          class="glass-card p-lg rounded-xl text-center flex flex-col items-center"
+        >
+          <div
+            class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mb-md"
+          >
+            <span class="material-symbols-outlined text-primary"
+              >support_agent</span
+            >
+          </div>
+          <h3 class="font-label-md text-primary mb-xs">Support</h3>
+          <p class="text-caption text-on-surface-variant">
+            Maintenance &amp; update berkala.
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- Layanan Section -->
+    <!-- <section class="py-xl bg-surface-container-lowest" id="services">
+      <div class="max-w-[1280px] mx-auto px-gutter mb-xl text-center">
+        <h2 class="font-headline-lg text-primary mb-sm">
+          Paket Layanan &amp; Harga
+        </h2>
+        <p class="text-on-surface-variant max-w-2xl mx-auto">
+          Pilih solusi yang paling sesuai dengan skala bisnis dan kebutuhan
+          digital Anda.
+        </p>
+      </div>
+      <div
+        class="max-w-[1280px] mx-auto px-gutter grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md items-end"
+      >
+        <div
+          class="glass-card p-lg rounded-xl flex flex-col h-full border border-white/5 hover:border-white/20 transition-all duration-300"
+        >
+          <div class="mb-md">
+            <span
+              class="material-symbols-outlined text-primary opacity-50 mb-sm"
+              >rocket</span
+            >
+            <h3 class="font-label-md text-primary">Landing Page</h3>
+          </div>
+          <div class="mb-lg">
+            <p class="text-caption text-on-surface-variant mb-xs">Mulai dari</p>
+            <p class="text-headline-md text-primary font-bold">Rp 350.000</p>
+          </div>
+          <ul
+            class="space-y-sm text-[10px] text-on-surface-variant mb-xl flex-1"
+          >
+            <li class="flex items-center gap-xs">
+              <span class="material-symbols-outlined text-primary text-xs"
+                >check</span
+              >
+              Single Page Design
+            </li>
+            <li class="flex items-center gap-xs">
+              <span class="material-symbols-outlined text-primary text-xs"
+                >check</span
+              >
+              Responsive Mobile
+            </li>
+            <li class="flex items-center gap-xs">
+              <span class="material-symbols-outlined text-primary text-xs"
+                >check</span
+              >
+              SEO Optimized
+            </li>
+          </ul>
+          <button
+            class="w-full py-sm bg-white/5 hover:bg-white/10 text-primary rounded-lg text-caption font-label-md transition-colors"
+          >
+            Pilih Paket
+          </button>
+        </div>
+        <div
+          class="glass-card p-lg rounded-xl flex flex-col h-full border border-white/5 hover:border-white/20 transition-all duration-300"
+        >
+          <div class="mb-md">
+            <span
+              class="material-symbols-outlined text-primary opacity-50 mb-sm"
+              >business</span
+            >
+            <h3 class="font-label-md text-primary">Company Profile</h3>
+          </div>
+          <div class="mb-lg">
+            <p class="text-caption text-on-surface-variant mb-xs">Mulai dari</p>
+            <p class="text-headline-md text-primary font-bold">Rp 3.500.000</p>
+          </div>
+          <ul
+            class="space-y-sm text-[10px] text-on-surface-variant mb-xl flex-1"
+          >
+            <li class="flex items-center gap-xs">
+              <span class="material-symbols-outlined text-primary text-xs"
+                >check</span
+              >
+              Responsive design
+            </li>
+            <li class="flex items-center gap-xs">
+              <span class="material-symbols-outlined text-primary text-xs"
+                >check</span
+              >
+              CMS Integration
+            </li>
+            <li class="flex items-center gap-xs">
+              <span class="material-symbols-outlined text-primary text-xs"
+                >check</span
+              >
+              Custom Graphics
+            </li>
+          </ul>
+          <button
+            class="w-full py-sm bg-white/5 hover:bg-white/10 text-primary rounded-lg text-caption font-label-md transition-colors"
+          >
+            Pilih Paket
+          </button>
+        </div>
+        <div
+          class="glass-card p-lg rounded-xl flex flex-col h-full border-2 border-primary relative shadow-[0_0_30px_rgba(255,255,255,0.1)] scale-105 z-10 bg-white/10"
+        >
+          <div
+            class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-surface px-sm py-xs rounded-full font-label-md text-[10px] whitespace-nowrap"
+          >
+            MOST POPULAR
+          </div>
+          <div class="mb-md mt-2">
+            <span class="material-symbols-outlined text-primary mb-sm"
+              >shopping_bag</span
+            >
+            <h3 class="font-label-md text-primary">E-commerce / App</h3>
+          </div>
+          <div class="mb-lg">
+            <p class="text-caption text-on-surface-variant mb-xs">Mulai dari</p>
+            <p class="text-headline-md text-primary font-bold">Rp 4.500.000</p>
+          </div>
+          <ul
+            class="space-y-sm text-[10px] text-on-surface-variant mb-xl flex-1"
+          >
+            <li class="flex items-center gap-xs">
+              <span class="material-symbols-outlined text-primary text-xs"
+                >check</span
+              >
+              Payment Gateway
+            </li>
+            <li class="flex items-center gap-xs">
+              <span class="material-symbols-outlined text-primary text-xs"
+                >check</span
+              >
+              Admin Dashboard
+            </li>
+            <li class="flex items-center gap-xs">
+              <span class="material-symbols-outlined text-primary text-xs"
+                >check</span
+              >
+              Custom Features
+            </li>
+          </ul>
+          <button
+            class="w-full py-sm bg-primary text-surface hover:opacity-90 rounded-lg text-caption font-label-md transition-all"
+          >
+            Konsultasi Sekarang
+          </button>
+        </div>
+        <div
+          class="glass-card p-lg rounded-xl flex flex-col h-full border border-white/5 hover:border-white/20 transition-all duration-300"
+        >
+          <div class="mb-md">
+            <span
+              class="material-symbols-outlined text-primary opacity-50 mb-sm"
+              >phone_android</span
+            >
+            <h3 class="font-label-md text-primary">Mobile App</h3>
+          </div>
+          <div class="mb-lg">
+            <p class="text-caption text-on-surface-variant mb-xs">Mulai dari</p>
+            <p class="text-headline-md text-primary font-bold">Rp 6.500.000</p>
+          </div>
+          <ul
+            class="space-y-sm text-[10px] text-on-surface-variant mb-xl flex-1"
+          >
+            <li class="flex items-center gap-xs">
+              <span class="material-symbols-outlined text-primary text-xs"
+                >check</span
+              >
+              Android &amp; iOS
+            </li>
+            <li class="flex items-center gap-xs">
+              <span class="material-symbols-outlined text-primary text-xs"
+                >check</span
+              >
+              UI/UX Mobile
+            </li>
+            <li class="flex items-center gap-xs">
+              <span class="material-symbols-outlined text-primary text-xs"
+                >check</span
+              >
+              API Integration
+            </li>
+          </ul>
+          <button
+            class="w-full py-sm bg-white/5 hover:bg-white/10 text-primary rounded-lg text-caption font-label-md transition-colors"
+          >
+            Pilih Paket
+          </button>
+        </div>
+      </div>
+    </section> -->
+    <!-- Cara Kerja Section -->
+    <section class="py-xl relative" id="process">
+      <div class="max-w-[1280px] mx-auto px-gutter text-center mb-xl">
+        <h2 class="font-headline-lg text-primary mb-sm">Cara Kerja Kami</h2>
+        <p class="text-on-surface-variant">
+          Proses transparan mulai dari ide hingga peluncuran.
+        </p>
+      </div>
+      <div class="max-w-[1000px] mx-auto px-gutter relative">
+        <!-- Animated Vertical Thread -->
+        <div
+          class="absolute left-1/2 -translate-x-1/2 top-10 bottom-10 w-px z-0 overflow-hidden"
+        >
+          <!-- Glowing Base Line -->
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-primary/40 via-primary/20 to-primary/40 shadow-[0_0_10px_rgba(255,255,255,0.3)]"
+          ></div>
+          <!-- Traveling Light Beams (3x staggered) -->
+          <div
+            class="absolute left-1/2 -translate-x-1/2 w-[3px] h-1/3 bg-gradient-to-b from-transparent via-primary to-transparent shadow-[0_0_20px_rgba(255,255,255,0.8)] animate-thread"
+            style="
+              animation-duration: 2.5s;
+              animation-iteration-count: infinite;
+              animation-timing-function: linear;
+            "
+          ></div>
+          <div
+            class="absolute left-1/2 -translate-x-1/2 w-[3px] h-1/3 bg-gradient-to-b from-transparent via-primary to-transparent shadow-[0_0_20px_rgba(255,255,255,0.8)] animate-thread"
+            style="
+              animation-duration: 2.5s;
+              animation-iteration-count: infinite;
+              animation-timing-function: linear;
+              animation-delay: 0.8s;
+            "
+          ></div>
+          <div
+            class="absolute left-1/2 -translate-x-1/2 w-[3px] h-1/3 bg-gradient-to-b from-transparent via-primary to-transparent shadow-[0_0_20px_rgba(255,255,255,0.8)] animate-thread"
+            style="
+              animation-duration: 2.5s;
+              animation-iteration-count: infinite;
+              animation-timing-function: linear;
+              animation-delay: 1.6s;
+            "
+          ></div>
+          <!-- Traveling Light Orbs (3x staggered) -->
+          <div
+            class="absolute left-1/2 -translate-x-1/2 w-2 h-2 bg-primary rounded-full shadow-[0_0_15px_rgba(255,255,255,0.9)] animate-orb"
+            style="
+              animation-duration: 2.5s;
+              animation-iteration-count: infinite;
+              animation-timing-function: linear;
+            "
+          ></div>
+          <div
+            class="absolute left-1/2 -translate-x-1/2 w-2 h-2 bg-primary rounded-full shadow-[0_0_15px_rgba(255,255,255,0.9)] animate-orb"
+            style="
+              animation-duration: 2.5s;
+              animation-iteration-count: infinite;
+              animation-timing-function: linear;
+              animation-delay: 0.8s;
+            "
+          ></div>
+          <div
+            class="absolute left-1/2 -translate-x-1/2 w-2 h-2 bg-primary rounded-full shadow-[0_0_15px_rgba(255,255,255,0.9)] animate-orb"
+            style="
+              animation-duration: 2.5s;
+              animation-iteration-count: infinite;
+              animation-timing-function: linear;
+              animation-delay: 1.6s;
+            "
+          ></div>
+        </div>
+        <div class="space-y-xl relative z-10">
+          <!-- Step 1 -->
+          <div class="flex flex-col md:flex-row items-center gap-md md:gap-0">
+            <div
+              class="flex-1 text-center md:text-right md:pr-lg hidden md:block"
+            >
+              <h4 class="font-headline-md text-primary mb-xs">Konsultasi</h4>
+              <p class="text-body-md text-on-surface-variant">
+                Diskusi mendalam mengenai visi, kebutuhan bisnis, dan solusi
+                awal yang paling tepat.
+              </p>
+            </div>
+            <div
+              class="w-12 h-12 bg-primary text-surface rounded-full flex items-center justify-center font-bold text-xl shadow-[0_0_15px_rgba(255,255,255,0.3)] z-10 shrink-0"
+            >
+              1
+            </div>
+            <div class="flex-1 text-center md:text-left md:pl-lg">
+              <div
+                class="glass-card p-md rounded-xl inline-block md:hidden mb-md w-full"
+              >
+                <h4 class="font-label-md text-primary mb-xs">Konsultasi</h4>
+                <p class="text-caption text-on-surface-variant">
+                  Diskusi visi, kebutuhan bisnis, dan solusi awal.
+                </p>
+              </div>
+              <div class="hidden md:block opacity-0">spacer</div>
+            </div>
+          </div>
+          <!-- Step 2 -->
+          <div class="flex flex-col md:flex-row items-center gap-md md:gap-0">
+            <div class="flex-1 text-center md:text-right md:pr-lg">
+              <div class="hidden md:block opacity-0">spacer</div>
+              <div
+                class="glass-card p-md rounded-xl inline-block md:hidden mb-md w-full"
+              >
+                <h4 class="font-label-md text-primary mb-xs">
+                  Perencanaan &amp; Design
+                </h4>
+                <p class="text-caption text-on-surface-variant">
+                  Arsitektur sistem dan desain UI/UX high-fidelity.
+                </p>
+              </div>
+            </div>
+            <div
+              class="w-12 h-12 bg-primary text-surface rounded-full flex items-center justify-center font-bold text-xl shadow-[0_0_15px_rgba(255,255,255,0.3)] z-10 shrink-0"
+            >
+              2
+            </div>
+            <div
+              class="flex-1 text-center md:text-left md:pl-lg hidden md:block"
+            >
+              <h4 class="font-headline-md text-primary mb-xs">
+                Perencanaan &amp; Design
+              </h4>
+              <p class="text-body-md text-on-surface-variant">
+                Penyusunan arsitektur sistem dan pembuatan High-fidelity
+                prototype UI/UX yang intuitif.
+              </p>
+            </div>
+          </div>
+          <!-- Step 3 -->
+          <div class="flex flex-col md:flex-row items-center gap-md md:gap-0">
+            <div
+              class="flex-1 text-center md:text-right md:pr-lg hidden md:block"
+            >
+              <h4 class="font-headline-md text-primary mb-xs">Development</h4>
+              <p class="text-body-md text-on-surface-variant">
+                Proses coding intensif menggunakan teknologi modern dengan
+                update progress mingguan.
+              </p>
+            </div>
+            <div
+              class="w-12 h-12 bg-primary text-surface rounded-full flex items-center justify-center font-bold text-xl shadow-[0_0_15px_rgba(255,255,255,0.3)] z-10 shrink-0"
+            >
+              3
+            </div>
+            <div class="flex-1 text-center md:text-left md:pl-lg">
+              <div
+                class="glass-card p-md rounded-xl inline-block md:hidden mb-md w-full"
+              >
+                <h4 class="font-label-md text-primary mb-xs">Development</h4>
+                <p class="text-caption text-on-surface-variant">
+                  Proses coding dengan teknologi terkini dan update berkala.
+                </p>
+              </div>
+              <div class="hidden md:block opacity-0">spacer</div>
+            </div>
+          </div>
+          <!-- Step 4 -->
+          <div class="flex flex-col md:flex-row items-center gap-md md:gap-0">
+            <div class="flex-1 text-center md:text-right md:pr-lg">
+              <div class="hidden md:block opacity-0">spacer</div>
+              <div
+                class="glass-card p-md rounded-xl inline-block md:hidden mb-md w-full"
+              >
+                <h4 class="font-label-md text-primary mb-xs">Testing</h4>
+                <p class="text-caption text-on-surface-variant">
+                  QA Testing menyeluruh untuk memastikan kualitas sistem.
+                </p>
+              </div>
+            </div>
+            <div
+              class="w-12 h-12 bg-primary text-surface rounded-full flex items-center justify-center font-bold text-xl shadow-[0_0_15px_rgba(255,255,255,0.3)] z-10 shrink-0"
+            >
+              4
+            </div>
+            <div
+              class="flex-1 text-center md:text-left md:pl-lg hidden md:block"
+            >
+              <h4 class="font-headline-md text-primary mb-xs">Testing</h4>
+              <p class="text-body-md text-on-surface-variant">
+                Quality Assurance (QA) testing menyeluruh untuk menjamin
+                aplikasi berjalan tanpa celah.
+              </p>
+            </div>
+          </div>
+          <!-- Step 5 -->
+          <div class="flex flex-col md:flex-row items-center gap-md md:gap-0">
+            <div
+              class="flex-1 text-center md:text-right md:pr-lg hidden md:block"
+            >
+              <h4 class="font-headline-md text-primary mb-xs">
+                Launch &amp; Support
+              </h4>
+              <p class="text-body-md text-on-surface-variant">
+                Deployment ke server produksi dan dukungan maintenance teknis
+                berkelanjutan.
+              </p>
+            </div>
+            <div
+              class="w-12 h-12 bg-primary text-surface rounded-full flex items-center justify-center font-bold text-xl shadow-[0_0_15px_rgba(255,255,255,0.3)] z-10 shrink-0"
+            >
+              5
+            </div>
+            <div class="flex-1 text-center md:text-left md:pl-lg">
+              <div
+                class="glass-card p-md rounded-xl inline-block md:hidden mb-md w-full"
+              >
+                <h4 class="font-label-md text-primary mb-xs">
+                  Launch &amp; Support
+                </h4>
+                <p class="text-caption text-on-surface-variant">
+                  Deployment dan dukungan teknis pasca-launch.
+                </p>
+              </div>
+              <div class="hidden md:block opacity-0">spacer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Portfolio Section - Coverflow -->
+    <section class="py-xl bg-surface-container-lowest overflow-hidden" id="portfolio">
+      <div class="max-w-[1280px] mx-auto px-gutter mb-lg flex justify-between items-end">
+        <div>
+          <h2 class="font-headline-lg text-primary">Portfolio Terbaru</h2>
+          <p class="text-on-surface-variant">Intip karya yang telah kami selesaikan bersama klien.</p>
+        </div>
+        <a class="font-label-md text-primary flex items-center gap-xs group" href="portfolio.html">
+          Semua Project
+          <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_outward</span>
+        </a>
+      </div>
+      <div class="relative max-w-[1280px] mx-auto px-gutter">
+        <div class="coverflow-container relative select-none" style="perspective: 1200px;">
+          <div class="coverflow-track relative flex items-center justify-center" style="transform-style: preserve-3d; min-height: 520px;">
+
+            <div class="coverflow-slide" data-index="0">
+              <div class="rounded-xl overflow-hidden w-[300px] md:w-[380px]">
+                <div class="h-44 md:h-52 overflow-hidden">
+                  <img alt="CMS SMP 2 KRA" class="w-full h-full object-cover transition-transform duration-700" src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80"/>
+                </div>
+                <div class="p-md">
+                  <span class="text-[10px] font-label-md text-primary/60 bg-white/[0.04] px-sm py-[3px] rounded-full border border-white/[0.06] uppercase mb-sm inline-block tracking-wider">Tugas • P1</span>
+                  <h3 class="font-headline-md text-primary mb-xs">CMS SMP 2 KRA</h3>
+                  <p class="text-caption text-on-surface-variant/70 leading-relaxed mb-md line-clamp-2">Sistem manajemen konten sekolah untuk mengelola informasi akademik.</p>
+                  <a href="https://github.com/dms-euro/CMS_SMP2" target="_blank" rel="noopener" class="block w-full py-[10px] border border-white/15 rounded-lg text-caption font-label-md text-center hover:bg-white/10 hover:border-white/30 transition-all duration-300 text-primary/80 hover:text-primary">Lihat Detail</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="coverflow-slide" data-index="1">
+              <div class="rounded-xl overflow-hidden w-[300px] md:w-[380px]">
+                <div class="h-44 md:h-52 overflow-hidden">
+                  <img alt="Sipkas" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&q=80"/>
+                </div>
+                <div class="p-md">
+                  <span class="text-[10px] font-label-md text-primary/60 bg-white/[0.04] px-sm py-[3px] rounded-full border border-white/[0.06] uppercase mb-sm inline-block tracking-wider">Project • P1</span>
+                  <h3 class="font-headline-md text-primary mb-xs">Sipkas</h3>
+                  <p class="text-caption text-on-surface-variant/70 leading-relaxed mb-md line-clamp-2">Aplikasi pencatatan keuangan sekolah yang transparan dan akurat.</p>
+                  <a href="https://github.com/dms-euro/SIPKAS" target="_blank" rel="noopener" class="block w-full py-[10px] border border-white/15 rounded-lg text-caption font-label-md text-center hover:bg-white/10 hover:border-white/30 transition-all duration-300 text-primary/80 hover:text-primary">Lihat Detail</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="coverflow-slide" data-index="2">
+              <div class="rounded-xl overflow-hidden w-[300px] md:w-[380px]">
+                <div class="h-44 md:h-52 overflow-hidden">
+                  <img alt="Uroo.dev" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&q=80"/>
+                </div>
+                <div class="p-md">
+                  <span class="text-[10px] font-label-md text-primary/60 bg-white/[0.04] px-sm py-[3px] rounded-full border border-white/[0.06] uppercase mb-sm inline-block tracking-wider">Mandiri • P3</span>
+                  <h3 class="font-headline-md text-primary mb-xs">Uroo.dev</h3>
+                  <p class="text-caption text-on-surface-variant/70 leading-relaxed mb-md line-clamp-2">Website portofolio studio dev dengan performa tinggi dan estetika modern.</p>
+                  <a href="https://github.com/dms-euro/Portofolio" target="_blank" rel="noopener" class="block w-full py-[10px] border border-white/15 rounded-lg text-caption font-label-md text-center hover:bg-white/10 hover:border-white/30 transition-all duration-300 text-primary/80 hover:text-primary">Lihat Detail</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="coverflow-slide" data-index="3">
+              <div class="rounded-xl overflow-hidden w-[300px] md:w-[380px]">
+                <div class="h-44 md:h-52 overflow-hidden">
+                  <img alt="Raraproduction" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1553729459-afe8f2e3c2b0?w=600&q=80"/>
+                </div>
+                <div class="p-md">
+                  <span class="text-[10px] font-label-md text-primary/60 bg-white/[0.04] px-sm py-[3px] rounded-full border border-white/[0.06] uppercase mb-sm inline-block tracking-wider">Project • P1</span>
+                  <h3 class="font-headline-md text-primary mb-xs">Raraproduction</h3>
+                  <p class="text-caption text-on-surface-variant/70 leading-relaxed mb-md line-clamp-2">Platform keuangan perusahaan dengan laporan laba rugi otomatis.</p>
+                  <a href="https://raraproduction.my.id" target="_blank" rel="noopener" class="block w-full py-[10px] border border-white/15 rounded-lg text-caption font-label-md text-center hover:bg-white/10 hover:border-white/30 transition-all duration-300 text-primary/80 hover:text-primary">Lihat Detail</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="coverflow-slide" data-index="4">
+              <div class="rounded-xl overflow-hidden w-[300px] md:w-[380px]">
+                <div class="h-44 md:h-52 overflow-hidden">
+                  <img alt="BuanaNet" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80"/>
+                </div>
+                <div class="p-md">
+                  <span class="text-[10px] font-label-md text-primary/60 bg-white/[0.04] px-sm py-[3px] rounded-full border border-white/[0.06] uppercase mb-sm inline-block tracking-wider">Project • P1</span>
+                  <h3 class="font-headline-md text-primary mb-xs">BuanaNet</h3>
+                  <p class="text-caption text-on-surface-variant/70 leading-relaxed mb-md line-clamp-2">Solusi manajemen perusahaan terintegrasi untuk operasional dan SDM.</p>
+                  <a href="https://github.com/dms-euro/PT-BUANA" target="_blank" rel="noopener" class="block w-full py-[10px] border border-white/15 rounded-lg text-caption font-label-md text-center hover:bg-white/10 hover:border-white/30 transition-all duration-300 text-primary/80 hover:text-primary">Lihat Detail</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="coverflow-slide" data-index="5">
+              <div class="rounded-xl overflow-hidden w-[300px] md:w-[380px]">
+                <div class="h-44 md:h-52 overflow-hidden">
+                  <img alt="System Event Mlayu-mlayu" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80"/>
+                </div>
+                <div class="p-md">
+                  <span class="text-[10px] font-label-md text-primary/60 bg-white/[0.04] px-sm py-[3px] rounded-full border border-white/[0.06] uppercase mb-sm inline-block tracking-wider">Mandiri • P2</span>
+                  <h3 class="font-headline-md text-primary mb-xs">Mlayu-mlayu</h3>
+                  <p class="text-caption text-on-surface-variant/70 leading-relaxed mb-md line-clamp-2">Sistem ticketing online event lari dengan manajemen peserta.</p>
+                  <a href="https://github.com/dms-euro/Web-Ticketing-Mlayu-mlayu" target="_blank" rel="noopener" class="block w-full py-[10px] border border-white/15 rounded-lg text-caption font-label-md text-center hover:bg-white/10 hover:border-white/30 transition-all duration-300 text-primary/80 hover:text-primary">Lihat Detail</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="coverflow-slide" data-index="6">
+              <div class="rounded-xl overflow-hidden w-[300px] md:w-[380px]">
+                <div class="h-44 md:h-52 overflow-hidden">
+                  <img alt="Smart Resto" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80"/>
+                </div>
+                <div class="p-md">
+                  <span class="text-[10px] font-label-md text-primary/60 bg-white/[0.04] px-sm py-[3px] rounded-full border border-white/[0.06] uppercase mb-sm inline-block tracking-wider">Mandiri • P3</span>
+                  <h3 class="font-headline-md text-primary mb-xs">Smart Resto</h3>
+                  <p class="text-caption text-on-surface-variant/70 leading-relaxed mb-md line-clamp-2">Aplikasi POS restoran dengan manajemen menu dan pembayaran cepat.</p>
+                  <a href="https://github.com/dms-euro/Smart_Resto_POS" target="_blank" rel="noopener" class="block w-full py-[10px] border border-white/15 rounded-lg text-caption font-label-md text-center hover:bg-white/10 hover:border-white/30 transition-all duration-300 text-primary/80 hover:text-primary">Lihat Detail</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <button class="coverflow-prev coverflow-btn absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-20" aria-label="Previous">
+            <span class="material-symbols-outlined text-2xl">chevron_left</span>
+          </button>
+          <button class="coverflow-next coverflow-btn absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-20" aria-label="Next">
+            <span class="material-symbols-outlined text-2xl">chevron_right</span>
+          </button>
+
+          <div class="coverflow-dots flex items-center justify-center gap-sm mt-xl pb-md" style="perspective: 0;">
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Testimoni Section -->
+    <section class="py-xl overflow-hidden bg-surface-container-lowest">
+      <div class="max-w-[1280px] mx-auto px-gutter text-center mb-xl">
+        <h2 class="font-headline-lg text-primary mb-sm">Apa Kata Mereka?</h2>
+        <p class="text-on-surface-variant">
+          Kepuasan klien adalah prioritas utama kami.
+        </p>
+      </div>
+      <div
+        class="relative flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]"
+      >
+        <div class="flex gap-md animate-marquee shrink-0 pr-md">
+          <!-- Testi 1 -->
+          <div
+            class="min-w-[320px] md:min-w-[400px] bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] p-lg rounded-xl hover:bg-white/[0.06] hover:border-white/[0.2] hover:-translate-y-1 transition-all duration-500"
+          >
+            <div class="flex items-center gap-md mb-md">
+              <div
+                class="w-12 h-12 rounded-full overflow-hidden border border-white/10 shrink-0"
+              >
+                <img
+                  alt="Andi Pratama"
+                  class="w-full h-full object-cover"
+                  src="https://picsum.photos/seed/testi1/96/96"
+                />
+              </div>
+              <div>
+                <h4 class="font-label-md text-primary">Andi Pratama</h4>
+                <p class="text-[10px] text-on-surface-variant">
+                  CEO PT. INDO TECH
+                </p>
+              </div>
+            </div>
+            <p
+              class="text-caption text-on-surface-variant italic leading-relaxed"
+            >
+              "Hasil kerja Uroo Dev sangat memuaskan. Sistem informasi yang
+              dibangun sangat membantu efisiensi operasional kami."
+            </p>
+            <div class="mt-md flex gap-xs text-yellow-500">
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+            </div>
+          </div>
+          <!-- Testi 2 -->
+          <div
+            class="min-w-[320px] md:min-w-[400px] bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] p-lg rounded-xl hover:bg-white/[0.06] hover:border-white/[0.2] hover:-translate-y-1 transition-all duration-500"
+          >
+            <div class="flex items-center gap-md mb-md">
+              <div
+                class="w-12 h-12 rounded-full overflow-hidden border border-white/10 shrink-0"
+              >
+                <img
+                  alt="Siti Aminah"
+                  class="w-full h-full object-cover"
+                  src="https://picsum.photos/seed/testi2/96/96"
+                />
+              </div>
+              <div>
+                <h4 class="font-label-md text-primary">Siti Aminah</h4>
+                <p class="text-[10px] text-on-surface-variant">
+                  Owner Fashion Hub
+                </p>
+              </div>
+            </div>
+            <p
+              class="text-caption text-on-surface-variant italic leading-relaxed"
+            >
+              "Toko online saya sekarang jauh lebih cepat dan profesional.
+              Penjualan meningkat drastis setelah launching website baru."
+            </p>
+            <div class="mt-md flex gap-xs text-yellow-500">
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+            </div>
+          </div>
+          <!-- Testi 3 -->
+          <div
+            class="min-w-[320px] md:min-w-[400px] bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] p-lg rounded-xl hover:bg-white/[0.06] hover:border-white/[0.2] hover:-translate-y-1 transition-all duration-500"
+          >
+            <div class="flex items-center gap-md mb-md">
+              <div
+                class="w-12 h-12 rounded-full overflow-hidden border border-white/10 shrink-0"
+              >
+                <img
+                  alt="Budi Santoso"
+                  class="w-full h-full object-cover"
+                  src="https://picsum.photos/seed/testi3/96/96"
+                />
+              </div>
+              <div>
+                <h4 class="font-label-md text-primary">Budi Santoso</h4>
+                <p class="text-[10px] text-on-surface-variant">
+                  Kepala IT Sekolah Teladan
+                </p>
+              </div>
+            </div>
+            <p
+              class="text-caption text-on-surface-variant italic leading-relaxed"
+            >
+              "Tim yang sangat responsif dan transparan. Semua request fitur
+              dikerjakan dengan sangat baik dan tepat waktu."
+            </p>
+            <div class="mt-md flex gap-xs text-yellow-500">
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+            </div>
+          </div>
+          <!-- Testi 4 -->
+          <div
+            class="min-w-[320px] md:min-w-[400px] bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] p-lg rounded-xl hover:bg-white/[0.06] hover:border-white/[0.2] hover:-translate-y-1 transition-all duration-500"
+          >
+            <div class="flex items-center gap-md mb-md">
+              <div
+                class="w-12 h-12 rounded-full overflow-hidden border border-white/10 shrink-0"
+              >
+                <img
+                  alt="Dewi Lestari"
+                  class="w-full h-full object-cover"
+                  src="https://picsum.photos/seed/testi4/96/96"
+                />
+              </div>
+              <div>
+                <h4 class="font-label-md text-primary">Dewi Lestari</h4>
+                <p class="text-[10px] text-on-surface-variant">
+                  Founder EcoSpace
+                </p>
+              </div>
+            </div>
+            <p
+              class="text-caption text-on-surface-variant italic leading-relaxed"
+            >
+              "Landing page yang dibuat sangat engaging! Conversion rate naik
+              40% dalam sebulan pertama."
+            </p>
+            <div class="mt-md flex gap-xs text-yellow-500">
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+            </div>
+          </div>
+          <!-- Testi 5 -->
+          <div
+            class="min-w-[320px] md:min-w-[400px] bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] p-lg rounded-xl hover:bg-white/[0.06] hover:border-white/[0.2] hover:-translate-y-1 transition-all duration-500"
+          >
+            <div class="flex items-center gap-md mb-md">
+              <div
+                class="w-12 h-12 rounded-full overflow-hidden border border-white/10 shrink-0"
+              >
+                <img
+                  alt="Rizky Hakim"
+                  class="w-full h-full object-cover"
+                  src="https://picsum.photos/seed/testi5/96/96"
+                />
+              </div>
+              <div>
+                <h4 class="font-label-md text-primary">Rizky Hakim</h4>
+                <p class="text-[10px] text-on-surface-variant">
+                  Direktur CV. Karya Bangsa
+                </p>
+              </div>
+            </div>
+            <p
+              class="text-caption text-on-surface-variant italic leading-relaxed"
+            >
+              "Proses pengerjaan cepat, komunikasi lancar, hasilnya melebihi
+              ekspektasi. Highly recommended!"
+            </p>
+            <div class="mt-md flex gap-xs text-yellow-500">
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex gap-md animate-marquee shrink-0 pr-md"
+          aria-hidden="true"
+        >
+          <!-- Testi 1 dup -->
+          <div
+            class="min-w-[320px] md:min-w-[400px] bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] p-lg rounded-xl"
+          >
+            <div class="flex items-center gap-md mb-md">
+              <div
+                class="w-12 h-12 rounded-full overflow-hidden border border-white/10 shrink-0"
+              >
+                <img
+                  alt="Andi Pratama"
+                  class="w-full h-full object-cover"
+                  src="https://picsum.photos/seed/testi1/96/96"
+                />
+              </div>
+              <div>
+                <h4 class="font-label-md text-primary">Andi Pratama</h4>
+                <p class="text-[10px] text-on-surface-variant">
+                  CEO PT. INDO TECH
+                </p>
+              </div>
+            </div>
+            <p
+              class="text-caption text-on-surface-variant italic leading-relaxed"
+            >
+              "Hasil kerja Uroo Dev sangat memuaskan. Sistem informasi yang
+              dibangun sangat membantu efisiensi operasional kami."
+            </p>
+            <div class="mt-md flex gap-xs text-yellow-500">
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+            </div>
+          </div>
+          <!-- Testi 2 dup -->
+          <div
+            class="min-w-[320px] md:min-w-[400px] bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] p-lg rounded-xl"
+          >
+            <div class="flex items-center gap-md mb-md">
+              <div
+                class="w-12 h-12 rounded-full overflow-hidden border border-white/10 shrink-0"
+              >
+                <img
+                  alt="Siti Aminah"
+                  class="w-full h-full object-cover"
+                  src="https://picsum.photos/seed/testi2/96/96"
+                />
+              </div>
+              <div>
+                <h4 class="font-label-md text-primary">Siti Aminah</h4>
+                <p class="text-[10px] text-on-surface-variant">
+                  Owner Fashion Hub
+                </p>
+              </div>
+            </div>
+            <p
+              class="text-caption text-on-surface-variant italic leading-relaxed"
+            >
+              "Toko online saya sekarang jauh lebih cepat dan profesional.
+              Penjualan meningkat drastis setelah launching website baru."
+            </p>
+            <div class="mt-md flex gap-xs text-yellow-500">
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+            </div>
+          </div>
+          <!-- Testi 3 dup -->
+          <div
+            class="min-w-[320px] md:min-w-[400px] bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] p-lg rounded-xl"
+          >
+            <div class="flex items-center gap-md mb-md">
+              <div
+                class="w-12 h-12 rounded-full overflow-hidden border border-white/10 shrink-0"
+              >
+                <img
+                  alt="Budi Santoso"
+                  class="w-full h-full object-cover"
+                  src="https://picsum.photos/seed/testi3/96/96"
+                />
+              </div>
+              <div>
+                <h4 class="font-label-md text-primary">Budi Santoso</h4>
+                <p class="text-[10px] text-on-surface-variant">
+                  Kepala IT Sekolah Teladan
+                </p>
+              </div>
+            </div>
+            <p
+              class="text-caption text-on-surface-variant italic leading-relaxed"
+            >
+              "Tim yang sangat responsif dan transparan. Semua request fitur
+              dikerjakan dengan sangat baik dan tepat waktu."
+            </p>
+            <div class="mt-md flex gap-xs text-yellow-500">
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+            </div>
+          </div>
+          <!-- Testi 4 dup -->
+          <div
+            class="min-w-[320px] md:min-w-[400px] bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] p-lg rounded-xl"
+          >
+            <div class="flex items-center gap-md mb-md">
+              <div
+                class="w-12 h-12 rounded-full overflow-hidden border border-white/10 shrink-0"
+              >
+                <img
+                  alt="Dewi Lestari"
+                  class="w-full h-full object-cover"
+                  src="https://picsum.photos/seed/testi4/96/96"
+                />
+              </div>
+              <div>
+                <h4 class="font-label-md text-primary">Dewi Lestari</h4>
+                <p class="text-[10px] text-on-surface-variant">
+                  Founder EcoSpace
+                </p>
+              </div>
+            </div>
+            <p
+              class="text-caption text-on-surface-variant italic leading-relaxed"
+            >
+              "Landing page yang dibuat sangat engaging! Conversion rate naik
+              40% dalam sebulan pertama."
+            </p>
+            <div class="mt-md flex gap-xs text-yellow-500">
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+            </div>
+          </div>
+          <!-- Testi 5 dup -->
+          <div
+            class="min-w-[320px] md:min-w-[400px] bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] p-lg rounded-xl"
+          >
+            <div class="flex items-center gap-md mb-md">
+              <div
+                class="w-12 h-12 rounded-full overflow-hidden border border-white/10 shrink-0"
+              >
+                <img
+                  alt="Rizky Hakim"
+                  class="w-full h-full object-cover"
+                  src="https://picsum.photos/seed/testi5/96/96"
+                />
+              </div>
+              <div>
+                <h4 class="font-label-md text-primary">Rizky Hakim</h4>
+                <p class="text-[10px] text-on-surface-variant">
+                  Direktur CV. Karya Bangsa
+                </p>
+              </div>
+            </div>
+            <p
+              class="text-caption text-on-surface-variant italic leading-relaxed"
+            >
+              "Proses pengerjaan cepat, komunikasi lancar, hasilnya melebihi
+              ekspektasi. Highly recommended!"
+            </p>
+            <div class="mt-md flex gap-xs text-yellow-500">
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="py-12" id="faq">
+      <div
+        class="max-w-[1180px] w-[calc(100%-2rem)] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 items-start"
+      >
+        <div class="reveal max-w-[46rem]">
+          <span
+            class="text-[0.72rem] tracking-[0.18em] font-bold uppercase text-white/60 mb-3.5 block"
+            >FAQ</span
+          >
+          <h2
+            class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-md leading-tight"
+          >
+            Pertanyaan yang paling sering ditanyakan sebelum project dimulai.
+          </h2>
+        </div>
+        <div class="grid gap-4 reveal">
+          <article
+            class="glass-panel rounded-[28px] overflow-hidden faq-item active"
+          >
+            <button
+              class="faq-question w-full text-left text-white font-bold pr-8 relative py-4 px-6"
+            >
+              Berapa lama pengerjaan?
+            </button>
+            <div class="faq-answer">
+              <p class="text-white/70 px-6 pb-4">
+                Timeline bergantung pada scope. Landing page bisa lebih cepat,
+                sedangkan sistem informasi atau aplikasi mobile memerlukan
+                tahapan yang lebih detail.
+              </p>
+            </div>
+          </article>
+          <article class="glass-panel rounded-[28px] overflow-hidden faq-item">
+            <button
+              class="faq-question w-full text-left text-white font-bold pr-8 relative py-4 px-6"
+            >
+              Apakah bisa cicilan?
+            </button>
+            <div class="faq-answer">
+              <p class="text-white/70 px-6 pb-4">
+                Bisa. Skema pembayaran adalah dengan membayar dp sebesar 50% di
+                awal, dan sisanya dibayarkan setelah project selesai.
+              </p>
+            </div>
+          </article>
+          <article class="glass-panel rounded-[28px] overflow-hidden faq-item">
+            <button
+              class="faq-question w-full text-left text-white font-bold pr-8 relative py-4 px-6"
+            >
+              Apakah source code diberikan?
+            </button>
+            <div class="faq-answer">
+              <p class="text-white/70 px-6 pb-4">
+                Ya, source code dapat diserahkan sesuai kesepakatan project agar
+                ownership produk tetap jelas.
+              </p>
+            </div>
+          </article>
+          <article class="glass-panel rounded-[28px] overflow-hidden faq-item">
+            <button
+              class="faq-question w-full text-left text-white font-bold pr-8 relative py-4 px-6"
+            >
+              Apakah ada garansi?
+            </button>
+            <div class="faq-answer">
+              <p class="text-white/70 px-6 pb-4">
+                Ada masa support setelah launching untuk memastikan bug penting
+                dan kendala awal dapat ditangani.
+              </p>
+            </div>
+          </article>
+          <article class="glass-panel rounded-[28px] overflow-hidden faq-item">
+            <button
+              class="faq-question w-full text-left text-white font-bold pr-8 relative py-4 px-6"
+            >
+              Apakah bisa revisi?
+            </button>
+            <div class="faq-answer">
+              <p class="text-white/70 px-6 pb-4">
+                Bisa. Revisi mengikuti ruang lingkup yang disepakati supaya
+                project tetap on-track dan transparan.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- Final CTA Section -->
+    <section class="py-[6rem] relative overflow-hidden">
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent pointer-events-none"
+      ></div>
+      <div
+        class="absolute top-1/4 left-0 w-[300px] h-[300px] bg-primary/[0.04] rounded-full blur-[150px] pointer-events-none"
+      ></div>
+      <div
+        class="absolute bottom-1/4 right-0 w-[300px] h-[300px] bg-primary/[0.04] rounded-full blur-[150px] pointer-events-none"
+      ></div>
+      <div class="max-w-[1280px] mx-auto px-gutter relative">
+        <div
+          id="cta-card"
+          class="relative rounded-2xl p-lg md:p-[4rem] text-center overflow-hidden bg-gradient-to-b from-white/[0.04] to-white/[0.01] border border-white/[0.08] shadow-[0_0_80px_-20px_rgba(255,255,255,0.05)]"
+          style="
+            transform: perspective(1200px) rotateX(var(--rx, 0deg))
+              rotateY(var(--ry, 0deg));
+            transition: transform 0.15s ease-out;
+          "
+        >
+          <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/[0.06] rounded-full blur-[120px] pointer-events-none"
+          ></div>
+          <div
+            class="absolute -top-20 -right-20 w-40 h-40 bg-primary/[0.03] rounded-full blur-[60px] pointer-events-none"
+          ></div>
+          <div
+            class="absolute -bottom-20 -left-20 w-40 h-40 bg-primary/[0.03] rounded-full blur-[60px] pointer-events-none"
+          ></div>
+          <div class="relative z-10 max-w-3xl mx-auto">
+            <span
+              class="inline-block text-[0.72rem] tracking-[0.18em] font-bold uppercase text-white/40 mb-5 border border-white/10 px-4 py-1.5 rounded-full"
+              >Mulai Sekarang</span
+            >
+            <h2
+              class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-5 leading-tight"
+            >
+              Siap Membangun Software Impian Anda?
+            </h2>
+            <p
+              class="text-[1.05rem] text-white/60 max-w-2xl mx-auto mb-xl leading-relaxed"
+            >
+              Ayo konsultasikan ide Anda sekarang dan wujudkan solusi digital
+              yang tepat untuk bisnis Anda.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+              <a
+                href="/contact.html"
+                class="group bg-primary text-surface px-8 py-3.5 font-semibold text-[0.9rem] rounded-xl transition-all duration-300 active:scale-95 hover:shadow-[0_0_30px_-5px_rgba(255,255,255,0.3)] flex items-center justify-center gap-2.5"
+              >
+                Hubungi Kami
+                <span
+                  class="material-symbols-outlined text-lg transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  >rocket_launch</span
+                >
+              </a>
+              <a
+                href="tel:+62882006533693"
+                class="group bg-white/[0.04] border border-white/15 text-white px-8 py-3.5 font-semibold text-[0.9rem] rounded-xl transition-all duration-300 active:scale-95 hover:bg-white/[0.08] hover:border-white/25 flex items-center justify-center gap-2.5"
+              >
+                Chat WhatsApp
+                <span
+                  class="material-symbols-outlined text-lg transition-transform duration-300 group-hover:scale-110"
+                  >forum</span
+                >
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    </main>
+    <footer class="w-full pt-xl pb-md border-t border-white/5 bg-surface">
+      <div class="max-w-[1280px] mx-auto px-gutter">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-lg mb-xl">
+          <div class="md:col-span-4">
+            <a class="block mb-md w-fit" href="index.html">
+              <div
+                class="bg-white/[0.03] border border-white/[0.1] rounded-lg px-6 py-7 hover:bg-white/[0.06] hover:border-white/[0.2] hover:scale-105 transition-all duration-300"
+              >
+                <img
+                  alt="Uroo Dev"
+                  class="h-auto w-48"
+                  src="assets/Uroo.dev-bening.png"
+                />
+              </div>
+            </a>
+            <div class="flex gap-md">
+              <a
+                class="text-on-tertiary-container hover:text-primary transition-colors"
+                href="http://linkedin.com/in/uro-prasetyo-0479aa3a6/?skipRedirect=true"
+                target="_blank"
+                rel="noopener"
+                ><span class="material-symbols-outlined">badge</span></a
+              >
+              <a
+                class="text-on-tertiary-container hover:text-primary transition-colors"
+                href="https://github.com/uroo-dev"
+                target="_blank"
+                rel="noopener"
+                ><span class="material-symbols-outlined">code</span></a
+              >
+              <a
+                class="text-on-tertiary-container hover:text-primary transition-colors"
+                href="https://www.tiktok.com/@uroo.dev"
+                target="_blank"
+                rel="noopener"
+                ><span class="material-symbols-outlined">music_note</span></a
+              >
+              <a
+                class="text-on-tertiary-container hover:text-primary transition-colors"
+                href="https://instagram.com/dms_euro"
+                target="_blank"
+                rel="noopener"
+                ><span class="material-symbols-outlined">photo_camera</span></a
+              >
+            </div>
+          </div>
+          <div class="md:col-span-2">
+            <h4 class="font-label-md text-primary mb-md">Menu</h4>
+            <ul class="space-y-sm text-caption text-on-tertiary-container">
+              <li class="">
+                <a
+                  class="hover:text-primary transition-colors"
+                  href="index.html"
+                  >Beranda</a
+                >
+              </li>
+              <li class="">
+                <a
+                  class="hover:text-primary transition-colors"
+                  href="services.html"
+                  >Layanan</a
+                >
+              </li>
+              <li class="">
+                <a
+                  class="hover:text-primary transition-colors"
+                  href="portfolio.html"
+                  >Portofolio</a
+                >
+              </li>
+              <li class="">
+                <a
+                  class="hover:text-primary transition-colors"
+                  href="about.html"
+                  >Tentang</a
+                >
+              </li>
+              <li class="">
+                <a
+                  class="hover:text-primary transition-colors"
+                  href="contact.html"
+                  >Kontak</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="md:col-span-3">
+            <h4 class="font-label-md text-primary mb-md">Kontak</h4>
+            <ul class="space-y-sm text-caption text-on-tertiary-container">
+              <li class="flex items-center gap-xs">
+                <span class="material-symbols-outlined text-xs"
+                  >location_on</span
+                >
+                <a
+                  class="hover:text-primary transition-colors"
+                  href="https://maps.app.goo.gl/bpvMvLE4JctYFJCt5"
+                  target="_blank"
+                  rel="noopener"
+                  >Papahan, Karanganyar Regency</a
+                >
+              </li>
+              <li class="flex items-center gap-xs">
+                <span class="material-symbols-outlined text-xs">mail</span>
+                <a
+                  class="hover:text-primary transition-colors"
+                  href="mailto:uroprasetyo@gmail.com"
+                  >uroprasetyo@gmail.com</a
+                >
+              </li>
+              <li class="flex items-center gap-xs">
+                <span class="material-symbols-outlined text-xs">call</span>
+                <a
+                  class="hover:text-primary transition-colors"
+                  href="tel:+62882006533693"
+                  >+62 882 0065 33693</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="md:col-span-3">
+            <h4 class="font-label-md text-primary mb-md">Lokasi</h4>
+            <div
+              class="map-dark overflow-hidden rounded-xl border border-white/10"
+            >
+              <iframe
+                src="https://www.google.com/maps?q=Papahan+Karanganyar+Indonesia&output=embed"
+                width="100%"
+                height="200"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex flex-col md:flex-row justify-between items-center gap-base border-t border-white/5 pt-md"
+        >
+          <p class="font-caption text-caption text-on-tertiary-container">
+            &copy; <span id="year"></span> uroo dev. Built with passion in
+            Indonesia.
+          </p>
+          <div class="flex gap-md">
+            <a
+              class="font-caption text-caption text-on-tertiary-container hover:text-primary transition-colors duration-300"
+              href="#"
+              >Privacy Policy</a
+            >
+            <a
+              class="font-caption text-caption text-on-tertiary-container hover:text-primary transition-colors duration-300"
+              href="#"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("year").textContent = new Date().getFullYear();
+        const lenis = new Lenis({
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        });
+        lenis.on("scroll", ScrollTrigger.update);
+        gsap.ticker.add((time) => lenis.raf(time * 1000));
+        gsap.ticker.lagSmoothing(0);
+
+        gsap.utils.toArray("section, header, footer").forEach((el) => {
+          gsap.from(el, {
+            scrollTrigger: {
+              trigger: el,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.4,
+            ease: "power2.out",
+          });
+        });
+
+        gsap.utils.toArray(".stat-number").forEach((el) => {
+          const target = parseInt(el.dataset.target);
+          ScrollTrigger.create({
+            trigger: el.closest("section"),
+            start: "top 80%",
+            onEnter: () => {
+              gsap.fromTo(el, { textContent: 0 }, {
+                textContent: target,
+                duration: 2,
+                ease: "power2.out",
+                snap: { textContent: 1 },
+              });
+            },
+            onLeaveBack: () => { el.textContent = "0"; },
+          });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) lenis.scrollTo(target, { offset: -80 });
+          });
+        });
+
+        const card = document.querySelector(".rotate-3");
+        if (card) {
+          document.addEventListener("mousemove", (e) => {
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 80;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 80;
+            card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg) rotateZ(3deg)`;
+          });
+        }
+
+        const ctaCard = document.querySelector("#cta-card");
+        if (ctaCard) {
+          let ticking = false;
+          ctaCard.addEventListener("mousemove", (e) => {
+            if (!ticking) {
+              window.requestAnimationFrame(() => {
+                const rect = ctaCard.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -6;
+                const rotateY = ((x - centerX) / centerX) * 6;
+                ctaCard.style.setProperty("--rx", `${rotateX}deg`);
+                ctaCard.style.setProperty("--ry", `${rotateY}deg`);
+                ticking = false;
+              });
+              ticking = true;
+            }
+          });
+          ctaCard.addEventListener("mouseleave", () => {
+            ctaCard.style.setProperty("--rx", `0deg`);
+            ctaCard.style.setProperty("--ry", `0deg`);
+          });
+        }
+
+        const navbar = document.querySelector('nav');
+        if (navbar) {
+          window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+              navbar.classList.add('h-16', 'bg-black/40');
+              navbar.classList.remove('h-20');
+            } else {
+              navbar.classList.remove('h-16', 'bg-black/40');
+              navbar.classList.add('h-20');
+            }
+          });
+        }
+
+        const menuBtn = document.getElementById("mobile-menu-btn");
+        const menuClose = document.getElementById("mobile-menu-close");
+        const mobileMenu = document.getElementById("mobile-menu");
+        if (menuBtn && mobileMenu) {
+          menuBtn.addEventListener("click", () =>
+            mobileMenu.classList.remove("translate-x-full"),
+          );
+          if (menuClose)
+            menuClose.addEventListener("click", () =>
+              mobileMenu.classList.add("translate-x-full"),
+            );
+          mobileMenu
+            .querySelectorAll("a")
+            .forEach((a) =>
+              a.addEventListener("click", () =>
+                mobileMenu.classList.add("translate-x-full"),
+              ),
+            );
+        }
+
+        const faqItems = document.querySelectorAll(".faq-item");
+        faqItems.forEach((item) => {
+          const btn = item.querySelector(".faq-question");
+          btn.addEventListener("click", () => {
+            const isActive = item.classList.contains("active");
+            faqItems.forEach((el) => el.classList.remove("active"));
+            if (!isActive) item.classList.add("active");
+          });
+        });
+
+        const slides = document.querySelectorAll('.coverflow-slide');
+        const prevBtn = document.querySelector('.coverflow-prev');
+        const nextBtn = document.querySelector('.coverflow-next');
+        const dotsContainer = document.querySelector('.coverflow-dots');
+        if (slides.length) {
+          const total = slides.length;
+          let current = Math.floor(total / 2);
+          let autoTimer = null;
+          let isPaused = false;
+          const track = document.querySelector('.coverflow-track');
+
+          function shortestOffset(i, c, n) {
+            const diff = i - c;
+            if (diff > n / 2) return diff - n;
+            if (diff < -n / 2) return diff + n;
+            return diff;
+          }
+
+          function updateCoverflow() {
+            slides.forEach((slide, i) => {
+              const offset = shortestOffset(i, current, total);
+              const abs = Math.min(Math.abs(offset), total / 2);
+              const isActive = offset === 0;
+              slide.classList.toggle('active', isActive);
+              const scale = Math.max(1 - abs * 0.13, 0.55);
+              const z = -abs * 220;
+              const rotateY = offset * 32;
+              const opacity = Math.max(1 - abs * 0.28, 0.08);
+              const tx = offset * (window.innerWidth < 768 ? 160 : 200);
+              slide.style.transform = `translateX(${tx}px) translateZ(${z}px) rotateY(${rotateY}deg) scale(${scale})`;
+              slide.style.opacity = opacity;
+              slide.style.zIndex = Math.round(total * 2 - abs * 2);
+              slide.style.filter = isActive ? 'brightness(1)' : 'brightness(0.5) saturate(0.6)';
+            });
+            dotsContainer.querySelectorAll('.coverflow-dot').forEach((dot, i) => {
+              dot.classList.toggle('active', i === current);
+            });
+          }
+
+          function goTo(index) {
+            current = ((index % total) + total) % total;
+            updateCoverflow();
+          }
+
+          function goNext() { goTo(current + 1); }
+          function goPrev() { goTo(current - 1); }
+
+          function startAutoPlay() {
+            stopAutoPlay();
+            autoTimer = setInterval(() => { if (!isPaused) goNext(); }, 4000);
+          }
+          function stopAutoPlay() { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } }
+
+          slides.forEach((s, i) => {
+            const dot = document.createElement('button');
+            dot.className = 'coverflow-dot';
+            dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+            dot.addEventListener('click', () => { goTo(i); });
+            dotsContainer.appendChild(dot);
+          });
+
+          updateCoverflow();
+          startAutoPlay();
+
+          if (prevBtn) prevBtn.addEventListener('click', () => { goPrev(); startAutoPlay(); });
+          if (nextBtn) nextBtn.addEventListener('click', () => { goNext(); startAutoPlay(); });
+
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { goPrev(); startAutoPlay(); }
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { goNext(); startAutoPlay(); }
+          });
+
+          if (track) {
+            track.addEventListener('mouseenter', () => { isPaused = true; });
+            track.addEventListener('mouseleave', () => { isPaused = false; });
+          }
+
+          let resizeTimer;
+          window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(updateCoverflow, 100);
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

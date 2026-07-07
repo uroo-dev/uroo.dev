@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html class="dark" lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Portofolio | uroo dev</title>
+<meta name="description" content="Lihat portofolio proyek uroo dev — CMS sekolah, aplikasi keuangan, manajemen kos, sistem ticketing, dan banyak lagi." />
+<meta property="og:title" content="Portofolio | uroo dev" />
+<meta property="og:description" content="Portofolio proyek uroo dev — CMS sekolah, aplikasi keuangan, sistem ticketing, dan lainnya." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://uroo.dev/portfolio" />
+<meta property="og:locale" content="id_ID" />
+<link rel="canonical" href="https://uroo.dev/portfolio" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/style.css"/>
+<meta property="og:image" content="https://uroo.dev/assets/Uroo.dev.png" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "uroo dev",
+  "url": "https://uroo.dev",
+  "logo": "https://uroo.dev/assets/Uroo.dev.png",
+  "description": "Studio pengembangan website dan aplikasi untuk startup dan UMKM.",
+  "email": "uroprasetyo@gmail.com",
+  "telephone": "+62 882 0065 33693",
+  "address": { "@type": "PostalAddress", "addressLocality": "Karanganyar", "addressCountry": "ID" }
+}
+</script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "on-tertiary-container": "#656464",
+          "outline-variant": "#444748",
+          "primary-fixed-dim": "#c6c6c7",
+          "secondary": "#c8c6c5",
+          "on-error": "#690005",
+          "primary": "#ffffff",
+          "tertiary-fixed": "#e4e2e1",
+          "on-tertiary-fixed": "#1b1c1c",
+          "surface": "#131313",
+          "inverse-surface": "#e5e2e1",
+          "primary-container": "#e2e2e2",
+          "surface-container-lowest": "#0e0e0e",
+          "secondary-fixed-dim": "#c8c6c5",
+          "on-primary-fixed-variant": "#454747",
+          "surface-container-low": "#1c1b1b",
+          "error-container": "#93000a",
+          "inverse-on-surface": "#313030",
+          "error": "#ffb4ab",
+          "surface-bright": "#3a3939",
+          "surface-container-high": "#2a2a2a",
+          "inverse-primary": "#5d5f5f",
+          "on-secondary-fixed": "#1c1b1b",
+          "on-tertiary": "#303030",
+          "secondary-container": "#474746",
+          "on-secondary-container": "#b7b5b4",
+          "on-primary-container": "#636565",
+          "on-surface": "#e5e2e1",
+          "tertiary": "#ffffff",
+          "secondary-fixed": "#e5e2e1",
+          "surface-tint": "#c6c6c7",
+          "on-error-container": "#ffdad6",
+          "tertiary-container": "#e4e2e1",
+          "outline": "#8e9192",
+          "surface-dim": "#131313",
+          "on-secondary": "#313030",
+          "on-primary": "#2f3131",
+          "on-secondary-fixed-variant": "#474746",
+          "on-background": "#e5e2e1",
+          "primary-fixed": "#e2e2e2",
+          "background": "#131313",
+          "on-primary-fixed": "#1a1c1c",
+          "surface-container-highest": "#353534",
+          "on-surface-variant": "#c4c7c8",
+          "surface-variant": "#353534",
+          "tertiary-fixed-dim": "#c8c6c6",
+          "on-tertiary-fixed-variant": "#474747",
+          "surface-container": "#201f1f"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "container-max": "1280px",
+          "gutter": "24px",
+          "xs": "4px",
+          "sm": "12px",
+          "xl": "80px",
+          "base": "8px",
+          "md": "24px",
+          "lg": "48px"
+        },
+        "fontFamily": {
+          "headline-lg": ["Inter"],
+          "label-md": ["Inter"],
+          "body-lg": ["Inter"],
+          "display-lg-mobile": ["Inter"],
+          "caption": ["Inter"],
+          "body-md": ["Inter"],
+          "headline-md": ["Inter"],
+          "display-lg": ["Inter"]
+        },
+        "fontSize": {
+          "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+          "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}],
+          "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+          "display-lg-mobile": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+          "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
+          "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+          "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+          "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}]
+        }
+      },
+    },
+  }
+</script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body class="bg-background text-on-background overflow-x-hidden selection:bg-primary selection:text-surface">
+<nav class="fixed top-0 w-full z-50 bg-white/5 backdrop-blur-xl border-b border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.05)] h-20 transition-all duration-300">
+<div class="max-w-[1280px] mx-auto px-gutter flex justify-between items-center h-full">
+<a class="font-headline-md text-headline-md font-bold tracking-tighter text-primary" href="index.html">uroo dev</a>
+<div class="hidden md:flex items-center gap-lg">
+  <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="index.html">Beranda</a>
+  <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="services.html">Service</a>
+  <a class="font-body-md text-body-md transition-colors duration-300 text-primary font-bold border-b-2 border-primary pb-1" href="portfolio.html">Portofolio</a>
+  <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="about.html">About</a>
+  <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="contact.html">Contact</a>
+</div>
+<button id="mobile-menu-btn" class="md:hidden text-primary p-2" aria-label="Menu">
+  <span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+<div id="mobile-menu" class="fixed inset-0 z-50 bg-surface/95 backdrop-blur-xl flex flex-col items-center justify-center gap-lg transform translate-x-full transition-transform duration-300 md:hidden">
+  <button id="mobile-menu-close" class="absolute top-6 right-6 text-primary p-2" aria-label="Close">
+    <span class="material-symbols-outlined text-2xl">close</span>
+  </button>
+  <a class="font-headline-lg text-headline-lg text-primary font-bold" href="portfolio.html">Portofolio</a>
+  <a class="font-headline-lg text-headline-lg text-on-surface-variant" href="index.html">Beranda</a>
+  <a class="font-headline-lg text-headline-lg text-on-surface-variant" href="services.html">Service</a>
+  <a class="font-headline-lg text-headline-lg text-on-surface-variant" href="about.html">About</a>
+  <a class="font-headline-lg text-headline-lg text-on-surface-variant" href="contact.html">Contact</a>
+</div>
+<a href="contact.html" class="bg-primary text-surface px-md py-sm font-label-md text-label-md rounded-full transition-all duration-200 active:scale-95 hover:opacity-90">Mulai</a>
+</div>
+</nav>
+<main class="pt-32 pb-xl px-gutter max-w-[1280px] mx-auto">
+<section class="mb-lg">
+<h1 class="font-display-lg text-display-lg md:text-display-lg text-display-lg-mobile text-primary mb-sm">Studi Kasus.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+    Kumpulan pengalaman digital yang direkayasa untuk startup dan UMKM. Kami menjembatani kompleksitas teknis dengan estetika yang halus.
+  </p>
+</section>
+<div class="flex flex-wrap gap-sm mb-lg">
+<button class="filter-btn px-md py-sm rounded-full bg-primary text-surface font-label-md text-label-md border-t border-white/20" data-filter="all">Semua Project</button>
+<button class="filter-btn px-md py-sm rounded-full bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 text-primary font-label-md text-label-md border-t border-white/20 hover:bg-white/[0.08] hover:border-white/30 hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:-translate-y-1" data-filter="tugas">Tugas</button>
+<button class="filter-btn px-md py-sm rounded-full bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 text-primary font-label-md text-label-md border-t border-white/20 hover:bg-white/[0.08] hover:border-white/30 hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:-translate-y-1" data-filter="mandiri">Mandiri</button>
+<button class="filter-btn px-md py-sm rounded-full bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 text-primary font-label-md text-label-md border-t border-white/20 hover:bg-white/[0.08] hover:border-white/30 hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:-translate-y-1" data-filter="project">Project</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-md" id="project-grid">
+
+<div class="md:col-span-8 project-card group relative overflow-hidden bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 rounded-xl aspect-[16/9] md:aspect-auto md:h-[500px]" data-category="tugas">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+<span class="inline-block px-sm py-xs bg-white text-black font-label-md text-[10px] uppercase tracking-widest mb-sm rounded-sm">Tugas • P1</span>
+<h3 class="font-headline-lg text-headline-lg text-primary mb-xs">CMS SMP 2 KRA</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">Sistem manajemen konten sekolah untuk mengelola informasi akademik, pengumuman, dan publikasi secara terpusat.</p>
+</div>
+<a href="https://github.com/dms-euro/CMS_SMP2" target="_blank" rel="noopener" class="absolute top-md right-md opacity-0 group-hover:opacity-100 transition-all duration-300 z-30">
+<div class="w-12 h-12 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">arrow_outward</span>
+</div>
+</a>
+</div>
+
+<div class="md:col-span-4 project-card group relative overflow-hidden bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 rounded-xl aspect-square md:aspect-auto md:h-[500px]" data-category="mandiri">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=800&q=80')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+<span class="inline-block px-sm py-xs bg-white/10 backdrop-blur-md text-primary font-label-md text-[10px] uppercase tracking-widest mb-sm rounded-sm">Mandiri • P2</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-xs">Perpustakaan Sekolahku</h3>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity duration-300">Aplikasi digital manajemen perpustakaan untuk mengelola koleksi buku, peminjaman, dan inventaris secara efisien.</p>
+</div>
+<a href="https://github.com/dms-euro/Perpustakaan-" target="_blank" rel="noopener" class="absolute top-md right-md opacity-0 group-hover:opacity-100 transition-all duration-300 z-30">
+<div class="w-12 h-12 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">arrow_outward</span>
+</div>
+</a>
+</div>
+
+<div class="md:col-span-4 project-card group relative overflow-hidden bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 rounded-xl aspect-square" data-category="mandiri">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+<span class="inline-block px-sm py-xs bg-white/10 backdrop-blur-md text-primary font-label-md text-[10px] uppercase tracking-widest mb-sm rounded-sm">Mandiri • P2</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-xs">Kos 1000 Pintuku</h3>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity duration-300">Platform manajemen kos untuk pencatatan penghuni, pembayaran sewa, dan pengeluaran operasional harian.</p>
+</div>
+<a href="https://github.com/dms-euro/Aplikasi-Kos-1000-Pintu" target="_blank" rel="noopener" class="absolute top-md right-md opacity-0 group-hover:opacity-100 transition-all duration-300 z-30">
+<div class="w-12 h-12 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">arrow_outward</span>
+</div>
+</a>
+</div>
+
+<div class="md:col-span-4 project-card group relative overflow-hidden bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 rounded-xl aspect-square" data-category="mandiri">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+<span class="inline-block px-sm py-xs bg-white/10 backdrop-blur-md text-primary font-label-md text-[10px] uppercase tracking-widest mb-sm rounded-sm">Mandiri • P3</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-xs">Uroo.dev</h3>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity duration-300">Website portofolio studio dev dengan fokus pada performa, pengalaman pengguna, dan estetika gelap yang modern.</p>
+</div>
+<a href="https://github.com/dms-euro/Portofolio" target="_blank" rel="noopener" class="absolute top-md right-md opacity-0 group-hover:opacity-100 transition-all duration-300 z-30">
+<div class="w-12 h-12 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">arrow_outward</span>
+</div>
+</a>
+</div>
+
+<div class="md:col-span-4 project-card group relative overflow-hidden bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 rounded-xl aspect-square" data-category="mandiri">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+<span class="inline-block px-sm py-xs bg-white/10 backdrop-blur-md text-primary font-label-md text-[10px] uppercase tracking-widest mb-sm rounded-sm">Mandiri • P2</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-xs">System Event Mlayu-mlayu</h3>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity duration-300">Sistem ticketing online untuk event lari dengan manajemen pendaftaran, pembayaran, dan data peserta.</p>
+</div>
+<a href="https://github.com/dms-euro/Web-Ticketing-Mlayu-mlayu" target="_blank" rel="noopener" class="absolute top-md right-md opacity-0 group-hover:opacity-100 transition-all duration-300 z-30">
+<div class="w-12 h-12 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">arrow_outward</span>
+</div>
+</a>
+</div>
+
+<div class="md:col-span-4 project-card group relative overflow-hidden bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 rounded-xl aspect-square" data-category="project">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&q=80')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+<span class="inline-block px-sm py-xs bg-white/10 backdrop-blur-md text-primary font-label-md text-[10px] uppercase tracking-widest mb-sm rounded-sm">Project • P1</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-xs">Sipkas</h3>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity duration-300">Aplikasi pencatatan keuangan sekolah untuk mengelola arus kas, anggaran, dan laporan keuangan secara transparan.</p>
+</div>
+<a href="https://github.com/dms-euro/SIPKAS" target="_blank" rel="noopener" class="absolute top-md right-md opacity-0 group-hover:opacity-100 transition-all duration-300 z-30">
+<div class="w-12 h-12 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">arrow_outward</span>
+</div>
+</a>
+</div>
+
+<div class="md:col-span-4 project-card group relative overflow-hidden bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 rounded-xl aspect-square" data-category="project">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c7f1?w=800&q=80')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+<span class="inline-block px-sm py-xs bg-white/10 backdrop-blur-md text-primary font-label-md text-[10px] uppercase tracking-widest mb-sm rounded-sm">Project • P1</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-xs">Buku Siswaku</h3>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity duration-300">Database digital data induk siswa dengan pencarian cepat, pembaruan data, dan pelaporan kependidikan terpadu.</p>
+</div>
+<div class="absolute top-md right-md z-30">
+<div class="w-12 h-12 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">lock</span>
+</div>
+</div>
+</div>
+
+<div class="md:col-span-4 project-card group relative overflow-hidden bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 rounded-xl aspect-square" data-category="project">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+<span class="inline-block px-sm py-xs bg-white/10 backdrop-blur-md text-primary font-label-md text-[10px] uppercase tracking-widest mb-sm rounded-sm">Project • P1</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-xs">Absensi</h3>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity duration-300">Sistem absensi digital sekolah dengan pencatatan real-time untuk memonitor kehadiran siswa dan guru.</p>
+</div>
+<div class="absolute top-md right-md z-30">
+<div class="w-12 h-12 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">lock</span>
+</div>
+</div>
+</div>
+
+<div class="md:col-span-4 project-card group relative overflow-hidden bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 rounded-xl aspect-square" data-category="project">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+<span class="inline-block px-sm py-xs bg-white/10 backdrop-blur-md text-primary font-label-md text-[10px] uppercase tracking-widest mb-sm rounded-sm">Project • P1</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-xs">BuanaNet</h3>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity duration-300">Solusi manajemen perusahaan terintegrasi untuk mengelola operasional, keuangan, dan sumber daya manusia.</p>
+</div>
+<a href="https://github.com/dms-euro/PT-BUANA" target="_blank" rel="noopener" class="absolute top-md right-md opacity-0 group-hover:opacity-100 transition-all duration-300 z-30">
+<div class="w-12 h-12 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">arrow_outward</span>
+</div>
+</a>
+</div>
+
+<div class="md:col-span-4 project-card group relative overflow-hidden bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 rounded-xl aspect-square" data-category="project">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1553729459-afe8f2e3c2b0?w=800&q=80')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+<span class="inline-block px-sm py-xs bg-white/10 backdrop-blur-md text-primary font-label-md text-[10px] uppercase tracking-widest mb-sm rounded-sm">Project • P1</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-xs">Raraproduction</h3>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity duration-300">Platform keuangan perusahaan yang mencatat pemasukan, pengeluaran, dan menyajikan laporan laba rugi otomatis.</p>
+</div>
+<a href="https://raraproduction.my.id" target="_blank" rel="noopener" class="absolute top-md right-md opacity-0 group-hover:opacity-100 transition-all duration-300 z-30">
+<div class="w-12 h-12 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">arrow_outward</span>
+</div>
+</a>
+</div>
+
+<div class="md:col-span-4 project-card group relative overflow-hidden bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 rounded-xl aspect-square" data-category="project">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&q=80')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+<span class="inline-block px-sm py-xs bg-white/10 backdrop-blur-md text-primary font-label-md text-[10px] uppercase tracking-widest mb-sm rounded-sm">Project • P1</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-xs">Kas Karangtaruna</h3>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity duration-300">Aplikasi kas organisasi untuk transparansi iuran, pemasukan, pengeluaran, dan laporan kegiatan karang taruna.</p>
+</div>
+<a href="https://github.com/dms-euro/Kas-berbasis-web" target="_blank" rel="noopener" class="absolute top-md right-md opacity-0 group-hover:opacity-100 transition-all duration-300 z-30">
+<div class="w-12 h-12 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">arrow_outward</span>
+</div>
+</a>
+</div>
+
+<div class="md:col-span-4 project-card group relative overflow-hidden bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 rounded-xl aspect-square" data-category="tugas">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1529390079861-591de354faf5?w=800&q=80')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+<span class="inline-block px-sm py-xs bg-white/10 backdrop-blur-md text-primary font-label-md text-[10px] uppercase tracking-widest mb-sm rounded-sm">Tugas • P2</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-xs">Sistem Sekolah</h3>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity duration-300">Platform kolaborasi sistem sekolah yang mengintegrasikan modul administrasi pendidikan dalam satu ekosistem.</p>
+</div>
+<a href="https://github.com/sisfokesiswaan/sisfokesiswaan" target="_blank" rel="noopener" class="absolute top-md right-md opacity-0 group-hover:opacity-100 transition-all duration-300 z-30">
+<div class="w-12 h-12 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">arrow_outward</span>
+</div>
+</a>
+</div>
+
+<div class="md:col-span-4 project-card group relative overflow-hidden bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 rounded-xl aspect-square" data-category="project">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=800&q=80')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+<span class="inline-block px-sm py-xs bg-white/10 backdrop-blur-md text-primary font-label-md text-[10px] uppercase tracking-widest mb-sm rounded-sm">Project • P1</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-xs">Portofolio Mourick</h3>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity duration-300">Landing page portofolio profesional yang menampilkan karya dan layanan secara elegan, responsif, dan cepat.</p>
+</div>
+<a href="https://github.com/dms-euro/Mouric-Portofolio" target="_blank" rel="noopener" class="absolute top-md right-md opacity-0 group-hover:opacity-100 transition-all duration-300 z-30">
+<div class="w-12 h-12 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">arrow_outward</span>
+</div>
+</a>
+</div>
+
+<div class="md:col-span-4 project-card group relative overflow-hidden bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 rounded-xl aspect-square" data-category="mandiri">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+<span class="inline-block px-sm py-xs bg-white/10 backdrop-blur-md text-primary font-label-md text-[10px] uppercase tracking-widest mb-sm rounded-sm">Mandiri • P3</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-xs">Smart Resto</h3>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity duration-300">Aplikasi POS restoran dengan manajemen menu, pesanan, dan pembayaran yang cepat, intuitif, dan terpercaya.</p>
+</div>
+<a href="https://github.com/dms-euro/Smart_Resto_POS" target="_blank" rel="noopener" class="absolute top-md right-md opacity-0 group-hover:opacity-100 transition-all duration-300 z-30">
+<div class="w-12 h-12 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">arrow_outward</span>
+</div>
+</a>
+</div>
+
+<div class="md:col-span-4 project-card group relative overflow-hidden bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 rounded-xl aspect-square" data-category="tugas">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+<span class="inline-block px-sm py-xs bg-white/10 backdrop-blur-md text-primary font-label-md text-[10px] uppercase tracking-widest mb-sm rounded-sm">Tugas • P2</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-xs">Sistem Gudang Sederhana</h3>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity duration-300">Aplikasi desktop manajemen gudang untuk mencatat stok barang, mutasi inventaris, dan laporan stok berkala.</p>
+</div>
+<a href="https://github.com/dms-euro/Gudang" target="_blank" rel="noopener" class="absolute top-md right-md opacity-0 group-hover:opacity-100 transition-all duration-300 z-30">
+<div class="w-12 h-12 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">arrow_outward</span>
+</div>
+</a>
+</div>
+
+</div>
+<section class="mt-xl py-xl border-t border-white/5 flex flex-col items-center text-center">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-md">Mari Bangun Solusi Digital Anda</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-lg">Ceritakan kebutuhan bisnis Anda, dan biarkan kami membantu mewujudkannya menjadi produk digital yang berkualitas.</p>
+<div class="flex gap-md">
+<a href="contact.html" class="bg-primary text-surface px-lg py-md font-label-md text-label-md rounded-full hover:scale-105 transition-transform duration-200">Mulai Project</a>
+<a href="services.html" class="bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 text-primary px-lg py-md font-label-md text-label-md rounded-full border-t border-white/20 hover:bg-white/[0.08] hover:border-white/30 hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:-translate-y-1">Lihat Service</a>
+</div>
+</section>
+</main>
+<!-- Footer -->
+    <footer class="w-full pt-xl pb-md border-t border-white/5 bg-surface">
+      <div class="max-w-[1280px] mx-auto px-gutter">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-lg mb-xl">
+          <div class="md:col-span-4">
+            <a class="block mb-md w-fit" href="index.html">
+              <div class="bg-white/[0.03] border border-white/[0.1] rounded-lg px-6 py-7 hover:bg-white/[0.06] hover:border-white/[0.2] hover:scale-105 transition-all duration-300">
+                <img alt="Uroo Dev" class="h-auto w-48" src="assets/Uroo.dev-bening.png"/>
+              </div>
+            </a>
+            <div class="flex gap-md">
+              <a
+                class="text-on-tertiary-container hover:text-primary transition-colors"
+                href="http://linkedin.com/in/uro-prasetyo-0479aa3a6/?skipRedirect=true"
+                target="_blank" rel="noopener"
+                ><span class="material-symbols-outlined">badge</span></a
+              >
+              <a
+                class="text-on-tertiary-container hover:text-primary transition-colors"
+                href="https://github.com/uroo-dev"
+                target="_blank" rel="noopener"
+                ><span class="material-symbols-outlined">code</span></a
+              >
+              <a
+                class="text-on-tertiary-container hover:text-primary transition-colors"
+                href="https://www.tiktok.com/@uroo.dev"
+                target="_blank" rel="noopener"
+                ><span class="material-symbols-outlined">music_note</span></a
+              >
+              <a
+                class="text-on-tertiary-container hover:text-primary transition-colors"
+                href="https://instagram.com/dms_euro"
+                target="_blank" rel="noopener"
+                ><span class="material-symbols-outlined">photo_camera</span></a
+              >
+            </div>
+          </div>
+          <div class="md:col-span-2">
+            <h4 class="font-label-md text-primary mb-md">Menu</h4>
+            <ul class="space-y-sm text-caption text-on-tertiary-container">
+              <li class="">
+                <a class="hover:text-primary transition-colors" href="index.html">Beranda</a>
+              </li>
+              <li class="">
+                <a class="hover:text-primary transition-colors" href="services.html">Layanan</a>
+              </li>
+              <li class="">
+                <a class="hover:text-primary transition-colors" href="portfolio.html">Portofolio</a>
+              </li>
+              <li class="">
+                <a class="hover:text-primary transition-colors" href="about.html">Tentang</a>
+              </li>
+              <li class="">
+                <a class="hover:text-primary transition-colors" href="contact.html">Kontak</a>
+              </li>
+            </ul>
+          </div>
+          <div class="md:col-span-3">
+            <h4 class="font-label-md text-primary mb-md">Kontak</h4>
+            <ul class="space-y-sm text-caption text-on-tertiary-container">
+              <li class="flex items-center gap-xs">
+                <span class="material-symbols-outlined text-xs">location_on</span>
+                <a class="hover:text-primary transition-colors" href="https://maps.app.goo.gl/bpvMvLE4JctYFJCt5" target="_blank" rel="noopener">Papahan, Karanganyar Regency</a>
+              </li>
+              <li class="flex items-center gap-xs">
+                <span class="material-symbols-outlined text-xs">mail</span>
+                <a class="hover:text-primary transition-colors" href="mailto:uroprasetyo@gmail.com">uroprasetyo@gmail.com</a>
+              </li>
+              <li class="flex items-center gap-xs">
+                <span class="material-symbols-outlined text-xs">call</span>
+                <a class="hover:text-primary transition-colors" href="tel:+62882006533693">+62 882 0065 33693</a>
+              </li>
+            </ul>
+          </div>
+          <div class="md:col-span-3">
+            <h4 class="font-label-md text-primary mb-md">Lokasi</h4>
+            <div class="map-dark overflow-hidden rounded-xl border border-white/10">
+              <iframe
+                src="https://www.google.com/maps?q=Papahan+Karanganyar+Indonesia&output=embed"
+                width="100%"
+                height="200"
+                style="border:0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex flex-col md:flex-row justify-between items-center gap-base border-t border-white/5 pt-md"
+        >
+          <p class="font-caption text-caption text-on-tertiary-container">
+            &copy; <span id="year"></span> uroo dev. Built with passion in Indonesia.
+          </p>
+          <div class="flex gap-md">
+            <a
+              class="font-caption text-caption text-on-tertiary-container hover:text-primary transition-colors duration-300"
+              href="#"
+              >Privacy Policy</a
+            >
+            <a
+              class="font-caption text-caption text-on-tertiary-container hover:text-primary transition-colors duration-300"
+              href="#"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+
+    gsap.utils.toArray('section, main > div, footer').forEach(el => {
+      gsap.from(el, {
+        scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none reverse' },
+        y: 50, opacity: 0, duration: 0.4, ease: 'power2.out'
+      });
+    });
+
+    const navbar = document.querySelector('nav');
+    if (navbar) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) {
+          navbar.classList.add('h-16', 'bg-black/40');
+          navbar.classList.remove('h-20');
+        } else {
+          navbar.classList.remove('h-16', 'bg-black/40');
+          navbar.classList.add('h-20');
+        }
+      });
+    }
+
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-primary', 'text-surface');
+          b.classList.add('bg-white/5', 'backdrop-blur-xl', 'border', 'border-white/10');
+        });
+        btn.classList.remove('bg-white/5', 'backdrop-blur-xl', 'border', 'border-white/10');
+        btn.classList.add('bg-primary', 'text-surface');
+        const filter = btn.dataset.filter;
+        projectCards.forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    const cards = document.querySelectorAll('.project-card');
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / 25;
+        const rotateY = (centerX - x) / 25;
+        gsap.to(card, {
+          rotationX: rotateX,
+          rotationY: rotateY,
+          transformPerspective: 1000,
+          ease: 'power2.out',
+          duration: 0.3,
+          overwrite: 'auto'
+        });
+      });
+      card.addEventListener('mouseleave', () => {
+        gsap.to(card, {
+          rotationX: 0,
+          rotationY: 0,
+          ease: 'power2.out',
+          duration: 0.5
+        });
+      });
+    });
+
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const menuClose = document.getElementById('mobile-menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener('click', () => mobileMenu.classList.remove('translate-x-full'));
+      if (menuClose) menuClose.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
+      mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('translate-x-full')));
+    }
+  });
+</script>
+</body>
+</html>

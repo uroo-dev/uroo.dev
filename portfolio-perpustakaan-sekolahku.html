@@ -185,25 +185,31 @@
 
   <section class="py-xl bg-surface-container-lowest">
     <div class="max-w-[1280px] mx-auto px-gutter">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-        <div class="glass-panel p-lg rounded-xl flex flex-col gap-sm">
-          <span class="material-symbols-outlined text-primary text-headline-lg">warning</span>
-          <h3 class="font-headline-md text-headline-md text-primary">Masalah</h3>
-          <p class="font-body-md text-body-md text-on-surface-variant">Peminjaman dan pengembalian buku masih dicatat secara manual sehingga sering terjadi kesalahan data.</p>
+      <div class="flex flex-col gap-4">
+        <div class="glass-panel p-md rounded-xl flex items-start gap-md">
+          <span class="material-symbols-outlined text-primary text-headline-lg shrink-0 mt-1">warning</span>
+          <div>
+            <h3 class="font-headline-md text-headline-md text-primary mb-xs">Masalah</h3>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">Peminjaman dan pengembalian buku masih dicatat secara manual sehingga sering terjadi kesalahan data.</p>
+          </div>
         </div>
-        <div class="glass-panel p-lg rounded-xl flex flex-col gap-sm">
-          <span class="material-symbols-outlined text-primary text-headline-lg">lightbulb</span>
-          <h3 class="font-headline-md text-headline-md text-primary">Solusi</h3>
-          <p class="font-body-md text-body-md text-on-surface-variant">Sistem perpustakaan digital yang mengelola buku, anggota, transaksi peminjaman, pengembalian, dan laporan otomatis.</p>
+        <div class="glass-panel p-md rounded-xl flex items-start gap-md">
+          <span class="material-symbols-outlined text-primary text-headline-lg shrink-0 mt-1">lightbulb</span>
+          <div>
+            <h3 class="font-headline-md text-headline-md text-primary mb-xs">Solusi</h3>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">Sistem perpustakaan digital yang mengelola buku, anggota, transaksi peminjaman, pengembalian, dan laporan otomatis.</p>
+          </div>
         </div>
-        <div class="glass-panel p-lg rounded-xl flex flex-col gap-sm">
-          <span class="material-symbols-outlined text-primary text-headline-lg">monitoring</span>
-          <h3 class="font-headline-md text-headline-md text-primary">Hasil</h3>
-          <ul class="space-y-xs font-body-md text-body-md text-on-surface-variant">
-            <li class="flex justify-between border-b border-white/5 pb-1"><span>Proses Peminjaman</span> <span class="text-primary font-bold">80% lebih cepat</span></li>
-            <li class="flex justify-between border-b border-white/5 pb-1"><span>Buku Terkelola</span> <span class="text-primary font-bold">1000+</span></li>
-            <li class="flex justify-between"><span>Laporan Akurat</span> <span class="text-primary font-bold">99%</span></li>
-          </ul>
+        <div class="glass-panel p-md rounded-xl flex items-start gap-md">
+          <span class="material-symbols-outlined text-primary text-headline-lg shrink-0 mt-1">monitoring</span>
+          <div>
+            <h3 class="font-headline-md text-headline-md text-primary mb-xs">Hasil</h3>
+            <ul class="space-y-xs font-body-sm text-body-sm text-on-surface-variant">
+              <li class="flex justify-between border-b border-white/5 pb-1"><span>Proses Peminjaman</span> <span class="text-primary font-bold">80% lebih cepat</span></li>
+              <li class="flex justify-between border-b border-white/5 pb-1"><span>Buku Terkelola</span> <span class="text-primary font-bold">1000+</span></li>
+              <li class="flex justify-between"><span>Laporan Akurat</span> <span class="text-primary font-bold">99%</span></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -215,23 +221,11 @@
       <div class="flex flex-wrap justify-center gap-sm">
         <div class="glass-panel px-md py-sm rounded-full flex items-center gap-xs">
           <span class="material-symbols-outlined text-primary text-sm">code</span>
-          <span class="font-label-md text-label-md">PHP Native</span>
+          <span class="font-label-md text-label-md">Laravel</span>
         </div>
         <div class="glass-panel px-md py-sm rounded-full flex items-center gap-xs">
-          <span class="material-symbols-outlined text-primary text-sm">database</span>
-          <span class="font-label-md text-label-md">MySQL</span>
-        </div>
-        <div class="glass-panel px-md py-sm rounded-full flex items-center gap-xs">
-          <span class="material-symbols-outlined text-primary text-sm">frame_reload</span>
-          <span class="font-label-md text-label-md">Bootstrap 5</span>
-        </div>
-        <div class="glass-panel px-md py-sm rounded-full flex items-center gap-xs">
-          <span class="material-symbols-outlined text-primary text-sm">html</span>
-          <span class="font-label-md text-label-md">HTML5</span>
-        </div>
-        <div class="glass-panel px-md py-sm rounded-full flex items-center gap-xs">
-          <span class="material-symbols-outlined text-primary text-sm">css</span>
-          <span class="font-label-md text-label-md">CSS3</span>
+          <span class="material-symbols-outlined text-primary text-sm">palette</span>
+          <span class="font-label-md text-label-md">Tailwind CSS</span>
         </div>
       </div>
     </div>
@@ -242,12 +236,12 @@
   <section class="py-xl overflow-hidden">
     <div class="max-w-[1280px] mx-auto px-gutter">
       <h2 class="font-headline-lg text-headline-lg mb-lg text-center text-primary">Tampilan Aplikasi</h2>
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-end">
-        <div class="md:col-span-8 glass-panel rim-light rounded-xl overflow-hidden shadow-2xl cursor-pointer image-zoom">
-          <img class="w-full h-auto" src="assets/project/web development/Perpustakaan Sekolahku/1.png" alt="Perpustakaan Sekolahku Desktop">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter items-end">
+        <div class="glass-panel rim-light rounded-xl overflow-hidden shadow-2xl cursor-pointer image-zoom">
+          <img class="w-full h-auto" src="assets/project/web development/Perpustakaan Sekolahku/1.png" alt="Perpustakaan Sekolahku 1">
         </div>
-        <div class="md:col-span-4 glass-panel rim-light rounded-xl overflow-hidden shadow-2xl cursor-pointer image-zoom">
-          <img class="w-full h-auto" src="assets/project/web development/Perpustakaan Sekolahku/2.png" alt="Perpustakaan Sekolahku Mobile">
+        <div class="glass-panel rim-light rounded-xl overflow-hidden shadow-2xl cursor-pointer image-zoom">
+          <img class="w-full h-auto" src="assets/project/web development/Perpustakaan Sekolahku/2.png" alt="Perpustakaan Sekolahku 2">
         </div>
       </div>
     </div>

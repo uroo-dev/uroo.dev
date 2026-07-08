@@ -210,59 +210,6 @@
       .animate-marquee:hover {
         animation-play-state: paused;
       }
-      .btn-uroo {
-        position: relative;
-        overflow: hidden;
-        font-weight: 500;
-        padding: 0.5rem 1.25rem;
-        border-radius: 0.5rem;
-        border: 1px solid rgba(255,255,255,0.2);
-        border-bottom-width: 4px;
-        outline: none;
-        transition: all 0.3s;
-        font-size: 0.75rem;
-        line-height: 1rem;
-      }
-      .btn-uroo::after {
-        content: '';
-        position: absolute;
-        top: -150%;
-        left: 0;
-        display: inline-flex;
-        width: 100%;
-        height: 5px;
-        border-radius: 0.375rem;
-        opacity: 0.5;
-        transition: top 0.5s;
-        background: rgba(255,255,255,0.4);
-        box-shadow: 0 0 10px 10px rgba(255,255,255,0.1);
-      }
-      .btn-uroo:hover {
-        filter: brightness(1.5);
-        border-top-width: 4px;
-        border-bottom-width: 1px;
-        border-color: rgba(255,255,255,0.3);
-      }
-      .btn-uroo:hover::after {
-        top: 150%;
-      }
-      .btn-uroo:active {
-        opacity: 0.75;
-      }
-      .btn-uroo-primary {
-        background: #ffffff;
-        color: #2f3131;
-        border-color: rgba(255,255,255,0.6);
-      }
-      .btn-uroo-primary::after {
-        background: rgba(0,0,0,0.3);
-        box-shadow: 0 0 10px 10px rgba(0,0,0,0.1);
-      }
-      .btn-uroo-ghost {
-        background: rgba(255,255,255,0.05);
-        color: #ffffff;
-        border-color: rgba(255,255,255,0.2);
-      }
     </style>
   </head>
   <body
@@ -625,7 +572,9 @@
               SEO Optimized
             </li>
           </ul>
-          <button class="btn-uroo btn-uroo-ghost w-full">
+          <button
+            class="w-full py-sm bg-white/5 hover:bg-white/10 text-primary rounded-lg text-caption font-label-md transition-colors"
+          >
             Pilih Paket
           </button>
         </div>
@@ -665,7 +614,9 @@
               Custom Graphics
             </li>
           </ul>
-          <button class="btn-uroo btn-uroo-ghost w-full">
+          <button
+            class="w-full py-sm bg-white/5 hover:bg-white/10 text-primary rounded-lg text-caption font-label-md transition-colors"
+          >
             Pilih Paket
           </button>
         </div>
@@ -709,7 +660,9 @@
               Custom Features
             </li>
           </ul>
-          <button class="btn-uroo btn-uroo-primary w-full">
+          <button
+            class="w-full py-sm bg-primary text-surface hover:opacity-90 rounded-lg text-caption font-label-md transition-all"
+          >
             Konsultasi Sekarang
           </button>
         </div>
@@ -749,7 +702,9 @@
               API Integration
             </li>
           </ul>
-          <button class="btn-uroo btn-uroo-ghost w-full">
+          <button
+            class="w-full py-sm bg-white/5 hover:bg-white/10 text-primary rounded-lg text-caption font-label-md transition-colors"
+          >
             Pilih Paket
           </button>
         </div>
@@ -1118,39 +1073,372 @@
       </div>
     </section>
     <!-- Testimoni Section -->
-    <section class="py-xl bg-surface-container-lowest">
+    <section class="py-xl overflow-hidden bg-surface-container-lowest">
       <div class="max-w-[1280px] mx-auto px-gutter text-center mb-xl">
         <h2 class="font-headline-lg text-primary mb-sm">Apa Kata Mereka?</h2>
         <p class="text-on-surface-variant">
           Kepuasan klien adalah prioritas utama kami.
         </p>
       </div>
-      <div class="max-w-xl mx-auto px-gutter">
-        <div
-          class="bg-black/40 backdrop-blur-2xl border border-white/[0.06] rounded-xl overflow-hidden shadow-2xl"
-        >
+      <div
+        class="relative flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]"
+      >
+        <div class="flex gap-md animate-marquee shrink-0 pr-md">
+          <!-- Testi 1 -->
           <div
-            class="flex items-center gap-3 px-4 py-3 border-b border-white/[0.06]"
+            class="min-w-[320px] md:min-w-[400px] bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] p-lg rounded-xl hover:bg-white/[0.06] hover:border-white/[0.2] hover:-translate-y-1 transition-all duration-500"
           >
-            <div
-              class="flex items-center gap-1.5 bg-red-600 rounded px-1.5 py-0.5"
-            >
-              <span
-                class="w-1.5 h-1.5 rounded-full bg-white inline-block"
-              ></span>
-              <span class="text-[10px] font-bold text-white tracking-wide uppercase"
-                >Live</span
+            <div class="flex items-center gap-md mb-md">
+              <div
+                class="w-12 h-12 rounded-full overflow-hidden border border-white/10 shrink-0"
               >
+                <img
+                  alt="Andi Pratama"
+                  class="w-full h-full object-cover"
+                  src="https://picsum.photos/seed/testi1/96/96"
+                />
+              </div>
+              <div>
+                <h4 class="font-label-md text-primary">Andi Pratama</h4>
+                <p class="text-[10px] text-on-surface-variant">
+                  CEO PT. INDO TECH
+                </p>
+              </div>
             </div>
-            <span class="text-xs font-medium text-white/80"
-              >Live Chat</span
+            <p
+              class="text-caption text-on-surface-variant italic leading-relaxed"
             >
-            <span class="ml-auto text-[10px] text-white/40" id="chat-viewers">1,2 rb</span>
+              "Hasil kerja Uroo Dev sangat memuaskan. Sistem informasi yang
+              dibangun sangat membantu efisiensi operasional kami."
+            </p>
+            <div class="mt-md flex gap-xs text-yellow-500">
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+            </div>
           </div>
+          <!-- Testi 2 -->
           <div
-            id="chat-messages"
-            class="p-3 space-y-2 h-[400px] overflow-y-auto scroll-smooth flex flex-col justify-end"
-          ></div>
+            class="min-w-[320px] md:min-w-[400px] bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] p-lg rounded-xl hover:bg-white/[0.06] hover:border-white/[0.2] hover:-translate-y-1 transition-all duration-500"
+          >
+            <div class="flex items-center gap-md mb-md">
+              <div
+                class="w-12 h-12 rounded-full overflow-hidden border border-white/10 shrink-0"
+              >
+                <img
+                  alt="Siti Aminah"
+                  class="w-full h-full object-cover"
+                  src="https://picsum.photos/seed/testi2/96/96"
+                />
+              </div>
+              <div>
+                <h4 class="font-label-md text-primary">Siti Aminah</h4>
+                <p class="text-[10px] text-on-surface-variant">
+                  Owner Fashion Hub
+                </p>
+              </div>
+            </div>
+            <p
+              class="text-caption text-on-surface-variant italic leading-relaxed"
+            >
+              "Toko online saya sekarang jauh lebih cepat dan profesional.
+              Penjualan meningkat drastis setelah launching website baru."
+            </p>
+            <div class="mt-md flex gap-xs text-yellow-500">
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+            </div>
+          </div>
+          <!-- Testi 3 -->
+          <div
+            class="min-w-[320px] md:min-w-[400px] bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] p-lg rounded-xl hover:bg-white/[0.06] hover:border-white/[0.2] hover:-translate-y-1 transition-all duration-500"
+          >
+            <div class="flex items-center gap-md mb-md">
+              <div
+                class="w-12 h-12 rounded-full overflow-hidden border border-white/10 shrink-0"
+              >
+                <img
+                  alt="Budi Santoso"
+                  class="w-full h-full object-cover"
+                  src="https://picsum.photos/seed/testi3/96/96"
+                />
+              </div>
+              <div>
+                <h4 class="font-label-md text-primary">Budi Santoso</h4>
+                <p class="text-[10px] text-on-surface-variant">
+                  Kepala IT Sekolah Teladan
+                </p>
+              </div>
+            </div>
+            <p
+              class="text-caption text-on-surface-variant italic leading-relaxed"
+            >
+              "Tim yang sangat responsif dan transparan. Semua request fitur
+              dikerjakan dengan sangat baik dan tepat waktu."
+            </p>
+            <div class="mt-md flex gap-xs text-yellow-500">
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+            </div>
+          </div>
+          <!-- Testi 4 -->
+          <div
+            class="min-w-[320px] md:min-w-[400px] bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] p-lg rounded-xl hover:bg-white/[0.06] hover:border-white/[0.2] hover:-translate-y-1 transition-all duration-500"
+          >
+            <div class="flex items-center gap-md mb-md">
+              <div
+                class="w-12 h-12 rounded-full overflow-hidden border border-white/10 shrink-0"
+              >
+                <img
+                  alt="Dewi Lestari"
+                  class="w-full h-full object-cover"
+                  src="https://picsum.photos/seed/testi4/96/96"
+                />
+              </div>
+              <div>
+                <h4 class="font-label-md text-primary">Dewi Lestari</h4>
+                <p class="text-[10px] text-on-surface-variant">
+                  Founder EcoSpace
+                </p>
+              </div>
+            </div>
+            <p
+              class="text-caption text-on-surface-variant italic leading-relaxed"
+            >
+              "Landing page yang dibuat sangat engaging! Conversion rate naik
+              40% dalam sebulan pertama."
+            </p>
+            <div class="mt-md flex gap-xs text-yellow-500">
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+            </div>
+          </div>
+          <!-- Testi 5 -->
+          <div
+            class="min-w-[320px] md:min-w-[400px] bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] p-lg rounded-xl hover:bg-white/[0.06] hover:border-white/[0.2] hover:-translate-y-1 transition-all duration-500"
+          >
+            <div class="flex items-center gap-md mb-md">
+              <div
+                class="w-12 h-12 rounded-full overflow-hidden border border-white/10 shrink-0"
+              >
+                <img
+                  alt="Rizky Hakim"
+                  class="w-full h-full object-cover"
+                  src="https://picsum.photos/seed/testi5/96/96"
+                />
+              </div>
+              <div>
+                <h4 class="font-label-md text-primary">Rizky Hakim</h4>
+                <p class="text-[10px] text-on-surface-variant">
+                  Direktur CV. Karya Bangsa
+                </p>
+              </div>
+            </div>
+            <p
+              class="text-caption text-on-surface-variant italic leading-relaxed"
+            >
+              "Proses pengerjaan cepat, komunikasi lancar, hasilnya melebihi
+              ekspektasi. Highly recommended!"
+            </p>
+            <div class="mt-md flex gap-xs text-yellow-500">
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex gap-md animate-marquee shrink-0 pr-md"
+          aria-hidden="true"
+        >
+          <!-- Testi 1 dup -->
+          <div
+            class="min-w-[320px] md:min-w-[400px] bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] p-lg rounded-xl"
+          >
+            <div class="flex items-center gap-md mb-md">
+              <div
+                class="w-12 h-12 rounded-full overflow-hidden border border-white/10 shrink-0"
+              >
+                <img
+                  alt="Andi Pratama"
+                  class="w-full h-full object-cover"
+                  src="https://picsum.photos/seed/testi1/96/96"
+                />
+              </div>
+              <div>
+                <h4 class="font-label-md text-primary">Andi Pratama</h4>
+                <p class="text-[10px] text-on-surface-variant">
+                  CEO PT. INDO TECH
+                </p>
+              </div>
+            </div>
+            <p
+              class="text-caption text-on-surface-variant italic leading-relaxed"
+            >
+              "Hasil kerja Uroo Dev sangat memuaskan. Sistem informasi yang
+              dibangun sangat membantu efisiensi operasional kami."
+            </p>
+            <div class="mt-md flex gap-xs text-yellow-500">
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+            </div>
+          </div>
+          <!-- Testi 2 dup -->
+          <div
+            class="min-w-[320px] md:min-w-[400px] bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] p-lg rounded-xl"
+          >
+            <div class="flex items-center gap-md mb-md">
+              <div
+                class="w-12 h-12 rounded-full overflow-hidden border border-white/10 shrink-0"
+              >
+                <img
+                  alt="Siti Aminah"
+                  class="w-full h-full object-cover"
+                  src="https://picsum.photos/seed/testi2/96/96"
+                />
+              </div>
+              <div>
+                <h4 class="font-label-md text-primary">Siti Aminah</h4>
+                <p class="text-[10px] text-on-surface-variant">
+                  Owner Fashion Hub
+                </p>
+              </div>
+            </div>
+            <p
+              class="text-caption text-on-surface-variant italic leading-relaxed"
+            >
+              "Toko online saya sekarang jauh lebih cepat dan profesional.
+              Penjualan meningkat drastis setelah launching website baru."
+            </p>
+            <div class="mt-md flex gap-xs text-yellow-500">
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+            </div>
+          </div>
+          <!-- Testi 3 dup -->
+          <div
+            class="min-w-[320px] md:min-w-[400px] bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] p-lg rounded-xl"
+          >
+            <div class="flex items-center gap-md mb-md">
+              <div
+                class="w-12 h-12 rounded-full overflow-hidden border border-white/10 shrink-0"
+              >
+                <img
+                  alt="Budi Santoso"
+                  class="w-full h-full object-cover"
+                  src="https://picsum.photos/seed/testi3/96/96"
+                />
+              </div>
+              <div>
+                <h4 class="font-label-md text-primary">Budi Santoso</h4>
+                <p class="text-[10px] text-on-surface-variant">
+                  Kepala IT Sekolah Teladan
+                </p>
+              </div>
+            </div>
+            <p
+              class="text-caption text-on-surface-variant italic leading-relaxed"
+            >
+              "Tim yang sangat responsif dan transparan. Semua request fitur
+              dikerjakan dengan sangat baik dan tepat waktu."
+            </p>
+            <div class="mt-md flex gap-xs text-yellow-500">
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+            </div>
+          </div>
+          <!-- Testi 4 dup -->
+          <div
+            class="min-w-[320px] md:min-w-[400px] bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] p-lg rounded-xl"
+          >
+            <div class="flex items-center gap-md mb-md">
+              <div
+                class="w-12 h-12 rounded-full overflow-hidden border border-white/10 shrink-0"
+              >
+                <img
+                  alt="Dewi Lestari"
+                  class="w-full h-full object-cover"
+                  src="https://picsum.photos/seed/testi4/96/96"
+                />
+              </div>
+              <div>
+                <h4 class="font-label-md text-primary">Dewi Lestari</h4>
+                <p class="text-[10px] text-on-surface-variant">
+                  Founder EcoSpace
+                </p>
+              </div>
+            </div>
+            <p
+              class="text-caption text-on-surface-variant italic leading-relaxed"
+            >
+              "Landing page yang dibuat sangat engaging! Conversion rate naik
+              40% dalam sebulan pertama."
+            </p>
+            <div class="mt-md flex gap-xs text-yellow-500">
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+            </div>
+          </div>
+          <!-- Testi 5 dup -->
+          <div
+            class="min-w-[320px] md:min-w-[400px] bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] p-lg rounded-xl"
+          >
+            <div class="flex items-center gap-md mb-md">
+              <div
+                class="w-12 h-12 rounded-full overflow-hidden border border-white/10 shrink-0"
+              >
+                <img
+                  alt="Rizky Hakim"
+                  class="w-full h-full object-cover"
+                  src="https://picsum.photos/seed/testi5/96/96"
+                />
+              </div>
+              <div>
+                <h4 class="font-label-md text-primary">Rizky Hakim</h4>
+                <p class="text-[10px] text-on-surface-variant">
+                  Direktur CV. Karya Bangsa
+                </p>
+              </div>
+            </div>
+            <p
+              class="text-caption text-on-surface-variant italic leading-relaxed"
+            >
+              "Proses pengerjaan cepat, komunikasi lancar, hasilnya melebihi
+              ekspektasi. Highly recommended!"
+            </p>
+            <div class="mt-md flex gap-xs text-yellow-500">
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+              <span class="material-symbols-outlined text-sm fill-1">star</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1683,61 +1971,6 @@
             resizeTimer = setTimeout(updateCoverflow, 100);
           });
         }
-
-      });
-
-        const chatMessages = [
-          { name: 'Andi Pratama', role: 'CEO PT. INDO TECH', avatar: 'https://picsum.photos/seed/testi1/96/96', text: 'Hasil kerja Uroo Dev sangat memuaskan. Sistem informasi yang dibangun sangat membantu efisiensi operasional kami.' },
-          { name: 'Siti Aminah', role: 'Owner Fashion Hub', avatar: 'https://picsum.photos/seed/testi2/96/96', text: 'Toko online saya sekarang jauh lebih cepat dan profesional. Penjualan meningkat drastis setelah launching website baru.' },
-          { name: 'Budi Santoso', role: 'Kepala IT Sekolah Teladan', avatar: 'https://picsum.photos/seed/testi3/96/96', text: 'Tim yang sangat responsif dan transparan. Semua request fitur dikerjakan dengan sangat baik dan tepat waktu.' },
-          { name: 'Dewi Lestari', role: 'Founder EcoSpace', avatar: 'https://picsum.photos/seed/testi4/96/96', text: 'Landing page yang dibuat sangat engaging! Conversion rate naik 40% dalam sebulan pertama.' },
-          { name: 'Rizky Hakim', role: 'Direktur CV. Karya Bangsa', avatar: 'https://picsum.photos/seed/testi5/96/96', text: 'Proses pengerjaan cepat, komunikasi lancar, hasilnya melebihi ekspektasi. Highly recommended!' }
-        ];
-
-        const chatContainer = document.getElementById('chat-messages');
-        const viewerEl = document.getElementById('chat-viewers');
-
-        function createChatMsg(data) {
-          const div = document.createElement('div');
-          div.className = 'flex items-start gap-2.5 opacity-0 transition-all duration-500';
-          div.innerHTML = `
-            <img alt="${data.name}" class="w-8 h-8 rounded-full shrink-0" src="${data.avatar}" />
-            <div>
-              <span class="text-xs font-bold text-white/90">${data.name}</span>
-              <span class="text-[10px] text-white/40 ml-1.5">${data.role}</span>
-              <p class="text-sm text-white/70 leading-relaxed mt-0.5">${data.text}</p>
-            </div>
-          `;
-          return div;
-        }
-
-        let chatIdx = 0;
-        function addNextMessage() {
-          if (chatIdx >= chatMessages.length) return;
-          const msg = createChatMsg(chatMessages[chatIdx]);
-          chatContainer.appendChild(msg);
-          requestAnimationFrame(() => msg.classList.remove('opacity-0'));
-          chatContainer.scrollTop = chatContainer.scrollHeight;
-          chatIdx++;
-          setTimeout(addNextMessage, 3000 + Math.random() * 1000);
-        }
-
-        let viewers = 1200;
-        setInterval(() => {
-          viewers += Math.floor(Math.random() * 5);
-          viewerEl.textContent = (viewers / 1000).toFixed(1).replace('.', ',') + ' rb';
-        }, 5000);
-
-        const chatObserver = new IntersectionObserver((entries) => {
-          entries.forEach(e => {
-            if (e.isIntersecting) {
-              chatIdx = 0;
-              chatContainer.innerHTML = '';
-              setTimeout(addNextMessage, 600);
-            }
-          });
-        }, { threshold: 0.3 });
-        chatObserver.observe(chatContainer);
 
       });
     </script>

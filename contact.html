@@ -166,10 +166,7 @@
 <div class="lg:col-span-7 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-xl p-md md:p-lg border-t border-white/[0.15] relative overflow-hidden">
 <div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-[80px]"></div>
 <h2 class="font-headline-lg text-headline-lg mb-lg">Minta Penawaran</h2>
-<form class="space-y-md" action="https://formsubmit.co/uroprasetyo@gmail.com" method="POST" target="_blank">
-<input type="hidden" name="_subject" value="Penawaran Baru dari Website Uroo Dev"/>
-<input type="hidden" name="_template" value="table"/>
-<input type="hidden" name="_captcha" value="false"/>
+<form class="space-y-md" id="formPenawaran" onsubmit="return sendWhatsApp(this)">
 <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
 <div class="flex flex-col gap-xs">
 <label class="font-label-md text-label-md text-on-surface-variant" for="nama">Nama Lengkap</label>
@@ -250,33 +247,43 @@
         <div class="grid grid-cols-1 md:grid-cols-12 gap-lg mb-xl">
           <div class="md:col-span-4">
             <a class="block mb-md w-fit" href="index.html">
-              <div class="bg-white/[0.03] border border-white/[0.1] rounded-lg px-6 py-7 hover:bg-white/[0.06] hover:border-white/[0.2] hover:scale-105 transition-all duration-300">
-                <img alt="Uroo Dev" class="h-full w-auto" src="assets/Uroo.dev-bening.png"/>
+              <div
+                class="bg-white/[0.03] border border-white/[0.1] rounded-lg px-6 py-7 hover:bg-white/[0.06] hover:border-white/[0.2] hover:scale-105 transition-all duration-300"
+              >
+                <img
+                  alt="Uroo Dev"
+                  class="h-auto w-48"
+                  src="assets/Uroo.dev-bening.png"
+                />
               </div>
             </a>
             <div class="flex gap-md">
               <a
                 class="text-on-tertiary-container hover:text-primary transition-colors"
                 href="http://linkedin.com/in/uro-prasetyo-0479aa3a6/?skipRedirect=true"
-                target="_blank" rel="noopener"
+                target="_blank"
+                rel="noopener"
                 ><span class="material-symbols-outlined">badge</span></a
               >
               <a
                 class="text-on-tertiary-container hover:text-primary transition-colors"
                 href="https://github.com/uroo-dev"
-                target="_blank" rel="noopener"
+                target="_blank"
+                rel="noopener"
                 ><span class="material-symbols-outlined">code</span></a
               >
               <a
                 class="text-on-tertiary-container hover:text-primary transition-colors"
                 href="https://www.tiktok.com/@uroo.dev"
-                target="_blank" rel="noopener"
+                target="_blank"
+                rel="noopener"
                 ><span class="material-symbols-outlined">music_note</span></a
               >
               <a
                 class="text-on-tertiary-container hover:text-primary transition-colors"
                 href="https://instagram.com/dms_euro"
-                target="_blank" rel="noopener"
+                target="_blank"
+                rel="noopener"
                 ><span class="material-symbols-outlined">photo_camera</span></a
               >
             </div>
@@ -285,19 +292,39 @@
             <h4 class="font-label-md text-primary mb-md">Menu</h4>
             <ul class="space-y-sm text-caption text-on-tertiary-container">
               <li class="">
-                <a class="hover:text-primary transition-colors" href="index.html">Beranda</a>
+                <a
+                  class="hover:text-primary transition-colors"
+                  href="index.html"
+                  >Beranda</a
+                >
               </li>
               <li class="">
-                <a class="hover:text-primary transition-colors" href="services.html">Layanan</a>
+                <a
+                  class="hover:text-primary transition-colors"
+                  href="services.html"
+                  >Layanan</a
+                >
               </li>
               <li class="">
-                <a class="hover:text-primary transition-colors" href="portfolio.html">Portofolio</a>
+                <a
+                  class="hover:text-primary transition-colors"
+                  href="portfolio.html"
+                  >Portofolio</a
+                >
               </li>
               <li class="">
-                <a class="hover:text-primary transition-colors" href="about.html">Tentang</a>
+                <a
+                  class="hover:text-primary transition-colors"
+                  href="about.html"
+                  >Tentang</a
+                >
               </li>
               <li class="">
-                <a class="hover:text-primary transition-colors" href="contact.html">Kontak</a>
+                <a
+                  class="hover:text-primary transition-colors"
+                  href="contact.html"
+                  >Kontak</a
+                >
               </li>
             </ul>
           </div>
@@ -305,46 +332,58 @@
             <h4 class="font-label-md text-primary mb-md">Kontak</h4>
             <ul class="space-y-sm text-caption text-on-tertiary-container">
               <li class="flex items-center gap-xs">
-                <span class="material-symbols-outlined text-xs">location_on</span>
-                <a class="hover:text-primary transition-colors" href="https://maps.app.goo.gl/bpvMvLE4JctYFJCt5" target="_blank" rel="noopener">Papahan, Karanganyar Regency</a>
+                <span class="material-symbols-outlined text-xs"
+                  >location_on</span
+                >
+                <a
+                  class="hover:text-primary transition-colors"
+                  href="https://maps.app.goo.gl/bpvMvLE4JctYFJCt5"
+                  target="_blank"
+                  rel="noopener"
+                  >Papahan, Karanganyar Regency</a
+                >
               </li>
               <li class="flex items-center gap-xs">
                 <span class="material-symbols-outlined text-xs">mail</span>
-                <a class="hover:text-primary transition-colors" href="mailto:uroprasetyo@gmail.com">uroprasetyo@gmail.com</a>
+                <a
+                  class="hover:text-primary transition-colors"
+                  href="mailto:uroprasetyo@gmail.com"
+                  >uroprasetyo@gmail.com</a
+                >
               </li>
               <li class="flex items-center gap-xs">
                 <span class="material-symbols-outlined text-xs">call</span>
-                <a class="hover:text-primary transition-colors" href="tel:+62882006533693">+62 882 0065 33693</a>
+                <a
+                  class="hover:text-primary transition-colors"
+                  href="tel:+62882006533693"
+                  >+62 882 0065 33693</a
+                >
               </li>
             </ul>
           </div>
           <div class="md:col-span-3">
-            <h4 class="font-label-md text-primary mb-md">Operasional</h4>
-            <p class="text-caption text-on-tertiary-container">
-              Senin : 07.00 - 18.00 WIB
-            </p>
-            <p class="text-caption text-on-tertiary-container">
-              Selasa  : 07.00 - 18.00 WIB
-            </p>
-            <p class="text-caption text-on-tertiary-container">
-              Rabu  : 07.00 - 18.00 WIB
-            </p>
-            <p class="text-caption text-on-tertiary-container">
-              Kamis : 07.00 - 18.00 WIB
-            </p>
-            <p class="text-caption text-on-tertiary-container">
-              Jumat : 07.00 - 18.00 WIB
-            </p>
-            <p class="text-caption text-on-tertiary-container">
-              Sabtu &amp; Minggu: Support Only
-            </p>
+            <h4 class="font-label-md text-primary mb-md">Lokasi</h4>
+            <div
+              class="map-dark overflow-hidden rounded-xl border border-white/10"
+            >
+              <iframe
+                src="https://www.google.com/maps?q=Papahan+Karanganyar+Indonesia&output=embed"
+                width="100%"
+                height="200"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
           </div>
         </div>
         <div
           class="flex flex-col md:flex-row justify-between items-center gap-base border-t border-white/5 pt-md"
         >
           <p class="font-caption text-caption text-on-tertiary-container">
-            &copy; <span id="year"></span> uroo dev. Built with passion in Indonesia.
+            &copy; <span id="year"></span> uroo dev. Built with passion in
+            Indonesia.
           </p>
           <div class="flex gap-md">
             <a
@@ -423,6 +462,17 @@
       });
     });
   });
+</script>
+<script>
+  function sendWhatsApp(form) {
+    const nama = form.querySelector('#nama').value.trim();
+    const email = form.querySelector('#email').value.trim();
+    const deskripsi = form.querySelector('#deskripsi').value.trim();
+    if (!nama || !email || !deskripsi) return false;
+    const msg = `Halo Uroo Dev, saya ${nama} (%0AEmail: ${email})%0A%0A${deskripsi}`;
+    window.open(`https://wa.me/62882006533693?text=${msg}`, '_blank');
+    return false;
+  }
 </script>
 </body>
 </html>

@@ -56,6 +56,11 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://uroo-dev.pages.dev/portfolio-cleantrack-pos.html</loc>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://uroo-dev.pages.dev/portfolio-uroo-dev.html</loc>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>

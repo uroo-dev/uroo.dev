@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://uroo-dev.pages.dev/sitemap.xml

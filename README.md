@@ -1,6 +1,6 @@
 # uroo.dev
 
-![Uroo.dev Logo](assets/Uroo.dev-bening.png)
+![Uroo.dev Logo](assets/logo/Uroo.dev-bening.png)
 
 **Uroo.dev** — Turning ideas into digital products that improve business efficiency.
 

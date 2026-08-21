@@ -120,7 +120,7 @@ No build step required — just point your hosting to the repository root.
 - **CEO**: Dimas Euro D.P
 - **Email**: [uroprasetyo@gmail.com](mailto:uroprasetyo@gmail.com)
 - **WhatsApp**: [Contact via WhatsApp](https://wa.me/6281234567890)
-- **LinkedIn**: [Uro Prasetyo](https://linkedin.com/in/uro-prasetyo-0479aa3a6/)
+- **LinkedIn**: [Uro Prasetyo](https://www.linkedin.com/in/dimas-euro-dwi-prasetyo-0479aa3a6/?isSelfProfile=true)
 - **GitHub**: [@uroo-dev](https://github.com/uroo-dev)
 - **TikTok**: [@uroo.dev](https://tiktok.com/@uroo.dev)
 - **Instagram**: [@dms_euro](https://instagram.com/dms_euro)

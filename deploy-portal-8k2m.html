@@ -1,0 +1,680 @@
+<!doctype html>
+<html class="dark" lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Admin Console | uroo dev</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="googlebot" content="noindex, nofollow" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <style>
+      :root {
+        --bg: #0a0a0b;
+        --panel: #141416;
+        --panel-2: #1a1a1d;
+        --border: rgba(255,255,255,0.08);
+        --text: #e5e2e1;
+        --muted: #8b8b8f;
+        --accent: #4f8cff;
+        --accent-2: #22c55e;
+        --danger: #ef4444;
+        --warn: #f59e0b;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Inter', sans-serif;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+      }
+      .mono { font-family: 'JetBrains Mono', monospace; }
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+      }
+      .panel-hover { transition: all 0.25s ease; }
+      .panel-hover:hover { border-color: rgba(255,255,255,0.16); transform: translateY(-2px); }
+      .input {
+        width: 100%;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 0.75rem 1rem;
+        color: var(--text);
+        font-size: 0.875rem;
+        font-family: 'Inter', sans-serif;
+        transition: all 0.2s ease;
+        outline: none;
+      }
+      .input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(79,140,255,0.15); background: rgba(255,255,255,0.06); }
+      .input::placeholder { color: var(--muted); }
+      label { font-size: 0.75rem; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 0.4rem; }
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+        border-radius: 10px; padding: 0.75rem 1.5rem; font-weight: 600; font-size: 0.875rem;
+        cursor: pointer; border: none; transition: all 0.2s ease; font-family: 'Inter', sans-serif;
+      }
+      .btn-primary { background: var(--accent); color: #fff; }
+      .btn-primary:hover:not(:disabled) { background: #3d7dff; box-shadow: 0 4px 20px rgba(79,140,255,0.35); }
+      .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+      .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
+      .btn-ghost:hover { background: rgba(255,255,255,0.06); }
+      .btn-danger { background: rgba(239,68,68,0.12); color: var(--danger); border: 1px solid rgba(239,68,68,0.2); }
+      .btn-danger:hover { background: rgba(239,68,68,0.2); }
+      .badge {
+        display: inline-flex; align-items: center; gap: 0.35rem;
+        font-size: 0.7rem; font-weight: 600; padding: 0.25rem 0.6rem; border-radius: 9999px;
+      }
+      .badge-live { background: rgba(34,197,94,0.12); color: var(--accent-2); border: 1px solid rgba(34,197,94,0.25); }
+      .badge-building { background: rgba(245,158,11,0.12); color: var(--warn); border: 1px solid rgba(245,158,11,0.3); animation: pulse 1.5s infinite; }
+      .badge-error { background: rgba(239,68,68,0.12); color: var(--danger); border: 1px solid rgba(239,68,68,0.3); }
+      .badge-idle { background: rgba(255,255,255,0.06); color: var(--muted); border: 1px solid var(--border); }
+      @keyframes pulse { 0%,100% {opacity: 1;} 50% {opacity: 0.5;} }
+      .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+      .dot-live { background: var(--accent-2); box-shadow: 0 0 8px var(--accent-2); }
+      .dot-build { background: var(--warn); }
+      .dot-error { background: var(--danger); }
+      .toast {
+        position: fixed; bottom: 2rem; right: 2rem; z-index: 1000;
+        background: var(--panel-2); border: 1px solid var(--border); border-radius: 12px;
+        padding: 1rem 1.5rem; display: flex; align-items: center; gap: 0.75rem;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.5); opacity: 0; transform: translateY(20px);
+        transition: all 0.3s ease; max-width: 400px;
+      }
+      .toast.show { opacity: 1; transform: translateY(0); }
+      .toast-success { border-color: rgba(34,197,94,0.4); }
+      .toast-error { border-color: rgba(239,68,68,0.4); }
+      .toast-info { border-color: rgba(79,140,255,0.4); }
+      .spinner { width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.2); border-top-color: #fff; border-radius: 50%; animation: spin 0.7s linear infinite; }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      .stat-card { transition: all 0.25s ease; }
+      .stat-card:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.15); }
+      .shell-window { background: #0d0d10; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+      .shell-header { display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1rem; background: var(--panel-2); border-bottom: 1px solid var(--border); }
+      .shell-dot { width: 10px; height: 10px; border-radius: 50%; }
+      .toast-icon { flex-shrink: 0; }
+      .category-chip {
+        display: inline-block; font-size: 0.7rem; padding: 0.25rem 0.75rem; border-radius: 9999px;
+        background: rgba(255,255,255,0.06); border: 1px solid var(--border); color: var(--muted);
+      }
+      ::-webkit-scrollbar { width: 8px; height: 8px; }
+      ::-webkit-scrollbar-track { background: transparent; }
+      ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+      code.kbd { background: rgba(255,255,255,0.06); padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.8rem; }
+    </style>
+  </head>
+  <body>
+    <!-- Toast container -->
+    <div id="toast-container"></div>
+
+    <!-- Top bar -->
+    <header class="sticky top-0 z-50 backdrop-blur-xl border-b" style="background:rgba(10,10,11,0.85); border-color:var(--border)">
+      <div class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+            <span class="material-symbols-outlined text-white text-lg">terminal</span>
+          </div>
+          <div>
+            <div class="font-semibold leading-tight">uroo console</div>
+            <div class="text-xs text-[var(--muted)] mono">deploy-portal-8k2m</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <a href="index.html" class="btn btn-ghost text-xs px-3 py-2">
+            <span class="material-symbols-outlined text-sm">home</span> Beranda
+          </a>
+          <div class="hidden sm:flex items-center gap-2 text-xs text-[var(--muted)]">
+            <span class="dot dot-live"></span>
+            <span class="mono">cloudflare: connected</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main class="max-w-6xl mx-auto px-5 py-8 space-y-8">
+      <!-- Hero / stats -->
+      <section id="hero">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-6">
+          <div>
+            <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-2">
+              Deployment<span class="text-blue-400"> Console</span>
+            </h1>
+            <p class="text-[var(--muted)] text-sm max-w-md">
+              Tambah template / landing page dari GitHub. Sistem otomatis ci/cd build, deploy ke Cloudflare Pages, dan pasang subdomain di <span class="mono text-[var(--text)]">uroo.my.id</span>.
+            </p>
+          </div>
+          <button id="btn-refresh" class="btn btn-ghost text-sm self-start">
+            <span class="material-symbols-outlined text-sm">refresh</span> Refresh
+          </button>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="panel panel-hover p-4 stat-card">
+            <div class="flex items-center justify-between mb-2">
+              <span class="material-symbols-outlined text-[var(--muted)]">grid_view</span>
+            </div>
+            <div id="stat-total" class="text-2xl font-bold mono">–</div>
+            <div class="text-xs text-[var(--muted)]">Total Demo</div>
+          </div>
+          <div class="panel panel-hover p-4 stat-card">
+            <div class="flex items-center justify-between mb-2">
+              <span class="material-symbols-outlined text-[var(--accent-2)]">check_circle</span>
+            </div>
+            <div id="stat-live" class="text-2xl font-bold mono">–</div>
+            <div class="text-xs text-[var(--muted)]">Live</div>
+          </div>
+          <div class="panel panel-hover p-4 stat-card">
+            <div class="flex items-center justify-between mb-2">
+              <span class="material-symbols-outlined text-[var(--warn)]">build</span>
+            </div>
+            <div id="stat-building" class="text-2xl font-bold mono">–</div>
+            <div class="text-xs text-[var(--muted)]">Building</div>
+          </div>
+          <div class="panel panel-hover p-4 stat-card">
+            <div class="flex items-center justify-between mb-2">
+              <span class="material-symbols-outlined text-[var(--danger)]">error</span>
+            </div>
+            <div id="stat-error" class="text-2xl font-bold mono">–</div>
+            <div class="text-xs text-[var(--muted)]">Error</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Deploy form -->
+      <section id="deploy-form-section" class="panel p-6 md:p-8">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <h2 class="text-lg font-semibold flex items-center gap-2">
+              <span class="material-symbols-outlined text-blue-400">rocket_launch</span>
+              Deploy Template Baru
+            </h2>
+            <p class="text-sm text-[var(--muted)] mt-1">Tempel link GitHub repository → otomatis deploy sebagai subdomain baru.</p>
+          </div>
+          <div class="hidden md:block shell-window" style="max-width:240px">
+            <div class="shell-header">
+              <span class="shell-dot" style="background:#ef4444"></span>
+              <span class="shell-dot" style="background:#f59e0b"></span>
+              <span class="shell-dot" style="background:#22c55e"></span>
+              <span class="mono text-xs text-[var(--muted)] ml-1">ci/cd</span>
+            </div>
+            <div class="p-3 mono text-xs text-emerald-400 leading-relaxed whitespace-nowrap overflow-hidden">
+              $ git clone template<br>
+              $ build<br>
+              $ deploy → pages.dev<br>
+              $ add subdomain<br>
+              <span class="text-blue-400">✓ online</span>
+            </div>
+          </div>
+        </div>
+
+        <form id="deploy-form" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div class="md:col-span-2">
+            <label for="repo">GitHub Repository URL *</label>
+            <input id="repo" class="input mono" type="text" placeholder="https://github.com/uroo-dev/demo-cms" required />
+            <p class="text-xs text-[var(--muted)] mt-1">Format: https://github.com/&lt;owner&gt;/&lt;repo&gt;</p>
+          </div>
+
+          <div>
+            <label for="project">Nama Project / Subdomain *</label>
+            <div class="flex items-center">
+              <input id="project" class="input mono rounded-r-none" type="text" placeholder="demo-cms" required pattern="[a-z0-9-]+" />
+              <span class="input mono rounded-l-none border-l-0 w-auto text-[var(--muted)] hidden sm:inline-flex items-center justify-center px-3" style="width:auto; background:rgba(255,255,255,0.02)">.uroo.my.id</span>
+            </div>
+            <p class="text-xs text-[var(--muted)] mt-1">Huruf kecil, angka, strip. Contoh: <code class="kbd">demo-cms</code></p>
+          </div>
+
+          <div>
+            <label for="ref">Branch (opsional)</label>
+            <input id="ref" class="input mono" type="text" placeholder="main" value="main" />
+          </div>
+
+          <div>
+            <label for="title">Judul / Nama Template *</label>
+            <input id="title" class="input" type="text" placeholder="CMS Sekolah Demo" required />
+          </div>
+
+          <div>
+            <label for="category">Kategori</label>
+            <select id="category" class="input">
+              <option value="Web Development">Web Development</option>
+              <option value="Landing Page">Landing Page</option>
+              <option value="Sistem Informasi">Sistem Informasi</option>
+              <option value="Mobile App">Mobile App</option>
+              <option value="Company Profile">Company Profile</option>
+              <option value="E-Commerce">E-Commerce</option>
+              <option value="Portfolio">Portfolio</option>
+              <option value="Lainnya">Lainnya</option>
+            </select>
+          </div>
+
+          <div class="md:col-span-2">
+            <label for="description">Deskripsi Singkat</label>
+            <textarea id="description" class="input" rows="2" placeholder="Deskripsi singkat template / fitur demo..."></textarea>
+          </div>
+
+          <div class="md:col-span-2 flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
+            <div class="text-xs text-[var(--muted)]" id="submit-hint">
+              Deployment otomatis via GitHub Actions. Estimasi 1–3 menit.
+            </div>
+            <button type="submit" id="btn-deploy" class="btn btn-primary">
+              <span class="material-symbols-outlined">rocket_launch</span>
+              Deploy Sekarang
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Demo list -->
+      <section id="demo-list-section">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-lg font-semibold flex items-center gap-2">
+            <span class="material-symbols-outlined text-blue-400">deployed_code</span>
+            Daftar Demo / Template
+          </h2>
+          <div class="flex items-center gap-2">
+            <input id="search-input" class="input" style="width:180px; padding:0.5rem 0.75rem; font-size:0.8rem" type="text" placeholder="Cari demo..." />
+            <select id="filter-category" class="input" style="width:auto; padding:0.5rem 0.75rem; font-size:0.8rem">
+              <option value="">Semua</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="demo-list" class="space-y-3">
+          <!-- Rendered by JS -->
+        </div>
+      </section>
+
+      <!-- Workflow status -->
+      <section class="panel p-6">
+        <h2 class="text-lg font-semibold flex items-center gap-2 mb-4">
+          <span class="material-symbols-outlined text-blue-400">timeline</span>
+          Activity Log
+        </h2>
+        <div class="space-y-2 max-h-72 overflow-y-auto pr-2" id="activity-log">
+          <div class="text-sm text-[var(--muted)] mono p-3 rounded-lg" style="background:rgba(255,255,255,0.02)">
+            <span class="text-[var(--text)]">$</span> system ready — menunggu deployment. <span class="text-blue-400">/_</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      // ================= CONFIG =================
+      const CF_GITHUB_OWNER = "uroo-dev";
+      const CF_GITHUB_REPO = "uroo.dev";
+      const API_REPO_PATH = "/repos/" + CF_GITHUB_OWNER + "/" + CF_GITHUB_REPO;
+
+      // GitHub token diambil dari variable (di-set ketika deploy di halaman)
+      // NOTE: jarak jauh aman karena hanya dipakai untuk repository_dispatch.
+      // Selalu simpan token di Github Actions Secret, bukan hardcode di sini.
+      let GITHUB_TOKEN = localStorage.getItem('uroo_gh_token') || '';
+
+      // ================= UTIL =================
+      const $ = (sel) => document.querySelector(sel);
+      const esc = (s) => String(s || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+      const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+      function toast(msg, type = "info") {
+        const id = 't' + Date.now();
+        const icons = { success: 'check_circle', error: 'error', info: 'info' };
+        const el = document.createElement('div');
+        el.id = id;
+        el.className = 'toast toast-' + type + ' show';
+        el.innerHTML = `
+          <span class="material-symbols-outlined toast-icon" style="color:${type==='success'?'#22c55e':type==='error'?'#ef4444':'#4f8cff'}">${icons[type]}</span>
+          <span class="text-sm">${msg}</span>
+        `;
+        $('#toast-container').appendChild(el);
+        setTimeout(() => { el.classList.remove('show'); setTimeout(() => el.remove(), 300); }, 4000);
+      }
+
+      function logActivity(msg, color = 'var(--text)') {
+        const el = document.createElement('div');
+        el.className = 'text-sm mono p-3 rounded-lg';
+        el.style.background = 'rgba(255,255,255,0.02)';
+        el.style.color = color;
+        el.innerHTML = `<span>› </span>${msg}`;
+        $('#activity-log').prepend(el);
+      }
+
+      async function ghFetch(path, options = {}) {
+        const res = await fetch('https://api.github.com' + path, {
+          ...options,
+          headers: {
+            'Accept': 'application/vnd.github+json',
+            'Authorization': 'token ' + GITHUB_TOKEN,
+            'X-GitHub-Api-Version': '2022-11-28',
+            ...(options.headers || {})
+          }
+        });
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          throw new Error(err.message || 'GitHub API error ' + res.status);
+        }
+        return res.json();
+      }
+
+      // ================= STATE =================
+      let demos = [];
+      let deployedSince = {}; // project -> time
+
+      // ================= LOAD DEMOS =================
+      async function loadDemos() {
+        try {
+          const data = await fetch('demos.json', { cache: 'no-store' });
+          if (data.ok) {
+            demos = await data.json();
+            if (!Array.isArray(demos)) demos = [];
+          } else {
+            demos = [];
+          }
+        } catch (e) {
+          demos = [];
+        }
+        renderDemos();
+        loadWorkflows();
+      }
+
+      // ================= LOAD WORKFLOWS (status) =================
+      async function loadWorkflows() {
+        if (!GITHUB_TOKEN) return; // tanpa token, tidak bisa cek status
+        try {
+          const runs = await ghFetch(`${API_REPO_PATH}/actions/runs?per_page=40`);
+          const activeProjects = {};
+          runs.workflow_runs.forEach(run => {
+            const name = (run.display_title || '').toLowerCase();
+            // cari project dari display_title jika nanti kita pass project ke title
+          });
+          // Tidak perlu render aktif di sini; cukup sebagai info log
+        } catch (e) {
+          // user belum set token
+        }
+      }
+
+      // ================= RENDER =================
+      function renderDemos() {
+        const search = ($('#search-input').value || '').toLowerCase();
+        const cat = $('#filter-category').value;
+
+        const filtered = demos.filter(d => {
+          const matchSearch = !search || (d.title + ' ' + (d.description||'') + ' ' + d.project).toLowerCase().includes(search);
+          const matchCat = !cat || d.category === cat;
+          return matchSearch && matchCat;
+        });
+
+        // Update stats
+        $('#stat-total').textContent = demos.length;
+        $('#stat-live').textContent = demos.filter(d => d.status === 'live').length;
+        $('#stat-building').textContent = demos.filter(d => d.status === 'building').length;
+        $('#stat-error').textContent = demos.filter(d => d.status === 'error').length;
+
+        const list = $('#demo-list');
+        if (!filtered.length) {
+          list.innerHTML = `
+            <div class="panel p-10 text-center">
+              <span class="material-symbols-outlined text-4xl text-[var(--muted)] mb-3">inbox</span>
+              <p class="text-[var(--muted)] text-sm">Belum ada demo. Deploy template pertama kamu di atas.</p>
+            </div>`;
+          return;
+        }
+
+        list.innerHTML = filtered.map(d => {
+          const badge = d.status === 'live'
+            ? '<span class="badge badge-live"><span class="dot dot-live"></span>Live</span>'
+            : d.status === 'building'
+            ? '<span class="badge badge-building"><span class="dot dot-build"></span>Building</span>'
+            : d.status === 'error'
+            ? '<span class="badge badge-error"><span class="dot dot-error"></span>Error</span>'
+            : '<span class="badge badge-idle">Idle</span>';
+
+          const date = d.deployedAt ? new Date(d.deployedAt) : null;
+          const dateStr = date ? date.toLocaleDateString('id-ID', { day:'numeric', month:'short', year:'numeric' }) : '';
+
+          return `
+          <div class="panel panel-hover p-4 flex flex-col md:flex-row md:items-center gap-4">
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-3 flex-wrap">
+                <span class="font-semibold">${esc(d.title)}</span>
+                ${badge}
+                <span class="category-chip">${esc(d.category||'Demo')}</span>
+              </div>
+              <p class="text-sm text-[var(--muted)] mt-1 line-clamp-2">${esc(d.description||'—')}</p>
+              <div class="mt-2 flex items-center gap-4 text-xs mono text-[var(--muted)] flex-wrap">
+                <span class="material-symbols-outlined text-xs align-middle">link</span>
+                <a href="${esc(d.url)}" target="_blank" rel="noopener" class="text-blue-400 hover:underline">${esc(d.subdomain||d.url||'')}</a>
+                <span class="text-[var(--muted)]/50">•</span>
+                <span class="material-symbols-outlined text-xs align-middle">code</span>
+                <span>${esc(d.repo_display||d.repo||'')}</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+              <a href="${esc(d.url)}" target="_blank" rel="noopener" class="btn btn-ghost text-xs px-3 py-2">
+                <span class="material-symbols-outlined text-xs">open_in_new</span> Lihat Demo
+              </a>
+              <button class="btn btn-ghost text-xs px-3 py-2 copy-url" data-url="${esc(d.url)}" title="Copy URL">
+                <span class="material-symbols-outlined text-xs">content_copy</span> Copy
+              </button>
+              <button class="btn btn-ghost text-xs px-3 py-2 redeploy" data-project="${esc(d.project)}" data-repo="${esc(d.repo)}" data-title="${esc(d.title)}" data-desc="${esc(d.description||'')}" data-cat="${esc(d.category||'Demo')}" title="Deploy ulang">
+                <span class="material-symbols-outlined text-xs">restart_alt</span>
+              </button>
+            </div>
+          </div>`;
+        }).join('');
+
+        // re-attach events
+        list.querySelectorAll('.copy-url').forEach(btn => {
+          btn.addEventListener('click', () => {
+            navigator.clipboard.writeText(btn.dataset.url).then(() => toast('URL disalin!', 'success'));
+          });
+        });
+        list.querySelectorAll('.redeploy').forEach(btn => {
+          btn.addEventListener('click', () => {
+            $('#repo').value = btn.dataset.repo;
+            const parts = btn.dataset.repo.split('/');
+            $('#project').value = btn.dataset.project;
+            $('#title').value = btn.dataset.title;
+            $('#description').value = btn.dataset.desc;
+            $('#category').value = btn.dataset.cat;
+            toast('Form diisi untuk re-deploy. Klik Deploy.', 'info');
+            $('#deploy-form-section').scrollIntoView({behavior:'smooth'});
+          });
+        });
+      }
+
+      // ================= DEPLOY =================
+      async function triggerDeploy() {
+        const repo = $('#repo').value.trim();
+        const project = $('#project').value.trim().toLowerCase();
+        const ref = $('#ref').value.trim() || 'main';
+        const title = $('#title').value.trim();
+        const category = $('#category').value;
+        const description = $('#description').value.trim();
+
+        // validasi
+        const repoMatch = repo.match(/^https:\/\/github\.com\/([\w.-]+)\/([\w.-]+)\/?$/);
+        if (!repoMatch) { toast('Format GitHub URL tidak valid. Contoh: https://github.com/uroo-dev/demo-cms', 'error'); return; }
+        if (!/^[a-z0-9-]+$/.test(project)) { toast('Subdomain hanya huruf kecil, angka, dan strip.', 'error'); return; }
+        if (!title) { toast('Judul wajib diisi.', 'error'); return; }
+
+        const fullRepo = repoMatch[1] + '/' + repoMatch[2];
+
+        if (!GITHUB_TOKEN) {
+          toast('Belum ada GitHub token. Atur dulu di pengaturan (opsional, fungsi terbatas), atau deploy manual.', 'error');
+          return;
+        }
+
+        const btn = $('#btn-deploy');
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner"></span> Deploying...';
+
+        const payload = {
+          event_type: 'deploy-demo',
+          client_payload: {
+            repo: fullRepo,
+            ref: ref,
+            project: project,
+            title: title,
+            description: description,
+            category: category
+          }
+        };
+
+        try {
+          toast('Mengirim perintah deploy ke GitHub Actions...', 'info');
+          logActivity('Trigger deploy: ' + fullRepo + ' → ' + project + '.uroo.my.id', 'var(--accent)');
+
+          await ghFetch(`${API_REPO_PATH}/dispatches`, {
+            method: 'POST',
+            body: JSON.stringify(payload)
+          });
+
+          toast('Deploy dipicu! Demo akan live dalam 1–3 menit.', 'success');
+          logActivity('✓ repository_dispatch dikirim. Workflow berjalan...', 'var(--accent-2)');
+
+          // Update demos.json lokal & tambah entri pending
+          const existing = demos.findIndex(d => d.project === project);
+          const entry = {
+            project, title, description, category,
+            subdomain: project + '.uroo.my.id',
+            url: 'https://' + project + '.uroo.my.id',
+            repo: 'https://github.com/' + fullRepo,
+            repo_display: fullRepo,
+            status: 'building',
+            deployedAt: new Date().toISOString()
+          };
+          if (existing >= 0) demos[existing] = entry; else demos.unshift(entry);
+          renderDemos();
+
+          // polling status
+          pollWorkflowStatus(project);
+        } catch (e) {
+          toast('Gagal trigger deploy: ' + e.message, 'error');
+          logActivity('✗ deploy gagal: ' + e.message, 'var(--danger)');
+        } finally {
+          btn.disabled = false;
+          btn.innerHTML = '<span class="material-symbols-outlined">rocket_launch</span> Deploy Sekarang';
+        }
+      }
+
+      async function pollWorkflowStatus(project) {
+        if (!GITHUB_TOKEN) return;
+        // polling ringan untuk menandai selesai — sebenarnya status diambil dari demos.json setelah workflow update
+        try {
+          const res = await fetch('demos.json', { cache: 'no-store' });
+          if (res.ok) {
+            const data = await res.json();
+            const found = data.find(d => d.project === project);
+            if (found && found.status === 'live') {
+              const idx = demos.findIndex(d => d.project === project);
+              if (idx >= 0) demos[idx] = found;
+              renderDemos();
+              toast('Demo ' + project + ' sudah live!', 'success');
+              logActivity('✓ ' + project + '.uroo.my.id online', 'var(--accent-2)');
+              return;
+            }
+          }
+          // retry setelah 15s, max 12x (±3 menit)
+          let tries = 0;
+          const timer = setInterval(async () => {
+            tries++;
+            try {
+              const r = await fetch('demos.json', { cache: 'no-store' });
+              if (r.ok) {
+                const data = await r.json();
+                const found = data.find(d => d.project === project);
+                if (found && found.status === 'live') {
+                  clearInterval(timer);
+                  const idx = demos.findIndex(d => d.project === project);
+                  if (idx >= 0) demos[idx] = found;
+                  renderDemos();
+                  toast('Demo ' + project + ' sudah live!', 'success');
+                  logActivity('✓ ' + project + '.uroo.my.id online', 'var(--accent-2)');
+                }
+              }
+            } catch (e) {}
+            if (tries >= 12) {
+              clearInterval(timer);
+              logActivity('Polling berhenti (3 menit). Cek demos.json / Actions untuk status final.', 'var(--warn)');
+            }
+          }, 15000);
+        } catch (e) {}
+      }
+
+      // ================= FILTER OPTIONS =================
+      function populateCategories() {
+        const cats = new Set(demos.map(d => d.category).filter(Boolean));
+        const sel = $('#filter-category');
+        const defaultCat = sel.innerHTML;
+        // keep existing options beyond "Semua" that user might have? simply rebuild
+        sel.innerHTML = '<option value="">Semua</option>';
+        cats.forEach(c => {
+          const opt = document.createElement('option');
+          opt.value = c; opt.textContent = c;
+          sel.appendChild(opt);
+        });
+      }
+
+      // ================= EVENTS =================
+      $('#deploy-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        triggerDeploy();
+      });
+
+      $('#btn-refresh').addEventListener('click', () => {
+        loadDemos();
+        toast('Data di-refresh.', 'info');
+      });
+
+      $('#search-input').addEventListener('input', renderDemos);
+      $('#filter-category').addEventListener('change', renderDemos);
+
+      // Token setup (opsional) — simpan di localStorage agar tidak ketik ulang
+      // Hidden: jika token belum ada, tampilkan prompt kecil via modal sederhana
+      function ensureToken() {
+        if (!GITHUB_TOKEN) {
+          const tk = prompt('Masukkan GitHub Personal Access Token untuk mengaktifkan auto-deploy:\n(scope: repo — hanya untuk trigger workflow). Kosongkan jika belum punya.');
+          if (tk && tk.trim()) {
+            GITHUB_TOKEN = tk.trim();
+            localStorage.setItem('uroo_gh_token', GITHUB_TOKEN);
+            toast('Token disimpan di browser ini.', 'success');
+          }
+        }
+      }
+
+      // Show token notice if missing
+      if (!GITHUB_TOKEN) {
+        setTimeout(() => {
+          const el = document.createElement('div');
+          el.className = 'toast toast-info show';
+          el.id = 'token-notice';
+          el.innerHTML = `
+            <span class="material-symbols-outlined" style="color:#4f8cff">key</span>
+            <div>
+              <div class="text-sm font-semibold">GitHub token belum diatur</div>
+              <div class="text-xs text-[var(--muted)] mt-0.5">Klik untuk atur agar auto-deploy aktif.</div>
+            </div>
+          `;
+          el.style.cursor = 'pointer';
+          el.addEventListener('click', () => { ensureToken(); el.remove(); });
+          $('#toast-container').appendChild(el);
+          setTimeout(() => { el.classList.remove('show'); setTimeout(() => el.remove(), 300); }, 8000);
+        }, 800);
+      }
+
+      // ================= INIT =================
+      loadDemos();
+      loadWorkflows();
+    </script>
+  </body>
+</html>

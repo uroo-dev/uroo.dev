@@ -1,0 +1,15 @@
+{
+  "name": "uroo-dev-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Website utama uroo.dev — software house Karanganyar (static, Cloudflare Pages)",
+  "scripts": {
+    "serve": "python3 -m http.server 8080",
+    "validate:demos": "node -e \"const d=require('./demos.json'); if(!Array.isArray(d)) throw new Error('demos.json harus array'); console.log('OK:', d.length, 'demo terdaftar')\"",
+    "validate:sitemap": "python3 -c \"import xml.etree.ElementTree as ET; ET.parse('sitemap.xml'); print('sitemap.xml valid')\"",
+    "validate:headers": "test -f _headers && echo '_headers OK' || echo '_headers MISSING'"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

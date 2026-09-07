@@ -1,0 +1,240 @@
+name: Deploy Demo
+
+# Dipicu oleh admin dashboard via GitHub repository_dispatch
+on:
+  repository_dispatch:
+    types: [deploy-demo]
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Checkout repo target (repo demo milik user)
+      - name: Checkout target repository
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.client_payload.repo }}
+          ref: ${{ github.event.client_payload.ref || 'main' }}
+          token: ${{ secrets.DISPATCH_TOKEN }}
+
+      - name: Detect framework
+        id: detect
+        run: |
+          echo "::group::Detect framework"
+          if [ -f "package.json" ]; then
+            echo "build=true" >> $GITHUB_OUTPUT
+            echo "type=node" >> $GITHUB_OUTPUT
+          elif [ -f "requirements.txt" ] || [ -f "pyproject.toml" ]; then
+            echo "build=true" >> $GITHUB_OUTPUT
+            echo "type=python" >> $GITHUB_OUTPUT
+          elif [ -f "pom.xml" ] || [ -f "build.gradle" ]; then
+            echo "build=true" >> $GITHUB_OUTPUT
+            echo "type=java" >> $GITHUB_OUTPUT
+          else
+            echo "build=false" >> $GITHUB_OUTPUT
+            echo "type=static" >> $GITHUB_OUTPUT
+          fi
+          echo "::endgroup::"
+
+      - name: Setup Node.js
+        if: steps.detect.outputs.type == 'node'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # 2. Install & build (hanya jika ada package.json / framework)
+      - name: Install dependencies
+        if: steps.detect.outputs.build == 'true' && steps.detect.outputs.type == 'node'
+        run: |
+          npm install --no-audit --no-fund
+        env:
+          NODE_ENV: production
+
+      - name: Build project
+        if: steps.detect.outputs.build == 'true' && steps.detect.outputs.type == 'node'
+        run: |
+          # Deteksi command build
+          if [ -f "next.config.js" ] || [ -f "next.config.mjs" ] || [ -f "next.config.ts" ]; then
+            npx next build
+            echo "OUTPUT_DIR=.next" >> $GITHUB_ENV
+          elif [ -f "astro.config.mjs" ] || [ -f "astro.config.js" ]; then
+            npx astro build
+            echo "OUTPUT_DIR=dist" >> $GITHUB_ENV
+          elif [ -f "vite.config.js" ] || [ -f "vite.config.ts" ]; then
+            npx vite build
+            echo "OUTPUT_DIR=dist" >> $GITHUB_ENV
+          elif [ -f "gatsby-config.js" ]; then
+            npx gatsby build
+            echo "OUTPUT_DIR=public" >> $GITHUB_ENV
+          elif [ -f "nuxt.config.js" ] || [ -f "nuxt.config.ts" ]; then
+            npx nuxt build
+            echo "OUTPUT_DIR=.nuxt/dist/client" >> $GITHUB_ENV
+          elif [ -f "eleventy.config.js" ] || [ -f ".eleventy.js" ]; then
+            npx @11ty/eleventy
+            echo "OUTPUT_DIR=_site" >> $GITHUB_ENV
+          elif [ -f "package.json" ]; then
+            npm run build
+            # Tebak output dir umum
+            for dir in dist out build public .next; do
+              if [ -d "$dir" ]; then echo "OUTPUT_DIR=$dir" >> $GITHUB_ENV; break; fi
+            done
+          fi
+
+      # Output dir default jika framework tidak terdeteksi
+      - name: Set default output dir
+        if: env.OUTPUT_DIR == ''
+        run: |
+          # Deteksi folder output yang umum
+          for dir in dist build public _site .next out; do
+            if [ -d "$dir" ]; then
+              echo "OUTPUT_DIR=$dir" >> $GITHUB_ENV
+              break
+            fi
+          done
+          # Fallback ke root jika isinya index.html
+          if [ -z "$OUTPUT_DIR" ] && [ -f "index.html" ]; then
+            echo "OUTPUT_DIR=." >> $GITHUB_ENV
+          fi
+
+      - name: Verify output directory
+        run: |
+          echo "Output dir: ${{ env.OUTPUT_DIR }}"
+          if [ ! -d "${{ env.OUTPUT_DIR }}" ] && [ "${{ env.OUTPUT_DIR }}" != "." ]; then
+            echo "::error::Output directory '${{ env.OUTPUT_DIR }}' tidak ditemukan"
+            exit 1
+          fi
+
+      # 3. Deploy ke Cloudflare Pages via Wrangler
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy "${{ env.OUTPUT_DIR }}" --project-name=${{ github.event.client_payload.project }}
+
+      # 4. Tambah Custom Domain (subdomain) via Cloudflare API
+      - name: Add/Create custom domain
+        run: |
+          SUBDOMAIN="${{ github.event.client_payload.project }}"
+          ROOT_DOMAIN="${BASE_DOMAIN:-uroo.my.id}"
+          FULL_DOMAIN="${SUBDOMAIN}.${ROOT_DOMAIN}"
+
+          echo "Menyiapkan domain: ${FULL_DOMAIN}"
+
+          # Cek apakah zona sudah diambil dari secret
+          ZONE_ID="${{ secrets.CLOUDFLARE_ZONE_ID }}"
+          if [ -z "$ZONE_ID" ]; then
+            # Ambil zone ID dari nama domain
+            ZONE_ID=$(curl -s -X GET "https://api.cloudflare.com/client/v4/zones?name=${ROOT_DOMAIN}" \
+              -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+              -H "Content-Type: application/json" \
+              | python3 -c "import sys,json; data=json.load(sys.stdin); print(data['result'][0]['id'] if data.get('result') else '')")
+          fi
+
+          if [ -z "$ZONE_ID" ]; then
+            echo "::error::Zona Cloudflare tidak ditemukan untuk ${ROOT_DOMAIN}"
+            exit 1
+          fi
+          echo "Zone ID: ${ZONE_ID}"
+
+          echo "ZONE_ID=${ZONE_ID}" >> $GITHUB_ENV
+
+          # Cek apakah DNS record CNAME sudah ada
+          EXISTING=$(curl -s -X GET "https://api.cloudflare.com/client/v4/zones/${ZONE_ID}/dns_records?type=CNAME&name=${FULL_DOMAIN}" \
+            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+            -H "Content-Type: application/json")
+
+          RECORD_ID=$(echo "$EXISTING" | python3 -c "import sys,json; data=json.load(sys.stdin); print(data['result'][0]['id'] if data.get('result') else '')")
+
+          if [ -z "$RECORD_ID" ]; then
+            # Buat baru
+            curl -s -X POST "https://api.cloudflare.com/client/v4/zones/${ZONE_ID}/dns_records" \
+              -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+              -H "Content-Type: application/json" \
+              --data "{\"type\":\"CNAME\",\"name\":\"${SUBDOMAIN}\",\"content\":\"uroo-dev.pages.dev\",\"proxied\":true,\"ttl\":1}" \
+              | python3 -c "import sys,json; d=json.load(sys.stdin); print('DNS record dibuat:', d.get('success'))"
+          else
+            # Update yang ada
+            curl -s -X PATCH "https://api.cloudflare.com/client/v4/zones/${ZONE_ID}/dns_records/${RECORD_ID}" \
+              -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+              -H "Content-Type: application/json" \
+              --data "{\"content\":\"uroo-dev.pages.dev\",\"proxied\":true,\"ttl\":1}" \
+              | python3 -c "import sys,json; d=json.load(sys.stdin); print('DNS record diperbarui:', d.get('success'))"
+          fi
+
+      # 5. Update demos.json di repo utama (uroo.dev)
+      - name: Update demos.json catalog
+        uses: actions/checkout@v4
+        with:
+          repository: uroo-dev/uroo.dev
+          ref: main
+          token: ${{ secrets.DISPATCH_TOKEN }}
+          path: catalog-repo
+
+      - name: Register demo in catalog
+        working-directory: catalog-repo
+        run: |
+          PROJECT="${{ github.event.client_payload.project }}"
+          SUBDOMAIN="${PROJECT}.uroo.my.id"
+
+          # Buat demos.json jika belum ada
+          [ -f "demos.json" ] || echo '[]' > demos.json
+
+          # Tambahkan entri baru (hindari duplikat)
+          python3 - <<'PY'
+          import json, os, sys
+
+          project = "$PROJECT"
+          repo = "${{ github.event.client_payload.repo }}"
+          title = "${{ github.event.client_payload.title }}"
+          description = "${{ github.event.client_payload.description }}"
+          category = "${{ github.event.client_payload.category }}"
+          repo_display = repo.replace("https://github.com/", "")
+
+          subdomain = f"{project}.uroo.my.id"
+
+          with open("demos.json", "r") as f:
+              try:
+                  demos = json.load(f)
+              except json.JSONDecodeError:
+                  demos = []
+
+          # Hapus entri lama dengan project sama (re-deploy)
+          demos = [d for d in demos if d.get("project") != project]
+
+          import datetime
+          now = datetime.datetime.utcnow().isoformat() + "Z"
+
+          entry = {
+              "project": project,
+              "title": title,
+              "description": description,
+              "category": category,
+              "subdomain": subdomain,
+              "url": f"https://{subdomain}",
+              "repo": repo,
+              "repo_display": repo_display,
+              "status": "live",
+              "deployedAt": now,
+          }
+          demos.insert(0, entry)
+
+          with open("demos.json", "w") as f:
+              json.dump(demos, f, indent=2, ensure_ascii=False)
+              f.write("\n")
+          PY
+
+      - name: Commit catalog update
+        working-directory: catalog-repo
+        run: |
+          git config user.name "uroo dev"
+          git config user.email "uroprasetyo@gmail.com"
+          git add demos.json
+          git diff --cached --quiet && { echo "Tidak ada perubahan demos.json"; exit 0; }
+          git commit -m "deploy: add demo ${{ github.event.client_payload.project }} to catalog"
+          git push origin main

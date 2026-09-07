@@ -1,0 +1,4 @@
+# Proteksi file rahasia & konfigurasi deployment
+deploy-portal-8k2m.html @uroo-dev
+.github/workflows/deploy-demo.yml @uroo-dev
+demos.json @uroo-dev

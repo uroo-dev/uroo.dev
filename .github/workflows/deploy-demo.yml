@@ -118,62 +118,89 @@ jobs:
           command: pages deploy "${{ env.OUTPUT_DIR }}" --project-name=${{ github.event.client_payload.project }}
 
       # 4. Tambah Custom Domain (subdomain) via Cloudflare API
-      - name: Add/Create custom domain
+      # Setiap project Pages punya subdomain platform sendiri: <project>.pages.dev
+      # Yang paling benar: daftarkan custom domain ke project via API (Cloudflare
+      # akan otomatis buat/urus DNS-nya), bukan bikin DNS record manual.
+      - name: Add custom domain to Pages project
         run: |
-          SUBDOMAIN="${{ github.event.client_payload.project }}"
+          PROJECT="${{ github.event.client_payload.project }}"
           ROOT_DOMAIN="${BASE_DOMAIN:-uroo.my.id}"
-          FULL_DOMAIN="${SUBDOMAIN}.${ROOT_DOMAIN}"
+          FULL_DOMAIN="${PROJECT}.${ROOT_DOMAIN}"
+          ACCOUNT_ID="${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"
 
-          echo "Menyiapkan domain: ${FULL_DOMAIN}"
+          echo "Menambahkan custom domain: ${FULL_DOMAIN} ke project ${PROJECT}"
 
-          # Cek apakah zona sudah diambil dari secret
+          # Cek apakah domain sudah terdaftar di project
+          EXISTING=$(curl -s -X GET "https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/pages/projects/${PROJECT}/domains" \
+            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+            -H "Content-Type: application/json")
+
+          ALREADY=$(echo "$EXISTING" | python3 -c "
+          import sys,json
+          d=json.load(sys.stdin)
+          for dom in (d.get('result') or []):
+              if dom.get('name') == '$FULL_DOMAIN': print('yes'); break
+          ")
+
+          if [ "$ALREADY" = "yes" ]; then
+            echo "Custom domain ${FULL_DOMAIN} sudah terdaftar."
+          else
+            RESULT=$(curl -s -X POST "https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/pages/projects/${PROJECT}/domains" \
+              -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+              -H "Content-Type: application/json" \
+              --data "{\"name\":\"${FULL_DOMAIN}\"}")
+            echo "$RESULT" | python3 -c "import sys,json; d=json.load(sys.stdin); print('Domain ditambahkan:', d.get('success'), (d.get('errors') or [{}])[0].get('message','') if not d.get('success') else '')"
+          fi
+
+      # 4b. Jamin DNS CNAME aktif (klarifikasi jika domain belum aktif)
+      # Cloudflare Pages umumnya otomatis membuat CNAME. Fallback ini memastikan
+      # record mengarah ke subdomain platform project (<project>.pages.dev).
+      - name: Ensure DNS CNAME record
+        run: |
+          PROJECT="${{ github.event.client_payload.project }}"
+          ROOT_DOMAIN="${BASE_DOMAIN:-uroo.my.id}"
+          FULL_DOMAIN="${PROJECT}.${ROOT_DOMAIN}"
+
           ZONE_ID="${{ secrets.CLOUDFLARE_ZONE_ID }}"
           if [ -z "$ZONE_ID" ]; then
-            # Ambil zone ID dari nama domain
             ZONE_ID=$(curl -s -X GET "https://api.cloudflare.com/client/v4/zones?name=${ROOT_DOMAIN}" \
               -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
               -H "Content-Type: application/json" \
               | python3 -c "import sys,json; data=json.load(sys.stdin); print(data['result'][0]['id'] if data.get('result') else '')")
           fi
-
-          if [ -z "$ZONE_ID" ]; then
-            echo "::error::Zona Cloudflare tidak ditemukan untuk ${ROOT_DOMAIN}"
-            exit 1
-          fi
           echo "Zone ID: ${ZONE_ID}"
 
-          echo "ZONE_ID=${ZONE_ID}" >> $GITHUB_ENV
-
-          # Cek apakah DNS record CNAME sudah ada
           EXISTING=$(curl -s -X GET "https://api.cloudflare.com/client/v4/zones/${ZONE_ID}/dns_records?type=CNAME&name=${FULL_DOMAIN}" \
             -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
             -H "Content-Type: application/json")
-
           RECORD_ID=$(echo "$EXISTING" | python3 -c "import sys,json; data=json.load(sys.stdin); print(data['result'][0]['id'] if data.get('result') else '')")
 
+          # Target = subdomain platform project <project>.pages.dev
+          TARGET="${PROJECT}.pages.dev"
+
           if [ -z "$RECORD_ID" ]; then
-            # Buat baru
             curl -s -X POST "https://api.cloudflare.com/client/v4/zones/${ZONE_ID}/dns_records" \
               -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
               -H "Content-Type: application/json" \
-              --data "{\"type\":\"CNAME\",\"name\":\"${SUBDOMAIN}\",\"content\":\"uroo-dev.pages.dev\",\"proxied\":true,\"ttl\":1}" \
-              | python3 -c "import sys,json; d=json.load(sys.stdin); print('DNS record dibuat:', d.get('success'))"
+              --data "{\"type\":\"CNAME\",\"name\":\"${FULL_DOMAIN}\",\"content\":\"${TARGET}\",\"proxied\":true,\"ttl\":1}" \
+              | python3 -c "import sys,json; d=json.load(sys.stdin); print('CNAME dibuat →', ('ok' if d.get('success') else (d.get('errors') or [{}])[0].get('message','')))"
           else
-            # Update yang ada
             curl -s -X PATCH "https://api.cloudflare.com/client/v4/zones/${ZONE_ID}/dns_records/${RECORD_ID}" \
               -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
               -H "Content-Type: application/json" \
-              --data "{\"content\":\"uroo-dev.pages.dev\",\"proxied\":true,\"ttl\":1}" \
-              | python3 -c "import sys,json; d=json.load(sys.stdin); print('DNS record diperbarui:', d.get('success'))"
+              --data "{\"content\":\"${TARGET}\",\"proxied\":true,\"ttl\":1}" \
+              | python3 -c "import sys,json; d=json.load(sys.stdin); print('CNAME diperbarui →', ('ok' if d.get('success') else (d.get('errors') or [{}])[0].get('message','')))"
           fi
 
       # 5. Update demos.json di repo utama (uroo.dev)
+      # Pakai github.token bawaan (repo ini = tempat workflow berjalan),
+      # jadi tidak butuh PAT tambahan untuk bagian ini.
       - name: Update demos.json catalog
         uses: actions/checkout@v4
         with:
           repository: uroo-dev/uroo.dev
           ref: main
-          token: ${{ secrets.DISPATCH_TOKEN }}
+          token: ${{ github.token }}
           path: catalog-repo
 
       - name: Register demo in catalog

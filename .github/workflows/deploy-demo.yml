@@ -239,6 +239,7 @@ jobs:
           export CAT_TITLE="${{ github.event.client_payload.title }}"
           export CAT_DESC="${{ github.event.client_payload.description }}"
           export CAT_CATEGORY="${{ github.event.client_payload.category }}"
+          export CAT_THUMB="${{ github.event.client_payload.thumbnail }}"
 
           # Buat demos.json jika belum ada
           [ -f "demos.json" ] || echo '[]' > demos.json
@@ -251,6 +252,7 @@ jobs:
           title = os.environ["CAT_TITLE"]
           description = os.environ["CAT_DESC"]
           category = os.environ["CAT_CATEGORY"]
+          thumbnail = os.environ.get("CAT_THUMB", "")
           repo_display = repo.replace("https://github.com/", "")
 
           subdomain = f"{project}.uroo.my.id"
@@ -278,6 +280,8 @@ jobs:
               "status": "live",
               "deployedAt": now,
           }
+          if thumbnail:
+              entry["thumbnail"] = thumbnail
           demos.insert(0, entry)
 
           with open("demos.json", "w") as f:

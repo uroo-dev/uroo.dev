@@ -1,11 +1,11 @@
 [
   {
-    "project": "$PROJECT",
+    "project": "demo-mouric",
     "title": "Mouric Portfolio Demo",
     "description": "Landing page portfolio modern dari uroo dev - demonstrasi auto-deploy via admin console.",
     "category": "Portfolio",
-    "subdomain": "$PROJECT.uroo.my.id",
-    "url": "https://$PROJECT.uroo.my.id",
+    "subdomain": "demo-mouric.uroo.my.id",
+    "url": "https://demo-mouric.uroo.my.id",
     "repo": "uroo-dev/Mouric-Portofolio",
     "repo_display": "uroo-dev/Mouric-Portofolio",
     "status": "live",

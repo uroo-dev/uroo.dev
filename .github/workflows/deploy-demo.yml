@@ -232,21 +232,25 @@ jobs:
       - name: Register demo in catalog
         working-directory: catalog-repo
         run: |
-          PROJECT="${{ github.event.client_payload.project }}"
-          SUBDOMAIN="${PROJECT}.uroo.my.id"
+          # Teruskan nilai via env agar aman terhadap karakter khusus &
+          # supaya shell TIDAK mengekspansi $ didalam heredoc python.
+          export CAT_PROJECT="${{ github.event.client_payload.project }}"
+          export CAT_REPO="${{ github.event.client_payload.repo }}"
+          export CAT_TITLE="${{ github.event.client_payload.title }}"
+          export CAT_DESC="${{ github.event.client_payload.description }}"
+          export CAT_CATEGORY="${{ github.event.client_payload.category }}"
 
           # Buat demos.json jika belum ada
           [ -f "demos.json" ] || echo '[]' > demos.json
 
-          # Tambahkan entri baru (hindari duplikat)
           python3 - <<'PY'
-          import json, os, sys
+          import json, os, datetime
 
-          project = "$PROJECT"
-          repo = "${{ github.event.client_payload.repo }}"
-          title = "${{ github.event.client_payload.title }}"
-          description = "${{ github.event.client_payload.description }}"
-          category = "${{ github.event.client_payload.category }}"
+          project = os.environ["CAT_PROJECT"]
+          repo = os.environ["CAT_REPO"]
+          title = os.environ["CAT_TITLE"]
+          description = os.environ["CAT_DESC"]
+          category = os.environ["CAT_CATEGORY"]
           repo_display = repo.replace("https://github.com/", "")
 
           subdomain = f"{project}.uroo.my.id"
@@ -260,8 +264,7 @@ jobs:
           # Hapus entri lama dengan project sama (re-deploy)
           demos = [d for d in demos if d.get("project") != project]
 
-          import datetime
-          now = datetime.datetime.utcnow().isoformat() + "Z"
+          now = datetime.datetime.now(datetime.timezone.utc).isoformat()
 
           entry = {
               "project": project,

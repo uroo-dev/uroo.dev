@@ -10,6 +10,51 @@
     "repo_display": "uroo-dev/Mouric-Portofolio",
     "status": "live",
     "deployedAt": "2026-09-07T16:47:41.162229+00:00",
-    "thumbnail": "https://uroo.my.id/thumbnails/demo-mouric.jpg"
+    "thumbnail": "https://uroo.my.id/thumbnails/demo-mouric.jpg",
+    "price": 150000,
+    "caseStudy": {
+      "masalah": "Portofolio online sangat penting bagi pekerja kreatif, tetapi kebanyakan template mahal dan sulit dikustomisasi. Tanpa portofolio yang profesional, peluang klien sering hilang.",
+      "solusi": "Kami membangun landing page portofolio modern dengan satu halaman yang cepat, responsif, dan mudah diperbarui. Desain menerapkan dark glassmorphism dan animasi halus untuk kesan premium.",
+      "fitur": [
+        "Halaman satu halaman (single page) yang cepat",
+        "Desain glassmorphism dengan aksen gradient",
+        "Animasi scroll halus (Lenis + GSAP)",
+        "SEO & Open Graph siap dibagikan",
+        "Fully responsive di semua perangkat"
+      ],
+      "teknologi": [
+        "HTML",
+        "Tailwind CSS",
+        "GSAP",
+        "Cloudflare Pages"
+      ],
+      "hasil": "Portofolio tampil profesional di mata klien, memuat cepat (<2s), dan bisa diperbarui tanpa biaya tambahan."
+    },
+    "checkoutFields": [
+      {
+        "name": "jenis_bisnis",
+        "label": "Jenis Bisnis / Profesi",
+        "type": "text",
+        "required": true,
+        "options": []
+      },
+      {
+        "name": "butuh_hosting",
+        "label": "Butuh Hosting & Domain Sekaligus?",
+        "type": "select",
+        "required": true,
+        "options": [
+          "Ya, sekalian setup hosting & domain",
+          "Tidak, saya sudah punya"
+        ]
+      },
+      {
+        "name": "catatan",
+        "label": "Catatan Tambahan",
+        "type": "textarea",
+        "required": false,
+        "options": []
+      }
+    ]
   }
 ]

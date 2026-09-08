@@ -231,16 +231,17 @@ jobs:
 
       - name: Register demo in catalog
         working-directory: catalog-repo
+        env:
+          CAT_PROJECT: ${{ github.event.client_payload.project }}
+          CAT_REPO: ${{ github.event.client_payload.repo }}
+          CAT_TITLE: ${{ github.event.client_payload.title }}
+          CAT_DESC: ${{ github.event.client_payload.description }}
+          CAT_CATEGORY: ${{ github.event.client_payload.category }}
+          CAT_THUMB: ${{ github.event.client_payload.thumbnail }}
+          CAT_PRICE: ${{ github.event.client_payload.price }}
+          CAT_CASE: ${{ github.event.client_payload.caseStudy }}
+          CAT_FIELDS: ${{ github.event.client_payload.checkoutFields }}
         run: |
-          # Teruskan nilai via env agar aman terhadap karakter khusus &
-          # supaya shell TIDAK mengekspansi $ didalam heredoc python.
-          export CAT_PROJECT="${{ github.event.client_payload.project }}"
-          export CAT_REPO="${{ github.event.client_payload.repo }}"
-          export CAT_TITLE="${{ github.event.client_payload.title }}"
-          export CAT_DESC="${{ github.event.client_payload.description }}"
-          export CAT_CATEGORY="${{ github.event.client_payload.category }}"
-          export CAT_THUMB="${{ github.event.client_payload.thumbnail }}"
-
           # Buat demos.json jika belum ada
           [ -f "demos.json" ] || echo '[]' > demos.json
 
@@ -253,7 +254,33 @@ jobs:
           description = os.environ["CAT_DESC"]
           category = os.environ["CAT_CATEGORY"]
           thumbnail = os.environ.get("CAT_THUMB", "")
+          price_raw = os.environ.get("CAT_PRICE", "")
+          case_str = os.environ.get("CAT_CASE", "")
+          fields_str = os.environ.get("CAT_FIELDS", "")
           repo_display = repo.replace("https://github.com/", "")
+
+          try:
+              price = int(price_raw)
+          except (ValueError, TypeError):
+              price = 0
+
+          case_study = {}
+          if case_str.strip():
+              try:
+                  case_study = json.loads(case_str)
+                  if not isinstance(case_study, dict):
+                      case_study = {}
+              except json.JSONDecodeError:
+                  case_study = {}
+
+          checkout_fields = []
+          if fields_str.strip():
+              try:
+                  checkout_fields = json.loads(fields_str)
+                  if not isinstance(checkout_fields, list):
+                      checkout_fields = []
+              except json.JSONDecodeError:
+                  checkout_fields = []
 
           subdomain = f"{project}.uroo.my.id"
 
@@ -282,6 +309,12 @@ jobs:
           }
           if thumbnail:
               entry["thumbnail"] = thumbnail
+          if price > 0:
+              entry["price"] = price
+          if case_study:
+              entry["caseStudy"] = case_study
+          if checkout_fields:
+              entry["checkoutFields"] = checkout_fields
           demos.insert(0, entry)
 
           with open("demos.json", "w") as f:

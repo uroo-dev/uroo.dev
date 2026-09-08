@@ -1,9 +1,16 @@
+# ============================================================
+# Cloudflare Pages Security & Cache Headers — uroo.dev
+# ============================================================
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
-  X-XSS-Protection: 1; mode=block
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://unpkg.com https://cdnjs.cloudflare.com https://www.googletagmanager.com https://app.midtrans.com https://app.sandbox.midtrans.com; style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://; connect-src 'self' https://api.github.com https://www.google-analytics.com https://stats.g.doubleclick.net https://www.googletagmanager.com http://localhost:*; frame-src https://www.google.com; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; form-action 'self'
+
+/api/*
+  Cache-Control: no-store
+  Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'none'; form-action 'none'
 
 /assets/*
   Cache-Control: public, max-age=31536000, immutable

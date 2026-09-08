@@ -1,0 +1,399 @@
+<!doctype html>
+<html class="dark" lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Checkout Demo | Software House Karanganyar - uroo dev</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="description" content="Checkout template / demo aplikasi dari uroo dev — software house Karanganyar. Pembayaran aman via Midtrans, invoice dikirim otomatis ke email Anda." />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#ffffff",
+              "on-primary": "#2f3131",
+              surface: "#131313",
+              background: "#131313",
+              "on-background": "#e5e2e1",
+              "on-surface": "#e5e2e1",
+              "surface-container": "#201f1f",
+              "surface-container-low": "#1c1b1b",
+              "surface-container-lowest": "#0e0e0e",
+              "surface-container-high": "#2a2a2a",
+              "surface-container-highest": "#353534",
+              "surface-variant": "#353534",
+              "on-surface-variant": "#c4c7c8",
+              "on-tertiary-container": "#656464",
+              outline: "#8e9192",
+              error: "#ffb4ab",
+              "error-container": "#93000a",
+              "on-error": "#690005",
+              secondary: "#c8c6c5",
+              tertiary: "#ffffff"
+            },
+            borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+            spacing: { "container-max": "1280px", gutter: "24px", xs: "4px", sm: "12px", xl: "80px", base: "8px", md: "24px", lg: "48px" },
+            fontFamily: {
+              "headline-lg": ["Inter"], "label-md": ["Inter"], "body-lg": ["Inter"],
+              caption: ["Inter"], "body-md": ["Inter"], "headline-md": ["Inter"]
+            },
+            fontSize: {
+              "headline-lg": ["32px", { lineHeight: "1.3", letterSpacing: "-0.02em", fontWeight: "600" }],
+              "label-md": ["14px", { lineHeight: "1.4", letterSpacing: "0.05em", fontWeight: "500" }],
+              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+              caption: ["12px", { lineHeight: "1.4", fontWeight: "400" }],
+              "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+              "headline-md": ["24px", { lineHeight: "1.4", fontWeight: "600" }]
+            }
+          }
+        }
+      };
+    </script>
+    <style>
+      .field-label { display:block; font-size:0.8rem; letter-spacing:0.03em; color:var(--on-surface-variant,#c4c7c8); margin-bottom:6px; font-weight:500; }
+      .field-input {
+        width:100%; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.14);
+        border-radius:0.6rem; padding:0.75rem 1rem; color:#fff; font-size:0.95rem; outline:none;
+        transition:border-color .2s, box-shadow .2s;
+      }
+      .field-input:focus { border-color:rgba(255,255,255,0.6); box-shadow:0 0 0 3px rgba(255,255,255,0.08); }
+      .field-input::placeholder { color:rgba(196,199,200,0.45); }
+      .field-input.invalid { border-color:#ff8a80; box-shadow:0 0 0 3px rgba(255,138,128,0.12); }
+      select.field-input option { background:#201f1f; color:#e5e2e1; }
+      textarea.field-input { resize:vertical; min-height:84px; }
+      .form-err { font-size:0.75rem; color:#ff8a80; margin-top:4px; min-height:1rem; }
+      .form-err:empty::before { content:""; }
+      .btn-primary {
+        display:inline-flex; align-items:center; justify-content:center; gap:8px; width:100%;
+        background:#fff; color:#2f3131; border-radius:9999px; padding:0.95rem 1.5rem; font-size:0.95rem;
+        font-weight:700; transition:transform .15s, box-shadow .2s, opacity .2s;
+        box-shadow:0 10px 30px -10px rgba(255,255,255,0.35);
+      }
+      .btn-primary:hover:not(:disabled) { transform:scale(1.02); }
+      .btn-primary:active:not(:disabled) { transform:scale(0.97); }
+      .btn-primary:disabled { opacity:0.6; cursor:not-allowed; }
+      .btn-ghost {
+        display:inline-flex; align-items:center; justify-content:center; gap:8px; width:100%;
+        background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.22); color:#fff;
+        border-radius:9999px; padding:0.95rem 1.5rem; font-size:0.95rem; font-weight:700;
+        transition:background .2s, transform .15s; text-decoration:none;
+      }
+      .btn-ghost:hover { background:rgba(255,255,255,0.12); transform:scale(1.02); }
+      .btn-ghost:active { transform:scale(0.97); }
+      @keyframes spin { to { transform:rotate(360deg); } }
+      .spinner { display:inline-block; width:18px; height:18px; border:2px solid rgba(47,49,49,0.3); border-top-color:#2f3131; border-radius:9999px; animation:spin .7s linear infinite; }
+      .spinner-light { border-color:rgba(255,255,255,0.3); border-top-color:#fff; }
+      @keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+      .animate-fade-up { animation:fadeUp .5s ease both; }
+    </style>
+  </head>
+  <body class="bg-background text-on-background overflow-x-hidden selection:bg-primary selection:text-surface min-h-screen">
+    <!-- Nav -->
+    <nav class="fixed top-0 w-full z-50 bg-white/5 backdrop-blur-xl border-b border-white/10 h-20">
+      <div class="max-w-[1280px] mx-auto px-gutter flex justify-between items-center h-full">
+        <a class="font-headline-md text-headline-md font-bold tracking-tighter text-primary" href="index.html">uroo dev</a>
+        <a href="demos.html" class="font-body-md text-body-md text-on-surface-variant font-medium hover:text-primary transition-colors flex items-center gap-1">
+          <span class="material-symbols-outlined text-lg">arrow_back</span> Kembali ke Demo
+        </a>
+      </div>
+    </nav>
+
+    <main class="relative pt-32 pb-xl overflow-hidden">
+      <div class="max-w-2xl mx-auto px-gutter">
+        <!-- Loading -->
+        <div id="checkout-loading" class="text-center py-24">
+          <div class="spinner spinner-light mx-auto mb-4"></div>
+          <p class="text-on-surface-variant">Memuat data demo...</p>
+        </div>
+
+        <!-- Demo not found / no price -->
+        <div id="checkout-unavailable" class="hidden text-center py-16">
+          <span class="material-symbols-outlined text-5xl text-on-surface-variant/60 mb-4">shopping_bag</span>
+          <h1 class="font-headline-lg text-headline-lg text-primary mb-2">Checkout belum tersedia</h1>
+          <p id="unavailable-text" class="text-on-surface-variant mb-8 max-w-md mx-auto">
+            Demo ini belum memiliki paket checkout. Silakan hubungi kami langsung via WhatsApp.
+          </p>
+          <a id="unavailable-wa" href="contact.html" class="btn-ghost max-w-xs mx-auto">Hubungi Kami via WhatsApp</a>
+        </div>
+
+        <!-- Checkout form -->
+        <div id="checkout-main" class="hidden animate-fade-up">
+          <!-- Product summary -->
+          <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-lg md:p-xl mb-md flex flex-col sm:flex-row sm:items-center gap-md">
+            <div id="co-thumb-wrap" class="hidden shrink-0 w-full sm:w-40 aspect-[16/9] rounded-xl overflow-hidden border border-white/10">
+              <img id="co-thumb" alt="Thumbnail demo" class="w-full h-full object-cover" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-[10px] uppercase tracking-widest text-on-surface-variant/70 mb-1" id="co-category">Demo</p>
+              <h1 class="font-headline-md text-headline-md text-primary mb-1" id="co-title">...</h1>
+              <p class="text-sm text-on-surface-variant line-clamp-2" id="co-desc">...</p>
+              <p class="text-primary font-bold text-2xl mt-2" id="co-price">...</p>
+            </div>
+          </div>
+
+          <!-- Form -->
+          <form id="checkout-form" class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-lg md:p-xl" novalidate>
+            <h2 class="font-headline-md text-headline-md text-primary mb-md">Data Pemesan</h2>
+
+            <div class="mb-sm">
+              <label class="field-label" for="f-nama">Nama Lengkap *</label>
+              <input id="f-nama" class="field-input" type="text" placeholder="Contoh: Budi Santoso" autocomplete="name" />
+              <div class="form-err" data-for="f-nama"></div>
+            </div>
+
+            <div class="mb-sm">
+              <label class="field-label" for="f-wa">Nomor WhatsApp *</label>
+              <input id="f-wa" class="field-input" type="tel" placeholder="6281234567890" autocomplete="tel" />
+              <div class="form-err" data-for="f-wa"></div>
+              <p class="text-xs text-on-surface-variant/60 mt-1">Gunakan format internasional: 628xxxxxxxxxx</p>
+            </div>
+
+            <div class="mb-sm">
+              <label class="field-label" for="f-email">Email *</label>
+              <input id="f-email" class="field-input" type="email" placeholder="nama@email.com" autocomplete="email" />
+              <div class="form-err" data-for="f-email"></div>
+              <p class="text-xs text-on-surface-variant/60 mt-1">Invoice pembayaran akan dikirim ke email ini.</p>
+            </div>
+
+            <!-- Dynamic custom fields -->
+            <div id="custom-fields" class="mb-sm"></div>
+
+            <div class="flex items-center gap-2 text-xs text-on-surface-variant/70 mb-md">
+              <span class="material-symbols-outlined text-sm">lock</span>
+              Pembayaran diproses aman melalui Midtrans. Kami tidak menyimpan data kartu.
+            </div>
+
+            <button type="submit" id="btn-pay" class="btn-primary">
+              <span class="material-symbols-outlined">shopping_bag</span>
+              <span id="btn-pay-label">Bayar Sekarang</span>
+            </button>
+
+            <p id="form-status" class="hidden text-sm mt-3 text-center"></p>
+          </form>
+
+          <!-- Payment-not-configured fallback -->
+          <div id="checkout-fallback" class="hidden bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-lg md:p-xl text-center animate-fade-up">
+            <span class="material-symbols-outlined text-4xl text-primary/70 mb-3">support_agent</span>
+            <h2 class="font-headline-md text-headline-md text-primary mb-2">Pembayaran Online Belum Aktif</h2>
+            <p class="text-on-surface-variant mb-6" id="fallback-text">
+              Pembayaran online sedang disiapkan. Untuk saat ini, silakan hubungi kami via WhatsApp untuk memesan.
+            </p>
+            <a id="fallback-wa" href="contact.html" target="_blank" rel="noopener" class="btn-ghost max-w-xs mx-auto">Chat via WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      const esc = (s) => String(s || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+      const fmtIDR = (n) => 'Rp ' + Number(n || 0).toLocaleString('id-ID');
+
+      const $ = (s) => document.querySelector(s);
+      const demoParam = new URLSearchParams(location.search).get('demo') || '';
+
+      let demo = null;
+      let snapInjected = false;
+      let currentOrder = null;
+      let currentInvoiceUrl = null;
+
+      function setStatus(msg, ok) {
+        const el = $('#form-status');
+        if (!msg) { el.classList.add('hidden'); return; }
+        el.textContent = msg;
+        el.className = 'text-sm mt-3 text-center ' + (ok ? 'text-emerald-300' : 'text-[#ff8a80]');
+        el.classList.remove('hidden');
+      }
+
+      function errEl(forId) {
+        return document.querySelector('.form-err[data-for="' + forId + '"]');
+      }
+      function setErr(forId, msg) { errEl(forId).textContent = msg; }
+      function inputInvalid(el, bad) { el.classList.toggle('invalid', bad); }
+
+      async function loadDemo() {
+        try {
+          const res = await fetch('demos.json', { cache: 'no-store' });
+          const data = await res.json();
+          demo = (Array.isArray(data) ? data : []).find(d => d.status === 'live' && d.project === demoParam);
+        } catch (e) { demo = null; }
+
+        if (!demo) {
+          $('#checkout-loading').classList.add('hidden');
+          $('#checkout-unavailable').classList.remove('hidden');
+          return;
+        }
+        if (!demo.price || demo.price <= 0) {
+          $('#checkout-loading').classList.add('hidden');
+          $('#checkout-unavailable').classList.remove('hidden');
+          $('#unavailable-text').textContent = 'Demo ini tidak memiliki paket checkout berbayar. Silakan hubungi kami langsung via WhatsApp untuk informasi lebih lanjut.';
+          const wa = makeWaLink('Halo uroo dev, saya tertarik dengan demo ' + (demo.title || demo.project) + '. Boleh info lebih lanjut?');
+          if (wa) $('#unavailable-wa').href = wa;
+          return;
+        }
+
+        renderForm();
+      }
+
+      function makeWaLink(text) {
+        // Nomer penjual diambil dari endpoint /api/create-order saat probses,
+        // di sini fallback statis bisa ditimpa oleh respons API.
+        return 'https://wa.me/62882006533693?text=' + encodeURIComponent(text || '');
+      }
+
+      function renderForm() {
+        $('#co-category').textContent = demo.category || 'Demo';
+        $('#co-title').textContent = demo.title || demo.project;
+        $('#co-desc').textContent = demo.description || '';
+        $('#co-price').textContent = fmtIDR(demo.price);
+        $('#btn-pay-label').textContent = 'Bayar ' + fmtIDR(demo.price);
+
+        if (demo.thumbnail) {
+          $('#co-thumb').src = demo.thumbnail;
+          $('#co-thumb-wrap').classList.remove('hidden');
+        }
+
+        // Dynamic custom fields
+        const wrap = $('#custom-fields');
+        wrap.innerHTML = '';
+        (demo.checkoutFields || []).forEach(f => {
+          const id = 'cf-' + (f.name || ('f' + Math.random().toString(36).slice(2, 7)));
+          const label = f.label || f.name;
+          let ctrl = '';
+          if (f.type === 'select') {
+            const opts = (f.options || []).map(o => `<option value="${esc(o)}">${esc(o)}</option>`).join('');
+            ctrl = `<select id="${id}" data-field="${esc(f.name)}" class="field-input" ${f.required ? 'required' : ''}><option value="">— Pilih —</option>${opts}</select>`;
+          } else if (f.type === 'textarea') {
+            ctrl = `<textarea id="${id}" data-field="${esc(f.name)}" class="field-input" rows="3" placeholder="${esc(label)}" ${f.required ? 'required' : ''}></textarea>`;
+          } else {
+            ctrl = `<input data-field="${esc(f.name)}" class="field-input" type="${f.type === 'date' ? 'date' : f.type === 'number' ? 'number' : f.type === 'tel' ? 'tel' : f.type === 'email' ? 'email' : 'text'}" placeholder="${esc(f.type === 'date' ? 'YYYY-MM-DD' : label)}" ${f.required ? 'required' : ''} />`;
+          }
+          wrap.insertAdjacentHTML('beforeend', `
+            <div class="mb-sm">
+              <label class="field-label" for="${id}">${esc(label)}${f.required ? ' *' : ''}</label>
+              ${ctrl}
+            </div>
+          `);
+        });
+
+        $('#checkout-loading').classList.add('hidden');
+        $('#checkout-main').classList.remove('hidden');
+        bindSubmit();
+      }
+
+      function bindSubmit() {
+        $('#checkout-form').addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const nama = $('#f-nama').value.trim();
+          const wa = $('#f-wa').value.trim();
+          const email = $('#f-email').value.trim();
+
+          let ok = true;
+          if (!nama) { setErr('f-nama', 'Nama wajib diisi.'); inputInvalid($('#f-nama'), true); ok = false; } else { setErr('f-nama', ''); inputInvalid($('#f-nama'), false); }
+          if (!wa) { setErr('f-wa', 'Nomor WhatsApp wajib diisi.'); inputInvalid($('#f-wa'), true); ok = false; }
+          else if (!/^62[0-9]{8,13}$/.test(wa)) { setErr('f-wa', 'Format WhatsApp tidak valid. Gunakan 628xxxxxxxxxx'); inputInvalid($('#f-wa'), true); ok = false; }
+          else { setErr('f-wa', ''); inputInvalid($('#f-wa'), false); }
+          if (!email) { setErr('f-email', 'Email wajib diisi.'); inputInvalid($('#f-email'), true); ok = false; }
+          else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setErr('f-email', 'Format email tidak valid.'); inputInvalid($('#f-email'), true); ok = false; }
+          else { setErr('f-email', ''); inputInvalid($('#f-email'), false); }
+
+          const customFields = (demo.checkoutFields || [])
+            .map(f => {
+              const el = document.querySelector('[data-field="' + f.name + '"]');
+              const val = el ? el.value.trim() : '';
+              if (f.required && !val) { el && inputInvalid(el, true); ok = false; }
+              else if (el) inputInvalid(el, false);
+              return { name: f.name, label: f.label || f.name, value: val };
+            })
+            .filter(f => f.value);
+
+          if (!ok) { setStatus('Periksa kembali data Anda.', false); return; }
+          setStatus('');
+
+          const btn = $('#btn-pay');
+          btn.disabled = true;
+          btn.innerHTML = '<span class="spinner"></span> Memproses...';
+
+          try {
+            const res = await fetch('/api/create-order', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ project: demo.project, customer: { nama, wa, email }, customFields })
+            });
+            const data = await res.json().catch(() => ({}));
+
+            if (data.success && data.snapToken && data.clientKey && data.snapScript) {
+              currentOrder = data.orderId || null;
+              currentInvoiceUrl = data.invoiceUrl || null;
+              await injectSnap(data.snapScript, data.clientKey);
+              window.snap.pay(data.snapToken, {
+                onSuccess: () => redirectInvoice(),
+                onPending: () => { setStatus('Pembayaran tertunda. Invoice dapat dilihat di ' + (currentOrder ? ('/api/invoice?order=' + currentOrder) : 'halaman invoice'), true); btn.disabled = false; restoreBtn(); },
+                onError: () => { setStatus('Pembayaran gagal / dibatalkan. Silakan coba lagi.', false); btn.disabled = false; restoreBtn(); },
+                onClose: () => { setStatus('Popup pembayaran ditutup. Pesanan tetap tersimpan — lanjutkan kapan saja.', true); btn.disabled = false; restoreBtn(); }
+              });
+            } else if (data.error === 'PAYMENT_NOT_CONFIGURED') {
+              $('#checkout-main').classList.add('hidden');
+              const fb = $('#checkout-fallback');
+              $('#fallback-text').textContent = data.message || 'Pembayaran online sedang disiapkan. Untuk saat ini, silakan hubungi kami via WhatsApp untuk memesan.';
+              if (data.waLink) $('#fallback-wa').href = data.waLink;
+              fb.classList.remove('hidden');
+            } else {
+              setStatus(data.message || 'Terjadi kesalahan. Silakan coba lagi.', false);
+              btn.disabled = false;
+              restoreBtn();
+            }
+          } catch (err) {
+            setStatus('Gagal terhubung ke server. Cek koneksi Anda lalu coba lagi.', false);
+            btn.disabled = false;
+            restoreBtn();
+          }
+        });
+      }
+
+      function restoreBtn() {
+        const btn = $('#btn-pay');
+        btn.innerHTML = '<span class="material-symbols-outlined">shopping_bag</span><span id="btn-pay-label">Bayar ' + fmtIDR(demo.price) + '</span>';
+      }
+
+      function redirectInvoice() {
+        if (currentInvoiceUrl) { window.location.href = currentInvoiceUrl; return; }
+        if (currentOrder) { window.location.href = '/api/invoice?order=' + encodeURIComponent(currentOrder); return; }
+        window.location.href = 'demos.html';
+      }
+
+      function injectSnap(scriptUrl, clientKey) {
+        return new Promise((resolve, reject) => {
+          if (snapInjected && window.snap) return resolve();
+          const s = document.createElement('script');
+          s.src = scriptUrl;
+          s.setAttribute('data-client-key', clientKey);
+          s.crossOrigin = 'anonymous';
+          s.async = true;
+          s.onload = () => { snapInjected = true; resolve(); };
+          s.onerror = () => reject(new Error('Gagal memuat Midtrans Snap'));
+          document.head.appendChild(s);
+        });
+      }
+
+      // Footer year
+      (function () {
+        const y = document.querySelector('#year');
+        if (y) y.textContent = new Date().getFullYear();
+      })();
+
+      loadDemo();
+    </script>
+  </body>
+</html>

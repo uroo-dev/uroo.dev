@@ -405,35 +405,141 @@
     </header>
 
     <main>
-      <!-- Statistik Section -->
-    <section class="py-xl bg-surface-container-lowest/30">
-      <div class="max-w-[1280px] mx-auto px-gutter grid grid-cols-2 md:grid-cols-4 gap-md">
-        <div class="text-center p-lg bg-white/[0.02] border border-white/[0.06] rounded-2xl backdrop-blur-sm">
-          <h3 class="text-[clamp(2.5rem,5vw,4rem)] text-primary mb-xs font-bold tracking-tight leading-none">
-            <span class="stat-number" data-target="50">0</span><span class="text-primary/60">+</span>
-          </h3>
-          <p class="text-on-surface-variant text-[0.9rem] font-medium">Project Selesai</p>
+      <!-- Demo Showcase: Bento Grid + 3D Cards -->
+      <section class="py-xl bg-surface-container-lowest/30" id="demo-showcase">
+        <div class="max-w-[1280px] mx-auto px-gutter">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-md mb-lg">
+            <div>
+              <p class="font-label-md text-label-md text-primary/70 uppercase tracking-widest mb-sm">
+                Demo Showcase
+              </p>
+              <h2 class="font-headline-lg text-headline-lg text-primary">Coba Demo Langsung</h2>
+              <p class="text-on-surface-variant mt-sm max-w-xl">
+                Jelajahi project yang sudah kami bangun — live demo siap dicoba.
+                Klik kartu untuk membuka langsung, atau lihat studi kasus lengkapnya.
+              </p>
+            </div>
+            <a
+              href="demos.html"
+              class="inline-flex items-center gap-xs text-primary font-bold hover:opacity-70 transition-opacity shrink-0"
+            >
+              <span class="material-symbols-outlined">arrow_forward</span> Lihat Semua Demo
+            </a>
+          </div>
+          <div id="bento-gallery" class="grid grid-cols-1 md:grid-cols-12 gap-md">
+            <!-- Rendered by JS -->
+          </div>
+          <div id="bento-empty" class="hidden text-center py-xl">
+            <p class="text-on-surface-variant">
+              Demo sedang disiapkan. Silakan cek kembali sebentar lagi.
+            </p>
+          </div>
         </div>
-        <div class="text-center p-lg bg-white/[0.02] border border-white/[0.06] rounded-2xl backdrop-blur-sm">
-          <h3 class="text-[clamp(2.5rem,5vw,4rem)] text-primary mb-xs font-bold tracking-tight leading-none">
-            <span class="stat-number" data-target="20">0</span><span class="text-primary/60">+</span>
-          </h3>
-          <p class="text-on-surface-variant text-[0.9rem] font-medium">Klien Aktif</p>
-        </div>
-        <div class="text-center p-lg bg-white/[0.02] border border-white/[0.06] rounded-2xl backdrop-blur-sm">
-          <h3 class="text-[clamp(2.5rem,5vw,4rem)] text-primary mb-xs font-bold tracking-tight leading-none">
-            <span class="stat-number" data-target="99">0</span><span class="text-primary/60">%</span>
-          </h3>
-          <p class="text-on-surface-variant text-[0.9rem] font-medium">Kepuasan Klien</p>
-        </div>
-        <div class="text-center p-lg bg-white/[0.02] border border-white/[0.06] rounded-2xl backdrop-blur-sm">
-          <h3 class="text-[clamp(2.5rem,5vw,4rem)] text-primary mb-xs font-bold tracking-tight leading-none">
-            <span class="stat-number" data-target="3">0</span><span class="text-primary/60">+</span>
-          </h3>
-          <p class="text-on-surface-variant text-[0.9rem] font-medium">Core Developers</p>
-        </div>
-      </div>
-    </section>
+      </section>
+      <style>
+        .tilt-3d {
+          transform: perspective(1100px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(1);
+          transition: transform 0.25s ease-out, border-color 0.3s ease, box-shadow 0.3s ease;
+          will-change: transform;
+        }
+        .bento-cell:hover .tilt-3d {
+          box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6);
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .tilt-3d { transition: none; }
+        }
+      </style>
+      <script>
+        (function () {
+          const gallery = document.getElementById("bento-gallery");
+          const empty = document.getElementById("bento-empty");
+          const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          const esc = (s) =>
+            String(s || "").replace(/[&<>"']/g, (m) =>
+              ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m])
+            );
+
+          function spans(i) {
+            if (i === 0) return "md:col-span-7";
+            if (i === 1 || i === 2) return "md:col-span-5";
+            return "md:col-span-6";
+          }
+
+          async function load() {
+            let demos = [];
+            try {
+              const res = await fetch("demos.json", { cache: "no-store" });
+              if (res.ok) {
+                const data = await res.json();
+                demos = (Array.isArray(data) ? data : []).filter((d) => d.status === "live");
+              }
+            } catch (e) {
+              demos = [];
+            }
+            render(demos);
+          }
+
+          function render(demos) {
+            if (!demos.length) {
+              gallery.innerHTML = "";
+              empty.classList.remove("hidden");
+              return;
+            }
+            empty.classList.add("hidden");
+
+            gallery.innerHTML = demos
+              .map((d, i) => {
+                const cat = esc(d.category || "Demo");
+                const title = esc(d.title || d.project);
+                const desc = esc(d.description || "Live demo siap dicoba langsung.");
+                const url = esc(d.url || "https://" + (d.subdomain || d.project) + ".uroo.my.id");
+                const thumb = d.thumbnail
+                  ? `<img src="${esc(d.thumbnail)}" alt="${title}" loading="lazy" class="w-full h-full object-cover group-hover:scale-[1.05] transition-transform duration-700" onerror="this.style.display='none'" />`
+                  : `<div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-white/10 to-white/[0.02]"><span class="material-symbols-outlined !text-5xl text-primary/40">web</span></div>`;
+
+                return `
+                <div class="bento-cell ${spans(i)}" style="perspective:1200px">
+                  <a href="${url}" target="_blank" rel="noopener" class="tilt-3d group relative block h-full min-h-[230px] overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl hover:border-white/25" style="transform-style:preserve-3d">
+                    <div class="absolute inset-0">${thumb}</div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+                    <span class="absolute top-4 left-4 text-[10px] uppercase tracking-widest bg-black/50 border border-white/20 rounded-full px-2.5 py-1 text-white/90">${cat}</span>
+                    <span class="absolute top-4 right-4 flex items-center justify-center w-9 h-9 rounded-full bg-white/10 backdrop-blur border border-white/15 text-primary opacity-0 translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                      <span class="material-symbols-outlined !text-lg">open_in_new</span>
+                    </span>
+                    <div class="absolute bottom-0 inset-x-0 p-md" style="transform:translateZ(40px)">
+                      <h3 class="font-headline-md text-headline-md text-primary mb-1">${title}</h3>
+                      <p class="text-sm text-white/70 line-clamp-2">${desc}</p>
+                    </div>
+                    <div class="tilt-glare pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,0.18),transparent 60%)"></div>
+                  </a>
+                </div>`;
+              })
+              .join("");
+
+            if (!reduceMotion) {
+              gallery.querySelectorAll(".tilt-3d").forEach((card) => {
+                const onMove = (e) => {
+                  const rect = card.getBoundingClientRect();
+                  const px = (e.clientX - rect.left) / rect.width;
+                  const py = (e.clientY - rect.top) / rect.height;
+                  card.style.setProperty("--rx", ((0.5 - py) * -8).toFixed(2) + "deg");
+                  card.style.setProperty("--ry", ((px - 0.5) * 10).toFixed(2) + "deg");
+                  card.style.setProperty("--gx", (px * 100).toFixed(1) + "%");
+                  card.style.setProperty("--gy", (py * 100).toFixed(1) + "%");
+                };
+                const onLeave = () => {
+                  card.style.setProperty("--rx", "0deg");
+                  card.style.setProperty("--ry", "0deg");
+                };
+                card.addEventListener("pointermove", onMove);
+                card.addEventListener("pointerleave", onLeave);
+              });
+            }
+          }
+
+          load();
+        })();
+      </script>
     <!-- Tentang Kami Section -->
     <section class="py-xl bg-surface-container-lowest" id="about">
       <div

@@ -283,6 +283,57 @@
               <input id="thumbnail" type="file" accept="image/png,image/jpeg,image/webp" class="hidden" />
             </div>
 
+            <div class="md:col-span-2">
+              <label for="price">Harga Checkout <span class="normal-case" style="color:var(--muted)">(opsional — dalam Rupiah, tanpa titik)</span></label>
+              <input id="price" class="input mono" type="number" min="0" step="5000" placeholder="150000" />
+              <p class="text-xs text-[var(--muted)] mt-1">Muncul di kartu demo &amp; dipakai sebagai harga di Midtrans saat checkout. Kosongkan jika demo gratis / kontak langsung.</p>
+            </div>
+
+            <div class="md:col-span-2 panel p-4" style="background:rgba(255,255,255,0.02)">
+              <details>
+                <summary class="cursor-pointer font-semibold text-sm flex items-center gap-2">
+                  <span class="material-symbols-outlined text-blue-400" style="font-size:1.1rem">description</span>
+                  Studi Kasus "Baca Demo" <span class="normal-case font-normal" style="color:var(--muted)">(opsional — tampil di modal Baca Demo)</span>
+                </summary>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                  <div class="md:col-span-2">
+                    <label for="masalah">Masalah</label>
+                    <textarea id="masalah" class="input" rows="2" placeholder="Masalah yang dipecahkan oleh project ini..."></textarea>
+                  </div>
+                  <div class="md:col-span-2">
+                    <label for="solusi">Solusi</label>
+                    <textarea id="solusi" class="input" rows="2" placeholder="Bagaimana project ini menyelesaikannya..."></textarea>
+                  </div>
+                  <div>
+                    <label for="fitur">Fitur Utama <span class="normal-case" style="color:var(--muted)">(satu per baris)</span></label>
+                    <textarea id="fitur" class="input mono" rows="4" placeholder="Login &amp; role user&#10;Laporan PDF otomatis&#10;Pembayaran online"></textarea>
+                  </div>
+                  <div>
+                    <label for="teknologi">Teknologi <span class="normal-case" style="color:var(--muted)">(pisahkan dengan koma)</span></label>
+                    <input id="teknologi" class="input mono" type="text" placeholder="Next.js, PostgreSQL, Tailwind" />
+                    <label class="mt-4" for="hasil">Hasil / Dampak</label>
+                    <textarea id="hasil" class="input" rows="2" placeholder="Contoh: proses manual 2 hari jadi 10 menit..."></textarea>
+                  </div>
+                </div>
+              </details>
+            </div>
+
+            <div class="md:col-span-2 panel p-4" style="background:rgba(255,255,255,0.02)">
+              <details id="checkout-fields-details">
+                <summary class="cursor-pointer font-semibold text-sm flex items-center gap-2">
+                  <span class="material-symbols-outlined text-blue-400" style="font-size:1.1rem">dynamic_form</span>
+                  Form Checkout Tambahan <span class="normal-case font-normal" style="color:var(--muted)">(opsional — field ekstra saat pemesan checkout)</span>
+                </summary>
+                <div class="mt-4">
+                  <div id="checkout-fields" class="space-y-2"></div>
+                  <button type="button" id="btn-add-field" class="btn btn-ghost text-xs px-3 py-2">
+                    <span class="material-symbols-outlined text-xs">add</span> Tambah Field
+                  </button>
+                  <p class="text-xs text-[var(--muted)] mt-2">Contoh: nama perusahaan, jenis bisnis, butuh hosting?, dll. Valuenya dikirim ke penjual di invoice.</p>
+                </div>
+              </details>
+            </div>
+
             <div class="md:col-span-2 flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
               <div class="text-xs text-[var(--muted)]" id="submit-hint">
                 Deployment otomatis via GitHub Actions. Estimasi 1–3 menit.
@@ -353,7 +404,7 @@
           el.className = 'toast toast-' + type + ' show';
           el.innerHTML = `
             <span class="material-symbols-outlined toast-icon" style="color:${type==='success'?'#22c55e':type==='error'?'#ef4444':'#4f8cff'}">${icons[type]}</span>
-            <span class="text-sm">${msg}</span>
+            <span class="text-sm">${esc(msg)}</span>
           `;
           $('#toast-container').appendChild(el);
           setTimeout(() => { el.classList.remove('show'); setTimeout(() => el.remove(), 300); }, 4000);
@@ -364,7 +415,7 @@
           el.className = 'text-sm mono p-3 rounded-lg';
           el.style.background = 'rgba(255,255,255,0.02)';
           el.style.color = color;
-          el.innerHTML = `<span>› </span>${msg}`;
+          el.innerHTML = `<span>› </span>${esc(msg)}`;
           $('#activity-log').prepend(el);
         }
 
@@ -492,6 +543,58 @@
 
         $('#thumb-remove').addEventListener('click', clearThumbState);
 
+        // ================= CHECKOUT FIELD BUILDER =================
+        function fieldRow(f) {
+          f = f || {};
+          const row = document.createElement('div');
+          row.className = 'field-row grid grid-cols-1 sm:grid-cols-12 gap-2 items-center border border-white/10 rounded-lg p-2';
+          row.innerHTML = `
+            <input class="input f-name mono sm:col-span-3" type="text" placeholder="name" value="${esc(f.name||'')}" />
+            <input class="input f-label sm:col-span-3" type="text" placeholder="Label untuk customer" value="${esc(f.label||'')}" />
+            <select class="input f-type sm:col-span-2" style="padding:0.5rem 0.6rem; font-size:0.8rem">
+              ${['text','textarea','number','tel','email','date','select'].map(t => `<option value="${t}" ${f.type===t?'selected':''}>${t}</option>`).join('')}
+            </select>
+            <input class="input f-opts mono sm:col-span-2" type="text" placeholder="opsi (pisah koma)" value="${esc((f.options||[]).join(', '))}" style="${f.type==='select'?'':'display:none'}" />
+            <label class="sm:col-span-1 flex items-center justify-center gap-1 text-xs text-[var(--muted)] cursor-pointer" title="Wajib diisi">
+              <input class="f-required" type="checkbox" ${f.required?'checked':''} /> Req
+            </label>
+            <button type="button" class="btn btn-ghost text-xs px-2 py-2 sm:col-span-1 f-remove" title="Hapus field">
+              <span class="material-symbols-outlined text-xs">delete</span>
+            </button>
+          `;
+          row.querySelector('.f-type').addEventListener('change', (e) => {
+            row.querySelector('.f-opts').style.display = e.target.value === 'select' ? '' : 'none';
+          });
+          row.querySelector('.f-remove').addEventListener('click', () => row.remove());
+          return row;
+        }
+
+        function addFieldRow() { $('#checkout-fields').appendChild(fieldRow()); }
+
+        function collectCheckoutFields() {
+          return [...document.querySelectorAll('#checkout-fields .field-row')].map(row => {
+            const name = (row.querySelector('.f-name').value || '').trim().replace(/\s+/g, '_').toLowerCase();
+            const type = row.querySelector('.f-type').value;
+            return {
+              name: name,
+              label: (row.querySelector('.f-label').value || '').trim() || name,
+              type: type,
+              required: row.querySelector('.f-required').checked,
+              options: type === 'select'
+                ? (row.querySelector('.f-opts').value || '').split(',').map(s => s.trim()).filter(Boolean)
+                : []
+            };
+          }).filter(f => f.name);
+        }
+
+        function setCheckoutFields(rows) {
+          const wrap = $('#checkout-fields');
+          wrap.innerHTML = '';
+          (rows || []).forEach(f => wrap.appendChild(fieldRow(f)));
+        }
+
+        $('#btn-add-field').addEventListener('click', addFieldRow);
+
         // ================= STATE =================
         let demos = [];
         let deployedSince = {}; // project -> time
@@ -601,7 +704,7 @@
                 <button class="btn btn-ghost text-xs px-3 py-2 copy-url" data-url="${esc(d.url)}" title="Copy URL">
                   <span class="material-symbols-outlined text-xs">content_copy</span> Copy
                 </button>
-                <button class="btn btn-ghost text-xs px-3 py-2 redeploy" data-project="${esc(d.project)}" data-repo="${esc(d.repo)}" data-title="${esc(d.title)}" data-desc="${esc(d.description||'')}" data-cat="${esc(d.category||'Demo')}" data-thumb="${esc(d.thumbnail||'')}" title="Deploy ulang">
+                <button class="btn btn-ghost text-xs px-3 py-2 redeploy" data-project="${esc(d.project)}" data-repo="${esc(d.repo)}" data-title="${esc(d.title)}" data-desc="${esc(d.description||'')}" data-cat="${esc(d.category||'Demo')}" data-thumb="${esc(d.thumbnail||'')}" data-price="${esc(d.price||'')}" data-case="${encodeURIComponent(JSON.stringify(d.caseStudy||{}))}" data-fields="${encodeURIComponent(JSON.stringify(d.checkoutFields||[]))}" title="Deploy ulang">
                   <span class="material-symbols-outlined text-xs">restart_alt</span>
                 </button>
               </div>
@@ -623,6 +726,17 @@
               $('#description').value = btn.dataset.desc;
               $('#category').value = btn.dataset.cat;
               if (btn.dataset.thumb) applyExistingThumb(btn.dataset.thumb); else clearThumbState();
+              $('#price').value = btn.dataset.price || '';
+              let cs = {};
+              let cf = [];
+              try { cs = JSON.parse(decodeURIComponent(btn.dataset.case || '{}')); } catch (e) { cs = {}; }
+              try { cf = JSON.parse(decodeURIComponent(btn.dataset.fields || '[]')); } catch (e) { cf = []; }
+              $('#masalah').value = cs.masalah || '';
+              $('#solusi').value = cs.solusi || '';
+              $('#fitur').value = (cs.fitur || []).join('\n');
+              $('#teknologi').value = (cs.teknologi || []).join(', ');
+              $('#hasil').value = cs.hasil || '';
+              setCheckoutFields(cf);
               toast('Form diisi untuk re-deploy. Klik Deploy.', 'info');
               $('#deploy-form-section').scrollIntoView({behavior:'smooth'});
             });
@@ -637,6 +751,18 @@
           const title = $('#title').value.trim();
           const category = $('#category').value;
           const description = $('#description').value.trim();
+
+          // Harga + studi kasus + form checkout
+          const price = parseInt(($('#price').value || '').replace(/[^\d]/g, ''), 10) || 0;
+          const cs = {};
+          if ($('#masalah').value.trim()) cs.masalah = $('#masalah').value.trim();
+          if ($('#solusi').value.trim()) cs.solusi = $('#solusi').value.trim();
+          const fitur = $('#fitur').value.split('\n').map(s => s.trim()).filter(Boolean);
+          if (fitur.length) cs.fitur = fitur;
+          const teknologi = $('#teknologi').value.split(',').map(s => s.trim()).filter(Boolean);
+          if (teknologi.length) cs.teknologi = teknologi;
+          if ($('#hasil').value.trim()) cs.hasil = $('#hasil').value.trim();
+          const checkoutFields = collectCheckoutFields();
 
           // validasi
           const repoMatch = repo.match(/^https:\/\/github\.com\/([\w.-]+)\/([\w.-]+)\/?$/);
@@ -681,7 +807,10 @@
               title: title,
               description: description,
               category: category,
-              thumbnail: thumbnail
+              thumbnail: thumbnail,
+              ...(price > 0 ? { price: price } : {}),
+              ...(Object.keys(cs).length ? { caseStudy: cs } : {}),
+              ...(checkoutFields.length ? { checkoutFields: checkoutFields } : {})
             }
           };
 
@@ -709,6 +838,9 @@
               deployedAt: new Date().toISOString()
             };
             if (thumbnail) entry.thumbnail = thumbnail;
+            if (price > 0) entry.price = price;
+            if (Object.keys(cs).length) entry.caseStudy = cs;
+            if (checkoutFields.length) entry.checkoutFields = checkoutFields;
             if (existing >= 0) demos[existing] = entry; else demos.unshift(entry);
             renderDemos();
 

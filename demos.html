@@ -179,8 +179,9 @@
           </h1>
           <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
             Jelajahi demo interaktif dari project yang pernah kami bangun. Klik
-            "Lihat Demo" untuk mencoba langsung, atau "Minta Sekarang" untuk
-            membangun versi untuk bisnis Anda.
+            "Lihat Demo" untuk mencoba langsung, "Baca Demo" untuk studi kasus
+            lengkap (masalah &amp; solusi), atau "Checkout" untuk memesan versi
+            untuk bisnis Anda.
           </p>
         </div>
       </section>
@@ -222,6 +223,17 @@
           </div>
         </div>
       </section>
+
+      <!-- Baca Demo: Study Case Modal -->
+      <div id="study-modal" class="fixed inset-0 z-[70] hidden items-center justify-center p-gutter">
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" data-study-close></div>
+        <div class="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto bg-surface-container rounded-2xl border border-white/10 shadow-2xl" role="dialog" aria-modal="true" aria-labelledby="study-body">
+          <button id="study-close" class="absolute top-4 right-4 z-10 text-on-surface-variant hover:text-primary p-2" aria-label="Tutup">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+          <div id="study-body" class="p-lg md:p-xl"><!-- Rendered by JS --></div>
+        </div>
+      </div>
     </main>
 
     <!-- Footer -->
@@ -347,13 +359,18 @@
               <h3 class="font-headline-md text-headline-md text-primary mb-1">${esc(d.title)}</h3>
               <p class="text-sm text-on-surface-variant line-clamp-3">${esc(d.description||'Demo interaktif — coba langsung dan lihat hasilnya.')}</p>
             </div>
-            <div class="mt-auto flex items-center gap-xs text-xs mono text-on-surface-variant/70">
-              <span class="material-symbols-outlined text-xs">lock</span>
-              ${esc(d.subdomain||d.url||'')}
+            <div class="mt-auto flex items-center justify-between gap-xs text-xs text-on-surface-variant/70">
+              <span class="flex items-center gap-xs"><span class="material-symbols-outlined text-xs">lock</span>${esc(d.subdomain||d.url||'')}</span>
+              ${d.price ? `<span class="font-bold text-primary">${esc(formatIDR(d.price))}</span>` : ''}
             </div>
             <div class="flex gap-xs pt-1">
               <a href="${esc(d.url)}" target="_blank" rel="noopener" class="flex-1 bg-primary text-on-primary px-4 py-2.5 rounded-full text-center text-sm font-bold hover:scale-[1.03] active:scale-95 transition-all shrink-0">Lihat Demo</a>
-              <a href="contact.html" class="flex-1 bg-white/5 border border-white/20 text-primary px-4 py-2.5 rounded-full text-center text-sm font-bold hover:bg-white/10 transition-all shrink-0">Minta Sekarang</a>
+            </div>
+            <div class="flex gap-xs">
+              <button type="button" data-project="${esc(d.project||'')}" class="js-baca flex-1 bg-white/5 border border-white/20 text-primary px-4 py-2.5 rounded-full text-center text-sm font-bold hover:bg-white/10 transition-all shrink-0" ${d.caseStudy ? '' : 'disabled'}>Baca Demo</button>
+              <a href="checkout.html?demo=${encodeURIComponent(d.project||'')}" class="flex-1 bg-white/10 border border-primary/40 text-primary px-4 py-2.5 rounded-full text-center text-sm font-bold hover:bg-white/15 transition-all shrink-0 inline-flex items-center justify-center gap-1">
+                <span class="material-symbols-outlined text-base">shopping_bag</span> Checkout
+              </a>
             </div>
           </div>
         `;
@@ -364,6 +381,100 @@
 
       // Footer year
       document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Study Case modal
+      const studyModal = document.getElementById('study-modal');
+      const studyBody = document.getElementById('study-body');
+
+      function formatIDR(n) {
+        const num = Number(n || 0);
+        if (!num) return '';
+        return 'Rp ' + num.toLocaleString('id-ID');
+      }
+
+      function openStudy(project) {
+        const d = demos.find(x => x.project === project);
+        if (!d || !d.caseStudy) return;
+        const c = d.caseStudy;
+        const cat = esc(d.category || 'Demo');
+        const title = esc(d.title || d.project);
+        const desc = esc(d.description || '');
+        const url = d.url || ('https://' + (d.subdomain || d.project) + '.uroo.my.id');
+        const thumb = d.thumbnail
+          ? `<img src="${esc(d.thumbnail)}" alt="${title}" class="w-full aspect-video object-cover rounded-xl border border-white/10 mb-md" onerror="this.remove()" />`
+          : '';
+        const masalah = c.masalah ? `
+          <div class="mb-md">
+            <h4 class="flex items-center gap-xs font-label-md text-label-md text-primary mb-xs"><span class="material-symbols-outlined text-lg">report_problem</span> Masalah</h4>
+            <p class="text-body-md text-on-surface-variant">${esc(c.masalah)}</p>
+          </div>` : '';
+        const solusi = c.solusi ? `
+          <div class="mb-md">
+            <h4 class="flex items-center gap-xs font-label-md text-label-md text-primary mb-xs"><span class="material-symbols-outlined text-lg">lightbulb</span> Solusi</h4>
+            <p class="text-body-md text-on-surface-variant">${esc(c.solusi)}</p>
+          </div>` : '';
+        const fitur = Array.isArray(c.fitur) && c.fitur.length ? `
+          <div class="mb-md">
+            <h4 class="flex items-center gap-xs font-label-md text-label-md text-primary mb-xs"><span class="material-symbols-outlined text-lg">checklist</span> Fitur Utama</h4>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-xs">
+              ${c.fitur.map(f => `<li class="flex items-start gap-xs text-body-sm text-on-surface-variant bg-white/[0.03] border border-white/10 rounded-lg px-3 py-2"><span class="material-symbols-outlined text-sm text-primary shrink-0">check_circle</span>${esc(f)}</li>`).join('')}
+            </ul>
+          </div>` : '';
+        const teknologi = Array.isArray(c.teknologi) && c.teknologi.length ? `
+          <div class="mb-md">
+            <h4 class="flex items-center gap-xs font-label-md text-label-md text-primary mb-xs"><span class="material-symbols-outlined text-lg">code</span> Teknologi</h4>
+            <div class="flex flex-wrap gap-xs">${c.teknologi.map(t => `<span class="text-xs border border-white/15 bg-white/5 rounded-full px-3 py-1 text-on-surface-variant">${esc(t)}</span>`).join('')}</div>
+          </div>` : '';
+        const hasil = c.hasil ? `
+          <div class="mb-md">
+            <h4 class="flex items-center gap-xs font-label-md text-label-md text-primary mb-xs"><span class="material-symbols-outlined text-lg">trending_up</span> Hasil</h4>
+            <p class="text-body-md text-on-surface-variant">${esc(c.hasil)}</p>
+          </div>` : '';
+        const price = d.price ? `<p class="text-primary font-bold text-xl mb-md">${formatIDR(d.price)}</p>` : '';
+
+        studyBody.innerHTML = `
+          <div class="flex items-center justify-between gap-md mb-md">
+            <span class="text-[10px] uppercase tracking-widest border border-white/20 rounded-full px-2.5 py-1 text-on-surface-variant">${cat}</span>
+            <span class="text-[10px] uppercase tracking-widest border border-white/10 rounded-full px-2.5 py-1 text-on-surface-variant/70">Study Case</span>
+          </div>
+          <h3 class="font-headline-md text-headline-md text-primary mb-xs">${title}</h3>
+          ${desc ? `<p class="text-body-md text-on-surface-variant mb-md">${desc}</p>` : ''}
+          ${thumb}
+          ${price}
+          ${masalah}
+          ${solusi}
+          ${fitur}
+          ${teknologi}
+          ${hasil}
+          <div class="flex flex-col sm:flex-row gap-xs pt-md mt-md border-t border-white/10">
+            <a href="${esc(url)}" target="_blank" rel="noopener" class="flex-1 bg-primary text-on-primary px-4 py-3 rounded-full text-center text-sm font-bold hover:scale-[1.03] active:scale-95 transition-all">Lihat Demo</a>
+            <a href="checkout.html?demo=${encodeURIComponent(d.project||'')}" class="flex-1 bg-white/10 border border-primary/40 text-primary px-4 py-3 rounded-full text-center text-sm font-bold inline-flex items-center justify-center gap-1 hover:bg-white/15 transition-all">
+              <span class="material-symbols-outlined text-base">shopping_bag</span> Checkout
+            </a>
+          </div>`;
+
+        studyModal.classList.remove('hidden');
+        studyModal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeStudy() {
+        studyModal.classList.add('hidden');
+        studyModal.classList.remove('flex');
+        studyBody.innerHTML = '';
+        document.body.style.overflow = '';
+      }
+
+      document.addEventListener('click', (e) => {
+        if (e.target.closest('.js-baca')) {
+          const btn = e.target.closest('.js-baca');
+          if (!btn.disabled) openStudy(btn.dataset.project);
+        }
+        if (e.target.closest('[data-study-close]') || e.target.closest('#study-close')) {
+          closeStudy();
+        }
+      });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeStudy(); });
 
       // Lenis + GSAP
       const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });

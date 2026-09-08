@@ -12,14 +12,14 @@ import { buildWaLink, sendWaCloud } from './_lib/whatsapp.js';
 export async function onRequestPost({ request, env }) {
   let body = {};
   try {
-    const form = await request.formData();
-    for (const [k, v] of form.entries()) body[k] = String(v);
-  } catch (e) {
+    const raw = await request.text();
     try {
-      body = await request.json();
-    } catch (e2) {
-      return json({ ok: false, error: 'bad_body' }, 400);
+      body = JSON.parse(raw);
+    } catch (e1) {
+      body = Object.fromEntries(new URLSearchParams(raw).entries());
     }
+  } catch (e2) {
+    return json({ ok: false, error: 'bad_body' }, 400);
   }
 
   if (!env.MIDTRANS_SERVER_KEY) {

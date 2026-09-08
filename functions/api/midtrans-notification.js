@@ -2,12 +2,12 @@
 // Verifies signature, filters status/fraud, transitions order to paid (idempotent),
 // then sends TWO different invoices (seller + buyer) and notifies seller WA.
 
-import { json } from '../_lib/shared.js';
-import { verifySignature } from '../_lib/midtrans.js';
-import { getOrder, putOrder } from '../_lib/orders.js';
-import { sendResend } from '../_lib/resend.js';
-import { renderBuyerInvoiceHtml, renderSellerInvoiceHtml, sellerWaMessage } from '../_lib/invoice.js';
-import { buildWaLink, sendWaCloud } from '../_lib/whatsapp.js';
+import { json } from './_lib/shared.js';
+import { verifySignature } from './_lib/midtrans.js';
+import { getOrder, putOrder } from './_lib/orders.js';
+import { sendResend } from './_lib/resend.js';
+import { renderBuyerInvoiceHtml, renderSellerInvoiceHtml, sellerWaMessage } from './_lib/invoice.js';
+import { buildWaLink, sendWaCloud } from './_lib/whatsapp.js';
 
 export async function onRequestPost({ request, env }) {
   let body = {};

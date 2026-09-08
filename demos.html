@@ -368,7 +368,7 @@
             </div>
             <div class="flex gap-xs">
               <button type="button" data-project="${esc(d.project||'')}" class="js-baca flex-1 bg-white/5 border border-white/20 text-primary px-4 py-2.5 rounded-full text-center text-sm font-bold hover:bg-white/10 transition-all shrink-0" ${d.caseStudy ? '' : 'disabled'}>Baca Demo</button>
-              <a href="checkout.html?demo=${encodeURIComponent(d.project||'')}" class="flex-1 bg-white/10 border border-primary/40 text-primary px-4 py-2.5 rounded-full text-center text-sm font-bold hover:bg-white/15 transition-all shrink-0 inline-flex items-center justify-center gap-1">
+              <a href="checkout?demo=${encodeURIComponent(d.project||'')}" class="flex-1 bg-white/10 border border-primary/40 text-primary px-4 py-2.5 rounded-full text-center text-sm font-bold hover:bg-white/15 transition-all shrink-0 inline-flex items-center justify-center gap-1">
                 <span class="material-symbols-outlined text-base">shopping_bag</span> Checkout
               </a>
             </div>
@@ -448,7 +448,7 @@
           ${hasil}
           <div class="flex flex-col sm:flex-row gap-xs pt-md mt-md border-t border-white/10">
             <a href="${esc(url)}" target="_blank" rel="noopener" class="flex-1 bg-primary text-on-primary px-4 py-3 rounded-full text-center text-sm font-bold hover:scale-[1.03] active:scale-95 transition-all">Lihat Demo</a>
-            <a href="checkout.html?demo=${encodeURIComponent(d.project||'')}" class="flex-1 bg-white/10 border border-primary/40 text-primary px-4 py-3 rounded-full text-center text-sm font-bold inline-flex items-center justify-center gap-1 hover:bg-white/15 transition-all">
+            <a href="checkout?demo=${encodeURIComponent(d.project||'')}" class="flex-1 bg-white/10 border border-primary/40 text-primary px-4 py-3 rounded-full text-center text-sm font-bold inline-flex items-center justify-center gap-1 hover:bg-white/15 transition-all">
               <span class="material-symbols-outlined text-base">shopping_bag</span> Checkout
             </a>
           </div>`;

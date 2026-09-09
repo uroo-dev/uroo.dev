@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Checkout Demo | Software House Karanganyar - uroo dev</title>
+    <title>Checkout Produk | Software House Karanganyar - uroo dev</title>
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
     <link rel="manifest" href="site.webmanifest">
-    <meta name="description" content="Checkout template / demo aplikasi dari uroo dev — software house Karanganyar. Pembayaran aman via Midtrans, invoice dikirim otomatis ke email Anda." />
+    <meta name="description" content="Checkout template / produk aplikasi dari uroo dev — software house Karanganyar. Pembayaran aman via Midtrans, invoice dikirim otomatis ke email Anda." />
     <meta name="robots" content="noindex, nofollow" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -62,139 +62,399 @@
       };
     </script>
     <style>
-      .field-label { display:block; font-size:0.8rem; letter-spacing:0.03em; color:var(--on-surface-variant,#c4c7c8); margin-bottom:6px; font-weight:500; }
-      .field-input {
-        width:100%; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.14);
-        border-radius:0.6rem; padding:0.75rem 1rem; color:#fff; font-size:0.95rem; outline:none;
-        transition:border-color .2s, box-shadow .2s;
+      /* ===== Latar atmosfer (glow) ===== */
+      .co-bg { position: fixed; inset: 0; z-index: -10; background: linear-gradient(180deg, #161616 0%, #0e0e0e 100%); }
+      .co-glow { position: fixed; border-radius: 9999px; filter: blur(100px); z-index: -9; pointer-events: none; }
+      .co-glow-1 { width: 460px; height: 460px; top: -160px; right: -120px; background: rgba(255,255,255,0.045); }
+      .co-glow-2 { width: 520px; height: 520px; bottom: -220px; left: -160px; background: rgba(255,255,255,0.03); }
+
+      /* ===== Form field (uroo-ui style) ===== */
+      .co-field {
+        width: 100%; height: 48px; border-radius: 14px;
+        background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+        color: #f4f4f5; font-size: 14px; padding: 0 16px; outline: none;
+        transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
       }
-      .field-input:focus { border-color:rgba(255,255,255,0.6); box-shadow:0 0 0 3px rgba(255,255,255,0.08); }
-      .field-input::placeholder { color:rgba(196,199,200,0.45); }
-      .field-input.invalid { border-color:#ff8a80; box-shadow:0 0 0 3px rgba(255,138,128,0.12); }
-      select.field-input option { background:#201f1f; color:#e5e2e1; }
-      textarea.field-input { resize:vertical; min-height:84px; }
-      .form-err { font-size:0.75rem; color:#ff8a80; margin-top:4px; min-height:1rem; }
-      .form-err:empty::before { content:""; }
-      .btn-primary {
-        display:inline-flex; align-items:center; justify-content:center; gap:8px; width:100%;
-        background:#fff; color:#2f3131; border-radius:9999px; padding:0.95rem 1.5rem; font-size:0.95rem;
-        font-weight:700; transition:transform .15s, box-shadow .2s, opacity .2s;
-        box-shadow:0 10px 30px -10px rgba(255,255,255,0.35);
+      .co-field::placeholder { color: rgba(161,161,170,0.75); }
+      .co-field:hover { border-color: rgba(255,255,255,0.2); }
+      .co-field:focus { border-color: rgba(255,255,255,0.55); box-shadow: 0 0 0 4px rgba(255,255,255,0.07); background: rgba(255,255,255,0.07); }
+      .co-field.co-invalid { border-color: #f87171 !important; box-shadow: 0 0 0 4px rgba(248,113,113,0.12); }
+      select.co-field { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 42px; cursor: pointer; }
+      select.co-field option { background: #201f1f; color: #e5e2e1; }
+      textarea.co-field { height: auto; resize: vertical; min-height: 96px; padding: 13px 16px; }
+      .co-label { display: block; font-size: 13px; font-weight: 600; color: rgba(228,227,226,0.92); margin-bottom: 8px; letter-spacing: -0.01em; }
+      .co-hint { font-size: 11.5px; color: rgba(196,199,200,0.55); margin-top: 7px; line-height: 1.45; }
+      .co-err { font-size: 12px; font-weight: 600; color: #f87171; margin-top: 6px; min-height: 1rem; }
+      .co-err:empty::before { content: ""; }
+
+      /* ===== Tombol ===== */
+      .co-btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; border-radius: 9999px; padding: 14px 24px; font-size: 14px; font-weight: 700; cursor: pointer; transition: transform .15s ease, box-shadow .2s ease, background-color .2s ease, opacity .2s ease, border-color .2s ease; }
+      .co-btn:hover { transform: translateY(-1px); }
+      .co-btn:active { transform: scale(0.97); }
+      .co-btn[disabled], .co-btn.is-loading { opacity: 0.6; pointer-events: none; }
+      .co-btn-primary { background: #fff; color: #2f3131; box-shadow: 0 12px 32px -12px rgba(255,255,255,0.4); }
+      .co-btn-primary:hover { box-shadow: 0 16px 40px -12px rgba(255,255,255,0.5); }
+      .co-btn-ghost { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.16); color: #e5e2e1; }
+      .co-btn-ghost:hover { background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.3); }
+      .co-btn-outline-light { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.14); color: #fff; }
+      .co-btn-outline-light:hover { background: rgba(255,255,255,0.08); }
+
+      /* ===== Stepper ===== */
+      .co-step { position: relative; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 1; min-width: 0; }
+      .co-step .dot {
+        width: 46px; height: 46px; border-radius: 9999px; display: flex; align-items: center; justify-content: center;
+        background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); color: rgba(196,199,200,0.55);
+        font-size: 15px; position: relative; z-index: 1; transition: background-color .3s ease, color .3s ease, border-color .3s ease, box-shadow .3s ease, transform .3s ease;
       }
-      .btn-primary:hover:not(:disabled) { transform:scale(1.02); }
-      .btn-primary:active:not(:disabled) { transform:scale(0.97); }
-      .btn-primary:disabled { opacity:0.6; cursor:not-allowed; }
-      .btn-ghost {
-        display:inline-flex; align-items:center; justify-content:center; gap:8px; width:100%;
-        background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.22); color:#fff;
-        border-radius:9999px; padding:0.95rem 1.5rem; font-size:0.95rem; font-weight:700;
-        transition:background .2s, transform .15s; text-decoration:none;
-      }
-      .btn-ghost:hover { background:rgba(255,255,255,0.12); transform:scale(1.02); }
-      .btn-ghost:active { transform:scale(0.97); }
-      @keyframes spin { to { transform:rotate(360deg); } }
-      .spinner { display:inline-block; width:18px; height:18px; border:2px solid rgba(47,49,49,0.3); border-top-color:#2f3131; border-radius:9999px; animation:spin .7s linear infinite; }
-      .spinner-light { border-color:rgba(255,255,255,0.3); border-top-color:#fff; }
-      @keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
-      .animate-fade-up { animation:fadeUp .5s ease both; }
+      .co-step .dot .mat { font-size: 20px; }
+      .co-step .bar { position: absolute; top: 23px; left: calc(50% + 27px); right: calc(-50% + 27px); height: 2px; background: rgba(255,255,255,0.1); z-index: 0; transition: background-color .3s ease; border-radius: 999px; }
+      .co-step:last-child .bar { display: none; }
+      .co-step.u-active .dot, .co-step.u-done .dot { background: #f4f4f5; border-color: #f4f4f5; color: #131313; box-shadow: 0 10px 24px -8px rgba(255,255,255,0.35); }
+      .co-step.u-done .bar { background: rgba(255,255,255,0.65); }
+      .co-step .step-label { font-size: 11px; font-weight: 700; color: rgba(196,199,200,0.5); letter-spacing: 0.02em; transition: color .3s ease; white-space: nowrap; }
+      .co-step.u-active .step-label, .co-step.u-done .step-label { color: #fff; }
+
+      /* ===== Pane transisi ===== */
+      .co-pane { display: none; }
+      .co-pane.u-on { display: block; animation: coFadeUp .38s cubic-bezier(.16,1,.3,1); }
+      @keyframes coFadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+      /* ===== Radio card metode pembayaran ===== */
+      .co-radio { display: flex; align-items: center; gap: 14px; width: 100%; text-align: left; padding: 15px 17px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.11); background: rgba(255,255,255,0.035); cursor: pointer; transition: border-color .2s ease, background-color .2s ease, transform .2s ease, box-shadow .2s ease; }
+      .co-radio:hover { transform: translateY(-1px); border-color: rgba(255,255,255,0.22); }
+      .co-radio .radio { width: 20px; height: 20px; border-radius: 9999px; border: 2px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: border-color .2s ease; }
+      .co-radio.u-on { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.07); box-shadow: 0 8px 30px -12px rgba(255,255,255,0.15); }
+      .co-radio.u-on .radio { border-color: #f4f4f5; }
+      .co-radio.u-on .radio::after { content: ''; width: 10px; height: 10px; border-radius: 9999px; background: #f4f4f5; }
+
+      /* ===== Panel ===== */
+      .co-panel { border-radius: 24px; border: 1px solid rgba(255,255,255,0.09); background: rgba(255,255,255,0.03); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
+
+      /* ===== Toast ===== */
+      .co-toast { position: fixed; bottom: 26px; left: 50%; transform: translateX(-50%); z-index: 70; display: flex; align-items: center; gap: 10px; padding: 13px 20px; border-radius: 9999px; font-size: 13px; font-weight: 600; color: #fff; background: rgba(30,30,32,0.92); border: 1px solid rgba(255,255,255,0.12); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); box-shadow: 0 20px 50px -12px rgba(0,0,0,0.6); animation: coToastIn .35s cubic-bezier(.16,1,.3,1); max-width: calc(100vw - 32px); }
+      @keyframes coToastIn { from { opacity: 0; transform: translate(-50%, 16px); } to { opacity: 1; transform: translate(-50%, 0); } }
+      .co-toast .mat { font-size: 17px; }
+      .co-toast.toast-ok .mat { color: #4ade80; }
+      .co-toast.toast-bad .mat { color: #f87171; }
+
+      /* ===== Modal sukses ===== */
+      #coModal { display: none; }
+      #coModal.u-show { display: flex; }
+      .anim-scale-in { animation: coScaleIn .4s cubic-bezier(.16,1,.3,1); }
+      @keyframes coScaleIn { from { opacity: 0; transform: scale(.92) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+      @keyframes coSpin { to { transform: rotate(360deg); } }
+      .co-spinner { display: inline-block; width: 18px; height: 18px; border: 2px solid rgba(47,49,49,0.3); border-top-color: #2f3131; border-radius: 9999px; animation: coSpin .7s linear infinite; }
+      .co-spinner-light { border-color: rgba(255,255,255,0.3); border-top-color: #fff; }
     </style>
   </head>
-  <body class="bg-background text-on-background overflow-x-hidden selection:bg-primary selection:text-surface min-h-screen">
+  <body class="bg-background text-on-background overflow-x-hidden selection:bg-primary selection:text-surface min-h-screen antialiased">
+    <div class="co-bg"></div>
+    <div class="co-glow co-glow-1"></div>
+    <div class="co-glow co-glow-2"></div>
+
     <!-- Nav -->
-    <nav class="fixed top-0 w-full z-50 bg-white/5 backdrop-blur-xl border-b border-white/10 h-20">
-      <div class="max-w-[1280px] mx-auto px-gutter flex justify-between items-center h-full">
-        <a class="font-headline-md text-headline-md font-bold tracking-tighter text-primary" href="index.html">uroo dev</a>
-        <a href="demos.html" class="font-body-md text-body-md text-on-surface-variant font-medium hover:text-primary transition-colors flex items-center gap-1">
-          <span class="material-symbols-outlined text-lg">arrow_back</span> Kembali ke Demo
+    <nav class="fixed top-0 w-full z-50 bg-white/5 backdrop-blur-xl border-b border-white/10 h-16 md:h-20">
+      <div class="max-w-5xl mx-auto px-4 sm:px-8 flex justify-between items-center h-full">
+        <a href="index.html" class="inline-flex items-center gap-2.5 shrink-0 group">
+          <span class="inline-flex items-center justify-center w-9 h-9 rounded-2xl bg-white text-surface shadow-[0_8px_20px_-8px_rgba(255,255,255,0.5)] group-hover:scale-105 transition-transform">
+            <span class="material-symbols-outlined text-base">layers</span>
+          </span>
+          <span class="hidden sm:block text-lg font-extrabold tracking-tighter text-white">uroo<span class="text-white/60"> dev</span></span>
+        </a>
+        <a href="demos.html" class="inline-flex items-center gap-1.5 text-[13px] font-bold text-zinc-300 hover:text-white transition-colors">
+          <span class="material-symbols-outlined text-base">arrow_back</span> Kembali ke Produk
         </a>
       </div>
     </nav>
 
-    <main class="relative pt-32 pb-xl overflow-hidden">
-      <div class="max-w-2xl mx-auto px-gutter">
-        <!-- Loading -->
-        <div id="checkout-loading" class="text-center py-24">
-          <div class="spinner spinner-light mx-auto mb-4"></div>
-          <p class="text-on-surface-variant">Memuat data demo...</p>
+    <main class="relative max-w-5xl mx-auto px-4 sm:px-8 pt-28 md:pt-36 pb-28">
+      <!-- Loading skeleton -->
+      <div id="checkout-loading" class="hidden">
+        <div class="h-9 w-48 rounded-xl bg-white/8 shine"></div>
+        <div class="mt-8 grid lg:grid-cols-3 gap-6">
+          <div class="lg:col-span-2 space-y-4">
+            <div class="co-panel p-6 sm:p-7">
+              <div class="h-6 w-40 rounded-lg bg-white/8 mb-6"></div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="h-12 rounded-xl bg-white/8"></div>
+                <div class="h-12 rounded-xl bg-white/8"></div>
+                <div class="col-span-full h-12 rounded-xl bg-white/8"></div>
+                <div class="col-span-full h-12 rounded-xl bg-white/8"></div>
+              </div>
+            </div>
+            <div class="co-panel p-6 sm:p-7">
+              <div class="h-6 w-48 rounded-lg bg-white/8 mb-6"></div>
+              <div class="space-y-3">
+                <div class="h-16 rounded-2xl bg-white/8"></div>
+                <div class="h-16 rounded-2xl bg-white/8"></div>
+                <div class="h-16 rounded-2xl bg-white/8"></div>
+              </div>
+            </div>
+          </div>
+          <aside class="co-panel p-6">
+            <div class="h-48 rounded-xl bg-white/8 mb-5"></div>
+            <div class="h-5 w-3/4 rounded-lg bg-white/8 mb-2"></div>
+            <div class="h-4 w-1/2 rounded-lg bg-white/8 mb-6"></div>
+            <div class="h-8 w-full rounded-lg bg-white/8"></div>
+          </aside>
         </div>
+      </div>
 
-        <!-- Demo not found / no price -->
-        <div id="checkout-unavailable" class="hidden text-center py-16">
-          <span class="material-symbols-outlined text-5xl text-on-surface-variant/60 mb-4">shopping_bag</span>
-          <h1 class="font-headline-lg text-headline-lg text-primary mb-2">Checkout belum tersedia</h1>
-          <p id="unavailable-text" class="text-on-surface-variant mb-8 max-w-md mx-auto">
-            Demo ini belum memiliki paket checkout. Silakan hubungi kami langsung via WhatsApp.
+      <!-- Produk tidak ditemukan -->
+      <div id="checkout-unavailable" class="hidden">
+        <div class="co-panel max-w-xl mx-auto text-center px-6 py-14 sm:px-12">
+          <span class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/5 border border-white/10 mb-6">
+            <span class="material-symbols-outlined text-3xl text-white/70">shopping_bag</span>
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mb-3">Checkout belum tersedia</h1>
+          <p id="unavailable-text" class="text-sm text-zinc-400 leading-relaxed mb-8 max-w-md mx-auto">
+            Produk ini belum memiliki paket checkout. Silakan hubungi kami langsung via WhatsApp.
           </p>
-          <a id="unavailable-wa" href="contact.html" class="btn-ghost max-w-xs mx-auto">Hubungi Kami via WhatsApp</a>
+          <a id="unavailable-wa" href="contact.html" class="co-btn co-btn-primary mx-auto">Chat via WhatsApp</a>
+        </div>
+      </div>
+
+      <!-- Isi utama checkout -->
+      <div id="checkout-main" class="hidden">
+        <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tighter text-white">Checkout</h1>
+        <p class="mt-2 text-sm text-zinc-400">Lengkapi data pemesan, lalu bayar aman lewat Midtrans. Invoice PDF dikirim otomatis ke email Anda.</p>
+
+        <!-- Stepper -->
+        <div class="mt-8 flex items-start" id="coStepper">
+          <div class="co-step u-active" data-step="0">
+            <div class="dot"><span class="material-symbols-outlined mat">person</span></div>
+            <span class="step-label">Data Pemesan</span>
+          </div>
+          <div class="co-step" data-step="1">
+            <div class="dot"><span class="material-symbols-outlined mat">wallet</span></div>
+            <span class="step-label">Pembayaran</span>
+          </div>
+          <div class="co-step" data-step="2">
+            <div class="dot"><span class="material-symbols-outlined mat">receipt_long</span></div>
+            <span class="step-label">Ringkasan</span>
+          </div>
         </div>
 
-        <!-- Checkout form -->
-        <div id="checkout-main" class="hidden animate-fade-up">
-          <!-- Product summary -->
-          <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-lg md:p-xl mb-md flex flex-col sm:flex-row sm:items-center gap-md">
-            <div id="co-thumb-wrap" class="hidden shrink-0 w-full sm:w-40 aspect-[16/9] rounded-xl overflow-hidden border border-white/10">
-              <img id="co-thumb" alt="Thumbnail demo" class="w-full h-full object-cover" />
-            </div>
-            <div class="flex-1 min-w-0">
-              <p class="text-[10px] uppercase tracking-widest text-on-surface-variant/70 mb-1" id="co-category">Demo</p>
-              <h1 class="font-headline-md text-headline-md text-primary mb-1" id="co-title">...</h1>
-              <p class="text-sm text-on-surface-variant line-clamp-2" id="co-desc">...</p>
-              <p class="text-primary font-bold text-2xl mt-2" id="co-price">...</p>
-            </div>
+        <div class="mt-8 grid lg:grid-cols-3 gap-6">
+          <div class="lg:col-span-2">
+            <!-- STEP 1: Data pemesan -->
+            <section id="coStep0" class="co-pane u-on">
+              <form id="addrForm" class="co-panel p-6 sm:p-7" novalidate>
+                <div class="flex items-center gap-3 mb-6">
+                  <span class="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-white/8 border border-white/10 text-white">
+                    <span class="material-symbols-outlined text-lg">person</span>
+                  </span>
+                  <div>
+                    <h2 class="text-lg font-extrabold tracking-tight text-white leading-tight">Data Pemesan</h2>
+                    <p class="text-xs text-zinc-500 mt-0.5">Invoice &amp; akses produk dikirim ke data berikut.</p>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="co-label" for="f-nama">Nama Lengkap *</label>
+                    <input id="f-nama" type="text" class="co-field" placeholder="Contoh: Budi Santoso" autocomplete="name">
+                    <div class="co-err" data-for="f-nama"></div>
+                  </div>
+                  <div>
+                    <label class="co-label" for="f-wa">Nomor WhatsApp *</label>
+                    <input id="f-wa" type="tel" class="co-field" placeholder="6281234567890" autocomplete="tel">
+                    <div class="co-err" data-for="f-wa"></div>
+                    <p class="co-hint">Format internasional: 628xxxxxxxxxx</p>
+                  </div>
+                  <div class="sm:col-span-2">
+                    <label class="co-label" for="f-email">Email *</label>
+                    <input id="f-email" type="email" class="co-field" placeholder="nama@email.com" autocomplete="email">
+                    <div class="co-err" data-for="f-email"></div>
+                    <p class="co-hint">Invoice pembayaran dikirim otomatis ke email ini.</p>
+                  </div>
+                  <div id="custom-fields" class="sm:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4 !mb-0"></div>
+                </div>
+
+                <div class="mt-6 flex items-center justify-between gap-4 pt-5 border-t border-white/8">
+                  <p class="text-xs text-zinc-500 flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-sm">lock</span> Data Anda dienkripsi &amp; dijamin aman.
+                  </p>
+                  <button type="submit" id="addrNext" class="co-btn co-btn-primary shrink-0">
+                    Lanjutkan
+                    <span class="material-symbols-outlined text-base">arrow_forward</span>
+                  </button>
+                </div>
+              </form>
+            </section>
+
+            <!-- STEP 2: Pembayaran -->
+            <section id="coStep1" class="co-pane">
+              <div class="co-panel p-6 sm:p-7">
+                <div class="flex items-center gap-3 mb-6">
+                  <span class="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-white/8 border border-white/10 text-white">
+                    <span class="material-symbols-outlined text-lg">wallet</span>
+                  </span>
+                  <div>
+                    <h2 class="text-lg font-extrabold tracking-tight text-white leading-tight">Metode Pembayaran</h2>
+                    <p class="text-xs text-zinc-500 mt-0.5">Pilih metode, lalu konfirmasi di popup Midtrans.</p>
+                  </div>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-3" id="payOptions"></div>
+                <p id="payNote" class="mt-4 text-xs font-semibold text-zinc-500"></p>
+
+                <div class="mt-6 flex items-center justify-between gap-4">
+                  <button type="button" data-prev class="co-btn co-btn-ghost">
+                    <span class="material-symbols-outlined text-base">arrow_back</span> Kembali
+                  </button>
+                  <button type="button" id="payNext" class="co-btn co-btn-primary">
+                    Tinjau Pesanan
+                    <span class="material-symbols-outlined text-base">arrow_forward</span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <!-- STEP 3: Ringkasan -->
+            <section id="coStep2" class="co-pane">
+              <div class="co-panel p-6 sm:p-7">
+                <div class="flex items-center gap-3 mb-6">
+                  <span class="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-white/8 border border-white/10 text-white">
+                    <span class="material-symbols-outlined text-lg">receipt_long</span>
+                  </span>
+                  <div>
+                    <h2 class="text-lg font-extrabold tracking-tight text-white leading-tight">Ringkasan Pesanan</h2>
+                    <p class="text-xs text-zinc-500 mt-0.5">Periksa kembali sebelum membayar.</p>
+                  </div>
+                </div>
+
+                <div class="space-y-3">
+                  <div class="flex items-start gap-3 rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3.5">
+                    <span class="material-symbols-outlined text-lg text-zinc-500 shrink-0 mt-0.5">person</span>
+                    <div class="text-sm min-w-0">
+                      <p class="font-bold text-white truncate" id="reviewName"></p>
+                      <p class="text-zinc-500 truncate" id="reviewContact"></p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3 rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3.5">
+                    <span class="material-symbols-outlined text-lg text-zinc-500 shrink-0 mt-0.5">wallet</span>
+                    <div class="text-sm">
+                      <p class="font-bold text-white" id="reviewPay"></p>
+                      <p class="text-zinc-500">Pembayaran diproses aman oleh Midtrans.</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3 rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3.5">
+                    <span class="material-symbols-outlined text-lg text-zinc-500 shrink-0 mt-0.5">description</span>
+                    <div class="text-sm min-w-0">
+                      <p class="font-bold text-white">Rincian Pemesanan</p>
+                      <div id="reviewFields" class="text-zinc-500 space-y-1 pt-1"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-6 flex items-center justify-between gap-4">
+                  <button type="button" data-prev class="co-btn co-btn-ghost">
+                    <span class="material-symbols-outlined text-base">arrow_back</span> Kembali
+                  </button>
+                  <button id="placeBtn" type="button" class="co-btn co-btn-primary shrink-0 min-w-[220px]">
+                    <span id="placeLabel" class="inline-flex items-center gap-2">
+                      <span class="material-symbols-outlined fill-1 text-base">shield_check</span> Buat Pesanan &amp; Bayar
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </section>
           </div>
 
-          <!-- Form -->
-          <form id="checkout-form" class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-lg md:p-xl" novalidate>
-            <h2 class="font-headline-md text-headline-md text-primary mb-md">Data Pemesan</h2>
+          <!-- Order summary sticky -->
+          <aside class="lg:sticky lg:top-24 self-start">
+            <div class="co-panel p-6">
+              <h2 class="text-lg font-extrabold tracking-tight text-white">Detail Pesanan</h2>
+              <div class="mt-5 flex items-center gap-3.5">
+                <div id="co-thumb-wrap" class="hidden shrink-0 w-20 h-14 rounded-xl overflow-hidden border border-white/10">
+                  <img id="co-thumb" alt="Thumbnail produk" class="w-full h-full object-cover" />
+                </div>
+                <div class="min-w-0 flex-1">
+                  <p class="text-[10px] uppercase tracking-widest text-zinc-500 mb-0.5" id="co-category">Produk</p>
+                  <p class="text-[13px] font-bold text-white truncate" id="co-title">...</p>
+                  <p class="text-[11px] text-zinc-500 truncate" id="co-desc">...</p>
+                </div>
+              </div>
 
-            <div class="mb-sm">
-              <label class="field-label" for="f-nama">Nama Lengkap *</label>
-              <input id="f-nama" class="field-input" type="text" placeholder="Contoh: Budi Santoso" autocomplete="name" />
-              <div class="form-err" data-for="f-nama"></div>
+              <div class="mt-5 pt-4 border-t border-white/8 space-y-3 text-sm">
+                <div class="flex justify-between">
+                  <span class="text-zinc-500">Harga</span>
+                  <span class="font-bold text-white" id="co-price">...</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-zinc-500">Biaya layanan</span>
+                  <span class="font-bold text-white">Rp 0</span>
+                </div>
+                <div class="pt-4 border-t border-white/8 flex justify-between items-center">
+                  <span class="font-bold text-white">Total</span>
+                  <span class="text-xl font-extrabold tracking-tight text-white" id="co-total">...</span>
+                </div>
+              </div>
+
+              <div class="mt-5 pt-4 border-t border-white/8 space-y-2.5">
+                <div class="flex items-center gap-2 text-[11px] text-zinc-500">
+                  <span class="material-symbols-outlined text-sm fill-1 text-white/80">verified_user</span> Pembayaran aman via Midtrans
+                </div>
+                <div class="flex items-center gap-2 text-[11px] text-zinc-500">
+                  <span class="material-symbols-outlined text-sm fill-1 text-white/80">picture_as_pdf</span> Invoice PDF otomatis
+                </div>
+                <div class="flex items-center gap-2 text-[11px] text-zinc-500">
+                  <span class="material-symbols-outlined text-sm fill-1 text-white/80">support_agent</span> Dukungan cepat lewat WhatsApp
+                </div>
+              </div>
+
+              <a href="demos.html" class="mt-5 inline-flex items-center justify-center gap-2 w-full co-btn co-btn-ghost text-[13px]">
+                <span class="material-symbols-outlined text-base">arrow_back</span> Lihat Produk Lain
+              </a>
             </div>
+          </aside>
+        </div>
+      </div>
 
-            <div class="mb-sm">
-              <label class="field-label" for="f-wa">Nomor WhatsApp *</label>
-              <input id="f-wa" class="field-input" type="tel" placeholder="6281234567890" autocomplete="tel" />
-              <div class="form-err" data-for="f-wa"></div>
-              <p class="text-xs text-on-surface-variant/60 mt-1">Gunakan format internasional: 628xxxxxxxxxx</p>
-            </div>
-
-            <div class="mb-sm">
-              <label class="field-label" for="f-email">Email *</label>
-              <input id="f-email" class="field-input" type="email" placeholder="nama@email.com" autocomplete="email" />
-              <div class="form-err" data-for="f-email"></div>
-              <p class="text-xs text-on-surface-variant/60 mt-1">Invoice pembayaran akan dikirim ke email ini.</p>
-            </div>
-
-            <!-- Dynamic custom fields -->
-            <div id="custom-fields" class="mb-sm"></div>
-
-            <div class="flex items-center gap-2 text-xs text-on-surface-variant/70 mb-md">
-              <span class="material-symbols-outlined text-sm">lock</span>
-              Pembayaran diproses aman melalui Midtrans. Kami tidak menyimpan data kartu.
-            </div>
-
-            <button type="submit" id="btn-pay" class="btn-primary">
-              <span class="material-symbols-outlined">shopping_bag</span>
-              <span id="btn-pay-label">Bayar Sekarang</span>
-            </button>
-
-            <p id="form-status" class="hidden text-sm mt-3 text-center"></p>
-          </form>
-
-          <!-- Payment-not-configured fallback -->
-          <div id="checkout-fallback" class="hidden bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-lg md:p-xl text-center animate-fade-up">
-            <span class="material-symbols-outlined text-4xl text-primary/70 mb-3">support_agent</span>
-            <h2 class="font-headline-md text-headline-md text-primary mb-2">Pembayaran Online Belum Aktif</h2>
-            <p class="text-on-surface-variant mb-6" id="fallback-text">
-              Pembayaran online sedang disiapkan. Untuk saat ini, silakan hubungi kami via WhatsApp untuk memesan.
-            </p>
-            <a id="fallback-wa" href="contact.html" target="_blank" rel="noopener" class="btn-ghost max-w-xs mx-auto">Chat via WhatsApp</a>
-          </div>
+      <!-- Pembayaran belum dikonfigurasi -->
+      <div id="checkout-fallback" class="hidden">
+        <div class="co-panel max-w-xl mx-auto text-center px-6 py-14 sm:px-12 anim-scale-in">
+          <span class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/5 border border-white/10 mb-6">
+            <span class="material-symbols-outlined text-3xl text-white/70">support_agent</span>
+          </span>
+          <h2 class="text-2xl font-extrabold tracking-tight text-white mb-3">Pembayaran Online Belum Aktif</h2>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-8 max-w-md mx-auto" id="fallback-text">
+            Pembayaran online sedang disiapkan. Untuk saat ini, silakan hubungi kami via WhatsApp untuk memesan.
+          </p>
+          <a id="fallback-wa" href="contact.html" target="_blank" rel="noopener" class="co-btn co-btn-primary mx-auto">Chat via WhatsApp</a>
         </div>
       </div>
     </main>
+
+    <!-- Modal sukses -->
+    <div id="coModal" class="fixed inset-0 z-[70] items-center justify-center p-5">
+      <div id="coModalBackdrop" class="absolute inset-0 bg-black/55 backdrop-blur-sm"></div>
+      <div class="relative co-panel rounded-[28px] max-w-md w-full p-8 sm:p-10 text-center anim-scale-in border-white/12 bg-[#181819]">
+        <span class="inline-flex items-center justify-center rounded-full bg-white text-surface mx-auto anim-scale-in" style="width:72px;height:72px;box-shadow:0 20px 50px -15px rgba(255,255,255,0.4)">
+          <span class="material-symbols-outlined text-4xl fill-1">check</span>
+        </span>
+        <h3 class="mt-6 text-2xl font-extrabold tracking-tight text-white">Pesanan berhasil dibuat!</h3>
+        <p class="mt-2 text-sm leading-relaxed text-zinc-400">
+          Terima kasih atas pesanan Anda. Nomor pesanan:
+        </p>
+        <div class="mt-5 inline-flex items-center gap-2.5 rounded-2xl border border-white/10 bg-white/[0.04] px-6 py-4">
+          <span class="material-symbols-outlined text-lg text-zinc-500">package_2</span>
+          <span id="orderId" class="text-lg font-extrabold tracking-tight text-white">...</span>
+        </div>
+        <p class="mt-4 text-xs leading-relaxed text-zinc-500">
+          Pastikan Anda membayar sebelum batas waktu agar transaksi diproses otomatis.
+        </p>
+        <div class="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <a href="#" id="orderInvoiceBtn" class="inline-flex items-center justify-center gap-2 rounded-full co-btn co-btn-ghost text-sm">
+            <span class="material-symbols-outlined text-base">picture_as_pdf</span> Lihat Invoice
+          </a>
+          <a href="demos.html" class="inline-flex items-center justify-center gap-2 rounded-full co-btn co-btn-primary text-sm">
+            <span class="material-symbols-outlined text-base">arrow_forward</span> Kembali ke Produk
+          </a>
+        </div>
+      </div>
+    </div>
 
     <script>
       const esc = (s) => String(s || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
@@ -207,37 +467,71 @@
       let snapInjected = false;
       let currentOrder = null;
       let currentInvoiceUrl = null;
+      let STEP = 0;
+      let chosenPay = null;
+      let customerData = null;
 
-      function setStatus(msg, ok) {
-        const el = $('#form-status');
-        if (!msg) { el.classList.add('hidden'); return; }
-        el.textContent = msg;
-        el.className = 'text-sm mt-3 text-center ' + (ok ? 'text-emerald-300' : 'text-[#ff8a80]');
-        el.classList.remove('hidden');
+      const PAYS = [
+        { id: 'qris', name: 'QRIS', desc: 'Scan sekali, bayar instan', icon: 'qr_code_2' },
+        { id: 'va-bca', name: 'Virtual Account BCA', desc: 'Transfer dari bank mana pun', icon: 'account_balance' },
+        { id: 'va-bri', name: 'Virtual Account BRI', desc: 'ATM, m-banking, atau i-banking', icon: 'account_balance' },
+        { id: 'va-bni', name: 'Virtual Account BNI', desc: 'ATM, m-banking, atau i-banking', icon: 'account_balance' },
+        { id: 'gopay', name: 'GoPay', desc: 'Dompet digital Gojek', icon: 'account_balance_wallet' },
+        { id: 'ovo', name: 'OVO', desc: 'Dompet digital OVO', icon: 'account_balance_wallet' },
+        { id: 'dana', name: 'DANA', desc: 'Dompet digital DANA', icon: 'account_balance_wallet' },
+        { id: 'kartu', name: 'Kartu Kredit / Debit', desc: 'Visa, Mastercard, JCB', icon: 'credit_card' }
+      ];
+
+      function toast(msg, ok) {
+        const t = document.createElement('div');
+        t.className = 'co-toast ' + (ok ? 'toast-ok' : 'toast-bad');
+        t.innerHTML = '<span class="material-symbols-outlined mat">' + (ok ? 'check_circle' : 'info') + '</span><span>' + msg + '</span>';
+        document.body.appendChild(t);
+        setTimeout(() => { t.style.cssText += ';opacity:0;transition:opacity .4s ease'; }, 2400);
+        setTimeout(() => t.remove(), 2900);
       }
 
-      function errEl(forId) {
-        return document.querySelector('.form-err[data-for="' + forId + '"]');
-      }
+      function errEl(forId) { return document.querySelector('.co-err[data-for="' + forId + '"]'); }
       function setErr(forId, msg) { errEl(forId).textContent = msg; }
-      function inputInvalid(el, bad) { el.classList.toggle('invalid', bad); }
+      function inputInvalid(el, bad) { el.classList.toggle('co-invalid', bad); }
 
+      // ===== Stepper =====
+      const STEP_ICONS = ['person', 'wallet', 'receipt_long'];
+      function goStep(n) {
+        n = Math.max(0, Math.min(2, n));
+        STEP = n;
+        document.querySelectorAll('.co-pane').forEach(p => p.classList.remove('u-on'));
+        $('#coStep' + n).classList.add('u-on');
+        document.querySelectorAll('#coStepper .co-step').forEach((s, i) => {
+          s.classList.toggle('u-active', i === n);
+          s.classList.toggle('u-done', i < n);
+          s.querySelector('.dot').innerHTML = i < n
+            ? '<span class="material-symbols-outlined mat">check</span>'
+            : '<span class="material-symbols-outlined mat">' + STEP_ICONS[i] + '</span>';
+        });
+        window.scrollTo({ top: 90, behavior: 'smooth' });
+      }
+
+      document.querySelectorAll('[data-prev]').forEach(b => b.addEventListener('click', () => goStep(STEP - 1)));
+
+      // ===== API call ====
       async function loadDemo() {
+        $('#checkout-loading').classList.remove('hidden');
         try {
           const res = await fetch('demos.json', { cache: 'no-store' });
           const data = await res.json();
           demo = (Array.isArray(data) ? data : []).find(d => d.status === 'live' && d.project === demoParam);
         } catch (e) { demo = null; }
 
+        $('#checkout-loading').classList.add('hidden');
+
         if (!demo) {
-          $('#checkout-loading').classList.add('hidden');
           $('#checkout-unavailable').classList.remove('hidden');
           return;
         }
         if (!demo.price || demo.price <= 0) {
-          $('#checkout-loading').classList.add('hidden');
           $('#checkout-unavailable').classList.remove('hidden');
-          $('#unavailable-text').textContent = 'Demo ini tidak memiliki paket checkout berbayar. Silakan hubungi kami langsung via WhatsApp untuk informasi lebih lanjut.';
+          $('#unavailable-text').textContent = 'Produk ini tidak memiliki paket checkout berbayar. Silakan hubungi kami langsung via WhatsApp untuk informasi lebih lanjut.';
           const wa = makeWaLink('Halo uroo dev, saya tertarik dengan demo ' + (demo.title || demo.project) + '. Boleh info lebih lanjut?');
           if (wa) $('#unavailable-wa').href = wa;
           return;
@@ -247,89 +541,136 @@
       }
 
       function makeWaLink(text) {
-        // Nomer penjual diambil dari endpoint /api/create-order saat probses,
-        // di sini fallback statis bisa ditimpa oleh respons API.
         return 'https://wa.me/62882006533693?text=' + encodeURIComponent(text || '');
       }
 
       function renderForm() {
-        $('#co-category').textContent = demo.category || 'Demo';
+        $('#co-category').textContent = demo.category || 'Produk';
         $('#co-title').textContent = demo.title || demo.project;
         $('#co-desc').textContent = demo.description || '';
         $('#co-price').textContent = fmtIDR(demo.price);
-        $('#btn-pay-label').textContent = 'Bayar ' + fmtIDR(demo.price);
+        $('#co-total').textContent = fmtIDR(demo.price);
 
         if (demo.thumbnail) {
           $('#co-thumb').src = demo.thumbnail;
           $('#co-thumb-wrap').classList.remove('hidden');
         }
 
-        // Dynamic custom fields
+        // Custom fields dinamis
         const wrap = $('#custom-fields');
         wrap.innerHTML = '';
         (demo.checkoutFields || []).forEach(f => {
           const id = 'cf-' + (f.name || ('f' + Math.random().toString(36).slice(2, 7)));
           const label = f.label || f.name;
+          const req = f.required ? ' *' : '';
           let ctrl = '';
           if (f.type === 'select') {
             const opts = (f.options || []).map(o => `<option value="${esc(o)}">${esc(o)}</option>`).join('');
-            ctrl = `<select id="${id}" data-field="${esc(f.name)}" class="field-input" ${f.required ? 'required' : ''}><option value="">— Pilih —</option>${opts}</select>`;
+            ctrl = `<select id="${id}" data-field="${esc(f.name)}" class="co-field" ${f.required ? 'required' : ''}><option value="">— Pilih —</option>${opts}</select>`;
           } else if (f.type === 'textarea') {
-            ctrl = `<textarea id="${id}" data-field="${esc(f.name)}" class="field-input" rows="3" placeholder="${esc(label)}" ${f.required ? 'required' : ''}></textarea>`;
+            ctrl = `<textarea id="${id}" data-field="${esc(f.name)}" class="co-field" rows="3" placeholder="${esc(label)}" ${f.required ? 'required' : ''}></textarea>`;
           } else {
-            ctrl = `<input data-field="${esc(f.name)}" class="field-input" type="${f.type === 'date' ? 'date' : f.type === 'number' ? 'number' : f.type === 'tel' ? 'tel' : f.type === 'email' ? 'email' : 'text'}" placeholder="${esc(f.type === 'date' ? 'YYYY-MM-DD' : label)}" ${f.required ? 'required' : ''} />`;
+            ctrl = `<input id="${id}" data-field="${esc(f.name)}" class="co-field" type="${f.type === 'date' ? 'date' : f.type === 'number' ? 'number' : f.type === 'tel' ? 'tel' : f.type === 'email' ? 'email' : 'text'}" placeholder="${esc(f.type === 'date' ? 'YYYY-MM-DD' : label)}" ${f.required ? 'required' : ''} />`;
           }
           wrap.insertAdjacentHTML('beforeend', `
-            <div class="mb-sm">
-              <label class="field-label" for="${id}">${esc(label)}${f.required ? ' *' : ''}</label>
+            <div class="${f.type === 'textarea' ? 'sm:col-span-2' : ''}">
+              <label class="co-label" for="${id}">${esc(label)}${req}</label>
               ${ctrl}
+              <div class="co-err" data-for="${id}"></div>
             </div>
           `);
         });
 
-        $('#checkout-loading').classList.add('hidden');
-        $('#checkout-main').classList.remove('hidden');
+        renderPayOptions();
         bindSubmit();
+        $('#checkout-main').classList.remove('hidden');
       }
 
+      // ===== Opsi pembayaran =====
+      function renderPayOptions() {
+        const box = $('#payOptions');
+        box.innerHTML = PAYS.map(p => `
+          <button type="button" class="co-radio" data-pay="${esc(p.id)}">
+            <span class="radio"></span>
+            <span class="flex-1 text-sm min-w-0">
+              <span class="font-bold block text-white truncate">${esc(p.name)}</span>
+              <span class="text-xs text-zinc-500">${esc(p.desc)}</span>
+            </span>
+          </button>
+        `).join('');
+        box.querySelectorAll('[data-pay]').forEach(b => {
+          b.addEventListener('click', () => {
+            chosenPay = b.getAttribute('data-pay');
+            box.querySelectorAll('[data-pay]').forEach(x => x.classList.remove('u-on'));
+            b.classList.add('u-on');
+            const p = PAYS.find(x => x.id === chosenPay);
+            $('#payNote').textContent = 'Anda memilih ' + (p ? p.name : chosenPay) + '. Popup Midtrans akan muncul saat konfirmasi pembayaran.';
+          });
+        });
+      }
+
+      // ===== Step 1: validasi & lanjut =====
+      $('#addrForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const nama = $('#f-nama').value.trim();
+        const wa = $('#f-wa').value.trim();
+        const email = $('#f-email').value.trim();
+
+        let ok = true;
+        if (!nama) { setErr('f-nama', 'Nama wajib diisi.'); inputInvalid($('#f-nama'), true); ok = false; } else { setErr('f-nama', ''); inputInvalid($('#f-nama'), false); }
+        if (!wa) { setErr('f-wa', 'Nomor WhatsApp wajib diisi.'); inputInvalid($('#f-wa'), true); ok = false; }
+        else if (!/^62[0-9]{8,13}$/.test(wa)) { setErr('f-wa', 'Format WhatsApp tidak valid. Gunakan 628xxxxxxxxxx.'); inputInvalid($('#f-wa'), true); ok = false; }
+        else { setErr('f-wa', ''); inputInvalid($('#f-wa'), false); }
+        if (!email) { setErr('f-email', 'Email wajib diisi.'); inputInvalid($('#f-email'), true); ok = false; }
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setErr('f-email', 'Format email tidak valid.'); inputInvalid($('#f-email'), true); ok = false; }
+        else { setErr('f-email', ''); inputInvalid($('#f-email'), false); }
+
+        const customFields = (demo.checkoutFields || [])
+          .map(f => {
+            const el = document.querySelector('[data-field="' + f.name + '"]');
+            const val = el ? el.value.trim() : '';
+            if (f.required && !val) { el && inputInvalid(el, true); ok = false; }
+            else if (el) inputInvalid(el, false);
+            return { name: f.name, label: f.label || f.name, value: val };
+          })
+          .filter(f => f.value);
+
+        if (!ok) { toast('Periksa kembali data Anda.', false); return; }
+
+        customerData = { nama, wa, email, customFields };
+        $('#reviewName').textContent = nama;
+        $('#reviewContact').textContent = wa + ' · ' + email;
+        $('#reviewFields').innerHTML = [
+          ...(customFields.length ? customFields.map(f => `<p><span class="text-zinc-500">${esc(f.label)}:</span> ${esc(f.value)}</p>`) : ['<p><span class="text-zinc-500">—</span></p>'])
+        ].join('');
+
+        goStep(1);
+      });
+
+      // ===== Step 2: lanjut ke ringkasan =====
+      $('#payNext').addEventListener('click', () => {
+        if (!chosenPay) { toast('Silakan pilih metode pembayaran terlebih dahulu.', false); return; }
+        const p = PAYS.find(x => x.id === chosenPay);
+        $('#reviewPay').textContent = p ? p.name : chosenPay;
+        goStep(2);
+      });
+
+      // ===== Step 3: buat pesanan & bayar =====
       function bindSubmit() {
-        $('#checkout-form').addEventListener('submit', async (e) => {
-          e.preventDefault();
-          const nama = $('#f-nama').value.trim();
-          const wa = $('#f-wa').value.trim();
-          const email = $('#f-email').value.trim();
-
-          let ok = true;
-          if (!nama) { setErr('f-nama', 'Nama wajib diisi.'); inputInvalid($('#f-nama'), true); ok = false; } else { setErr('f-nama', ''); inputInvalid($('#f-nama'), false); }
-          if (!wa) { setErr('f-wa', 'Nomor WhatsApp wajib diisi.'); inputInvalid($('#f-wa'), true); ok = false; }
-          else if (!/^62[0-9]{8,13}$/.test(wa)) { setErr('f-wa', 'Format WhatsApp tidak valid. Gunakan 628xxxxxxxxxx'); inputInvalid($('#f-wa'), true); ok = false; }
-          else { setErr('f-wa', ''); inputInvalid($('#f-wa'), false); }
-          if (!email) { setErr('f-email', 'Email wajib diisi.'); inputInvalid($('#f-email'), true); ok = false; }
-          else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setErr('f-email', 'Format email tidak valid.'); inputInvalid($('#f-email'), true); ok = false; }
-          else { setErr('f-email', ''); inputInvalid($('#f-email'), false); }
-
-          const customFields = (demo.checkoutFields || [])
-            .map(f => {
-              const el = document.querySelector('[data-field="' + f.name + '"]');
-              const val = el ? el.value.trim() : '';
-              if (f.required && !val) { el && inputInvalid(el, true); ok = false; }
-              else if (el) inputInvalid(el, false);
-              return { name: f.name, label: f.label || f.name, value: val };
-            })
-            .filter(f => f.value);
-
-          if (!ok) { setStatus('Periksa kembali data Anda.', false); return; }
-          setStatus('');
-
-          const btn = $('#btn-pay');
-          btn.disabled = true;
-          btn.innerHTML = '<span class="spinner"></span> Memproses...';
+        $('#placeBtn').addEventListener('click', async () => {
+          const btn = $('#placeBtn');
+          btn.classList.add('is-loading');
+          $('#placeLabel').innerHTML = '<span class="co-spinner"></span> Memproses...';
 
           try {
             const res = await fetch('/api/create-order', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ project: demo.project, customer: { nama, wa, email }, customFields })
+              body: JSON.stringify({
+                project: demo.project,
+                customer: { nama: customerData.nama, wa: customerData.wa, email: customerData.email },
+                customFields: customerData.customFields
+              })
             });
             const data = await res.json().catch(() => ({}));
 
@@ -337,41 +678,48 @@
               currentOrder = data.orderId || null;
               currentInvoiceUrl = data.invoiceUrl || null;
               await injectSnap(data.snapScript, data.clientKey);
+              restoreBtn();
               window.snap.pay(data.snapToken, {
-                onSuccess: () => redirectInvoice(),
-                onPending: () => { setStatus('Pembayaran tertunda. Invoice dapat dilihat di ' + (currentOrder ? ('/api/invoice?order=' + currentOrder) : 'halaman invoice'), true); btn.disabled = false; restoreBtn(); },
-                onError: () => { setStatus('Pembayaran gagal / dibatalkan. Silakan coba lagi.', false); btn.disabled = false; restoreBtn(); },
-                onClose: () => { setStatus('Popup pembayaran ditutup. Pesanan tetap tersimpan — lanjutkan kapan saja.', true); btn.disabled = false; restoreBtn(); }
+                onSuccess: () => showSuccessModal(),
+                onPending: () => { btn.classList.remove('is-loading'); restoreBtn(); toast('Pembayaran tertunda. Selesaikan sebelum batas waktunya ya.', true); },
+                onError: () => { btn.classList.remove('is-loading'); restoreBtn(); toast('Pembayaran gagal / dibatalkan. Silakan coba lagi.', false); },
+                onClose: () => { btn.classList.remove('is-loading'); restoreBtn(); toast('Popup pembayaran ditutup. Pesanan tetap tersimpan.', true); }
               });
             } else if (data.error === 'PAYMENT_NOT_CONFIGURED') {
               $('#checkout-main').classList.add('hidden');
-              const fb = $('#checkout-fallback');
               $('#fallback-text').textContent = data.message || 'Pembayaran online sedang disiapkan. Untuk saat ini, silakan hubungi kami via WhatsApp untuk memesan.';
               if (data.waLink) $('#fallback-wa').href = data.waLink;
-              fb.classList.remove('hidden');
+              $('#checkout-fallback').classList.remove('hidden');
             } else {
-              setStatus(data.message || 'Terjadi kesalahan. Silakan coba lagi.', false);
-              btn.disabled = false;
+              btn.classList.remove('is-loading');
               restoreBtn();
+              toast(data.message || 'Terjadi kesalahan. Silakan coba lagi.', false);
             }
           } catch (err) {
-            setStatus('Gagal terhubung ke server. Cek koneksi Anda lalu coba lagi.', false);
-            btn.disabled = false;
+            btn.classList.remove('is-loading');
             restoreBtn();
+            toast('Gagal terhubung ke server. Cek koneksi Anda lalu coba lagi.', false);
           }
         });
       }
 
       function restoreBtn() {
-        const btn = $('#btn-pay');
-        btn.innerHTML = '<span class="material-symbols-outlined">shopping_bag</span><span id="btn-pay-label">Bayar ' + fmtIDR(demo.price) + '</span>';
+        $('#placeLabel').innerHTML = '<span class="material-symbols-outlined fill-1 text-base">shield_check</span> Buat Pesanan &amp; Bayar';
       }
 
-      function redirectInvoice() {
-        if (currentInvoiceUrl) { window.location.href = currentInvoiceUrl; return; }
-        if (currentOrder) { window.location.href = '/api/invoice?order=' + encodeURIComponent(currentOrder); return; }
-        window.location.href = 'demos.html';
+      function showSuccessModal() {
+        $('#orderId').textContent = currentOrder || 'URO-' + Date.now().toString().slice(-7);
+        $('#orderInvoiceBtn').href = currentInvoiceUrl || (currentOrder ? '/api/invoice?order=' + encodeURIComponent(currentOrder) : 'demos.html');
+        $('#coModal').classList.add('u-show');
+        document.body.style.overflow = 'hidden';
       }
+
+      $('#coModal').addEventListener('click', function (e) {
+        if (e.target.id === 'coModal' || e.target.id === 'coModalBackdrop') {
+          this.classList.remove('u-show');
+          document.body.style.overflow = '';
+        }
+      });
 
       function injectSnap(scriptUrl, clientKey) {
         return new Promise((resolve, reject) => {
@@ -386,12 +734,6 @@
           document.head.appendChild(s);
         });
       }
-
-      // Footer year
-      (function () {
-        const y = document.querySelector('#year');
-        if (y) y.textContent = new Date().getFullYear();
-      })();
 
       loadDemo();
     </script>

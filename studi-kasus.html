@@ -1,0 +1,445 @@
+<!doctype html>
+<html class="dark" lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Studi Kasus Produk | Software House Karanganyar - uroo dev</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="description" content="Studi kasus project dari uroo dev — masalah, solusi, fitur, dan teknologi di balik setiap produk yang kami bangun." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://uroo.my.id/studi-kasus" />
+    <link rel="alternate" hreflang="id" href="https://uroo.my.id/studi-kasus.html" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-container": "#656464",
+              "outline-variant": "#444748",
+              "primary-fixed-dim": "#c6c6c7",
+              secondary: "#c8c6c5",
+              "on-error": "#690005",
+              primary: "#ffffff",
+              "tertiary-fixed": "#e4e2e1",
+              "on-tertiary-fixed": "#1b1c1c",
+              surface: "#131313",
+              "inverse-surface": "#e5e2e1",
+              "primary-container": "#e2e2e2",
+              "surface-container-lowest": "#0e0e0e",
+              "secondary-fixed-dim": "#c8c6c5",
+              "on-primary-fixed-variant": "#454747",
+              "surface-container-low": "#1c1b1b",
+              "error-container": "#93000a",
+              "inverse-on-surface": "#313030",
+              error: "#ffb4ab",
+              "surface-bright": "#3a3939",
+              "surface-container-high": "#2a2a2a",
+              "inverse-primary": "#5d5f5f",
+              "on-secondary-fixed": "#1c1b1b",
+              "on-tertiary": "#303030",
+              "secondary-container": "#474746",
+              "on-secondary-container": "#b7b5b4",
+              "on-primary-container": "#636565",
+              "on-surface": "#e5e2e1",
+              tertiary: "#ffffff",
+              "secondary-fixed": "#e5e2e1",
+              "surface-tint": "#c6c6c7",
+              "on-error-container": "#ffdad6",
+              "tertiary-container": "#e4e2e1",
+              outline: "#8e9192",
+              "surface-dim": "#131313",
+              "on-secondary": "#313030",
+              "on-primary": "#2f3131",
+              "on-secondary-fixed-variant": "#474746",
+              "on-background": "#e5e2e1",
+              "primary-fixed": "#e2e2e2",
+              background: "#131313",
+              "on-primary-fixed": "#1a1c1c",
+              "surface-container-highest": "#353534",
+              "on-surface-variant": "#c4c7c8",
+              "surface-variant": "#353534",
+              "tertiary-fixed-dim": "#c8c6c6",
+              "on-tertiary-fixed-variant": "#474747",
+              "surface-container": "#201f1f",
+            },
+            borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+            spacing: { "container-max": "1280px", gutter: "24px", xs: "4px", sm: "12px", xl: "80px", base: "8px", md: "24px", lg: "48px" },
+            fontFamily: {
+              "headline-lg": ["Inter"], "label-md": ["Inter"], "body-lg": ["Inter"],
+              "display-lg-mobile": ["Inter"], caption: ["Inter"], "body-md": ["Inter"],
+              "headline-md": ["Inter"], "display-lg": ["Inter"]
+            },
+            fontSize: {
+              "headline-lg": ["32px", { lineHeight: "1.3", letterSpacing: "-0.02em", fontWeight: "600" }],
+              "label-md": ["14px", { lineHeight: "1.4", letterSpacing: "0.05em", fontWeight: "500" }],
+              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+              "display-lg-mobile": ["40px", { lineHeight: "1.2", letterSpacing: "-0.02em", fontWeight: "700" }],
+              caption: ["12px", { lineHeight: "1.4", fontWeight: "400" }],
+              "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+              "headline-md": ["24px", { lineHeight: "1.4", fontWeight: "600" }],
+              "display-lg": ["72px", { lineHeight: "1.1", letterSpacing: "-0.04em", fontWeight: "700" }]
+            }
+          }
+        }
+      };
+    </script>
+    <style>
+      @keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+      .animate-fade-up { animation:fadeUp .5s ease both; }
+      .animate-fade-up-delay-1 { animation:fadeUp .5s ease .08s both; }
+      .animate-fade-up-delay-2 { animation:fadeUp .5s ease .16s both; }
+      .animate-fade-up-delay-3 { animation:fadeUp .5s ease .24s both; }
+      .sk-glow { position:absolute; width:340px; height:340px; border-radius:9999px; filter:blur(80px); opacity:.18; pointer-events:none; }
+    </style>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7N33H0TLX1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7N33H0TLX1');
+    </script>
+  </head>
+  <body class="bg-background text-on-background overflow-x-hidden selection:bg-primary selection:text-surface">
+    <!-- Nav -->
+    <nav class="fixed top-0 w-full z-50 bg-white/5 backdrop-blur-xl border-b border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.05)] h-20 transition-all duration-300">
+      <div class="max-w-[1280px] mx-auto px-gutter flex justify-between items-center h-full">
+        <a class="font-headline-md text-headline-md font-bold tracking-tighter text-primary" href="index.html">uroo dev</a>
+        <div class="hidden md:flex items-center gap-lg">
+          <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="index.html">Beranda</a>
+          <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="services.html">Layanan</a>
+          <a class="font-body-md text-body-md transition-colors duration-300 text-primary font-bold border-b-2 border-primary pb-1" href="demos.html">Produk</a>
+          <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="about.html">Tentang</a>
+          <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="contact.html">Kontak</a>
+        </div>
+        <button id="mobile-menu-btn" class="md:hidden text-primary p-2" aria-label="Menu">
+          <span class="material-symbols-outlined text-2xl">menu</span>
+        </button>
+      </div>
+    </nav>
+    <div id="mobile-menu" class="fixed inset-0 z-50 bg-surface backdrop-blur-xl flex flex-col items-center pt-20 gap-md transform -translate-y-full transition-transform duration-300 md:hidden">
+      <button id="mobile-menu-close" class="absolute top-6 right-6 text-primary p-2" aria-label="Close">
+        <span class="material-symbols-outlined text-2xl">close</span>
+      </button>
+      <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="index.html">Beranda</a>
+      <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="services.html">Layanan</a>
+      <a class="font-body-md text-body-md transition-colors duration-300 text-primary font-bold" href="demos.html">Produk</a>
+      <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="about.html">Tentang</a>
+      <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="contact.html">Kontak</a>
+    </div>
+
+    <main class="relative pt-28 pb-xl overflow-hidden">
+      <!-- Ambient glow -->
+      <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[720px] h-[720px] rounded-full bg-white/[0.03] blur-[120px] pointer-events-none"></div>
+
+      <div class="relative max-w-5xl mx-auto px-gutter">
+        <!-- Loading -->
+        <div id="sk-loading" class="text-center py-32">
+          <div class="spinner spinner-light mx-auto mb-4"></div>
+          <p class="text-on-surface-variant">Memuat studi kasus...</p>
+        </div>
+
+        <!-- Not found / no case study -->
+        <div id="sk-empty" class="hidden text-center py-24">
+          <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/[0.04] border border-white/10 mb-6">
+            <span class="material-symbols-outlined text-4xl text-on-surface-variant/70">menu_book</span>
+          </div>
+          <h1 class="font-headline-lg text-headline-lg text-primary mb-2">Studi kasus belum tersedia</h1>
+          <p id="sk-empty-text" class="text-on-surface-variant mb-8 max-w-md mx-auto">
+            Produk ini belum memiliki studi kasus. Silakan coba langsung demo-nya.
+          </p>
+          <a href="demos.html" class="inline-flex items-center gap-2 bg-white text-surface px-6 py-3 rounded-full text-sm font-bold hover:scale-[1.03] active:scale-95 transition-all">
+            <span class="material-symbols-outlined text-base">arrow_back</span> Kembali ke Produk
+          </a>
+        </div>
+
+        <!-- Content -->
+        <div id="sk-main" class="hidden animate-fade-up">
+          <div id="sk-body"><!-- Rendered by JS --></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full pt-xl pb-md border-t border-white/5 bg-surface">
+      <div class="max-w-[1280px] mx-auto px-gutter grid grid-cols-1 md:grid-cols-12 gap-lg mb-xl">
+        <div class="md:col-span-3">
+          <a class="block mb-md w-fit" href="index.html">
+            <div class="bg-white/[0.03] border border-white/[0.1] rounded-lg px-6 py-7 hover:bg-white/[0.06] hover:border-white/[0.2] hover:scale-105 transition-all duration-300">
+              <img alt="Uroo Dev" class="h-auto w-48" src="assets/logo/Uroo.dev-bening.png"/>
+            </div>
+          </a>
+        </div>
+        <div class="md:col-span-3">
+          <h4 class="font-label-md text-primary mb-md">Menu</h4>
+          <ul class="space-y-sm text-caption text-on-tertiary-container">
+            <li><a class="hover:text-primary transition-colors" href="index.html">Beranda</a></li>
+            <li><a class="hover:text-primary transition-colors" href="services.html">Layanan</a></li>
+            <li><a class="hover:text-primary transition-colors" href="demos.html">Produk</a></li>
+            <li><a class="hover:text-primary transition-colors" href="about.html">Tentang</a></li>
+            <li><a class="hover:text-primary transition-colors" href="contact.html">Kontak</a></li>
+          </ul>
+        </div>
+        <div class="md:col-span-6">
+          <h4 class="font-label-md text-primary mb-md">Kontak</h4>
+          <div class="flex flex-wrap gap-2 mb-md">
+            <a class="flip-link" href="https://www.linkedin.com/in/dimas-euro-dwi-prasetyo-0479aa3a6/?isSelfProfile=true" target="_blank" rel="noopener" aria-label="LinkedIn — dimas-euro-dwi-prasetyo">
+              <span class="flip-link-inner">
+                <span class="flip-link-face flip-link-front"><span class="material-symbols-outlined">badge</span><span class="font-label-md">LinkedIn</span></span>
+                <span class="flip-link-face flip-link-back">dimas-euro-dwi-prasetyo</span>
+              </span>
+            </a>
+            <a class="flip-link" href="https://github.com/uroo-dev" target="_blank" rel="noopener" aria-label="GitHub — /uroo-dev">
+              <span class="flip-link-inner">
+                <span class="flip-link-face flip-link-front"><span class="material-symbols-outlined">code</span><span class="font-label-md">GitHub</span></span>
+                <span class="flip-link-face flip-link-back">/uroo-dev</span>
+              </span>
+            </a>
+            <a class="flip-link" href="https://www.tiktok.com/@uroo.dev" target="_blank" rel="noopener" aria-label="TikTok — @uroo.dev">
+              <span class="flip-link-inner">
+                <span class="flip-link-face flip-link-front"><span class="material-symbols-outlined">music_note</span><span class="font-label-md">TikTok</span></span>
+                <span class="flip-link-face flip-link-back">@uroo.dev</span>
+              </span>
+            </a>
+            <a class="flip-link" href="https://instagram.com/dms_euro" target="_blank" rel="noopener" aria-label="Instagram — @dms_euro">
+              <span class="flip-link-inner">
+                <span class="flip-link-face flip-link-front"><span class="material-symbols-outlined">photo_camera</span><span class="font-label-md">Instagram</span></span>
+                <span class="flip-link-face flip-link-back">@dms_euro</span>
+              </span>
+            </a>
+          </div>
+          <ul class="space-y-sm text-caption text-on-tertiary-container">
+            <li class="flex items-center gap-xs"><span class="material-symbols-outlined text-xs">location_on</span><a class="hover:text-primary transition-colors" href="https://maps.app.goo.gl/bpvMvLE4JctYFJCt5" target="_blank" rel="noopener">Papahan, Karanganyar Regency</a></li>
+            <li class="flex items-center gap-xs"><span class="material-symbols-outlined text-xs">mail</span><a class="hover:text-primary transition-colors" href="mailto:uroprasetyo@gmail.com">uroprasetyo@gmail.com</a></li>
+            <li class="flex items-center gap-xs"><span class="material-symbols-outlined text-xs">call</span><a class="hover:text-primary transition-colors" href="tel:+62882006533693">+62 882 0065 33693</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="max-w-[1280px] mx-auto px-gutter mb-xl">
+        <h4 class="font-label-md text-primary mb-md">Lokasi</h4>
+        <div class="map-dark overflow-hidden rounded-xl border border-white/10">
+          <iframe src="https://www.google.com/maps?q=Papahan+Karanganyar+Indonesia&output=embed" width="100%" height="220" style="border:0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+      <div class="max-w-[1280px] mx-auto px-gutter flex flex-col md:flex-row justify-between items-center gap-base border-t border-white/5 pt-md">
+        <p class="font-caption text-caption text-on-tertiary-container">&copy; <span id="year"></span> uroo dev. Built with passion in Indonesia.</p>
+        <div class="flex gap-md">
+          <a class="font-caption text-caption text-on-tertiary-container hover:text-primary transition-colors duration-300" href="#">Privacy Policy</a>
+          <a class="font-caption text-caption text-on-tertiary-container hover:text-primary transition-colors duration-300" href="#">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const esc = (s) => String(s || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+      const formatIDR = (n) => 'Rp ' + Number(n || 0).toLocaleString('id-ID');
+      const $ = s => document.querySelector(s);
+
+      const sectionTitle = (icon, label) => `
+        <div class="flex items-center gap-3 mb-md">
+          <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-primary/10 border border-primary/20">
+            <span class="material-symbols-outlined text-lg text-primary">${icon}</span>
+          </span>
+          <h3 class="font-headline-md text-headline-md text-primary tracking-tight">${label}</h3>
+        </div>`;
+
+      async function load() {
+        try {
+          const demoParam = new URLSearchParams(location.search).get('demo') || '';
+          const res = await fetch('demos.json', { cache: 'no-store' });
+          const data = await res.json();
+          const d = (Array.isArray(data) ? data : []).find(x => x.status === 'live' && x.project === demoParam);
+
+          if (!d || !d.caseStudy) {
+            $('#sk-loading').classList.add('hidden');
+            $('#sk-empty').classList.remove('hidden');
+            if (d) $('#sk-empty-text').textContent = 'Studi kasus untuk "' + d.title + '" belum ditulis. Silakan coba langsung demo-nya.';
+            return;
+          }
+          render(d);
+        } catch (e) {
+          $('#sk-loading').classList.add('hidden');
+          $('#sk-empty').classList.remove('hidden');
+        }
+      }
+
+      function render(d) {
+        const c = d.caseStudy;
+        const cat = esc(d.category || 'Produk');
+        const title = esc(d.title || d.project);
+        const desc = esc(d.description || '');
+        const url = d.url || ('https://' + (d.subdomain || d.project) + '.uroo.my.id');
+        const price = d.price ? formatIDR(d.price) : '';
+
+        const thumb = d.thumbnail
+          ? `<div class="relative overflow-hidden rounded-2xl border border-white/10 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.7)]">
+               <img src="${esc(d.thumbnail)}" alt="${title}" class="w-full aspect-[16/10] object-cover" onerror="this.remove()" />
+               <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+               <div class="absolute bottom-3 right-3 inline-flex items-center gap-1.5 bg-black/60 backdrop-blur-md border border-white/10 rounded-full px-3 py-1.5 text-[11px] text-white">
+                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Live
+               </div>
+             </div>`
+          : `<div class="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.06] to-transparent flex items-center justify-center aspect-[16/10]">
+               <span class="material-symbols-outlined text-7xl text-white/15">deployed_code</span>
+             </div>`;
+
+        const masalah = c.masalah ? `
+          <div class="relative overflow-hidden rounded-2xl border border-red-400/15 bg-red-500/[0.04] p-lg md:p-xl animate-fade-up-delay-1">
+            <div class="sk-glow bg-red-400 -top-20 -right-20"></div>
+            <div class="relative">
+              ${sectionTitle('report_problem', 'Masalah')}
+              <p class="text-body-lg text-on-surface-variant leading-relaxed">${esc(c.masalah)}</p>
+            </div>
+          </div>` : '';
+
+        const solusi = c.solusi ? `
+          <div class="relative overflow-hidden rounded-2xl border border-emerald-400/15 bg-emerald-500/[0.04] p-lg md:p-xl animate-fade-up-delay-2">
+            <div class="sk-glow bg-emerald-400 -bottom-20 -left-20"></div>
+            <div class="relative">
+              ${sectionTitle('lightbulb', 'Solusi')}
+              <p class="text-body-lg text-on-surface-variant leading-relaxed">${esc(c.solusi)}</p>
+            </div>
+          </div>` : '';
+
+        const fitur = Array.isArray(c.fitur) && c.fitur.length ? `
+          <div class="animate-fade-up-delay-1">
+            ${sectionTitle('checklist', 'Fitur Utama')}
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-md">
+              ${c.fitur.map(f => `
+                <div class="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-lg hover:bg-white/[0.06] hover:border-white/20 hover:-translate-y-0.5 transition-all duration-300">
+                  <span class="inline-flex items-center justify-center w-9 h-9 min-w-9 rounded-lg bg-primary/10 border border-primary/20">
+                    <span class="material-symbols-outlined text-base text-primary">check</span>
+                  </span>
+                  <p class="text-body-md text-on-surface-variant leading-relaxed pt-1">${esc(f)}</p>
+                </div>`).join('')}
+            </div>
+          </div>` : '';
+
+        const teknologi = Array.isArray(c.teknologi) && c.teknologi.length ? `
+          <div class="animate-fade-up-delay-2">
+            ${sectionTitle('code', 'Teknologi')}
+            <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-lg md:p-xl">
+              <div class="flex flex-wrap gap-xs">
+                ${c.teknologi.map(t => `
+                  <span class="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-on-surface-variant hover:border-primary/40 hover:text-primary transition-colors">
+                    <span class="w-1.5 h-1.5 rounded-full bg-white/40"></span>${esc(t)}
+                  </span>`).join('')}
+              </div>
+            </div>
+          </div>` : '';
+
+        const hasil = c.hasil ? `
+          <div class="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/10 via-white/[0.03] to-transparent p-lg md:p-xl animate-fade-up-delay-2">
+            <div class="sk-glow bg-primary -top-24 right-0"></div>
+            <div class="relative">
+              ${sectionTitle('trending_up', 'Hasil & Dampak')}
+              <p class="text-body-lg text-on-surface-variant leading-relaxed">${esc(c.hasil)}</p>
+            </div>
+          </div>` : '';
+
+        const ctaPrice = price
+          ? `<div class="text-right md:text-left">
+               <p class="text-[11px] uppercase tracking-widest text-on-surface-variant/70 mb-1">Harga Produk</p>
+               <p class="font-headline-lg text-headline-lg font-bold text-primary tracking-tight">${price}</p>
+             </div>`
+          : '';
+
+        $('#sk-body').innerHTML = `
+          <!-- Breadcrumb -->
+          <a href="demos.html" class="inline-flex items-center gap-2 text-sm text-on-surface-variant hover:text-primary transition-colors mb-md animate-fade-up">
+            <span class="material-symbols-outlined text-base">arrow_back</span> Kembali ke Produk
+          </a>
+
+          <!-- Hero -->
+          <div class="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-lg md:p-xl mb-xl animate-fade-up-delay-1">
+            <div class="sk-glow bg-primary -top-32 -right-24"></div>
+            <div class="relative grid grid-cols-1 md:grid-cols-2 gap-lg items-start">
+              <div class="min-w-0">
+                <div class="flex flex-wrap items-center gap-2 mb-md">
+                  <span class="text-[11px] uppercase tracking-widest border border-white/20 bg-white/5 rounded-full px-3 py-1 text-on-surface-variant">${cat}</span>
+                  <span class="text-[11px] uppercase tracking-widest border border-white/10 rounded-full px-3 py-1 text-on-surface-variant/60">Studi Kasus</span>
+                  ${d.price ? `<span class="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-widest border border-emerald-400/20 bg-emerald-400/10 text-emerald-300 rounded-full px-3 py-1">${price}</span>` : ''}
+                </div>
+                <h1 class="font-headline-lg text-display-lg-mobile md:text-4xl lg:text-[44px] font-bold tracking-tighter text-primary leading-[1.15] mb-md">${title}</h1>
+                ${desc ? `<p class="text-body-lg text-on-surface-variant leading-relaxed mb-lg">${desc}</p>` : ''}
+                <div class="flex flex-col sm:flex-row gap-xs">
+                  <a href="${esc(url)}" target="_blank" rel="noopener" class="flex-1 inline-flex items-center justify-center gap-2 bg-primary text-on-primary px-5 py-3.5 rounded-full text-sm font-bold hover:scale-[1.02] active:scale-95 transition-all">
+                    <span class="material-symbols-outlined text-base">open_in_new</span> Lihat Demo
+                  </a>
+                  <a href="checkout.html?demo=${encodeURIComponent(d.project||'')}" class="flex-1 inline-flex items-center justify-center gap-2 bg-white/10 border border-primary/40 text-primary px-5 py-3.5 rounded-full text-sm font-bold hover:bg-white/15 transition-all">
+                    <span class="material-symbols-outlined text-base">shopping_bag</span> Checkout
+                  </a>
+                </div>
+              </div>
+              <div class="md:pl-0">${thumb}</div>
+            </div>
+          </div>
+
+          <!-- Masalah / Solusi bento -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-md mb-xl">
+            ${masalah}
+            ${solusi}
+          </div>
+
+          <!-- Fitur Utama -->
+          ${fitur ? `<div class="mb-xl">${fitur}</div>` : ''}
+
+          <!-- Teknologi -->
+          ${teknologi ? `<div class="mb-xl">${teknologi}</div>` : ''}
+
+          <!-- Hasil -->
+          ${hasil ? `<div class="mb-xl">${hasil}</div>` : ''}
+
+          <!-- CTA panel -->
+          <div class="relative overflow-hidden rounded-3xl border border-white/10 bg-surface-container p-lg md:p-xl mb-xl animate-fade-up-delay-3">
+            <div class="sk-glow bg-white -bottom-24 left-1/3"></div>
+            <div class="relative flex flex-col md:flex-row md:items-center md:justify-between gap-lg">
+              <div class="max-w-md">
+                <h3 class="font-headline-md text-headline-md text-primary font-bold tracking-tight mb-xs">Ingin ${title} untuk bisnis kamu?</h3>
+                <p class="text-body-md text-on-surface-variant leading-relaxed">Kami bangun website &amp; aplikasi custom yang sesuai kebutuhan, mulai dari desain hingga deploy.</p>
+              </div>
+              ${ctaPrice}
+              <div class="flex flex-col sm:flex-row md:flex-col gap-xs min-w-[180px]">
+                <a href="contact.html" class="inline-flex items-center justify-center gap-2 bg-primary text-on-primary px-5 py-3 rounded-full text-sm font-bold hover:scale-[1.02] active:scale-95 transition-all">
+                  <span class="material-symbols-outlined text-base">chat</span> Konsultasi Gratis
+                </a>
+                <a href="checkout.html?demo=${encodeURIComponent(d.project||'')}" class="inline-flex items-center justify-center gap-2 bg-white/10 border border-white/25 text-primary px-5 py-3 rounded-full text-sm font-bold hover:bg-white/15 transition-all">
+                  <span class="material-symbols-outlined text-base">shopping_bag</span> Langsung Checkout
+                </a>
+              </div>
+            </div>
+          </div>`;
+
+        $('#sk-loading').classList.add('hidden');
+        $('#sk-main').classList.remove('hidden');
+      }
+
+      // Footer year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Mobile menu
+      const menuBtn = document.getElementById("mobile-menu-btn");
+      const menuClose = document.getElementById("mobile-menu-close");
+      const mobileMenu = document.getElementById("mobile-menu");
+      if (menuBtn && mobileMenu) {
+        const openMenu = () => { mobileMenu.classList.remove("-translate-y-full"); document.body.style.overflow = "hidden"; };
+        const closeMenu = () => { mobileMenu.classList.add("-translate-y-full"); document.body.style.overflow = ""; };
+        menuBtn.addEventListener("click", openMenu);
+        if (menuClose) menuClose.addEventListener("click", closeMenu);
+        mobileMenu.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
+      }
+
+      load();
+    </script>
+  </body>
+</html>

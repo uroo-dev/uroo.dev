@@ -3,15 +3,15 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Demo & Template | Software House Karanganyar - uroo dev</title>
+    <title>Produk & Template | Software House Karanganyar - uroo dev</title>
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
     <link rel="manifest" href="site.webmanifest">
-    <meta name="description" content="Jelajahi demo interaktif dan template dari uroo dev — software house Karanganyar. Coba langsung website, aplikasi, dan sistem informasi kami." />
-    <meta name="keywords" content="demo website, template website, coba demo aplikasi, demo aplikasi karanganyar, template landing page gratis, demo sistem informasi, live demo website, uroo dev" />
-    <meta property="og:title" content="Demo & Template | uroo dev" />
-    <meta property="og:description" content="Coba langsung demo interaktif website, aplikasi, dan sistem informasi dari uroo dev." />
+    <meta name="description" content="Jelajahi produk interaktif dan template dari uroo dev — software house Karanganyar. Coba langsung website, aplikasi, dan sistem informasi kami." />
+    <meta name="keywords" content="produk website, template website, coba aplikasi, aplikasi karanganyar, template landing page gratis, sistem informasi, demo website, uroo dev" />
+    <meta property="og:title" content="Produk & Template | uroo dev" />
+    <meta property="og:description" content="Coba langsung produk interaktif website, aplikasi, dan sistem informasi dari uroo dev." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://uroo.my.id/demos" />
     <meta property="og:locale" content="id_ID" />
@@ -25,8 +25,8 @@
     <link rel="stylesheet" href="css/style.css"/>
     <meta property="og:image" content="https://uroo.my.id/assets/logo/Uroo.dev.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Demo & Template | Software House Karanganyar - uroo dev" />
-    <meta name="twitter:description" content="Coba langsung demo interaktif website, aplikasi, dan sistem informasi dari uroo dev. Live demo siap dicoba." />
+    <meta name="twitter:title" content="Produk & Template | Software House Karanganyar - uroo dev" />
+    <meta name="twitter:description" content="Coba langsung produk interaktif website, aplikasi, dan sistem informasi dari uroo dev. Live demo siap dicoba." />
     <meta name="twitter:image" content="https://uroo.my.id/assets/logo/Uroo.dev.png" />
     <script type="application/ld+json">
     {
@@ -54,6 +54,31 @@
         100% { transform: translateY(0px); }
       }
       .animate-float { animation: float 6s ease-in-out infinite; }
+      .filter-chip {
+        display:inline-flex; align-items:center; gap:8px;
+        padding:9px 18px; border-radius:9999px;
+        font-size:13px; font-weight:600; line-height:1;
+        border:1px solid rgba(255,255,255,0.14);
+        background:rgba(255,255,255,0.04);
+        color:rgba(230,227,226,0.7);
+        cursor:pointer; user-select:none;
+        transition:background .25s cubic-bezier(0.16,1,0.3,1), border-color .25s, color .25s, transform .15s, box-shadow .25s;
+      }
+      .filter-chip:hover { background:rgba(255,255,255,0.09); border-color:rgba(255,255,255,0.3); color:#fff; transform:translateY(-1px); }
+      .filter-chip:active { transform:scale(0.97); }
+      .filter-chip.active {
+        background:#fff; color:#131313; border-color:#fff; font-weight:700;
+        box-shadow:0 6px 24px -6px rgba(255,255,255,0.35);
+      }
+      .filter-count {
+        display:inline-flex; align-items:center; justify-content:center;
+        min-width:20px; height:20px; padding:0 6px; border-radius:9999px;
+        font-size:11px; font-weight:700; background:rgba(255,255,255,0.12); color:inherit;
+        transition:background .25s, color .25s;
+      }
+      .filter-chip.active .filter-count { background:#131313; color:#fff; }
+      .filter-chip .filter-icon { font-size:15px; font-variation-settings:'FILL' 0; }
+      .filter-chip.active .filter-icon { font-variation-settings:'FILL' 1; }
     </style>
     <script id="tailwind-config">
       tailwind.config = {
@@ -149,10 +174,10 @@
         <a class="font-headline-md text-headline-md font-bold tracking-tighter text-primary" href="index.html">uroo dev</a>
         <div class="hidden md:flex items-center gap-lg">
           <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="index.html">Beranda</a>
-          <a class="font-body-md text-body-md transition-colors duration-300 text-primary font-bold border-b-2 border-primary pb-1" href="demos.html">Demo</a>
-          <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="portfolio.html">Portofolio</a>
-          <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="about.html">About</a>
-          <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="contact.html">Contact</a>
+          <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="services.html">Layanan</a>
+          <a class="font-body-md text-body-md transition-colors duration-300 text-primary font-bold border-b-2 border-primary pb-1" href="demos.html">Produk</a>
+          <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="about.html">Tentang</a>
+          <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="contact.html">Kontak</a>
         </div>
         <button id="mobile-menu-btn" class="md:hidden text-primary p-2" aria-label="Menu">
           <span class="material-symbols-outlined text-2xl">menu</span>
@@ -163,11 +188,11 @@
       <button id="mobile-menu-close" class="absolute top-6 right-6 text-primary p-2" aria-label="Close">
         <span class="material-symbols-outlined text-2xl">close</span>
       </button>
-      <a class="font-body-md text-body-md transition-colors duration-300 text-primary font-bold" href="demos.html">Demo</a>
       <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="index.html">Beranda</a>
-      <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="portfolio.html">Portofolio</a>
-      <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="about.html">About</a>
-      <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="contact.html">Contact</a>
+      <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="services.html">Layanan</a>
+      <a class="font-body-md text-body-md transition-colors duration-300 text-primary font-bold" href="demos.html">Produk</a>
+      <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="about.html">Tentang</a>
+      <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="contact.html">Kontak</a>
     </div>
 
     <main class="relative pt-32 pb-xl overflow-hidden">
@@ -175,34 +200,55 @@
       <section class="max-w-[1280px] mx-auto px-gutter relative z-10 mb-xl">
         <div class="max-w-3xl">
           <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-md leading-tight">
-            Coba Langsung.<br /><span class="opacity-50">Interactive Demo & Template.</span>
+            Coba Langsung.<br /><span class="opacity-50">Produk Interaktif &amp; Template.</span>
           </h1>
           <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
-            Jelajahi demo interaktif dari project yang pernah kami bangun. Klik
-            "Lihat Demo" untuk mencoba langsung, "Baca Demo" untuk studi kasus
-            lengkap (masalah &amp; solusi), atau "Checkout" untuk memesan versi
-            untuk bisnis Anda.
+            Jelajahi produk interaktif dari project yang pernah kami bangun. Klik
+            "Lihat Demo" untuk mencoba langsung, "Studi Kasus" untuk melihat
+            masalah &amp; solusi di baliknya, atau tombol checkout untuk memesan
+            versi untuk bisnis Anda.
           </p>
         </div>
       </section>
 
       <!-- Filter bar -->
       <section class="max-w-[1280px] mx-auto px-gutter relative z-10 mb-lg" id="filter-bar">
-        <div id="category-filters" class="flex flex-wrap gap-xs mb-md">
-          <button class="filter-chip active px-4 py-2 rounded-full border text-sm transition-all" data-cat="" style="border-color:var(--on-surface-variant,#c4c7c8); color:var(--on-surface-variant,#c4c7c8)">
-            Semua
-          </button>
+        <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-md md:p-lg flex flex-col gap-md">
+          <div class="flex flex-col md:flex-row md:items-center gap-md">
+            <div class="relative flex-1">
+              <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/60 text-lg pointer-events-none">search</span>
+              <input
+                id="search-input"
+                type="search"
+                placeholder="Cari produk... mis. cms, kasir, landing page"
+                class="w-full bg-white/[0.04] border border-white/15 focus:border-white/50 rounded-full pl-12 pr-5 py-3 text-sm text-primary placeholder-on-surface-variant/50 outline-none transition-all focus:shadow-[0_0_0_3px_rgba(255,255,255,0.08)] backdrop-blur"
+              />
+            </div>
+            <div class="flex items-center gap-2 text-sm text-on-surface-variant/70 shrink-0 order-last md:order-none">
+              <span class="material-symbols-outlined text-base">apps</span>
+              <span id="result-count" class="font-medium">—</span>
+              <span class="text-on-surface-variant/50">produk</span>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 pt-1">
+            <span class="hidden sm:inline-flex items-center gap-1.5 text-[11px] uppercase tracking-widest text-on-surface-variant/50 mr-1 shrink-0">
+              <span class="material-symbols-outlined text-sm">category</span> Kategori
+            </span>
+            <div id="category-filters" class="flex flex-wrap gap-2"></div>
+          </div>
         </div>
       </section>
 
       <!-- Demo grid -->
       <section class="max-w-[1280px] mx-auto px-gutter relative z-10">
-        <div id="demo-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-md">
+        <div id="demo-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-lg">
           <!-- Rendered by JS -->
         </div>
         <div id="demo-empty" class="hidden text-center py-xl">
-          <p class="text-on-surface-variant">Belum ada demo publik saat ini. Silakan cek kembali nanti.</p>
+          <p class="text-on-surface-variant">Belum ada produk publik saat ini. Silakan cek kembali nanti.</p>
         </div>
+        <!-- Pagination -->
+        <div id="pagination" class="flex items-center justify-center gap-2 mt-xl"></div>
       </section>
 
       <!-- CTA -->
@@ -219,63 +265,73 @@
           </div>
           <div class="flex flex-col sm:flex-row gap-md w-full md:w-auto">
             <a href="contact.html" class="bg-primary text-on-primary px-10 py-4 rounded-full font-label-md text-label-md font-bold hover:scale-105 active:scale-95 transition-all shadow-xl text-center">Minta Sekarang</a>
-            <a href="portfolio.html" class="bg-white/5 border border-white/20 text-primary px-10 py-4 rounded-full font-label-md text-label-md font-bold hover:bg-white/10 active:scale-95 transition-all text-center">Lihat Portofolio</a>
+            <a href="studi-kasus.html" class="bg-white/5 border border-white/20 text-primary px-10 py-4 rounded-full font-label-md text-label-md font-bold hover:bg-white/10 active:scale-95 transition-all text-center">Lihat Studi Kasus</a>
           </div>
         </div>
       </section>
 
-      <!-- Baca Demo: Study Case Modal -->
-      <div id="study-modal" class="fixed inset-0 z-[70] hidden items-center justify-center p-gutter">
-        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" data-study-close></div>
-        <div class="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto bg-surface-container rounded-2xl border border-white/10 shadow-2xl" role="dialog" aria-modal="true" aria-labelledby="study-body">
-          <button id="study-close" class="absolute top-4 right-4 z-10 text-on-surface-variant hover:text-primary p-2" aria-label="Tutup">
-            <span class="material-symbols-outlined">close</span>
-          </button>
-          <div id="study-body" class="p-lg md:p-xl"><!-- Rendered by JS --></div>
-        </div>
-      </div>
-    </main>
+      </main>
 
     <!-- Footer -->
     <footer class="w-full pt-xl pb-md border-t border-white/5 bg-surface">
       <div class="max-w-[1280px] mx-auto px-gutter">
         <div class="grid grid-cols-1 md:grid-cols-12 gap-lg mb-xl">
-          <div class="md:col-span-4">
+          <div class="md:col-span-3">
             <a class="block mb-md w-fit" href="index.html">
               <div class="bg-white/[0.03] border border-white/[0.1] rounded-lg px-6 py-7 hover:bg-white/[0.06] hover:border-white/[0.2] hover:scale-105 transition-all duration-300">
                 <img alt="Uroo Dev" class="h-auto w-48" src="assets/logo/Uroo.dev-bening.png"/>
               </div>
             </a>
-            <div class="flex gap-md">
-              <a class="text-on-tertiary-container hover:text-primary transition-colors" href="https://www.linkedin.com/in/dimas-euro-dwi-prasetyo-0479aa3a6/?isSelfProfile=true" target="_blank" rel="noopener"><span class="material-symbols-outlined">badge</span></a>
-              <a class="text-on-tertiary-container hover:text-primary transition-colors" href="https://github.com/uroo-dev" target="_blank" rel="noopener"><span class="material-symbols-outlined">code</span></a>
-              <a class="text-on-tertiary-container hover:text-primary transition-colors" href="https://www.tiktok.com/@uroo.dev" target="_blank" rel="noopener"><span class="material-symbols-outlined">music_note</span></a>
-              <a class="text-on-tertiary-container hover:text-primary transition-colors" href="https://instagram.com/dms_euro" target="_blank" rel="noopener"><span class="material-symbols-outlined">photo_camera</span></a>
-            </div>
           </div>
-          <div class="md:col-span-2">
+          <div class="md:col-span-3">
             <h4 class="font-label-md text-primary mb-md">Menu</h4>
             <ul class="space-y-sm text-caption text-on-tertiary-container">
               <li><a class="hover:text-primary transition-colors" href="index.html">Beranda</a></li>
-              <li><a class="hover:text-primary transition-colors" href="demos.html">Demo</a></li>
-              <li><a class="hover:text-primary transition-colors" href="portfolio.html">Portofolio</a></li>
+              <li><a class="hover:text-primary transition-colors" href="services.html">Layanan</a></li>
+              <li><a class="hover:text-primary transition-colors" href="demos.html">Produk</a></li>
               <li><a class="hover:text-primary transition-colors" href="about.html">Tentang</a></li>
               <li><a class="hover:text-primary transition-colors" href="contact.html">Kontak</a></li>
             </ul>
           </div>
-          <div class="md:col-span-3">
+          <div class="md:col-span-6">
             <h4 class="font-label-md text-primary mb-md">Kontak</h4>
+            <div class="flex flex-wrap gap-2 mb-md">
+              <a class="flip-link" href="https://www.linkedin.com/in/dimas-euro-dwi-prasetyo-0479aa3a6/?isSelfProfile=true" target="_blank" rel="noopener" aria-label="LinkedIn — dimas-euro-dwi-prasetyo">
+                <span class="flip-link-inner">
+                  <span class="flip-link-face flip-link-front"><span class="material-symbols-outlined">badge</span><span class="font-label-md">LinkedIn</span></span>
+                  <span class="flip-link-face flip-link-back">dimas-euro-dwi-prasetyo</span>
+                </span>
+              </a>
+              <a class="flip-link" href="https://github.com/uroo-dev" target="_blank" rel="noopener" aria-label="GitHub — /uroo-dev">
+                <span class="flip-link-inner">
+                  <span class="flip-link-face flip-link-front"><span class="material-symbols-outlined">code</span><span class="font-label-md">GitHub</span></span>
+                  <span class="flip-link-face flip-link-back">/uroo-dev</span>
+                </span>
+              </a>
+              <a class="flip-link" href="https://www.tiktok.com/@uroo.dev" target="_blank" rel="noopener" aria-label="TikTok — @uroo.dev">
+                <span class="flip-link-inner">
+                  <span class="flip-link-face flip-link-front"><span class="material-symbols-outlined">music_note</span><span class="font-label-md">TikTok</span></span>
+                  <span class="flip-link-face flip-link-back">@uroo.dev</span>
+                </span>
+              </a>
+              <a class="flip-link" href="https://instagram.com/dms_euro" target="_blank" rel="noopener" aria-label="Instagram — @dms_euro">
+                <span class="flip-link-inner">
+                  <span class="flip-link-face flip-link-front"><span class="material-symbols-outlined">photo_camera</span><span class="font-label-md">Instagram</span></span>
+                  <span class="flip-link-face flip-link-back">@dms_euro</span>
+                </span>
+              </a>
+            </div>
             <ul class="space-y-sm text-caption text-on-tertiary-container">
               <li class="flex items-center gap-xs"><span class="material-symbols-outlined text-xs">location_on</span><a class="hover:text-primary transition-colors" href="https://maps.app.goo.gl/bpvMvLE4JctYFJCt5" target="_blank" rel="noopener">Papahan, Karanganyar Regency</a></li>
               <li class="flex items-center gap-xs"><span class="material-symbols-outlined text-xs">mail</span><a class="hover:text-primary transition-colors" href="mailto:uroprasetyo@gmail.com">uroprasetyo@gmail.com</a></li>
               <li class="flex items-center gap-xs"><span class="material-symbols-outlined text-xs">call</span><a class="hover:text-primary transition-colors" href="tel:+62882006533693">+62 882 0065 33693</a></li>
             </ul>
           </div>
-          <div class="md:col-span-3">
-            <h4 class="font-label-md text-primary mb-md">Lokasi</h4>
-            <div class="map-dark overflow-hidden rounded-xl border border-white/10">
-              <iframe src="https://www.google.com/maps?q=Papahan+Karanganyar+Indonesia&output=embed" width="100%" height="200" style="border:0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
+        </div>
+        <div class="mb-xl">
+          <h4 class="font-label-md text-primary mb-md">Lokasi</h4>
+          <div class="map-dark overflow-hidden rounded-xl border border-white/10">
+            <iframe src="https://www.google.com/maps?q=Papahan+Karanganyar+Indonesia&output=embed" width="100%" height="220" style="border:0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
         <div class="flex flex-col md:flex-row justify-between items-center gap-base border-t border-white/5 pt-md">
@@ -292,6 +348,10 @@
       const esc = (s) => String(s || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 
       let demos = [];
+      let currentCat = '';
+      let currentQuery = '';
+      let currentPage = 1;
+      const PER_PAGE = 6;
 
       async function loadDemos() {
         try {
@@ -304,45 +364,93 @@
           demos = [];
         }
         renderFilters();
-        renderGrid('');
+        renderGrid();
       }
 
       function renderFilters() {
         const cats = [...new Set(demos.map(d => d.category).filter(Boolean))];
         const container = $('#category-filters');
-        let chips = '<button class="filter-chip active" data-cat="" style="border-color:#fff; color:#fff">Semua</button>';
+        const catIcon = (c) => {
+          const s = (c || '').toLowerCase();
+          if (s.includes('portofolio') || s.includes('portfolio')) return 'grid_view';
+          if (s.includes('web')) return 'web';
+          if (s.includes('mobile') || s.includes('aplikasi')) return 'smartphone';
+          if (s.includes('sistem') || s.includes('cms')) return 'dashboard';
+          if (s.includes('pos') || s.includes('kasir')) return 'point_of_sale';
+          return 'category';
+        };
+        const countFor = (cat) => cat ? demos.filter(d => d.category === cat).length : demos.length;
+        let chips = `<button class="filter-chip active" data-cat="" type="button">
+          <span class="material-symbols-outlined filter-icon">apps</span> Semua
+          <span class="filter-count">${countFor('')}</span>
+        </button>`;
         cats.forEach(c => {
-          chips += `<button class="filter-chip" data-cat="${esc(c)}" style="border-color:rgba(255,255,255,0.2); color:rgba(255,255,255,0.65)">${esc(c)}</button>`;
+          chips += `<button class="filter-chip" data-cat="${esc(c)}" type="button">
+            <span class="material-symbols-outlined filter-icon">${catIcon(c)}</span> ${esc(c)}
+            <span class="filter-count">${countFor(c)}</span>
+          </button>`;
         });
         container.innerHTML = chips;
         container.querySelectorAll('.filter-chip').forEach(chip => {
           chip.addEventListener('click', () => {
-            container.querySelectorAll('.filter-chip').forEach(c => {
-              c.classList.remove('active');
-              c.style.borderColor = 'rgba(255,255,255,0.2)';
-              c.style.color = 'rgba(255,255,255,0.65)';
-            });
+            container.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
             chip.classList.add('active');
-            chip.style.borderColor = '#fff';
-            chip.style.color = '#fff';
-            renderGrid(chip.dataset.cat);
+            currentCat = chip.dataset.cat;
+            currentPage = 1;
+            renderGrid();
           });
         });
       }
 
-      function renderGrid(cat) {
-        const list = demos.filter(d => !cat || d.category === cat);
+      function filteredDemos() {
+        const q = currentQuery.trim().toLowerCase();
+        return demos.filter(d => {
+          const matchCat = !currentCat || d.category === currentCat;
+          const matchQ = !q || (d.title + ' ' + (d.description || '') + ' ' + (d.category || '')).toLowerCase().includes(q);
+          return matchCat && matchQ;
+        });
+      }
+
+      function renderPagination(total) {
+        const wrap = $('#pagination');
+        const pages = Math.max(1, Math.ceil(total / PER_PAGE));
+        wrap.innerHTML = '';
+
+        const btn = (label, disabled, active, onClick) => {
+          const b = document.createElement('button');
+          b.innerHTML = label;
+          b.className = 'min-w-[42px] px-4 py-2 rounded-full border text-sm font-bold transition-all ' +
+            (disabled ? 'opacity-40 pointer-events-none ' : (active ? 'bg-primary text-on-primary border-primary hover:scale-105 ' : 'bg-white/5 border-white/20 text-primary hover:bg-white/10'));
+          b.addEventListener('click', onClick);
+          return b;
+        };
+
+        wrap.appendChild(btn('&larr;', currentPage === 1, false, () => { if (currentPage > 1) { currentPage--; renderGrid(); } }));
+        for (let p = 1; p <= pages; p++) {
+          wrap.appendChild(btn(String(p), false, p === currentPage, () => { currentPage = p; renderGrid(); }));
+        }
+        wrap.appendChild(btn('&rarr;', currentPage === pages, false, () => { if (currentPage < pages) { currentPage++; renderGrid(); } }));
+      }
+
+      function renderGrid() {
+        const list = filteredDemos();
         const grid = $('#demo-grid');
         $('#demo-empty').classList.toggle('hidden', list.length > 0);
+        $('#result-count').textContent = list.length + ' produk';
 
-        if (!list.length) { grid.innerHTML = ''; return; }
+        const totalPages = Math.max(1, Math.ceil(list.length / PER_PAGE));
+        if (currentPage > totalPages) currentPage = totalPages;
+        const start = (currentPage - 1) * PER_PAGE;
+        const visible = list.slice(start, start + PER_PAGE);
 
-        grid.innerHTML = list.map((d, i) => {
-          const catLabel = d.category || 'Demo';
+        if (!visible.length) { grid.innerHTML = ''; renderPagination(0); return; }
+
+        grid.innerHTML = visible.map((d, i) => {
+          const catLabel = d.category || 'Produk';
           const hasThumb = !!d.thumbnail;
           const thumbBlock = hasThumb
-            ? `<div class="relative -mx-md -mt-md mb-2 overflow-hidden" style="aspect-ratio:16/9">
-                 <img src="${esc(d.thumbnail)}" alt="Thumbnail ${esc(d.title)}" loading="lazy" class="w-full h-full object-cover group-hover:scale-[1.06] transition-transform duration-500" onerror="this.closest('div').style.display='none'" />
+            ? `<div class="relative -mx-md -mt-md mb-2 overflow-hidden rounded-t-2xl" style="aspect-ratio:16/9">
+                 <img src="${esc(d.thumbnail)}" alt="Thumbnail ${esc(d.title)}" loading="lazy" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-[filter,transform] duration-700 ease-out group-hover:scale-[1.06]" onerror="this.closest('div').style.display='none'" />
                  <span class="absolute top-3 left-3 text-[10px] uppercase tracking-widest bg-black/50 backdrop-blur text-white border border-white/20 rounded-full px-2 py-1">${esc(catLabel)}</span>
                </div>`
             : `<div class="flex items-start justify-between gap-3">
@@ -353,128 +461,58 @@
                </div>`;
 
           return `
-          <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-md flex flex-col gap-4 hover:bg-white/[0.08] hover:border-white/20 hover:-translate-y-1 transition-all duration-300 group overflow-hidden">
+          <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-md flex flex-col gap-5 hover:bg-white/[0.08] hover:border-white/20 hover:-translate-y-1 transition-all duration-300 group overflow-hidden">
             ${thumbBlock}
             <div>
-              <h3 class="font-headline-md text-headline-md text-primary mb-1">${esc(d.title)}</h3>
-              <p class="text-sm text-on-surface-variant line-clamp-3">${esc(d.description||'Demo interaktif — coba langsung dan lihat hasilnya.')}</p>
+              <h3 class="font-headline-lg text-headline-lg text-primary mb-1">${esc(d.title)}</h3>
+              <p class="text-[15px] leading-relaxed text-on-surface-variant line-clamp-3">${esc(d.description||'Produk interaktif — coba langsung dan lihat hasilnya.')}</p>
             </div>
             <div class="mt-auto flex items-center justify-between gap-xs text-xs text-on-surface-variant/70">
               <span class="flex items-center gap-xs"><span class="material-symbols-outlined text-xs">lock</span>${esc(d.subdomain||d.url||'')}</span>
               ${d.price ? `<span class="font-bold text-primary">${esc(formatIDR(d.price))}</span>` : ''}
             </div>
-            <div class="flex gap-xs pt-1">
-              <a href="${esc(d.url)}" target="_blank" rel="noopener" class="flex-1 bg-primary text-on-primary px-4 py-2.5 rounded-full text-center text-sm font-bold hover:scale-[1.03] active:scale-95 transition-all shrink-0">Lihat Demo</a>
-            </div>
-            <div class="flex gap-xs">
-              <button type="button" data-project="${esc(d.project||'')}" class="js-baca flex-1 bg-white/5 border border-white/20 text-primary px-4 py-2.5 rounded-full text-center text-sm font-bold hover:bg-white/10 transition-all shrink-0" ${d.caseStudy ? '' : 'disabled'}>Baca Demo</button>
-              <a href="checkout?demo=${encodeURIComponent(d.project||'')}" class="flex-1 bg-white/10 border border-primary/40 text-primary px-4 py-2.5 rounded-full text-center text-sm font-bold hover:bg-white/15 transition-all shrink-0 inline-flex items-center justify-center gap-1">
-                <span class="material-symbols-outlined text-base">shopping_bag</span> Checkout
+            <div class="flex items-center gap-2 pt-1">
+              <a href="studi-kasus.html?demo=${encodeURIComponent(d.project||'')}" class="liquid-chrome-btn flex-1 ${d.caseStudy ? '' : 'opacity-40 pointer-events-none'}">
+                <span class="lcb-ring"></span>
+                <span class="lcb-pane"><span class="material-symbols-outlined text-base">menu_book</span> Studi Kasus</span>
+              </a>
+              <a href="${esc(d.url)}" target="_blank" rel="noopener" class="liquid-chrome-btn flex-1">
+                <span class="lcb-ring"></span>
+                <span class="lcb-pane"><span class="material-symbols-outlined text-base">rocket_launch</span> Lihat Demo</span>
+              </a>
+              <a href="checkout.html?demo=${encodeURIComponent(d.project||'')}" class="shrink-0 w-12 h-12 rounded-full bg-white/10 border border-primary/40 text-primary hover:bg-white/15 hover:scale-105 active:scale-95 transition-all inline-flex items-center justify-center" title="Checkout">
+                <span class="material-symbols-outlined">shopping_bag</span>
               </a>
             </div>
           </div>
         `;
         }).join('');
+
+        renderPagination(list.length);
       }
 
       const $ = s => document.querySelector(s);
 
+      // Search
+      $('#search-input').addEventListener('input', (e) => {
+        currentQuery = e.target.value;
+        currentPage = 1;
+        renderGrid();
+      });
+      $('#search-input').addEventListener('search', (e) => {
+        currentQuery = e.target.value;
+        currentPage = 1;
+        renderGrid();
+      });
+
       // Footer year
       document.getElementById('year').textContent = new Date().getFullYear();
-
-      // Study Case modal
-      const studyModal = document.getElementById('study-modal');
-      const studyBody = document.getElementById('study-body');
 
       function formatIDR(n) {
         const num = Number(n || 0);
         if (!num) return '';
         return 'Rp ' + num.toLocaleString('id-ID');
       }
-
-      function openStudy(project) {
-        const d = demos.find(x => x.project === project);
-        if (!d || !d.caseStudy) return;
-        const c = d.caseStudy;
-        const cat = esc(d.category || 'Demo');
-        const title = esc(d.title || d.project);
-        const desc = esc(d.description || '');
-        const url = d.url || ('https://' + (d.subdomain || d.project) + '.uroo.my.id');
-        const thumb = d.thumbnail
-          ? `<img src="${esc(d.thumbnail)}" alt="${title}" class="w-full aspect-video object-cover rounded-xl border border-white/10 mb-md" onerror="this.remove()" />`
-          : '';
-        const masalah = c.masalah ? `
-          <div class="mb-md">
-            <h4 class="flex items-center gap-xs font-label-md text-label-md text-primary mb-xs"><span class="material-symbols-outlined text-lg">report_problem</span> Masalah</h4>
-            <p class="text-body-md text-on-surface-variant">${esc(c.masalah)}</p>
-          </div>` : '';
-        const solusi = c.solusi ? `
-          <div class="mb-md">
-            <h4 class="flex items-center gap-xs font-label-md text-label-md text-primary mb-xs"><span class="material-symbols-outlined text-lg">lightbulb</span> Solusi</h4>
-            <p class="text-body-md text-on-surface-variant">${esc(c.solusi)}</p>
-          </div>` : '';
-        const fitur = Array.isArray(c.fitur) && c.fitur.length ? `
-          <div class="mb-md">
-            <h4 class="flex items-center gap-xs font-label-md text-label-md text-primary mb-xs"><span class="material-symbols-outlined text-lg">checklist</span> Fitur Utama</h4>
-            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-xs">
-              ${c.fitur.map(f => `<li class="flex items-start gap-xs text-body-sm text-on-surface-variant bg-white/[0.03] border border-white/10 rounded-lg px-3 py-2"><span class="material-symbols-outlined text-sm text-primary shrink-0">check_circle</span>${esc(f)}</li>`).join('')}
-            </ul>
-          </div>` : '';
-        const teknologi = Array.isArray(c.teknologi) && c.teknologi.length ? `
-          <div class="mb-md">
-            <h4 class="flex items-center gap-xs font-label-md text-label-md text-primary mb-xs"><span class="material-symbols-outlined text-lg">code</span> Teknologi</h4>
-            <div class="flex flex-wrap gap-xs">${c.teknologi.map(t => `<span class="text-xs border border-white/15 bg-white/5 rounded-full px-3 py-1 text-on-surface-variant">${esc(t)}</span>`).join('')}</div>
-          </div>` : '';
-        const hasil = c.hasil ? `
-          <div class="mb-md">
-            <h4 class="flex items-center gap-xs font-label-md text-label-md text-primary mb-xs"><span class="material-symbols-outlined text-lg">trending_up</span> Hasil</h4>
-            <p class="text-body-md text-on-surface-variant">${esc(c.hasil)}</p>
-          </div>` : '';
-        const price = d.price ? `<p class="text-primary font-bold text-xl mb-md">${formatIDR(d.price)}</p>` : '';
-
-        studyBody.innerHTML = `
-          <div class="flex items-center justify-between gap-md mb-md">
-            <span class="text-[10px] uppercase tracking-widest border border-white/20 rounded-full px-2.5 py-1 text-on-surface-variant">${cat}</span>
-            <span class="text-[10px] uppercase tracking-widest border border-white/10 rounded-full px-2.5 py-1 text-on-surface-variant/70">Study Case</span>
-          </div>
-          <h3 class="font-headline-md text-headline-md text-primary mb-xs">${title}</h3>
-          ${desc ? `<p class="text-body-md text-on-surface-variant mb-md">${desc}</p>` : ''}
-          ${thumb}
-          ${price}
-          ${masalah}
-          ${solusi}
-          ${fitur}
-          ${teknologi}
-          ${hasil}
-          <div class="flex flex-col sm:flex-row gap-xs pt-md mt-md border-t border-white/10">
-            <a href="${esc(url)}" target="_blank" rel="noopener" class="flex-1 bg-primary text-on-primary px-4 py-3 rounded-full text-center text-sm font-bold hover:scale-[1.03] active:scale-95 transition-all">Lihat Demo</a>
-            <a href="checkout?demo=${encodeURIComponent(d.project||'')}" class="flex-1 bg-white/10 border border-primary/40 text-primary px-4 py-3 rounded-full text-center text-sm font-bold inline-flex items-center justify-center gap-1 hover:bg-white/15 transition-all">
-              <span class="material-symbols-outlined text-base">shopping_bag</span> Checkout
-            </a>
-          </div>`;
-
-        studyModal.classList.remove('hidden');
-        studyModal.classList.add('flex');
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeStudy() {
-        studyModal.classList.add('hidden');
-        studyModal.classList.remove('flex');
-        studyBody.innerHTML = '';
-        document.body.style.overflow = '';
-      }
-
-      document.addEventListener('click', (e) => {
-        if (e.target.closest('.js-baca')) {
-          const btn = e.target.closest('.js-baca');
-          if (!btn.disabled) openStudy(btn.dataset.project);
-        }
-        if (e.target.closest('[data-study-close]') || e.target.closest('#study-close')) {
-          closeStudy();
-        }
-      });
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeStudy(); });
 
       // Lenis + GSAP
       const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });

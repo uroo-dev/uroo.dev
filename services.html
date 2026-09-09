@@ -48,19 +48,64 @@
     }
     </script>
     <style>
-      @keyframes float {
-        0% {
-          transform: translateY(0px);
+      #fluid-gallery .gallery-tile {
+        will-change: transform;
+        transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+          border-color 300ms ease, opacity 300ms ease,
+          background-color 300ms ease;
+      }
+      #fluid-gallery .gallery-tile.tile-expanded {
+        border-color: rgba(255, 255, 255, 0.35);
+        background-color: rgba(255, 255, 255, 0.07);
+        box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.8);
+        z-index: 30;
+        opacity: 1;
+      }
+      #fluid-gallery .gallery-tile:not(.tile-expanded) {
+        z-index: 10;
+      }
+      /* Chip kecil pada kartu layanan */
+      #fluid-gallery .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.08);
+        padding: 0.3rem 0.65rem;
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      #fluid-gallery .chip::before {
+        content: "";
+        width: 0.375rem;
+        height: 0.375rem;
+        border-radius: 999px;
+        background: var(--accent);
+      }
+      /* Kartu yang dipilih naik ke atas sendiri & memanjang */
+      #fluid-gallery .gallery-tile.tile-expanded {
+        padding: 1.75rem;
+      }
+      #fluid-gallery .gallery-tile.tile-expanded .tile-self {
+        gap: var(--space-md, 1rem);
+      }
+      #fluid-gallery .gallery-tile.tile-expanded .tile-self .block.font-headline-md {
+        font-size: 2rem;
+        line-height: 1.15;
+      }
+      @media (min-width: 768px) {
+        #fluid-gallery .gallery-tile.tile-expanded {
+          padding: 2.25rem;
         }
-        50% {
-          transform: translateY(-10px);
-        }
-        100% {
-          transform: translateY(0px);
+        #fluid-gallery .gallery-tile.tile-expanded .tile-self {
+          max-width: 56rem;
         }
       }
-      .animate-float {
-        animation: float 6s ease-in-out infinite;
+      @media (prefers-reduced-motion: reduce) {
+        #fluid-gallery .gallery-tile {
+          transition: border-color 300ms ease, opacity 300ms ease;
+        }
       }
     </style>
     <script id="tailwind-config">
@@ -199,11 +244,10 @@
 <a class="font-headline-md text-headline-md font-bold tracking-tighter text-primary" href="index.html">uroo dev</a>
 <div class="hidden md:flex items-center gap-lg">
   <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="index.html">Beranda</a>
-  <a class="font-body-md text-body-md transition-colors duration-300 text-primary font-bold border-b-2 border-primary pb-1" href="services.html">Service</a>
-  <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="demos.html">Demo</a>
-  <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="portfolio.html">Portofolio</a>
-  <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="about.html">About</a>
-  <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="contact.html">Contact</a>
+  <a class="font-body-md text-body-md transition-colors duration-300 text-primary font-bold border-b-2 border-primary pb-1" href="services.html">Layanan</a>
+  <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="demos.html">Produk</a>
+  <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="about.html">Tentang</a>
+  <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="contact.html">Kontak</a>
 </div>
 <button id="mobile-menu-btn" class="md:hidden text-primary p-2" aria-label="Menu">
   <span class="material-symbols-outlined text-2xl">menu</span>
@@ -214,12 +258,11 @@
   <button id="mobile-menu-close" class="absolute top-6 right-6 text-primary p-2" aria-label="Close">
     <span class="material-symbols-outlined text-2xl">close</span>
   </button>
-  <a class="font-body-md text-body-md transition-colors duration-300 text-primary font-bold" href="services.html">Service</a>
-  <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="demos.html">Demo</a>
   <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="index.html">Beranda</a>
-  <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="portfolio.html">Portofolio</a>
-  <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="about.html">About</a>
-  <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="contact.html">Contact</a>
+  <a class="font-body-md text-body-md transition-colors duration-300 text-primary font-bold" href="services.html">Layanan</a>
+  <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="demos.html">Produk</a>
+  <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="about.html">Tentang</a>
+  <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="contact.html">Kontak</a>
 </div>
     <main class="relative pt-32 pb-xl overflow-hidden">
       <section class="max-w-[1280px] mx-auto px-gutter relative z-10 mb-xl">
@@ -241,51 +284,300 @@
         </div>
       </section>
       <section class="max-w-[1280px] mx-auto px-gutter relative z-10">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md">
-          <div
-            class="relative duration-500 hover:rotate-0 group [transform:rotate3d(1,-1,1,60deg)] border-2 overflow-hidden rounded-2xl p-md flex flex-col items-start gap-4 h-full transition-all duration-300 bg-sky-900 border-sky-600"
+<div
+          id="fluid-gallery"
+          class="relative grid grid-cols-1 sm:grid-cols-2 gap-sm md:gap-lg"
+          role="group"
+          aria-label="Galeri layanan uroo dev"
+        >
+          <!-- Pembuatan Website -->
+          <button
+            type="button"
+            data-tile="website"
+            aria-expanded="false"
+            style="--accent: #38bdf8; grid-row: 1; grid-column: 1"
+            class="gallery-tile relative rounded-[24px] border border-white/[0.08] bg-white/[0.04] backdrop-blur-xl p-lg md:p-xl overflow-hidden text-left cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
           >
-            <div class="text-white">
-              <span class="material-symbols-outlined text-5xl">language</span>
-            </div>
-            <h3 class="font-headline-md text-headline-md text-white">Web Development</h3>
-            <p class="font-body-md text-body-md text-white/80 flex-grow">
-              Website dan aplikasi web yang cepat, responsif, dan sesuai kebutuhan bisnis.
-            </p>
-          </div>
-          <div
-            class="relative duration-500 hover:rotate-0 group [transform:rotate3d(1,-1,1,60deg)] border-2 overflow-hidden rounded-2xl p-md flex flex-col items-start gap-4 h-full transition-all duration-300 bg-violet-900 border-violet-600"
+            <span
+              class="gallery-glow absolute -top-20 -right-20 w-56 h-56 rounded-full pointer-events-none"
+              style="background: radial-gradient(circle, color-mix(in srgb, var(--accent) 18%, transparent) 0%, transparent 70%)"
+            ></span>
+            <span
+              class="gallery-ring absolute inset-0 rounded-[24px] border border-white/10 group-hover:border-white/20 transition-colors duration-500 pointer-events-none"
+            ></span>
+            <span class="tile-body relative z-[1] flex flex-col h-full gap-md">
+              <span class="tile-self flex flex-col gap-md">
+                <span class="flex items-center gap-md">
+                  <span
+                    class="w-12 h-12 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center shrink-0"
+                  >
+                    <span class="material-symbols-outlined text-2xl" style="color: var(--accent)">language</span>
+                  </span>
+                  <span class="block font-headline-md text-headline-md text-primary leading-tight"
+                    >Pembuatan Website</span
+                  >
+                </span>
+                <span class="block font-body-md text-body-md text-on-surface-variant leading-relaxed"
+                  >Landing page yang mengonversi pengunjung jadi pelanggan, company profile yang membangun kepercayaan, hingga toko online yang siap menerima pesanan.</span
+                >
+                <span class="flex flex-col gap-xs mt-auto pt-sm">
+            <span class="flex items-start gap-sm">
+              <span class="material-symbols-outlined text-base mt-[3px] shrink-0" style="color: var(--accent)">check_circle</span>
+              <span class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Landing page fokus konversi</span>
+            </span>
+            <span class="flex items-start gap-sm">
+              <span class="material-symbols-outlined text-base mt-[3px] shrink-0" style="color: var(--accent)">check_circle</span>
+              <span class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Company profile berkelas</span>
+            </span>
+            <span class="flex items-start gap-sm">
+              <span class="material-symbols-outlined text-base mt-[3px] shrink-0" style="color: var(--accent)">check_circle</span>
+              <span class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Toko online siap transaksi</span>
+            </span>
+                </span>
+              </span>
+              
+            </span>
+          </button>
+          <!-- Mobile Development -->
+          <button
+            type="button"
+            data-tile="mobile"
+            aria-expanded="false"
+            style="--accent: #34d399; grid-row: 1; grid-column: 2"
+            class="gallery-tile relative rounded-[24px] border border-white/[0.08] bg-white/[0.04] backdrop-blur-xl p-lg md:p-xl overflow-hidden text-left cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
           >
-            <div class="text-white">
-              <span class="material-symbols-outlined text-5xl">smartphone</span>
-            </div>
-            <h3 class="font-headline-md text-headline-md text-white">Mobile Development</h3>
-            <p class="font-body-md text-body-md text-white/80 flex-grow">
-              Aplikasi Android &amp; iOS dengan pengalaman pengguna yang modern.
-            </p>
-          </div>
-          <div
-            class="relative duration-500 hover:rotate-0 group [transform:rotate3d(1,-1,1,60deg)] border-2 overflow-hidden rounded-2xl p-md flex flex-col items-start gap-4 h-full transition-all duration-300 bg-rose-900 border-rose-600"
+            <span
+              class="gallery-glow absolute -top-20 -right-20 w-56 h-56 rounded-full pointer-events-none"
+              style="background: radial-gradient(circle, color-mix(in srgb, var(--accent) 18%, transparent) 0%, transparent 70%)"
+            ></span>
+            <span
+              class="gallery-ring absolute inset-0 rounded-[24px] border border-white/10 group-hover:border-white/20 transition-colors duration-500 pointer-events-none"
+            ></span>
+            <span class="tile-body relative z-[1] flex flex-col h-full gap-md">
+              <span class="tile-self flex flex-col gap-md">
+                <span class="flex items-center gap-md">
+                  <span
+                    class="w-12 h-12 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center shrink-0"
+                  >
+                    <span class="material-symbols-outlined text-2xl" style="color: var(--accent)">smartphone</span>
+                  </span>
+                  <span class="block font-headline-md text-headline-md text-primary leading-tight"
+                    >Mobile Development</span
+                  >
+                </span>
+                <span class="block font-body-md text-body-md text-on-surface-variant leading-relaxed"
+                  >Aplikasi Android & iOS yang ringan, intuitif, dan mulus di genggaman — dari prototipe pertama hingga rilis resmi di app store.</span
+                >
+                <span class="flex flex-col gap-xs mt-auto pt-sm">
+            <span class="flex items-start gap-sm">
+              <span class="material-symbols-outlined text-base mt-[3px] shrink-0" style="color: var(--accent)">check_circle</span>
+              <span class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Aplikasi Android & iOS native</span>
+            </span>
+            <span class="flex items-start gap-sm">
+              <span class="material-symbols-outlined text-base mt-[3px] shrink-0" style="color: var(--accent)">check_circle</span>
+              <span class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Antarmuka yang terasa natural</span>
+            </span>
+            <span class="flex items-start gap-sm">
+              <span class="material-symbols-outlined text-base mt-[3px] shrink-0" style="color: var(--accent)">check_circle</span>
+              <span class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Siap rilis ke Play Store & App Store</span>
+            </span>
+                </span>
+              </span>
+              
+            </span>
+          </button>
+          <!-- UI/UX Design -->
+          <button
+            type="button"
+            data-tile="uiux"
+            aria-expanded="false"
+            style="--accent: #a78bfa; grid-row: 2; grid-column: 1"
+            class="gallery-tile relative rounded-[24px] border border-white/[0.08] bg-white/[0.04] backdrop-blur-xl p-lg md:p-xl overflow-hidden text-left cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
           >
-            <div class="text-white">
-              <span class="material-symbols-outlined text-5xl">palette</span>
-            </div>
-            <h3 class="font-headline-md text-headline-md text-white">UI/UX Design</h3>
-            <p class="font-body-md text-body-md text-white/80 flex-grow">
-              Desain antarmuka yang menarik, intuitif, dan berfokus pada pengalaman pengguna.
-            </p>
-          </div>
-          <div
-            class="relative duration-500 hover:rotate-0 group [transform:rotate3d(1,-1,1,60deg)] border-2 overflow-hidden rounded-2xl p-md flex flex-col items-start gap-4 h-full transition-all duration-300 bg-emerald-900 border-emerald-600"
+            <span
+              class="gallery-glow absolute -top-20 -right-20 w-56 h-56 rounded-full pointer-events-none"
+              style="background: radial-gradient(circle, color-mix(in srgb, var(--accent) 18%, transparent) 0%, transparent 70%)"
+            ></span>
+            <span
+              class="gallery-ring absolute inset-0 rounded-[24px] border border-white/10 group-hover:border-white/20 transition-colors duration-500 pointer-events-none"
+            ></span>
+            <span class="tile-body relative z-[1] flex flex-col h-full gap-md">
+              <span class="tile-self flex flex-col gap-md">
+                <span class="flex items-center gap-md">
+                  <span
+                    class="w-12 h-12 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center shrink-0"
+                  >
+                    <span class="material-symbols-outlined text-2xl" style="color: var(--accent)">palette</span>
+                  </span>
+                  <span class="block font-headline-md text-headline-md text-primary leading-tight"
+                    >UI/UX Design</span
+                  >
+                </span>
+                <span class="block font-body-md text-body-md text-on-surface-variant leading-relaxed"
+                  >Riset pengguna, wireframe, hingga prototipe interaktif — antarmuka yang tidak hanya indah, tapi benar-benar mudah dipakai.</span
+                >
+                <span class="flex flex-col gap-xs mt-auto pt-sm">
+            <span class="flex items-start gap-sm">
+              <span class="material-symbols-outlined text-base mt-[3px] shrink-0" style="color: var(--accent)">check_circle</span>
+              <span class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Riset pengguna & wireframing</span>
+            </span>
+            <span class="flex items-start gap-sm">
+              <span class="material-symbols-outlined text-base mt-[3px] shrink-0" style="color: var(--accent)">check_circle</span>
+              <span class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Prototipe interaktif di Figma</span>
+            </span>
+            <span class="flex items-start gap-sm">
+              <span class="material-symbols-outlined text-base mt-[3px] shrink-0" style="color: var(--accent)">check_circle</span>
+              <span class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Design system yang konsisten</span>
+            </span>
+                </span>
+              </span>
+              
+            </span>
+          </button>
+          <!-- Redesain Website -->
+          <button
+            type="button"
+            data-tile="redesain"
+            aria-expanded="false"
+            style="--accent: #fbbf24; grid-row: 2; grid-column: 2"
+            class="gallery-tile relative rounded-[24px] border border-white/[0.08] bg-white/[0.04] backdrop-blur-xl p-lg md:p-xl overflow-hidden text-left cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
           >
-            <div class="text-white">
-              <span class="material-symbols-outlined text-5xl">build</span>
-            </div>
-            <h3 class="font-headline-md text-headline-md text-white">Maintenance &amp; Support</h3>
-            <p class="font-body-md text-body-md text-white/80 flex-grow">
-              Pemeliharaan, pembaruan, dan dukungan teknis agar sistem tetap optimal.
-            </p>
-          </div>
+            <span
+              class="gallery-glow absolute -top-20 -right-20 w-56 h-56 rounded-full pointer-events-none"
+              style="background: radial-gradient(circle, color-mix(in srgb, var(--accent) 18%, transparent) 0%, transparent 70%)"
+            ></span>
+            <span
+              class="gallery-ring absolute inset-0 rounded-[24px] border border-white/10 group-hover:border-white/20 transition-colors duration-500 pointer-events-none"
+            ></span>
+            <span class="tile-body relative z-[1] flex flex-col h-full gap-md">
+              <span class="tile-self flex flex-col gap-md">
+                <span class="flex items-center gap-md">
+                  <span
+                    class="w-12 h-12 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center shrink-0"
+                  >
+                    <span class="material-symbols-outlined text-2xl" style="color: var(--accent)">tune</span>
+                  </span>
+                  <span class="block font-headline-md text-headline-md text-primary leading-tight"
+                    >Redesain Website</span
+                  >
+                </span>
+                <span class="block font-body-md text-body-md text-on-surface-variant leading-relaxed"
+                  >Website lama yang lambat dan kuno kami rombak total — lebih cepat, lebih modern, tanpa kehilangan konten dan SEO yang sudah berjalan.</span
+                >
+                <span class="flex flex-col gap-xs mt-auto pt-sm">
+            <span class="flex items-start gap-sm">
+              <span class="material-symbols-outlined text-base mt-[3px] shrink-0" style="color: var(--accent)">check_circle</span>
+              <span class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Performa & kecepatan ditingkatkan</span>
+            </span>
+            <span class="flex items-start gap-sm">
+              <span class="material-symbols-outlined text-base mt-[3px] shrink-0" style="color: var(--accent)">check_circle</span>
+              <span class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Tampilan baru yang segar & modern</span>
+            </span>
+            <span class="flex items-start gap-sm">
+              <span class="material-symbols-outlined text-base mt-[3px] shrink-0" style="color: var(--accent)">check_circle</span>
+              <span class="font-body-md text-body-md text-on-surface-variant leading-relaxed">SEO dan konten lama tetap terjaga</span>
+            </span>
+                </span>
+              </span>
+              
+            </span>
+          </button>
+          <!-- Sistem Informasi -->
+          <button
+            type="button"
+            data-tile="sistem"
+            aria-expanded="false"
+            style="--accent: #22d3ee; grid-row: 3; grid-column: 1"
+            class="gallery-tile relative rounded-[24px] border border-white/[0.08] bg-white/[0.04] backdrop-blur-xl p-lg md:p-xl overflow-hidden text-left cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
+          >
+            <span
+              class="gallery-glow absolute -top-20 -right-20 w-56 h-56 rounded-full pointer-events-none"
+              style="background: radial-gradient(circle, color-mix(in srgb, var(--accent) 18%, transparent) 0%, transparent 70%)"
+            ></span>
+            <span
+              class="gallery-ring absolute inset-0 rounded-[24px] border border-white/10 group-hover:border-white/20 transition-colors duration-500 pointer-events-none"
+            ></span>
+            <span class="tile-body relative z-[1] flex flex-col h-full gap-md">
+              <span class="tile-self flex flex-col gap-md">
+                <span class="flex items-center gap-md">
+                  <span
+                    class="w-12 h-12 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center shrink-0"
+                  >
+                    <span class="material-symbols-outlined text-2xl" style="color: var(--accent)">dashboard_customize</span>
+                  </span>
+                  <span class="block font-headline-md text-headline-md text-primary leading-tight"
+                    >Sistem Informasi</span
+                  >
+                </span>
+                <span class="block font-body-md text-body-md text-on-surface-variant leading-relaxed"
+                  >Dashboard, CRM, aplikasi internal, hingga integrasi pembayaran dalam satu sistem — data bisnis terpusat dan mudah dipantau.</span
+                >
+                <span class="flex flex-col gap-xs mt-auto pt-sm">
+            <span class="flex items-start gap-sm">
+              <span class="material-symbols-outlined text-base mt-[3px] shrink-0" style="color: var(--accent)">check_circle</span>
+              <span class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Dashboard & CRM terpadu</span>
+            </span>
+            <span class="flex items-start gap-sm">
+              <span class="material-symbols-outlined text-base mt-[3px] shrink-0" style="color: var(--accent)">check_circle</span>
+              <span class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Integrasi pembayaran & laporan</span>
+            </span>
+            <span class="flex items-start gap-sm">
+              <span class="material-symbols-outlined text-base mt-[3px] shrink-0" style="color: var(--accent)">check_circle</span>
+              <span class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Data bisnis terpusat dan aman</span>
+            </span>
+                </span>
+              </span>
+              
+            </span>
+          </button>
+          <!-- Maintenance & Support -->
+          <button
+            type="button"
+            data-tile="maintenance"
+            aria-expanded="false"
+            style="--accent: #fb7185; grid-row: 3; grid-column: 2"
+            class="gallery-tile relative rounded-[24px] border border-white/[0.08] bg-white/[0.04] backdrop-blur-xl p-lg md:p-xl overflow-hidden text-left cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
+          >
+            <span
+              class="gallery-glow absolute -top-20 -right-20 w-56 h-56 rounded-full pointer-events-none"
+              style="background: radial-gradient(circle, color-mix(in srgb, var(--accent) 18%, transparent) 0%, transparent 70%)"
+            ></span>
+            <span
+              class="gallery-ring absolute inset-0 rounded-[24px] border border-white/10 group-hover:border-white/20 transition-colors duration-500 pointer-events-none"
+            ></span>
+            <span class="tile-body relative z-[1] flex flex-col h-full gap-md">
+              <span class="tile-self flex flex-col gap-md">
+                <span class="flex items-center gap-md">
+                  <span
+                    class="w-12 h-12 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center shrink-0"
+                  >
+                    <span class="material-symbols-outlined text-2xl" style="color: var(--accent)">support_agent</span>
+                  </span>
+                  <span class="block font-headline-md text-headline-md text-primary leading-tight"
+                    >Maintenance & Support</span
+                  >
+                </span>
+                <span class="block font-body-md text-body-md text-on-surface-variant leading-relaxed"
+                  >Backup rutin, monitoring, dan dukungan teknis responsif — sistem Anda tetap aman, cepat, dan selalu dalam kondisi prima.</span
+                >
+                <span class="flex flex-col gap-xs mt-auto pt-sm">
+            <span class="flex items-start gap-sm">
+              <span class="material-symbols-outlined text-base mt-[3px] shrink-0" style="color: var(--accent)">check_circle</span>
+              <span class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Backup rutin & monitoring 24/7</span>
+            </span>
+            <span class="flex items-start gap-sm">
+              <span class="material-symbols-outlined text-base mt-[3px] shrink-0" style="color: var(--accent)">check_circle</span>
+              <span class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Pembaruan keamanan berkala</span>
+            </span>
+            <span class="flex items-start gap-sm">
+              <span class="material-symbols-outlined text-base mt-[3px] shrink-0" style="color: var(--accent)">check_circle</span>
+              <span class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Dukungan teknis responsif</span>
+            </span>
+                </span>
+              </span>
+              
+            </span>
+          </button>
         </div>
       </section>
       <section class="max-w-[1280px] mx-auto px-gutter mt-xl">
@@ -296,91 +588,21 @@
                 <span class="material-symbols-outlined text-3xl text-primary" style="font-variation-settings: 'FILL' 1">play_circle</span>
               </div>
               <div>
-                <h2 class="font-headline-md text-headline-md text-primary mb-sm">Coba Demo Interaktif</h2>
+                <h2 class="font-headline-md text-headline-md text-primary mb-sm">Coba Produk Interaktif</h2>
                 <p class="font-body-md text-body-md text-on-surface-variant max-w-lg">
-                  Jelajahi demo langsung dari website, aplikasi, dan sistem
+                  Jelajahi produk langsung dari website, aplikasi, dan sistem
                   informasi yang pernah kami bangun. Klik untuk mencoba sekarang.
                 </p>
               </div>
             </div>
             <div class="flex items-center gap-md shrink-0">
-              <span class="text-sm text-on-surface-variant">Live demo ready</span>
+              <span class="text-sm text-on-surface-variant">Produk live siap dicoba</span>
               <span class="bg-primary text-on-primary w-12 h-12 rounded-full flex items-center justify-center group-hover:scale-110 group-hover:rotate-45 transition-all duration-300">
                 <span class="material-symbols-outlined">arrow_forward</span>
               </span>
             </div>
           </div>
         </a>
-      </section>
-      <section class="max-w-[1280px] mx-auto px-gutter mt-xl">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
-          <div
-            class="md:col-span-2 bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden relative group min-h-[400px] hover:bg-white/[0.08] hover:border-white/20 hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:-translate-y-1 transition-all duration-300"
-          >
-            <div
-              class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-              style="background-image: url('assets/images/about.jpeg')"
-            ></div>
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-background/70 via-background/30 to-transparent z-10"
-            ></div>
-            <div class="absolute bottom-0 left-0 p-lg z-20">
-              <h2 class="font-headline-lg text-headline-lg text-primary mb-sm">
-                Solusi yang Dibuat Khusus
-              </h2>
-              <p
-                class="font-body-md text-body-md text-on-surface-variant max-w-lg"
-              >
-                Setiap website dan aplikasi kami dirancang sesuai kebutuhan
-                bisnis Anda, bukan sekadar menggunakan template atau solusi yang
-                sama untuk semua.
-              </p>
-            </div>
-          </div>
-          <div
-            class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-lg flex flex-col justify-center items-center text-center space-y-md hover:bg-white/[0.08] hover:border-white/20 hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:-translate-y-1 transition-all duration-300"
-          >
-            <div
-              class="w-20 h-20 rounded-full border border-white/20 flex items-center justify-center animate-float"
-            >
-              <span
-                class="material-symbols-outlined text-4xl text-primary"
-                style="font-variation-settings: &quot;FILL&quot; 1"
-                >star</span
-              >
-            </div>
-            <h3 class="font-headline-md text-headline-md text-primary">
-              Fokus pada Pengguna
-            </h3>
-            <p class="font-body-md text-body-md text-on-surface-variant">
-              Kami merancang produk digital yang mudah dipahami, nyaman
-              digunakan, dan memberikan pengalaman terbaik bagi setiap pengguna.
-            </p>
-            <div class="h-px w-12 bg-white/20"></div>
-            <div class="flex gap-xs text-yellow-500">
-              <span class="material-symbols-outlined text-2xl fill-1" style="animation: starPop 2.5s ease-in-out infinite; animation-delay: 0s"
-                >star</span
-              >
-              <span class="material-symbols-outlined text-2xl fill-1" style="animation: starPop 2.5s ease-in-out infinite; animation-delay: 0.5s"
-                >star</span
-              >
-              <span class="material-symbols-outlined text-2xl fill-1" style="animation: starPop 2.5s ease-in-out infinite; animation-delay: 1s"
-                >star</span
-              >
-              <span class="material-symbols-outlined text-2xl fill-1" style="animation: starPop 2.5s ease-in-out infinite; animation-delay: 1.5s"
-                >star</span
-              >
-              <span class="material-symbols-outlined text-2xl fill-1" style="animation: starPop 2.5s ease-in-out infinite; animation-delay: 2s"
-                >star</span
-              >
-            </div>
-            <p
-              class="font-caption text-caption text-on-tertiary-container uppercase tracking-widest"
-            >
-              Kepuasan Klien
-            </p>
-          </div>
-        </div>
       </section>
       <section class="max-w-[1280px] mx-auto px-gutter mt-xl">
         <div
@@ -404,9 +626,9 @@
               >Mulai Project</a
             >
             <a
-              href="portfolio.html"
+              href="demos.html"
               class="bg-white/5 border border-white/20 text-primary px-10 py-4 rounded-full font-label-md text-label-md font-bold hover:bg-white/10 active:scale-95 transition-all text-center"
-              >Lihat Portofolio</a
+              >Lihat Produk</a
             >
           </div>
         </div>
@@ -416,7 +638,7 @@
     <footer class="w-full pt-xl pb-md border-t border-white/5 bg-surface">
       <div class="max-w-[1280px] mx-auto px-gutter">
         <div class="grid grid-cols-1 md:grid-cols-12 gap-lg mb-xl">
-          <div class="md:col-span-4">
+          <div class="md:col-span-3">
             <a class="block mb-md w-fit" href="index.html">
               <div
                 class="bg-white/[0.03] border border-white/[0.1] rounded-lg px-6 py-7 hover:bg-white/[0.06] hover:border-white/[0.2] hover:scale-105 transition-all duration-300"
@@ -424,38 +646,8 @@
                 <img alt="Uroo Dev" class="h-auto w-48" src="assets/logo/Uroo.dev-bening.png"/>
               </div>
             </a>
-            <div class="flex gap-md">
-              <a
-                class="text-on-tertiary-container hover:text-primary transition-colors"
-                href="https://www.linkedin.com/in/dimas-euro-dwi-prasetyo-0479aa3a6/?isSelfProfile=true"
-                target="_blank"
-                rel="noopener"
-                ><span class="material-symbols-outlined">badge</span></a
-              >
-              <a
-                class="text-on-tertiary-container hover:text-primary transition-colors"
-                href="https://github.com/uroo-dev"
-                target="_blank"
-                rel="noopener"
-                ><span class="material-symbols-outlined">code</span></a
-              >
-              <a
-                class="text-on-tertiary-container hover:text-primary transition-colors"
-                href="https://www.tiktok.com/@uroo.dev"
-                target="_blank"
-                rel="noopener"
-                ><span class="material-symbols-outlined">music_note</span></a
-              >
-              <a
-                class="text-on-tertiary-container hover:text-primary transition-colors"
-                href="https://instagram.com/dms_euro"
-                target="_blank"
-                rel="noopener"
-                ><span class="material-symbols-outlined">photo_camera</span></a
-              >
-            </div>
           </div>
-          <div class="md:col-span-2">
+          <div class="md:col-span-3">
             <h4 class="font-label-md text-primary mb-md">Menu</h4>
             <ul class="space-y-sm text-caption text-on-tertiary-container">
               <li class="">
@@ -475,15 +667,8 @@
               <li class="">
                 <a
                   class="hover:text-primary transition-colors"
-                  href="portfolio.html"
-                  >Portofolio</a
-                >
-              </li>
-              <li class="">
-                <a
-                  class="hover:text-primary transition-colors"
                   href="demos.html"
-                  >Demo</a
+                  >Produk</a
                 >
               </li>
               <li class="">
@@ -502,8 +687,34 @@
               </li>
             </ul>
           </div>
-          <div class="md:col-span-3">
+          <div class="md:col-span-6">
             <h4 class="font-label-md text-primary mb-md">Kontak</h4>
+            <div class="flex flex-wrap gap-2 mb-md">
+              <a class="flip-link" href="https://www.linkedin.com/in/dimas-euro-dwi-prasetyo-0479aa3a6/?isSelfProfile=true" target="_blank" rel="noopener" aria-label="LinkedIn — dimas-euro-dwi-prasetyo">
+                <span class="flip-link-inner">
+                  <span class="flip-link-face flip-link-front"><span class="material-symbols-outlined">badge</span><span class="font-label-md">LinkedIn</span></span>
+                  <span class="flip-link-face flip-link-back">dimas-euro-dwi-prasetyo</span>
+                </span>
+              </a>
+              <a class="flip-link" href="https://github.com/uroo-dev" target="_blank" rel="noopener" aria-label="GitHub — /uroo-dev">
+                <span class="flip-link-inner">
+                  <span class="flip-link-face flip-link-front"><span class="material-symbols-outlined">code</span><span class="font-label-md">GitHub</span></span>
+                  <span class="flip-link-face flip-link-back">/uroo-dev</span>
+                </span>
+              </a>
+              <a class="flip-link" href="https://www.tiktok.com/@uroo.dev" target="_blank" rel="noopener" aria-label="TikTok — @uroo.dev">
+                <span class="flip-link-inner">
+                  <span class="flip-link-face flip-link-front"><span class="material-symbols-outlined">music_note</span><span class="font-label-md">TikTok</span></span>
+                  <span class="flip-link-face flip-link-back">@uroo.dev</span>
+                </span>
+              </a>
+              <a class="flip-link" href="https://instagram.com/dms_euro" target="_blank" rel="noopener" aria-label="Instagram — @dms_euro">
+                <span class="flip-link-inner">
+                  <span class="flip-link-face flip-link-front"><span class="material-symbols-outlined">photo_camera</span><span class="font-label-md">Instagram</span></span>
+                  <span class="flip-link-face flip-link-back">@dms_euro</span>
+                </span>
+              </a>
+            </div>
             <ul class="space-y-sm text-caption text-on-tertiary-container">
               <li class="flex items-center gap-xs">
                 <span class="material-symbols-outlined text-xs"
@@ -535,19 +746,19 @@
               </li>
             </ul>
           </div>
-          <div class="md:col-span-3">
-            <h4 class="font-label-md text-primary mb-md">Lokasi</h4>
-            <div class="map-dark overflow-hidden rounded-xl border border-white/10">
-              <iframe
-                src="https://www.google.com/maps?q=Papahan+Karanganyar+Indonesia&output=embed"
-                width="100%"
-                height="200"
-                style="border:0"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
+        </div>
+        <div class="mb-xl">
+          <h4 class="font-label-md text-primary mb-md">Lokasi</h4>
+          <div class="map-dark overflow-hidden rounded-xl border border-white/10">
+            <iframe
+              src="https://www.google.com/maps?q=Papahan+Karanganyar+Indonesia&output=embed"
+              width="100%"
+              height="220"
+              style="border:0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
         </div>
         <div
@@ -628,6 +839,132 @@
             a.addEventListener("click", closeMenu),
           );
         }
+      });
+
+      // FluidExpandingGrid — kartu naik ke atas sendiri & memanjang saat
+      // dipilih (FLIP, transform-only). Bukan gabungan 2 kartu.
+      document.addEventListener("DOMContentLoaded", () => {
+        const gallery = document.getElementById("fluid-gallery");
+        if (!gallery) return;
+
+        const IDs = [
+          "website",
+          "mobile",
+          "uiux",
+          "redesain",
+          "sistem",
+          "maintenance",
+        ];
+        const tiles = IDs.map((id) =>
+          gallery.querySelector(`[data-tile="${id}"]`),
+        ).filter(Boolean);
+        if (tiles.length !== IDs.length) return;
+
+        const reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        const getTile = (id) => tiles.find((t) => t.dataset.tile === id);
+
+        // Posisi default: 3 baris x 2 kolom
+        const POS = {
+          website: [1, 1],
+          mobile: [1, 2],
+          uiux: [2, 1],
+          redesain: [2, 2],
+          sistem: [3, 1],
+          maintenance: [3, 2],
+        };
+
+        let selectedId = null;
+
+        const resetState = (t) => {
+          t.classList.remove("tile-expanded");
+          t.setAttribute("aria-expanded", "false");
+        };
+
+        const applyLayout = (animate) => {
+          const first = {};
+          tiles.forEach(
+            (t) => (first[t.dataset.tile] = t.getBoundingClientRect()),
+          );
+
+          if (!selectedId) {
+            // Default: 3 baris x 2 kolom
+            tiles.forEach((t) => {
+              const [r, c] = POS[t.dataset.tile];
+              t.style.gridRow = String(r);
+              t.style.gridColumn = String(c);
+              resetState(t);
+            });
+          } else {
+            // Kartu yang dipilih: naik ke baris 1, memanjang selebar penuh
+            const sel = getTile(selectedId);
+            sel.style.gridRow = "1";
+            sel.style.gridColumn = "1 / span 2";
+            sel.classList.add("tile-expanded");
+            sel.setAttribute("aria-expanded", "true");
+
+            // Sisanya tersusun berpasangan di bawah; bila satu kartu
+            // tersisa di akhir, ia ikut memanjang selebar penuh.
+            const others = IDs.filter((id) => id !== selectedId);
+            let r = 2;
+            for (let i = 0; i < others.length; i += 2) {
+              const a = getTile(others[i]);
+              const b = others[i + 1] ? getTile(others[i + 1]) : null;
+              a.style.gridRow = String(r);
+              a.style.gridColumn = b ? "1" : "1 / span 2";
+              resetState(a);
+              if (b) {
+                b.style.gridRow = String(r);
+                b.style.gridColumn = "2";
+                resetState(b);
+              }
+              r += 1;
+            }
+          }
+
+          if (!animate || reduceMotion) return;
+
+          const last = {};
+          tiles.forEach(
+            (t) => (last[t.dataset.tile] = t.getBoundingClientRect()),
+          );
+
+          tiles.forEach((t) => {
+            const f = first[t.dataset.tile];
+            const l = last[t.dataset.tile];
+            const dx = f.left - l.left;
+            const dy = f.top - l.top;
+            const sx = l.width ? f.width / l.width : 1;
+            const sy = l.height ? f.height / l.height : 1;
+            t.style.transition = "none";
+            t.style.transformOrigin = "0 0";
+            t.style.transform = `translate(${dx}px, ${dy}px) scale(${sx}, ${sy})`;
+          });
+
+          void gallery.offsetHeight;
+
+          tiles.forEach((t) => {
+            t.style.transition =
+              "transform 700ms cubic-bezier(0.22, 1, 0.36, 1)";
+            t.style.transform = "translate(0, 0) scale(1)";
+          });
+        };
+
+        const handleExpand = (id) => {
+          if (selectedId === id) {
+            selectedId = null;
+          } else {
+            selectedId = id;
+          }
+          applyLayout(true);
+        };
+
+        tiles.forEach((t) =>
+          t.addEventListener("click", () => handleExpand(t.dataset.tile)),
+        );
+
+        applyLayout(false);
       });
     </script>
   </body>

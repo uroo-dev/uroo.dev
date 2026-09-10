@@ -249,13 +249,13 @@
   <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="about.html">Tentang</a>
   <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="contact.html">Kontak</a>
 </div>
-<button id="mobile-menu-btn" class="md:hidden text-primary p-2" aria-label="Menu">
+<button id="mobile-menu-btn" class="md:hidden text-primary p-2 min-h-[48px] min-w-[48px] flex items-center justify-center" aria-label="Menu">
   <span class="material-symbols-outlined text-2xl">menu</span>
 </button>
 </div>
 </nav>
-<div id="mobile-menu" class="fixed inset-0 z-50 bg-surface backdrop-blur-xl flex flex-col items-center pt-20 gap-md transform -translate-y-full transition-transform duration-300 md:hidden">
-  <button id="mobile-menu-close" class="absolute top-6 right-6 text-primary p-2" aria-label="Close">
+<div id="mobile-menu" class="fixed inset-0 z-50 bg-surface backdrop-blur-xl flex flex-col items-center pt-20 gap-md transform -translate-y-full transition-transform duration-300 pointer-events-none md:hidden">
+  <button id="mobile-menu-close" class="absolute top-6 right-6 text-primary p-2 min-h-[48px] min-w-[48px] flex items-center justify-center" aria-label="Close">
     <span class="material-symbols-outlined text-2xl">close</span>
   </button>
   <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="index.html">Beranda</a>
@@ -295,7 +295,7 @@
             type="button"
             data-tile="website"
             aria-expanded="false"
-            style="--accent: #38bdf8; grid-row: 1; grid-column: 1"
+            style="--accent: #38bdf8"
             class="gallery-tile relative rounded-[24px] border border-white/[0.08] bg-white/[0.04] backdrop-blur-xl p-lg md:p-xl overflow-hidden text-left cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
           >
             <span
@@ -343,7 +343,7 @@
             type="button"
             data-tile="mobile"
             aria-expanded="false"
-            style="--accent: #34d399; grid-row: 1; grid-column: 2"
+            style="--accent: #34d399"
             class="gallery-tile relative rounded-[24px] border border-white/[0.08] bg-white/[0.04] backdrop-blur-xl p-lg md:p-xl overflow-hidden text-left cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
           >
             <span
@@ -391,7 +391,7 @@
             type="button"
             data-tile="uiux"
             aria-expanded="false"
-            style="--accent: #a78bfa; grid-row: 2; grid-column: 1"
+            style="--accent: #a78bfa"
             class="gallery-tile relative rounded-[24px] border border-white/[0.08] bg-white/[0.04] backdrop-blur-xl p-lg md:p-xl overflow-hidden text-left cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
           >
             <span
@@ -439,7 +439,7 @@
             type="button"
             data-tile="redesain"
             aria-expanded="false"
-            style="--accent: #fbbf24; grid-row: 2; grid-column: 2"
+            style="--accent: #fbbf24"
             class="gallery-tile relative rounded-[24px] border border-white/[0.08] bg-white/[0.04] backdrop-blur-xl p-lg md:p-xl overflow-hidden text-left cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
           >
             <span
@@ -487,7 +487,7 @@
             type="button"
             data-tile="sistem"
             aria-expanded="false"
-            style="--accent: #22d3ee; grid-row: 3; grid-column: 1"
+            style="--accent: #22d3ee"
             class="gallery-tile relative rounded-[24px] border border-white/[0.08] bg-white/[0.04] backdrop-blur-xl p-lg md:p-xl overflow-hidden text-left cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
           >
             <span
@@ -535,7 +535,7 @@
             type="button"
             data-tile="maintenance"
             aria-expanded="false"
-            style="--accent: #fb7185; grid-row: 3; grid-column: 2"
+            style="--accent: #fb7185"
             class="gallery-tile relative rounded-[24px] border border-white/[0.08] bg-white/[0.04] backdrop-blur-xl p-lg md:p-xl overflow-hidden text-left cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
           >
             <span
@@ -827,17 +827,24 @@
         if (menuBtn && mobileMenu) {
           const openMenu = () => {
             mobileMenu.classList.remove("-translate-y-full");
+            mobileMenu.classList.remove("pointer-events-none");
             document.body.style.overflow = "hidden";
+            menuBtn.setAttribute("aria-expanded", "true");
           };
           const closeMenu = () => {
             mobileMenu.classList.add("-translate-y-full");
+            mobileMenu.classList.add("pointer-events-none");
             document.body.style.overflow = "";
+            menuBtn.setAttribute("aria-expanded", "false");
           };
           menuBtn.addEventListener("click", openMenu);
           if (menuClose) menuClose.addEventListener("click", closeMenu);
           mobileMenu.querySelectorAll("a").forEach((a) =>
             a.addEventListener("click", closeMenu),
           );
+          document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") closeMenu();
+          });
         }
       });
 
@@ -863,6 +870,7 @@
         const reduceMotion = window.matchMedia(
           "(prefers-reduced-motion: reduce)",
         ).matches;
+        const desktopMQ = window.matchMedia("(min-width: 640px)");
         const getTile = (id) => tiles.find((t) => t.dataset.tile === id);
 
         // Posisi default: 3 baris x 2 kolom
@@ -888,8 +896,24 @@
             (t) => (first[t.dataset.tile] = t.getBoundingClientRect()),
           );
 
-          if (!selectedId) {
-            // Default: 3 baris x 2 kolom
+          const isDesktop = desktopMQ.matches;
+
+          if (!isDesktop) {
+            // Mobile (<640px): stack linear 1 kolom — tanpa posisi grid.
+            // Klik cukup membuka detail di tempat (tile-expanded muncul
+            // sebagai kartu terbuka tanpa pindah baris).
+            tiles.forEach((t) => {
+              t.style.gridRow = "";
+              t.style.gridColumn = "";
+              if (selectedId === t.dataset.tile) {
+                t.classList.add("tile-expanded");
+                t.setAttribute("aria-expanded", "true");
+              } else {
+                resetState(t);
+              }
+            });
+          } else if (!selectedId) {
+            // Default (desktop): 3 baris x 2 kolom
             tiles.forEach((t) => {
               const [r, c] = POS[t.dataset.tile];
               t.style.gridRow = String(r);
@@ -965,6 +989,10 @@
         );
 
         applyLayout(false);
+
+        // Saat berpindah layar (mobile <-> desktop), sesuaikan posisi grid
+        // tanpa animasi FLIP agar tidak terjadi lompatan visual.
+        desktopMQ.addEventListener("change", () => applyLayout(false));
       });
     </script>
   </body>

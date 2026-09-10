@@ -60,6 +60,7 @@
 .flip-link {
   display: inline-flex;
   align-items: center;
+  max-width: 100%;
   height: 2.75rem;
   padding: 0 1.25rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -80,6 +81,8 @@
   display: grid;
   grid-template-areas: "face";
   place-items: center;
+  min-width: 0;
+  max-width: 100%;
   transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
   transform-style: preserve-3d;
 }
@@ -93,7 +96,10 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  min-width: 0;
+  overflow: hidden;
   white-space: nowrap;
+  text-overflow: ellipsis;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
@@ -183,6 +189,17 @@
 }
 .liquid-chrome-btn .lcb-pane .material-symbols-outlined {
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* ---- Mobile: compact flip-link & liquid chrome ---- */
+@media (max-width: 479px) {
+  .flip-link {
+    height: 2.5rem;
+    padding: 0 0.9rem;
+  }
+  .liquid-chrome-btn .lcb-pane {
+    padding: 0.5rem 0.75rem;
+  }
 }
 
 .faq-item {

@@ -218,7 +218,7 @@
         </div>
         <button
           id="mobile-menu-btn"
-          class="md:hidden text-primary p-2"
+          class="md:hidden text-primary p-2 min-h-[48px] min-w-[48px] flex items-center justify-center"
           aria-label="Menu"
         >
           <span class="material-symbols-outlined text-2xl">menu</span>
@@ -227,11 +227,11 @@
     </nav>
     <div
       id="mobile-menu"
-      class="fixed inset-0 z-50 bg-surface backdrop-blur-xl flex flex-col items-center pt-20 gap-md transform -translate-y-full transition-transform duration-300 md:hidden"
+      class="fixed inset-0 z-50 bg-surface backdrop-blur-xl flex flex-col items-center pt-20 gap-md transform -translate-y-full transition-transform duration-300 pointer-events-none md:hidden"
     >
       <button
         id="mobile-menu-close"
-        class="absolute top-6 right-6 text-primary p-2"
+        class="absolute top-6 right-6 text-primary p-2 min-h-[48px] min-w-[48px] flex items-center justify-center"
         aria-label="Close"
       >
         <span class="material-symbols-outlined text-2xl">close</span>
@@ -448,7 +448,7 @@
       </section>
       <section class="max-w-container-max mx-auto px-md py-xl">
         <div
-          class="flex flex-col md:flex-row items-center gap-xl bg-white/[0.02] backdrop-blur-xl border border-white/[0.06] rounded-2xl p-lg md:p-xl"
+          class="flex flex-col md:flex-row items-center gap-md md:gap-xl bg-white/[0.02] backdrop-blur-xl border border-white/[0.06] rounded-2xl p-md sm:p-lg md:p-xl"
         >
           <div class="w-56 md:w-72 shrink-0">
             <div
@@ -730,17 +730,24 @@
         if (menuBtn && mobileMenu) {
           const openMenu = () => {
             mobileMenu.classList.remove("-translate-y-full");
+            mobileMenu.classList.remove("pointer-events-none");
             document.body.style.overflow = "hidden";
+            menuBtn.setAttribute("aria-expanded", "true");
           };
           const closeMenu = () => {
             mobileMenu.classList.add("-translate-y-full");
+            mobileMenu.classList.add("pointer-events-none");
             document.body.style.overflow = "";
+            menuBtn.setAttribute("aria-expanded", "false");
           };
           menuBtn.addEventListener("click", openMenu);
           if (menuClose) menuClose.addEventListener("click", closeMenu);
           mobileMenu.querySelectorAll("a").forEach((a) =>
             a.addEventListener("click", closeMenu),
           );
+          document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") closeMenu();
+          });
         }
       });
     </script>

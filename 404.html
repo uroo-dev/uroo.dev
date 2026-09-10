@@ -115,8 +115,21 @@
           <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="about.html">Tentang</a>
           <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="contact.html">Kontak</a>
         </div>
+        <button id="mobile-menu-btn" class="md:hidden text-primary p-2 min-h-[48px] min-w-[48px] flex items-center justify-center" aria-label="Menu">
+          <span class="material-symbols-outlined text-2xl">menu</span>
+        </button>
       </div>
     </nav>
+    <div id="mobile-menu" class="fixed inset-0 z-50 bg-surface backdrop-blur-xl flex flex-col items-center pt-20 gap-md transform -translate-y-full transition-transform duration-300 pointer-events-none md:hidden">
+      <button id="mobile-menu-close" class="absolute top-6 right-6 text-primary p-2 min-h-[48px] min-w-[48px] flex items-center justify-center" aria-label="Close">
+        <span class="material-symbols-outlined text-2xl">close</span>
+      </button>
+      <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="index.html">Beranda</a>
+      <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="services.html">Layanan</a>
+      <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="demos.html">Produk</a>
+      <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="about.html">Tentang</a>
+      <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="contact.html">Kontak</a>
+    </div>
 
     <main class="flex-1 flex items-center justify-center pt-20">
       <div class="text-center px-gutter">
@@ -131,6 +144,34 @@
       </div>
     </main>
 
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const menuBtn = document.getElementById("mobile-menu-btn");
+        const menuClose = document.getElementById("mobile-menu-close");
+        const mobileMenu = document.getElementById("mobile-menu");
+        if (menuBtn && menuClose && mobileMenu) {
+          const openMenu = () => {
+            mobileMenu.classList.remove("-translate-y-full");
+            mobileMenu.classList.remove("pointer-events-none");
+            document.body.style.overflow = "hidden";
+            menuBtn.setAttribute("aria-expanded", "true");
+          };
+          const closeMenu = () => {
+            mobileMenu.classList.add("-translate-y-full");
+            mobileMenu.classList.add("pointer-events-none");
+            document.body.style.overflow = "";
+            menuBtn.setAttribute("aria-expanded", "false");
+          };
+          menuBtn.addEventListener("click", openMenu);
+          menuClose.addEventListener("click", closeMenu);
+          mobileMenu.querySelectorAll("a").forEach((a) =>
+            a.addEventListener("click", closeMenu),
+          );
+          document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") closeMenu();
+          });
+        }
+      });
+    </script>
   </body>
 </html>

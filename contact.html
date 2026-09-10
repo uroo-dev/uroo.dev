@@ -167,13 +167,13 @@
 <a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-body-md text-body-md" href="about.html">Tentang</a>
 <a class="text-primary font-bold border-b-2 border-primary pb-1 transition-colors duration-300 font-body-md text-body-md" href="contact.html">Kontak</a>
 </div>
-<button id="mobile-menu-btn" class="md:hidden text-primary p-2" aria-label="Menu">
+<button id="mobile-menu-btn" class="md:hidden text-primary p-2 min-h-[48px] min-w-[48px] flex items-center justify-center" aria-label="Menu">
 <span class="material-symbols-outlined text-2xl">menu</span>
 </button>
 </div>
 </nav>
-<div id="mobile-menu" class="fixed inset-0 z-50 bg-surface backdrop-blur-xl flex flex-col items-center pt-20 gap-md transform -translate-y-full transition-transform duration-300 md:hidden">
-<button id="mobile-menu-close" class="absolute top-6 right-6 text-primary p-2" aria-label="Close">
+<div id="mobile-menu" class="fixed inset-0 z-50 bg-surface backdrop-blur-xl flex flex-col items-center pt-20 gap-md transform -translate-y-full transition-transform duration-300 pointer-events-none md:hidden">
+<button id="mobile-menu-close" class="absolute top-6 right-6 text-primary p-2 min-h-[48px] min-w-[48px] flex items-center justify-center" aria-label="Close">
 <span class="material-symbols-outlined text-2xl">close</span>
 </button>
 <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="index.html">Beranda</a>
@@ -182,9 +182,9 @@
 <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="about.html">Tentang</a>
 <a class="font-body-md text-body-md transition-colors duration-300 text-primary font-bold" href="contact.html">Kontak</a>
 </div>
-<main class="pt-40 pb-xl max-w-[1280px] mx-auto px-gutter">
+<main class="pt-28 md:pt-40 pb-xl max-w-[1280px] mx-auto px-gutter">
 <section class="mb-lg max-w-2xl">
-<h1 class="font-display-lg text-display-lg mb-base">Wujudkan Solusi Digital Bersama Uroo Dev</h1>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-base">Wujudkan Solusi Digital Bersama Uroo Dev</h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant">Punya ide atau sedang merencanakan sebuah proyek? Tim Uroo Dev siap membantu mengubahnya menjadi solusi digital yang berkualitas dan sesuai kebutuhan bisnis Anda.</p>
 </section>
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-start">
@@ -246,19 +246,19 @@
 </div>
 </div>
 <div class="grid grid-cols-2 gap-base">
-<a class="bg-white/5 backdrop-blur-2xl border border-white/10 p-md rounded-xl flex flex-col items-center justify-center gap-base hover:bg-white/[0.08] hover:border-white/20 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] transition-all group" href="https://www.linkedin.com/in/dimas-euro-dwi-prasetyo-0479aa3a6/?isSelfProfile=true" target="_blank">
+<a class="bg-white/5 backdrop-blur-2xl border border-white/10 p-md rounded-xl flex flex-col items-center justify-center gap-base text-center min-w-0 hover:bg-white/[0.08] hover:border-white/20 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] transition-all group" href="https://www.linkedin.com/in/dimas-euro-dwi-prasetyo-0479aa3a6/?isSelfProfile=true" target="_blank">
 <span class="font-body-md text-body-md font-bold text-primary">LinkedIn</span>
-<span class="text-caption font-caption text-on-surface-variant">dimas-euro-dwi-prasetyo</span>
+<span class="text-caption font-caption text-on-surface-variant break-all min-w-0">dimas-euro-dwi-prasetyo</span>
 </a>
-<a class="bg-white/5 backdrop-blur-2xl border border-white/10 p-md rounded-xl flex flex-col items-center justify-center gap-base hover:bg-white/[0.08] hover:border-white/20 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] transition-all group" href="https://github.com/uroo-dev" target="_blank">
+<a class="bg-white/5 backdrop-blur-2xl border border-white/10 p-md rounded-xl flex flex-col items-center justify-center gap-base text-center min-w-0 hover:bg-white/[0.08] hover:border-white/20 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] transition-all group" href="https://github.com/uroo-dev" target="_blank">
 <span class="font-body-md text-body-md font-bold text-primary">GitHub</span>
 <span class="text-caption font-caption text-on-surface-variant">/uroo-dev</span>
 </a>
-<a class="bg-white/5 backdrop-blur-2xl border border-white/10 p-md rounded-xl flex flex-col items-center justify-center gap-base hover:bg-white/[0.08] hover:border-white/20 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] transition-all group" href="https://www.tiktok.com/@uroo.dev" target="_blank">
+<a class="bg-white/5 backdrop-blur-2xl border border-white/10 p-md rounded-xl flex flex-col items-center justify-center gap-base text-center min-w-0 hover:bg-white/[0.08] hover:border-white/20 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] transition-all group" href="https://www.tiktok.com/@uroo.dev" target="_blank">
 <span class="font-body-md text-body-md font-bold text-primary">TikTok</span>
 <span class="text-caption font-caption text-on-surface-variant">@uroo.dev</span>
 </a>
-<a class="bg-white/5 backdrop-blur-2xl border border-white/10 p-md rounded-xl flex flex-col items-center justify-center gap-base hover:bg-white/[0.08] hover:border-white/20 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] transition-all group" href="https://instagram.com/dms_euro" target="_blank">
+<a class="bg-white/5 backdrop-blur-2xl border border-white/10 p-md rounded-xl flex flex-col items-center justify-center gap-base text-center min-w-0 hover:bg-white/[0.08] hover:border-white/20 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] transition-all group" href="https://instagram.com/dms_euro" target="_blank">
 <span class="font-body-md text-body-md font-bold text-primary">Instagram</span>
 <span class="text-caption font-caption text-on-surface-variant">@dms_euro</span>
 </a>
@@ -455,15 +455,22 @@
     if (menuBtn && mobileMenu) {
       const openMenu = () => {
         mobileMenu.classList.remove('-translate-y-full');
+        mobileMenu.classList.remove('pointer-events-none');
         document.body.style.overflow = 'hidden';
+        menuBtn.setAttribute('aria-expanded', 'true');
       };
       const closeMenu = () => {
         mobileMenu.classList.add('-translate-y-full');
+        mobileMenu.classList.add('pointer-events-none');
         document.body.style.overflow = '';
+        menuBtn.setAttribute('aria-expanded', 'false');
       };
       menuBtn.addEventListener('click', openMenu);
       if (menuClose) menuClose.addEventListener('click', closeMenu);
       mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
+      });
     }
 
     document.querySelectorAll('input, textarea, select').forEach(element => {

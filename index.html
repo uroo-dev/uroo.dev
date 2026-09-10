@@ -276,7 +276,7 @@
     </script>
   </head>
   <body
-    class="bg-background text-on-background selection:bg-primary selection:text-surface"
+    class="bg-background text-on-background selection:bg-primary selection:text-surface overflow-x-clip"
   >
     <nav class="fixed top-0 w-full z-50 bg-white/5 backdrop-blur-xl border-b border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.05)] h-20 transition-all duration-300">
 <div class="max-w-[1280px] mx-auto px-gutter flex justify-between items-center h-full">
@@ -288,13 +288,13 @@
   <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="about.html">Tentang</a>
   <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="contact.html">Kontak</a>
 </div>
-<button id="mobile-menu-btn" class="md:hidden text-primary p-2" aria-label="Menu">
+<button id="mobile-menu-btn" class="md:hidden text-primary p-2 min-h-[48px] min-w-[48px] flex items-center justify-center" aria-label="Menu">
   <span class="material-symbols-outlined text-2xl">menu</span>
 </button>
 </div>
 </nav>
-<div id="mobile-menu" class="fixed inset-0 z-50 bg-surface backdrop-blur-xl flex flex-col items-center pt-20 gap-md transform -translate-y-full transition-transform duration-300 md:hidden">
-  <button id="mobile-menu-close" class="absolute top-6 right-6 text-primary p-2" aria-label="Close">
+<div id="mobile-menu" class="fixed inset-0 z-50 bg-surface backdrop-blur-xl flex flex-col items-center pt-20 gap-md transform -translate-y-full transition-transform duration-300 pointer-events-none md:hidden">
+  <button id="mobile-menu-close" class="absolute top-6 right-6 text-primary p-2 min-h-[48px] min-w-[48px] flex items-center justify-center" aria-label="Close">
     <span class="material-symbols-outlined text-2xl">close</span>
   </button>
   <a class="font-body-md text-body-md transition-colors duration-300 text-primary font-bold" href="index.html">Beranda</a>
@@ -443,6 +443,24 @@
           opacity: 0.18;
           pointer-events: none;
         }
+        /* Bag checkout di pojok kanan atas card (mobile) */
+        #product-stack .stack-card .checkout-fab {
+          z-index: 2;
+        }
+        @media (min-width: 640px) {
+          #product-stack .stack-card .checkout-fab {
+            z-index: auto;
+          }
+        }
+        /* Mobile: glow ringkas — hemat GPU & ruang */
+        @media (max-width: 767px) {
+          #product-stack .stack-card .sk-glow {
+            width: 180px;
+            height: 180px;
+            filter: blur(45px);
+            opacity: 0.12;
+          }
+        }
         /* Ruang tahan setelah kartu terakhir — biar kartu terakhir ikut
            menempel (sticky) bersama tumpukan, bukan langsung terlepas. */
         #product-stack .stack-hold {
@@ -515,41 +533,41 @@
               <div class="relative overflow-hidden rounded-[40px] sm:rounded-[50px] md:rounded-[60px] border border-white/15 bg-[#0c0c0e] p-4 sm:p-6 md:p-8 shadow-[0_40px_90px_-45px_rgba(0,0,0,0.9)]">
                 <div class="sk-glow bg-primary -top-40 -right-24"></div>
                 <div class="relative flex flex-col lg:flex-row lg:items-start gap-4 lg:gap-8">
-                  <span class="stack-index font-black leading-none text-[clamp(3rem,10vw,7rem)] text-white/10 select-none shrink-0">${idx}</span>
+                  <span class="stack-index font-black leading-none text-[clamp(2.5rem,10vw,7rem)] sm:text-[clamp(3rem,10vw,7rem)] text-white/10 select-none shrink-0">${idx}</span>
                   <div class="flex-1 min-w-0">
-                    <div class="flex flex-wrap items-center gap-2 mb-3">
+                    <div class="flex flex-wrap items-center gap-2 mb-3 pr-12 sm:pr-0">
                       <span class="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-on-surface-variant border border-white/15 bg-white/5 rounded-full px-3 py-1">${cat}</span>
                       ${price}
+                      <a href="checkout.html?demo=${encodeURIComponent(d.project || "")}" class="checkout-fab ml-auto sm:order-last inline-flex items-center justify-center w-11 h-11 shrink-0 rounded-full bg-white/10 border border-primary/40 text-primary hover:bg-white/15 hover:scale-105 active:scale-95 transition-all z-[2]" title="Checkout" aria-label="Checkout ${title}"><span class="material-symbols-outlined !text-lg">shopping_bag</span></a>
                     </div>
-                    <h3 class="font-black tracking-tight text-[clamp(1.75rem,4.5vw,3.25rem)] leading-[1.05] text-primary">${title}</h3>
-                    <p class="mt-3 max-w-2xl text-sm text-on-surface-variant leading-relaxed line-clamp-2">${desc}</p>
-                    <div class="mt-5 flex flex-wrap items-center gap-2">
-                      <a href="${url}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-primary text-on-primary px-5 py-2.5 rounded-full text-sm font-bold hover:scale-[1.03] active:scale-95 transition-all">Lihat Demo</a>
-                      <a href="studi-kasus.html?demo=${encodeURIComponent(d.project || "")}" class="inline-flex items-center gap-2 border border-white/20 text-primary px-5 py-2.5 rounded-full text-sm font-bold hover:bg-white/10 transition-all ${d.caseStudy ? "" : "opacity-40 pointer-events-none"}">Studi Kasus</a>
-                      <a href="checkout.html?demo=${encodeURIComponent(d.project || "")}" class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white/10 border border-primary/40 text-primary hover:bg-white/15 hover:scale-105 active:scale-95 transition-all" title="Checkout" aria-label="Checkout ${title}"><span class="material-symbols-outlined !text-lg">shopping_bag</span></a>
+                    <h3 class="font-black tracking-tight text-[clamp(1.75rem,4.5vw,3.25rem)] leading-[1.05] text-primary pr-12 sm:pr-0">${title}</h3>
+                    <p class="mt-2 max-w-2xl text-sm text-on-surface-variant leading-relaxed line-clamp-1 sm:mt-3 sm:line-clamp-2">${desc}</p>
+                    <div class="mt-5 flex flex-col items-stretch gap-2 sm:flex-row sm:flex-wrap sm:items-center">
+                      <a href="${url}" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 bg-primary text-on-primary px-5 py-3 sm:py-2.5 min-h-[48px] w-full sm:w-auto sm:flex-1 rounded-full text-sm font-bold hover:scale-[1.03] active:scale-95 transition-all">Lihat Demo</a>
+                      <a href="studi-kasus.html?demo=${encodeURIComponent(d.project || "")}" class="inline-flex items-center justify-center gap-2 border border-white/20 text-primary px-5 py-3 sm:py-2.5 min-h-[48px] w-full sm:w-auto sm:flex-1 rounded-full text-sm font-bold hover:bg-white/10 transition-all ${d.caseStudy ? "" : "opacity-40 pointer-events-none"}">Studi Kasus</a>
                     </div>
                   </div>
                 </div>
-                <div class="relative mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-5 gap-3 md:gap-4">
-                  <div class="md:col-span-2 flex flex-col gap-3 md:gap-4">
-                    <div class="relative flex-1 overflow-hidden rounded-[28px] border border-red-400/15 bg-red-500/[0.04] p-4 md:p-5">
+                <div class="relative mt-4 md:mt-8 grid grid-cols-1 md:grid-cols-5 gap-2.5 md:gap-4">
+                  <div class="md:col-span-2 flex flex-col gap-2.5 md:gap-4">
+                    <div class="relative flex-1 overflow-hidden rounded-[24px] md:rounded-[28px] border border-red-400/15 bg-red-500/[0.04] p-3 md:p-5">
                       <div class="sk-glow bg-red-400 -top-16 -right-16"></div>
-                      <div class="relative flex items-center gap-2 mb-2">
+                      <div class="relative flex items-center gap-2 mb-1.5 md:mb-2">
                         <span class="material-symbols-outlined !text-base text-red-300">report_problem</span>
                         <span class="text-[11px] uppercase tracking-widest text-red-300 font-bold">Masalah</span>
                       </div>
-                      <p class="relative text-sm text-on-surface-variant leading-relaxed line-clamp-3">${masalah}</p>
+                      <p class="relative text-sm text-on-surface-variant leading-relaxed line-clamp-2 md:line-clamp-3">${masalah}</p>
                     </div>
-                    <div class="relative flex-1 overflow-hidden rounded-[28px] border border-emerald-400/15 bg-emerald-500/[0.04] p-4 md:p-5">
+                    <div class="relative flex-1 overflow-hidden rounded-[24px] md:rounded-[28px] border border-emerald-400/15 bg-emerald-500/[0.04] p-3 md:p-5">
                       <div class="sk-glow bg-emerald-400 -bottom-16 -left-16"></div>
-                      <div class="relative flex items-center gap-2 mb-2">
+                      <div class="relative flex items-center gap-2 mb-1.5 md:mb-2">
                         <span class="material-symbols-outlined !text-base text-emerald-300">auto_awesome</span>
                         <span class="text-[11px] uppercase tracking-widest text-emerald-300 font-bold">Solusi</span>
                       </div>
-                      <p class="relative text-sm text-on-surface-variant leading-relaxed line-clamp-3">${solusi}</p>
+                      <p class="relative text-sm text-on-surface-variant leading-relaxed line-clamp-2 md:line-clamp-3">${solusi}</p>
                     </div>
                   </div>
-                  <a href="${url}" target="_blank" rel="noopener" class="md:col-span-3 group relative block min-h-[240px] md:min-h-0 overflow-hidden rounded-[28px] md:rounded-[40px] border border-white/10 bg-white/[0.03]">
+                  <a href="${url}" target="_blank" rel="noopener" class="md:col-span-3 group relative block col-span-2 min-h-[150px] aspect-[16/9] md:aspect-auto md:min-h-0 overflow-hidden rounded-[24px] md:rounded-[40px] border border-white/10 bg-white/[0.03]">
                     ${thumb}
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
                     <span class="absolute top-3 left-3 inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-white bg-black/50 backdrop-blur border border-white/20 rounded-full px-2.5 py-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Live</span>
@@ -1626,17 +1644,24 @@
         if (menuBtn && mobileMenu) {
           const openMenu = () => {
             mobileMenu.classList.remove("-translate-y-full");
+            mobileMenu.classList.remove("pointer-events-none");
             document.body.style.overflow = "hidden";
+            menuBtn.setAttribute("aria-expanded", "true");
           };
           const closeMenu = () => {
             mobileMenu.classList.add("-translate-y-full");
+            mobileMenu.classList.add("pointer-events-none");
             document.body.style.overflow = "";
+            menuBtn.setAttribute("aria-expanded", "false");
           };
           menuBtn.addEventListener("click", openMenu);
           if (menuClose) menuClose.addEventListener("click", closeMenu);
           mobileMenu.querySelectorAll("a").forEach((a) =>
             a.addEventListener("click", closeMenu),
           );
+          document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") closeMenu();
+          });
         }
 
         const faqItems = document.querySelectorAll(".faq-item");

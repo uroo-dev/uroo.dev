@@ -100,6 +100,10 @@
       .animate-fade-up-delay-2 { animation:fadeUp .5s ease .16s both; }
       .animate-fade-up-delay-3 { animation:fadeUp .5s ease .24s both; }
       .sk-glow { position:absolute; width:340px; height:340px; border-radius:9999px; filter:blur(80px); opacity:.18; pointer-events:none; }
+      /* Mobile: kurangi beban GPU blur besar — glow sekadar aksen halus */
+      @media (max-width: 767px) {
+        .sk-glow { width:200px; height:200px; filter:blur(50px); opacity:.12; }
+      }
     </style>
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-7N33H0TLX1"></script>
@@ -122,13 +126,13 @@
           <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="about.html">Tentang</a>
           <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="contact.html">Kontak</a>
         </div>
-        <button id="mobile-menu-btn" class="md:hidden text-primary p-2" aria-label="Menu">
+        <button id="mobile-menu-btn" class="md:hidden text-primary p-2 min-h-[48px] min-w-[48px] flex items-center justify-center" aria-label="Menu">
           <span class="material-symbols-outlined text-2xl">menu</span>
         </button>
       </div>
     </nav>
-    <div id="mobile-menu" class="fixed inset-0 z-50 bg-surface backdrop-blur-xl flex flex-col items-center pt-20 gap-md transform -translate-y-full transition-transform duration-300 md:hidden">
-      <button id="mobile-menu-close" class="absolute top-6 right-6 text-primary p-2" aria-label="Close">
+    <div id="mobile-menu" class="fixed inset-0 z-50 bg-surface backdrop-blur-xl flex flex-col items-center pt-20 gap-md transform -translate-y-full transition-transform duration-300 pointer-events-none md:hidden">
+      <button id="mobile-menu-close" class="absolute top-6 right-6 text-primary p-2 min-h-[48px] min-w-[48px] flex items-center justify-center" aria-label="Close">
         <span class="material-symbols-outlined text-2xl">close</span>
       </button>
       <a class="font-body-md text-body-md transition-colors duration-300 text-on-surface-variant font-medium hover:text-primary" href="index.html">Beranda</a>
@@ -140,7 +144,7 @@
 
     <main class="relative pt-28 pb-xl overflow-hidden">
       <!-- Ambient glow -->
-      <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[720px] h-[720px] rounded-full bg-white/[0.03] blur-[120px] pointer-events-none"></div>
+      <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[720px] h-[720px] rounded-full bg-white/[0.03] blur-[120px] pointer-events-none lg:block hidden"></div>
 
       <div class="relative max-w-5xl mx-auto px-gutter">
         <!-- Loading -->
@@ -432,11 +436,12 @@
       const menuClose = document.getElementById("mobile-menu-close");
       const mobileMenu = document.getElementById("mobile-menu");
       if (menuBtn && mobileMenu) {
-        const openMenu = () => { mobileMenu.classList.remove("-translate-y-full"); document.body.style.overflow = "hidden"; };
-        const closeMenu = () => { mobileMenu.classList.add("-translate-y-full"); document.body.style.overflow = ""; };
+        const openMenu = () => { mobileMenu.classList.remove("-translate-y-full"); mobileMenu.classList.remove("pointer-events-none"); document.body.style.overflow = "hidden"; menuBtn.setAttribute("aria-expanded", "true"); };
+        const closeMenu = () => { mobileMenu.classList.add("-translate-y-full"); mobileMenu.classList.add("pointer-events-none"); document.body.style.overflow = ""; menuBtn.setAttribute("aria-expanded", "false"); };
         menuBtn.addEventListener("click", openMenu);
         if (menuClose) menuClose.addEventListener("click", closeMenu);
         mobileMenu.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
+        document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
       }
 
       load();

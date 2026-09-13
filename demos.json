@@ -1,10 +1,75 @@
 [
   {
+    "project": "demo-mouric",
+    "title": "Mouric Portfolio Demo",
+    "description": "Landing page portfolio modern dari uroo dev - demonstrasi auto-deploy via admin console.",
+    "category": "Portfolio",
+    "subdomain": "demo-mouric.uroo.my.id",
+    "url": "https://demo-mouric.uroo.my.id",
+    "repo": "uroo-dev/Mouric-Portofolio",
+    "repo_display": "uroo-dev/Mouric-Portofolio",
+    "status": "live",
+    "deployedAt": "2026-09-07T16:47:41.162229+00:00",
+    "thumbnail": "https://uroo.my.id/thumbnails/demo-mouric.jpg",
+    "price": 150000,
+    "caseStudy": {
+      "masalah": "Portofolio online sangat penting bagi pekerja kreatif, tetapi kebanyakan template mahal dan sulit dikustomisasi. Tanpa portofolio yang profesional, peluang klien sering hilang.",
+      "solusi": "Kami membangun landing page portofolio modern dengan satu halaman yang cepat, responsif, dan mudah diperbarui. Desain menerapkan dark glassmorphism dan animasi halus untuk kesan premium.",
+      "fitur": [
+        "Halaman satu halaman (single page) yang cepat",
+        "Desain glassmorphism dengan aksen gradient",
+        "Animasi scroll halus (Lenis + GSAP)",
+        "SEO & Open Graph siap dibagikan",
+        "Fully responsive di semua perangkat"
+      ],
+      "teknologi": [
+        "HTML",
+        "Tailwind CSS",
+        "GSAP",
+        "Cloudflare Pages"
+      ],
+      "hasil": "Portofolio tampil profesional di mata klien, memuat cepat (<2s), dan bisa diperbarui tanpa biaya tambahan."
+    },
+    "checkoutFields": [
+      {
+        "name": "jenis_bisnis",
+        "label": "Jenis Bisnis / Profesi",
+        "type": "textarea",
+        "required": true,
+        "placeholder": "Contoh: Restoran, Toko Online, Kafe, Agensi, Freelancer...",
+        "rows": 4,
+        "options": []
+      },
+      {
+        "name": "butuh_hosting",
+        "label": "Butuh Hosting & Domain Sekaligus?",
+        "type": "select",
+        "required": true,
+        "options": [
+          "Ya, sekalian setup hosting & domain",
+          "Tidak, saya sudah punya"
+        ]
+      },
+      {
+        "name": "catatan",
+        "label": "Catatan Tambahan",
+        "type": "textarea",
+        "required": false,
+        "options": []
+      }
+    ]
+  },
+  {
     "project": "usahaku-app",
     "title": "Usahaku App",
     "description": "Offline-first business app untuk membantu UMKM Indonesia tumbuh lewat teknologi sederhana.",
-    "category": "Mobile App",
-    "price": 500000,
+    "category": "Aplikasi Bisnis",
+    "url": "https://uroo-dev.github.io/usahaku-app/",
+    "repo": "uroo-dev/usahaku-app",
+    "repo_display": "uroo-dev/usahaku-app",
+    "status": "live",
+    "deployedAt": "2026-09-07T00:09:21Z",
+    "price": 0,
     "caseStudy": {
       "masalah": "Banyak pelaku UMKM Indonesia belum terbantu teknologi untuk mencatat keuangan dan stok karena aplikasi yang ada terasa rumit atau sangat bergantung pada kuota internet.",
       "solusi": "Aplikasi bisnis offline-first yang dibuat khusus untuk UMKM: catat transaksi, pelanggan, dan stok dengan ringan, tetap berfungsi tanpa internet, lalu menyinkronkan data saat online.",
@@ -23,8 +88,243 @@
         "GitHub Actions"
       ],
       "hasil": "Pelaku usaha dapat menjalankan pembukuan sederhana langsung dari HP murah tanpa khawatir kuota, dengan data yang tetap aman dan siap disinkronkan."
-    },
+    }
+  },
+  {
+    "project": "uroo-ui",
+    "title": "Uroo UI — Design System",
+    "description": "Design system & UI toolkit monochromatic liquid glassmorphism, murni HTML/CSS/JS.",
+    "category": "UI Kit",
+    "url": "https://uroo-dev.github.io/uroo-ui/",
+    "repo": "uroo-dev/uroo-ui",
+    "repo_display": "uroo-dev/uroo-ui",
     "status": "live",
-    "deployedAt": "2026-09-13T16:41:14.588Z"
+    "deployedAt": "2026-09-03T14:48:27Z",
+    "price": 0,
+    "caseStudy": {
+      "masalah": "Setiap project uroo dev memakai komponen dan pola visual yang berbeda-beda, membuat pengembangan lambat dan hasil antar-halaman tidak konsisten.",
+      "solusi": "Uroo UI, satu design system untuk semua produk uroo dev: UI toolkit monochromatic liquid glassmorphism yang murni HTML/CSS/JS, tanpa framework berat.",
+      "fitur": [
+        "Design tokens (warna, spacing, tipografi)",
+        "Komponen siap pakai",
+        "Gaya liquid glassmorphism monokrom",
+        "Dokumentasi interaktif langsung di halaman",
+        "Tanpa dependency berat"
+      ],
+      "teknologi": [
+        "HTML",
+        "CSS (custom properties)",
+        "JavaScript",
+        "GitHub Pages"
+      ],
+      "hasil": "Kecepatan membangun halaman naik tajam dan semua produk uroo dev kini memakai satu bahasa visual yang konsisten."
+    }
+  },
+  {
+    "project": "uroo-admin",
+    "title": "Uroo Admin",
+    "description": "Admin app untuk mengelola uroo dev.",
+    "category": "Dashboard",
+    "url": "https://uroo-dev.github.io/uroo-admin/",
+    "repo": "uroo-dev/uroo-admin",
+    "repo_display": "uroo-dev/uroo-admin",
+    "status": "live",
+    "deployedAt": "2026-08-25T13:57:49Z",
+    "price": 0,
+    "caseStudy": {
+      "masalah": "Mengelola produk, demo, dan konten katalog uroo dev masih dilakukan manual dan tersebar di banyak tempat, rawan salah dan lambat.",
+      "solusi": "Admin app terpusat untuk tim uroo dev: dashboard untuk mengelola produk, deployment, dan konten situs dari satu panel.",
+      "fitur": [
+        "Dashboard ringkas",
+        "Kelola produk & status deploy",
+        "Kelola konten katalog",
+        "Tampilan admin modern",
+        "Akses terbatas untuk tim"
+      ],
+      "teknologi": [
+        "Laravel/Blade",
+        "JavaScript",
+        "Database MySQL",
+        "Cloudflare"
+      ],
+      "hasil": "Tim dapat mengelola seluruh produk dari satu panel sehingga proses operasional lebih cepat, rapi, dan terkontrol."
+    }
+  },
+  {
+    "project": "mydesk",
+    "title": "MyDesk",
+    "description": "Aplikasi web MyDesk dari uroo dev.",
+    "category": "Aplikasi",
+    "url": "https://uroo-dev.github.io/MyDesk/",
+    "repo": "uroo-dev/MyDesk",
+    "repo_display": "uroo-dev/MyDesk",
+    "status": "live",
+    "deployedAt": "2026-08-25T05:08:55Z",
+    "price": 0,
+    "caseStudy": {
+      "masalah": "Pemesanan meja atau ruang kerja di kantor masih manual — sering terjadi jadwal bentrok dan pemakaian sulit dipantau.",
+      "solusi": "Aplikasi booking meja kerja (desk booking) agar setiap pemakaian tercatat, terlihat ketersediaannya, dan terjadwal rapi.",
+      "fitur": [
+        "Booking meja per hari/jam",
+        "Lihat ketersediaan real-time",
+        "Riwayat pemakaian",
+        "Notifikasi sederhana",
+        "Mudah dipakai di HP"
+      ],
+      "teknologi": [
+        "Flutter",
+        "Dart",
+        "GitHub Pages",
+        "GitHub Actions"
+      ],
+      "hasil": "Tidak ada lagi jadwal bentrok, dan penggunaan ruang kerja kantor menjadi lebih efisien serta terdokumentasi."
+    }
+  },
+  {
+    "project": "laundry-app",
+    "title": "Laundry App",
+    "description": "Aplikasi Flutter modern untuk memudahkan bisnis laundry.",
+    "category": "Aplikasi",
+    "url": "https://uroo-dev.github.io/Laundry-app/",
+    "repo": "uroo-dev/Laundry-app",
+    "repo_display": "uroo-dev/Laundry-app",
+    "status": "live",
+    "deployedAt": "2026-08-06T17:50:01Z",
+    "price": 0,
+    "caseStudy": {
+      "masalah": "Bisnis laundry masih mencatat order di buku — rawan salah hitung, lupa status cucian, dan sulit memantau omzet.",
+      "solusi": "Aplikasi kasir laundry modern: input order, update status pengerjaan, simpan data pelanggan, dan rekap omzet otomatis.",
+      "fitur": [
+        "Input order cepat",
+        "Status pengerjaan (dicuci → kering → siap)",
+        "Riwayat pelanggan",
+        "Rekap omzet harian/bulanan",
+        "UI mobile friendly"
+      ],
+      "teknologi": [
+        "Flutter",
+        "Dart",
+        "GitHub Pages",
+        "GitHub Actions"
+      ],
+      "hasil": "Antrian dan pembayaran lebih terkontrol, omzet terpantau tiap hari, dan pelanggan lebih puas karena status cucian selalu jelas."
+    }
+  },
+  {
+    "project": "50-project-client",
+    "title": "50 Project Client",
+    "description": "Katalog kerja 50 project dari uroo dev.",
+    "category": "Katalog",
+    "url": "https://uroo-dev.github.io/50-Project-Client/",
+    "repo": "uroo-dev/50-Project-Client",
+    "repo_display": "uroo-dev/50-Project-Client",
+    "status": "live",
+    "deployedAt": "2026-08-04T17:27:32Z",
+    "price": 0,
+    "caseStudy": {
+      "masalah": "Calon klien kesulitan melihat pengalaman uroo dev karena portofolio tersebar di banyak tempat dan sulit diakses.",
+      "solusi": "Katalog satu pintu berisi 50 project klien yang pernah dikerjakan, dengan tautan langsung ke hasil akhir setiap project.",
+      "fitur": [
+        "Galeri project dengan kategori",
+        "Tautan langsung ke hasil",
+        "Filter mudah",
+        "Responsive di semua layar"
+      ],
+      "teknologi": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "GitHub Pages"
+      ],
+      "hasil": "Klien baru mendapat gambaran kemampuan uroo dev secara instan, sehingga peluang closing semakin besar."
+    }
+  },
+  {
+    "project": "gym-client",
+    "title": "Gym Client",
+    "description": "Aplikasi client gym dari uroo dev.",
+    "category": "Aplikasi",
+    "url": "https://uroo-dev.github.io/Gym-client/",
+    "repo": "uroo-dev/Gym-client",
+    "repo_display": "uroo-dev/Gym-client",
+    "status": "live",
+    "deployedAt": "2026-06-01T14:07:48Z",
+    "price": 0,
+    "caseStudy": {
+      "masalah": "Pengelola gym kesulitan membagikan jadwal dan informasi program latihan kepada member secara kekinian dan praktis.",
+      "solusi": "Halaman klien gym modern: jadwal latihan yang terbaca, info program/kelas, dan visual brand yang meyakinkan.",
+      "fitur": [
+        "Jadwal latihan mudah dibaca",
+        "Info program & kelas",
+        "Desain sesuai brand gym",
+        "Ringan dan cepat diakses"
+      ],
+      "teknologi": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "GitHub Pages"
+      ],
+      "hasil": "Member mendapat informasi cepat dari gawai dan pengelola tidak perlu menerangkan hal yang sama berulang-ulang."
+    }
+  },
+  {
+    "project": "egg-timer",
+    "title": "Egg Timer",
+    "description": "Timer telur sederhana — web app ringan siap pakai.",
+    "category": "Alat",
+    "url": "https://uroo-dev.github.io/Egg-Timer/",
+    "repo": "uroo-dev/Egg-Timer",
+    "repo_display": "uroo-dev/Egg-Timer",
+    "status": "live",
+    "deployedAt": "2026-04-09T00:17:22Z",
+    "price": 0,
+    "caseStudy": {
+      "masalah": "Merebus telur sering kelupaan — telur jadi kurang atau terlalu matang apalagi sambil mengerjakan hal lain.",
+      "solusi": "Web app timer telur paling sederhana dengan preset tingkat kematangan plus alarm ketika waktunya selesai.",
+      "fitur": [
+        "Preset rebus (setengah matang, medium, matang)",
+        "Timer manual fleksibel",
+        "Alarm saat selesai",
+        "Halaman super ringan"
+      ],
+      "teknologi": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "GitHub Pages"
+      ],
+      "hasil": "Telur selalu direbus sesuai selera tanpa perlu mengingat-ingat waktu di tengah kesibukan."
+    }
+  },
+  {
+    "project": "portofolio",
+    "title": "Portofolio D.Euro",
+    "description": "Portofolio pribadi Dimas Euro Dwi Prasetyo.",
+    "category": "Portfolio",
+    "url": "https://uroo-dev.github.io/Portofolio/",
+    "repo": "uroo-dev/Portofolio",
+    "repo_display": "uroo-dev/Portofolio",
+    "status": "live",
+    "deployedAt": "2026-04-09T00:17:18Z",
+    "price": 0,
+    "caseStudy": {
+      "masalah": "Personal branding Dimas Euro belum terwakili secara profesional di dunia digital untuk dilirik calon klien maupun rekruter.",
+      "solusi": "Portofolio pribadi modern untuk menampilkan karya, perjalanan karier, dan cara menghubungi dengan tampilan premium.",
+      "fitur": [
+        "Showcase karya interaktif",
+        "Halaman tentang & kontak",
+        "Desain premium responsive",
+        "Tautan ke media sosial"
+      ],
+      "teknologi": [
+        "Laravel/Blade",
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "GitHub Pages"
+      ],
+      "hasil": "Identitas profesional yang rapi dan mudah dibagikan, membantu membuka peluang kerja sama dan karier."
+    }
   }
 ]

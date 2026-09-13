@@ -68,24 +68,40 @@
       .co-glow-1 { width: 460px; height: 460px; top: -160px; right: -120px; background: rgba(255,255,255,0.045); }
       .co-glow-2 { width: 520px; height: 520px; bottom: -220px; left: -160px; background: rgba(255,255,255,0.03); }
 
-      /* ===== Form field (uroo-ui style) ===== */
+      /* ===== Form field (uraian flat — menyesuaikan gaya WhatsApp) ===== */
       .co-field {
-        width: 100%; height: 48px; border-radius: 14px;
-        background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
-        color: #f4f4f5; font-size: 14px; padding: 0 16px; outline: none;
-        transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
+        width: 100%; height: 48px; border-radius: 0;
+        background: transparent; border: 0; border-bottom: 1px solid rgba(255,255,255,0.14);
+        color: #f4f4f5; font-size: 14px; padding: 0 2px; outline: none;
+        transition: border-color .2s ease, box-shadow .2s ease;
       }
-      .co-field::placeholder { color: rgba(161,161,170,0.75); }
-      .co-field:hover { border-color: rgba(255,255,255,0.2); }
-      .co-field:focus { border-color: rgba(255,255,255,0.55); box-shadow: 0 0 0 4px rgba(255,255,255,0.07); background: rgba(255,255,255,0.07); }
-      .co-field.co-invalid { border-color: #f87171 !important; box-shadow: 0 0 0 4px rgba(248,113,113,0.12); }
-      select.co-field { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 42px; cursor: pointer; }
-      select.co-field option { background: #201f1f; color: #e5e2e1; }
-      textarea.co-field { height: auto; resize: vertical; min-height: 96px; padding: 13px 16px; }
+      .co-field::placeholder { color: rgba(161,161,170,0.6); }
+      .co-field:hover { border-bottom-color: rgba(255,255,255,0.26); }
+      .co-field:focus { border-bottom-color: rgba(255,255,255,0.85); box-shadow: 0 1px 0 0 rgba(255,255,255,0.85); }
+      .co-field.co-invalid { border-bottom-color: #f87171 !important; box-shadow: 0 1px 0 0 #f87171 !important; }
+      .co-field:-webkit-autofill,
+      .co-field:-webkit-autofill:hover,
+      .co-field:-webkit-autofill:focus {
+        -webkit-text-fill-color: #f4f4f5;
+        -webkit-box-shadow: 0 0 0 1000px #0e0e0e inset !important;
+        box-shadow: 0 0 0 1000px #0e0e0e inset !important;
+        transition: background-color 9999s ease-in-out 0s;
+      }
+      select.co-field { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 2px center; padding-right: 26px; cursor: pointer; }
+      select.co-field option { background: #111113; color: #e5e2e1; }
+      textarea.co-field { height: auto; resize: vertical; min-height: 84px; padding: 11px 2px; }
+      select.co-field.co-invalid, textarea.co-field.co-invalid { border-bottom-color: #f87171 !important; box-shadow: 0 1px 0 0 #f87171 !important; }
       .co-label { display: block; font-size: 13px; font-weight: 600; color: rgba(228,227,226,0.92); margin-bottom: 8px; letter-spacing: -0.01em; }
       .co-hint { font-size: 11.5px; color: rgba(196,199,200,0.55); margin-top: 7px; line-height: 1.45; }
       .co-err { font-size: 12px; font-weight: 600; color: #f87171; margin-top: 6px; min-height: 1rem; }
       .co-err:empty::before { content: ""; }
+      .co-wa-wrap { display: flex; align-items: stretch; height: 48px; border-radius: 0; background: transparent; border-bottom: 1px solid rgba(255,255,255,0.14); transition: border-color .2s ease, box-shadow .2s ease; }
+      .co-wa-wrap:hover { border-bottom-color: rgba(255,255,255,0.26); }
+      .co-wa-wrap:focus-within { border-bottom-color: rgba(255,255,255,0.85); box-shadow: 0 1px 0 0 rgba(255,255,255,0.85); }
+      .co-wa-wrap.co-invalid { border-bottom-color: #f87171 !important; box-shadow: 0 1px 0 0 #f87171 !important; }
+      .co-wa-prefix { display: flex; align-items: center; padding: 0 12px 0 2px; font-size: 14px; font-weight: 600; color: rgba(161,161,170,0.85); border-right: 1px solid rgba(255,255,255,0.12); user-select: none; }
+      .co-wa-wrap .co-field { border: 0; background: transparent; box-shadow: none !important; height: 100%; padding-left: 12px; }
+      .co-wa-wrap .co-field:hover, .co-wa-wrap .co-field:focus { background: transparent; }
 
       /* ===== Tombol ===== */
       .co-btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; border-radius: 9999px; padding: 14px 24px; font-size: 14px; font-weight: 700; cursor: pointer; transition: transform .15s ease, box-shadow .2s ease, background-color .2s ease, opacity .2s ease, border-color .2s ease; }
@@ -258,9 +274,12 @@
                   </div>
                   <div>
                     <label class="co-label" for="f-wa">Nomor WhatsApp *</label>
-                    <input id="f-wa" type="tel" class="co-field" placeholder="6281234567890" autocomplete="tel">
+                    <div class="co-wa-wrap" id="waWrap">
+                      <span class="co-wa-prefix">+62</span>
+                      <input id="f-wa" type="tel" class="co-field" placeholder="81234567890" autocomplete="tel" inputmode="numeric">
+                    </div>
                     <div class="co-err" data-for="f-wa"></div>
-                    <p class="co-hint">Format internasional: 628xxxxxxxxxx</p>
+                    <p class="co-hint">Isi nomor tanpa 0 atau +62. Contoh: 81234567890</p>
                   </div>
                   <div class="sm:col-span-2">
                     <label class="co-label" for="f-email">Email *</label>
@@ -493,7 +512,11 @@
 
       function errEl(forId) { return document.querySelector('.co-err[data-for="' + forId + '"]'); }
       function setErr(forId, msg) { errEl(forId).textContent = msg; }
-      function inputInvalid(el, bad) { el.classList.toggle('co-invalid', bad); }
+      function inputInvalid(el, bad) {
+        el.classList.toggle('co-invalid', bad);
+        const wrap = el.closest('.co-wa-wrap');
+        if (wrap) wrap.classList.toggle('co-invalid', bad);
+      }
 
       // ===== Stepper =====
       const STEP_ICONS = ['person', 'wallet', 'receipt_long'];
@@ -568,9 +591,9 @@
             const opts = (f.options || []).map(o => `<option value="${esc(o)}">${esc(o)}</option>`).join('');
             ctrl = `<select id="${id}" data-field="${esc(f.name)}" class="co-field" ${f.required ? 'required' : ''}><option value="">— Pilih —</option>${opts}</select>`;
           } else if (f.type === 'textarea') {
-            ctrl = `<textarea id="${id}" data-field="${esc(f.name)}" class="co-field" rows="3" placeholder="${esc(label)}" ${f.required ? 'required' : ''}></textarea>`;
+            ctrl = `<textarea id="${id}" data-field="${esc(f.name)}" class="co-field" rows="${f.rows || 3}" placeholder="${esc(f.placeholder || label)}" ${f.required ? 'required' : ''}></textarea>`;
           } else {
-            ctrl = `<input id="${id}" data-field="${esc(f.name)}" class="co-field" type="${f.type === 'date' ? 'date' : f.type === 'number' ? 'number' : f.type === 'tel' ? 'tel' : f.type === 'email' ? 'email' : 'text'}" placeholder="${esc(f.type === 'date' ? 'YYYY-MM-DD' : label)}" ${f.required ? 'required' : ''} />`;
+            ctrl = `<input id="${id}" data-field="${esc(f.name)}" class="co-field" type="${f.type === 'date' ? 'date' : f.type === 'number' ? 'number' : f.type === 'tel' ? 'tel' : f.type === 'email' ? 'email' : 'text'}" placeholder="${esc(f.placeholder || (f.type === 'date' ? 'YYYY-MM-DD' : label))}" ${f.required ? 'required' : ''} />`;
           }
           wrap.insertAdjacentHTML('beforeend', `
             <div class="${f.type === 'textarea' ? 'sm:col-span-2' : ''}">
@@ -609,17 +632,31 @@
         });
       }
 
+      // ===== WhatsApp: sanitasi otomatis (tanpa 0 / +62) =====
+      const waField = $('#f-wa');
+      if (waField) {
+        waField.addEventListener('input', function () {
+          let v = waField.value.replace(/[^\d]/g, '');
+          if (/^62\d{2,}$/.test(v)) v = v.replace(/^62/, '');
+          else if (/^0\d{2,}$/.test(v)) v = v.slice(1);
+          v = v.slice(0, 13);
+          waField.value = v;
+          setErr('f-wa', '');
+          inputInvalid(waField, false);
+        });
+      }
+
       // ===== Step 1: validasi & lanjut =====
       $('#addrForm').addEventListener('submit', function (e) {
         e.preventDefault();
         const nama = $('#f-nama').value.trim();
-        const wa = $('#f-wa').value.trim();
+        const wa = '62' + $('#f-wa').value.replace(/[^\d]/g, '');
         const email = $('#f-email').value.trim();
 
         let ok = true;
         if (!nama) { setErr('f-nama', 'Nama wajib diisi.'); inputInvalid($('#f-nama'), true); ok = false; } else { setErr('f-nama', ''); inputInvalid($('#f-nama'), false); }
         if (!wa) { setErr('f-wa', 'Nomor WhatsApp wajib diisi.'); inputInvalid($('#f-wa'), true); ok = false; }
-        else if (!/^62[0-9]{8,13}$/.test(wa)) { setErr('f-wa', 'Format WhatsApp tidak valid. Gunakan 628xxxxxxxxxx.'); inputInvalid($('#f-wa'), true); ok = false; }
+        else if (!/^62[0-9]{8,13}$/.test(wa)) { setErr('f-wa', 'Format WhatsApp tidak valid. Contoh: 81234567890'); inputInvalid($('#f-wa'), true); ok = false; }
         else { setErr('f-wa', ''); inputInvalid($('#f-wa'), false); }
         if (!email) { setErr('f-email', 'Email wajib diisi.'); inputInvalid($('#f-email'), true); ok = false; }
         else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setErr('f-email', 'Format email tidak valid.'); inputInvalid($('#f-email'), true); ok = false; }

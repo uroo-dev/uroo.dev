@@ -220,6 +220,7 @@
         }
         .env-pill.active { background: var(--accent); color: #131313; box-shadow: 0 6px 18px -8px rgba(255,255,255,0.5); }
         .env-pill:not(.active):hover { color: var(--text); }
+        .mode-pill { cursor: pointer; border: 0; font: inherit; }
 
         /* ========= BADGES / CHIPS ========= */
         .badge {
@@ -326,11 +327,46 @@
         ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.16); border-radius: 6px; border: 2px solid transparent; background-clip: padding-box; }
         ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.26); border: 2px solid transparent; background-clip: padding-box; }
         :focus-visible { outline: 2px solid var(--accent-deep); outline-offset: 2px; border-radius: 4px; }
+
+        .input[readonly] { opacity: 0.6; cursor: not-allowed; }
+
+        /* ========= MODAL KONFIRMASI ========= */
+        .modal-root { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 1.25rem; }
+        .modal-root.hidden { display: none; }
+        .modal-backdrop { position: absolute; inset: 0; background: rgba(8,8,9,0.74); backdrop-filter: blur(7px); -webkit-backdrop-filter: blur(7px); }
+        .modal-panel { position: relative; width: 100%; max-width: 480px; background: var(--panel); border: 1px solid var(--border-strong); border-radius: 18px; padding: 1.75rem; box-shadow: 0 40px 90px -24px rgba(0,0,0,0.85); animation: modal-in .22s ease; }
+        @keyframes modal-in { from { opacity: 0; transform: translateY(10px) scale(.98); } to { opacity: 1; transform: none; } }
+        .modal-icon { width: 46px; height: 46px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.1rem; font-size: 22px; }
+        .modal-icon.danger { background: rgba(255,180,171,0.1); color: var(--danger); border: 1px solid rgba(255,180,171,0.28); }
+        .modal-icon.info { background: rgba(255,255,255,0.08); color: var(--accent-2); border: 1px solid var(--border); }
+        .modal-kicker { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted-2); margin-bottom: .4rem; }
+        .modal-title { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: .8rem; color: var(--text); }
+        .modal-body { font-size: .85rem; line-height: 1.6; color: var(--muted); }
+        .modal-body .list-box { margin-top: .8rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; padding: .85rem 1rem; }
+        .modal-body ul { margin: .5rem 0 0; padding: 0; list-style: none; display: grid; gap: .45rem; }
+        .modal-body li { display: flex; gap: .55rem; align-items: flex-start; font-size: .8rem; }
+        .modal-body li .dot { margin-top: .4rem; }
+        .modal-actions { display: flex; justify-content: flex-end; gap: .65rem; margin-top: 1.4rem; }
       </style>
     </head>
     <body>
       <!-- Toast container -->
       <div id="toast-container"></div>
+
+      <!-- Modal konfirmasi -->
+      <div id="modal-root" class="modal-root hidden" aria-hidden="true">
+        <div class="modal-backdrop" data-modal-close></div>
+        <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+          <div id="modal-icon" class="modal-icon info"></div>
+          <div id="modal-kicker" class="modal-kicker">konfirmasi</div>
+          <h3 id="modal-title" class="modal-title"></h3>
+          <div id="modal-body" class="modal-body"></div>
+          <div class="modal-actions">
+            <button type="button" id="modal-cancel" class="btn btn-ghost text-sm">Batal</button>
+            <button type="button" id="modal-confirm" class="btn btn-danger text-sm">Lanjutkan</button>
+          </div>
+        </div>
+      </div>
 
       <!-- Top bar -->
       <header class="sticky top-0 z-50 border-b" style="background:rgba(13,14,15,0.78); border-color:var(--border); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px)">
@@ -378,9 +414,8 @@
             </div>
             <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 lg:shrink-0">
               <div class="flex items-center gap-1.5 p-1 rounded-full" style="border:1px solid var(--border); background:rgba(255,255,255,0.02)">
-                <span class="env-pill active">Production</span>
-                <span class="env-pill">Staging</span>
-                <span class="env-pill">Preview</span>
+                <button type="button" class="env-pill mode-pill active" data-mode="deploy">Deploy</button>
+                <button type="button" class="env-pill mode-pill" data-mode="gallery">Upload Galeri</button>
               </div>
               <button id="btn-refresh" class="btn btn-ghost text-sm">
                 <i data-icon="refresh"></i> Refresh
@@ -429,8 +464,14 @@
           <div class="flex items-start justify-between gap-6 mb-6">
             <div>
               <div class="eyebrow mb-2">new deployment</div>
-              <h2 class="text-lg font-semibold tracking-tight">Deploy Template Baru</h2>
-              <p class="text-sm text-[var(--muted)] mt-1.5">Tempel link GitHub repository → otomatis deploy sebagai subdomain baru.</p>
+              <h2 id="section-heading" class="text-lg font-semibold tracking-tight">Deploy Template Baru</h2>
+              <p id="section-sub" class="text-sm text-[var(--muted)] mt-1.5">Tempel link GitHub repository → otomatis deploy sebagai subdomain baru.</p>
+            </div>
+            <div id="edit-banner" class="hidden shrink-0 flex-col items-end gap-2 lg:flex">
+              <span class="mono text-[10.5px] uppercase tracking-[0.12em]" style="color:var(--warn)">● mode edit</span>
+              <button type="button" id="btn-cancel-edit" class="btn btn-ghost text-xs px-3 py-2">
+                <i data-icon="x"></i> Batal Edit
+              </button>
             </div>
           </div>
 
@@ -643,6 +684,77 @@
           </form>
         </section>
 
+        <!-- Upload Gambar Galeri -->
+        <section id="gallery-upload-section" class="fade-up hidden" style="--d:.1s">
+          <div class="flex items-start justify-between gap-6 mb-6">
+            <div>
+              <div class="eyebrow mb-2" style="color:var(--accent-2)">gallery upload</div>
+              <h2 class="text-lg font-semibold tracking-tight">Upload Gambar Galeri Kolaborasi</h2>
+              <p class="text-sm text-[var(--muted)] mt-1.5">Foto-foto kantor &amp; kegiatan tim. Langsung masuk galeri ala Pinterest di about.html ("Diciptakan untuk Kolaborasi"), tanpa menyentuh repo source.</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-12 gap-5 items-start">
+            <div class="col-span-12 lg:col-span-8 min-w-0 space-y-5">
+              <div class="panel step-card p-5 md:p-7">
+                <div class="flex items-start gap-3.5 mb-6">
+                  <span class="step-num">01</span>
+                  <div>
+                    <div class="text-[10.5px] uppercase tracking-[0.14em] text-[var(--muted-2)] font-semibold">pick &amp; preview</div>
+                    <h3 class="font-semibold text-[1.05rem] tracking-tight mt-0.5">Pilih Gambar</h3>
+                    <p class="text-xs text-[var(--muted)] mt-0.5">Boleh banyak sekaligus. Dikompres otomatis (≤1600px, JPG) lalu di-upload ke assets/kerjakami/.</p>
+                  </div>
+                </div>
+                <label class="btn btn-primary block text-center py-3 cursor-pointer" style="font-size:0.9rem">
+                  <i data-icon="image"></i> Pilih Gambar
+                  <input id="gallery-files" type="file" accept="image/*" multiple class="hidden" />
+                </label>
+                <div id="gallery-list" class="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3"></div>
+                <p id="gallery-empty" class="text-xs text-[var(--muted-2)] mt-3">Belum ada gambar dipilih.</p>
+              </div>
+
+              <div class="panel step-card p-5 md:p-7">
+                <div class="flex items-start gap-3.5 mb-6">
+                  <span class="step-num">02</span>
+                  <div>
+                    <div class="text-[10.5px] uppercase tracking-[0.14em] text-[var(--muted-2)] font-semibold">caption &amp; upload</div>
+                    <h3 class="font-semibold text-[1.05rem] tracking-tight mt-0.5">Keterangan &amp; Upload</h3>
+                    <p class="text-xs text-[var(--muted)] mt-0.5">Satu keterangan untuk semua gambar yang dipilih (diberi nomor otomatis).</p>
+                  </div>
+                </div>
+                <label class="field-label" for="gallery-caption">Keterangan <span class="hint-inline">(opsional — default: "Momen tim")</span></label>
+                <input id="gallery-caption" class="input" type="text" placeholder="Contoh: Brainstorming produk baru" maxlength="60" />
+                <button type="button" id="btn-gallery-upload" class="btn btn-primary w-full mt-5">
+                  <i data-icon="upload"></i> Upload ke Galeri
+                </button>
+              </div>
+            </div>
+
+            <div class="col-span-12 lg:col-span-4 min-w-0 space-y-5">
+              <div class="panel p-5">
+                <div class="text-xs text-[var(--muted)] mb-3">Gambar masuk ke <span class="mono">assets/kerjakami/</span> (repo uroo.dev) dan terdaftar di <span class="mono">gallery.json</span>. Halaman about.html mengambilnya otomatis &amp; diurutkan terbaru dulu.</div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-[11px] mono uppercase tracking-[0.12em] text-[var(--muted-2)]">siap upload</span>
+                  <span id="gallery-count" class="mono text-sm" style="color:var(--accent-2)">0</span>
+                </div>
+              </div>
+              <div class="shell" style="border-color:var(--border)">
+                <div class="shell-header">
+                  <span class="shell-dot" style="background:#f5b545"></span>
+                  <span class="shell-dot" style="background:#f5f5f4"></span>
+                  <span class="shell-dot" style="background:#f5f5f4"></span>
+                  <span class="mono text-[10.5px] text-[var(--muted)] ml-1 tracking-wide">gallery-upload.stream</span>
+                </div>
+                <div class="space-y-1.5 max-h-40 overflow-y-auto p-3.5" id="gallery-log">
+                  <div class="text-sm text-[var(--muted)] mono p-2.5 rounded-lg" style="background:rgba(255,255,255,0.02)">
+                    <span style="color:var(--accent)">$</span> menunggu pilihan gambar. <span style="color:var(--accent-2)">/_</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <!-- Demo list -->
         <section id="demo-list-section" class="fade-up" style="--d:.14s">
           <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-5">
@@ -713,6 +825,8 @@
           'cloud': '<path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>',
           'refresh': '<path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/>',
           'link': '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>',
+          'upload': '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/>',
+          'save': '<path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>',
           'image': '<rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>',
           'file-text': '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/>',
           'clipboard-list': '<rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/>',
@@ -787,6 +901,97 @@
           }
           return res.json();
         }
+
+        // Tangani error GitHub API dengan pesan yang jelas. Jika 401
+        // (token ditolak), hapus token tersimpan agar pengguna diminta
+        // memasukkan token baru — bukan gagal berulang diam-diam.
+        function handleGitHubError(e) {
+          const msg = (e && e.message) || 'kegagalan tak dikenal';
+          if (/401|bad credentials|unauthorized/i.test(msg)) {
+            if (GITHUB_TOKEN) {
+              GITHUB_TOKEN = '';
+              localStorage.removeItem('uroo_gh_token');
+              toast('Token ditolak GitHub (401) — token lama dihapus. Klik aksi lagi untuk memasukkan token baru.', 'error');
+              logActivity('✗ Token ditolak GitHub (401). Token lama dihapus dari browser — atur ulang token lalu ulangi aksi.', 'var(--danger)');
+            }
+          }
+          return msg;
+        }
+
+        // ================= CATALOG (demos.json) IO — edit/hapus menyentuh katalog, BUKAN repo GitHub =================
+        const DEMOS_PATH = 'demos.json';
+
+        async function readCatalogFromGitHub() {
+          const res = await ghFetch(API_REPO_PATH + '/contents/' + DEMOS_PATH);
+          const txt = atob((res.content || '').replace(/\s/g, ''));
+          let items = [];
+          try { items = JSON.parse(txt); } catch (e) { throw new Error('demos.json korup: ' + e.message); }
+          if (!Array.isArray(items)) items = [];
+          return { items, sha: res.sha };
+        }
+
+        // Pengaman: jika katalog di GitHub jauh lebih kecil dari katalog lokal,
+        // kemungkinan salinan remote sudah usang/rusak. Jangan menulis hasil
+        // baca tersebut kembali (agar entri lain tidak hilang diam-diam).
+        function assertCatalogConsistent(items, op) {
+          const localCount = demos.length;
+          if (localCount >= 4 && items.length < Math.ceil(localCount / 2)) {
+            throw new Error('Katalog GitHub hanya berisi ' + items.length + ' dari ' + localCount +
+              ' entri lokal. Tidak melakukan ' + op + ' agar entri lain tidak hilang. ' +
+              'Sinkronkan dulu (push repo ke main) lalu ulangi.');
+          }
+        }
+
+        async function writeCatalogToGitHub(items, sha) {
+          const content = btoa(unescape(encodeURIComponent(JSON.stringify(items, null, 2) + '\n')));
+          const payload = {
+            message: 'katalog: update demos.json dari uroo console',
+            content: content,
+            branch: 'main'
+          };
+          if (sha) payload.sha = sha;
+          await ghFetch(API_REPO_PATH + '/contents/' + DEMOS_PATH, { method: 'PUT', body: JSON.stringify(payload) });
+        }
+
+        // ================= MODAL =================
+        let modalOnCancel = null;
+        function openModal({ kind = 'info', kicker = 'konfirmasi', title, html, confirmLabel = 'Lanjutkan', onConfirm, onCancel }) {
+          const root = $('#modal-root');
+          modalOnCancel = onCancel || null;
+          $('#modal-icon').className = 'modal-icon ' + kind;
+          $('#modal-icon').innerHTML = icon(kind === 'danger' ? 'trash' : 'info');
+          $('#modal-kicker').textContent = kicker;
+          $('#modal-title').textContent = title;
+          $('#modal-body').innerHTML = html;
+          $('#modal-confirm').textContent = confirmLabel;
+          $('#modal-confirm').onclick = () => { closeModal(); if (onConfirm) onConfirm(); };
+          $('#modal-cancel').onclick = handleModalCancel;
+          root.classList.remove('hidden');
+          root.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+          const first = root.querySelector('input, textarea');
+          if (first) setTimeout(() => first.focus(), 50);
+        }
+
+        function handleModalCancel() {
+          closeModal();
+          const cb = modalOnCancel;
+          modalOnCancel = null;
+          if (cb) cb();
+        }
+
+        function closeModal() {
+          modalOnCancel = null;
+          const root = $('#modal-root');
+          root.classList.add('hidden');
+          root.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('[data-modal-close]').forEach(el => el.addEventListener('click', handleModalCancel));
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && !$('#modal-root').classList.contains('hidden')) handleModalCancel();
+        });
 
         // ================= THUMBNAIL UPLOAD =================
         // Baca file sebagai data URL
@@ -898,6 +1103,7 @@
         let deployedSince = {}; // project -> time
         let selectedThumbFile = null; // file thumbnail yang baru dipilih
         let currentThumbUrl = ''; // URL thumbnail yang akan dikirim (dari upload baru / re-deploy)
+        let editingProject = null; // project yang sedang diedit (edit hanya katalog — demos.json)
 
         // ================= LOAD DEMOS =================
         async function loadDemos() {
@@ -1019,55 +1225,188 @@
           });
           list.querySelectorAll('.edit-demo').forEach(btn => {
             btn.addEventListener('click', () => {
-              $('#repo').value = btn.dataset.repo;
-              $('#project').value = btn.dataset.project;
-              $('#title').value = btn.dataset.title;
-              $('#description').value = btn.dataset.desc;
-              $('#category').value = btn.dataset.cat;
-              if (btn.dataset.thumb) applyExistingThumb(btn.dataset.thumb); else clearThumbState();
-              $('#price').value = btn.dataset.price || '';
-              let cs = {};
-              try { cs = JSON.parse(decodeURIComponent(btn.dataset.case || '{}')); } catch (e) { cs = {}; }
+              const d = demos.find(x => x.project === btn.dataset.project);
+              if (!d) return;
+              editingProject = d.project;
+
+              // Sumber repositori dikunci: edit hanya mengubah KATALOG (demos.json), bukan repo GitHub
+              $('#repo').value = d.repo_display || d.repo || '';
+              $('#repo').readOnly = true;
+              $('#project').value = d.project;
+              $('#project').readOnly = true;
+              $('#ref').value = 'main';
+
+              $('#title').value = d.title || '';
+              $('#description').value = d.description || '';
+              $('#category').value = d.category || 'Demo';
+              if (d.thumbnail) applyExistingThumb(d.thumbnail); else clearThumbState();
+              $('#price').value = d.price ? String(d.price) : '';
+
+              const cs = d.caseStudy || {};
               $('#masalah').value = cs.masalah || '';
               $('#solusi').value = cs.solusi || '';
               $('#fitur').value = (cs.fitur || []).join('\n');
               $('#teknologi').value = (cs.teknologi || []).join(', ');
               $('#hasil').value = cs.hasil || '';
-              toast('Form diisi dari demo — ubah lalu klik Deploy.', 'info');
-              $('#deploy-form-section').scrollIntoView({behavior:'smooth'});
+
+              $('#section-heading').textContent = 'Edit Entri Katalog';
+              $('#section-sub').textContent = 'Perubahan hanya menyentuh demos.json (katalog di uroo.my.id). Repo GitHub & deployment live tidak diubah.';
+              $('#btn-deploy').innerHTML = icon('save') + ' Simpan Perubahan';
+              $('#edit-banner').classList.remove('hidden');
+              syncSummary();
+              toast('Mode edit — ubah data katalog lalu klik Simpan.', 'info');
+              $('#deploy-form-section').scrollIntoView({ behavior: 'smooth' });
             });
           });
           list.querySelectorAll('.delete-demo').forEach(btn => {
             btn.addEventListener('click', () => {
-              deleteDemo(btn.dataset.project, btn.dataset.title);
+              const project = btn.dataset.project;
+              const title = btn.dataset.title;
+              const d = demos.find(x => x.project === project) || {};
+              openModal({
+                kind: 'danger',
+                kicker: 'permanen · katalog saja',
+                title: 'Hapus "' + (title || project) + '" dari katalog?',
+                html:
+                  '<p>Entri ini akan dihapus dari <span class="mono">demos.json</span> dan langsung hilang dari website <b>uroo.my.id</b>.</p>' +
+                  '<div class="list-box">' +
+                    '<p class="mono text-[11px] uppercase tracking-[0.12em]" style="color:var(--muted-2)">yang akan dihapus</p>' +
+                    '<ul>' +
+                      '<li><span class="dot dot-error"></span> Judul, deskripsi &amp; kategori di katalog</li>' +
+                      '<li><span class="dot dot-error"></span> Harga, studi kasus, thumbnail yang tampil</li>' +
+                    '</ul>' +
+                  '</div>' +
+                  '<div class="list-box" style="margin-top:.6rem">' +
+                    '<p class="mono text-[11px] uppercase tracking-[0.12em]" style="color:var(--accent-2)">yang TIDAK disentuh</p>' +
+                    '<ul>' +
+                      '<li><span class="dot dot-live"></span> Repository GitHub ' + esc(d.repo_display || d.repo || '') + ' (tetap utuh)</li>' +
+                      '<li><span class="dot dot-live"></span> Halaman live ' + esc(d.subdomain || d.url || '') + ' (tetap online)</li>' +
+                    '</ul>' +
+                  '</div>',
+                confirmLabel: 'Hapus dari Katalog',
+                onConfirm: () => deleteFromCatalog(project, title)
+              });
             });
           });
         }
 
-        // ================= DELETE DEMO =================
-        async function deleteDemo(project, title) {
+        // ================= CANCEL EDIT =================
+        function cancelEdit() {
+          editingProject = null;
+          $('#repo').readOnly = false;
+          $('#project').readOnly = false;
+          $('#section-heading').textContent = 'Deploy Template Baru';
+          $('#section-sub').textContent = 'Tempel link GitHub repository → otomatis deploy sebagai subdomain baru.';
+          $('#btn-deploy').innerHTML = icon('rocket') + ' Deploy Sekarang';
+          $('#edit-banner').classList.add('hidden');
+        }
+
+        $('#btn-cancel-edit').addEventListener('click', () => { cancelEdit(); clearThumbState(); });
+
+        // ================= DELETE FROM CATALOG (demos.json only) =================
+        async function deleteFromCatalog(project, title) {
           const d = demos.find(x => x.project === project);
           const label = title || (d && d.title) || project;
-          if (!window.confirm('Hapus demo "' + label + '" (' + project + ')?\n\nDemo akan dihapus dari demos.json dan project Cloudflare Pages dihapus. Tindakan ini tidak bisa dibatalkan.')) return;
-          if (!GITHUB_TOKEN) { toast('Set GitHub token dulu untuk menghapus demo.', 'error'); return; }
+          if (!(await ensureTokenModal())) return;
 
           try {
-            await ghFetch(`${API_REPO_PATH}/dispatches`, {
-              method: 'POST',
-              body: JSON.stringify({
-                event_type: 'delete-demo',
-                client_payload: { project, title: label }
-              })
-            });
+            toast('Menghapus dari demos.json...', 'info');
+            logActivity('Hapus ' + project + ' dari katalog...', 'var(--accent)');
 
-            // update state lokal: hapus dari daftar
-            demos = demos.filter(x => x.project !== project);
+            const { items, sha } = await readCatalogFromGitHub();
+            assertCatalogConsistent(items, 'penghapusan katalog');
+            const next = items.filter(x => x.project !== project);
+            if (next.length === items.length) throw new Error('Project "' + project + '" tidak ditemukan di demos.json.');
+            await writeCatalogToGitHub(next, sha);
+
+            demos = next;
             renderDemos();
-            toast('Perintah hapus terkirim. Demo akan dihapus.', 'success');
-            logActivity('✓ repository_dispatch delete-demo: ' + label, 'var(--accent-2)');
+            toast('"' + label + '" dihapus dari katalog.', 'success');
+            logActivity('✓ ' + project + ' dihapus dari demos.json. Repo GitHub & deployment tidak diubah.', 'var(--accent-2)');
           } catch (e) {
-            toast('Gagal kirim perintah hapus: ' + e.message, 'error');
-            logActivity('✗ delete gagal: ' + e.message, 'var(--danger)');
+            const msg = handleGitHubError(e);
+            toast('Gagal menghapus katalog: ' + msg, 'error');
+            logActivity('✗ hapus gagal: ' + msg, 'var(--danger)');
+          }
+        }
+
+        // ================= SAVE EDIT (hanya demos.json, bukan repo GitHub) =================
+        async function saveCatalogEdit() {
+          const project = $('#project').value.trim().toLowerCase();
+          const title = $('#title').value.trim();
+          if (!title) { toast('Judul wajib diisi.', 'error'); return; }
+          if (!(await ensureTokenModal())) return;
+
+          const btn = $('#btn-deploy');
+          const prev = btn.innerHTML;
+          btn.disabled = true;
+          btn.innerHTML = '<span class="spinner"></span> Menyimpan...';
+
+          try {
+            // 1) Upload thumbnail baru (jika ada file baru)
+            let thumbnail = currentThumbUrl || '';
+            if (selectedThumbFile) {
+              toast('Upload thumbnail ke GitHub...', 'info');
+              logActivity('Upload thumbnail baru untuk ' + project + '...', 'var(--accent)');
+              const up = await uploadThumbnail(selectedThumbFile, project);
+              thumbnail = up.url;
+              logActivity('✓ Thumbnail ter-upload: ' + up.path, 'var(--accent-2)');
+            }
+
+            // 2) Kumpulkan field katalog dari form
+            const price = parseInt(($('#price').value || '').replace(/[^\d]/g, ''), 10) || 0;
+            const cs = {};
+            if ($('#masalah').value.trim()) cs.masalah = $('#masalah').value.trim();
+            if ($('#solusi').value.trim()) cs.solusi = $('#solusi').value.trim();
+            const fitur = $('#fitur').value.split('\n').map(s => s.trim()).filter(Boolean);
+            if (fitur.length) cs.fitur = fitur;
+            const teknologi = $('#teknologi').value.split(',').map(s => s.trim()).filter(Boolean);
+            if (teknologi.length) cs.teknologi = teknologi;
+            if ($('#hasil').value.trim()) cs.hasil = $('#hasil').value.trim();
+
+            // 3) Baca demos.json dari GitHub, update record, tulis kembali
+            const { items, sha } = await readCatalogFromGitHub();
+            assertCatalogConsistent(items, 'penyimpanan edit');
+            const idx = items.findIndex(x => x.project === project);
+            const old = (idx >= 0) ? items[idx] : {};
+            // Fallback ke entri lokal: url/repo/thumbnail sering tidak terisi di
+            // remote jika pernah ditulis lewat flow yang tidak lengkap. Jangan
+            // biarkan edit mengosongkan field penting tersebut.
+            const localOld = demos.find(x => x.project === project) || {};
+            const entry = {
+              ...old,
+              ...localOld,
+              project: project,
+              title: title,
+              description: $('#description').value.trim(),
+              category: $('#category').value || 'Demo',
+              ...(price > 0 ? { price: price } : {})
+            };
+            if (thumbnail) entry.thumbnail = thumbnail;
+            else if (old.thumbnail && !currentThumbUrl) entry.thumbnail = old.thumbnail;
+            entry.caseStudy = cs;
+            if (!Object.keys(entry.caseStudy).length) delete entry.caseStudy;
+            entry.status = old.status || 'live';
+            entry.deployedAt = old.deployedAt || new Date().toISOString();
+
+            if (idx >= 0) items[idx] = entry; else items.unshift(entry);
+            await writeCatalogToGitHub(items, sha);
+
+            // 4) Update state lokal
+            const li = demos.findIndex(x => x.project === project);
+            if (li >= 0) demos[li] = entry; else demos.unshift(entry);
+            cancelEdit();
+            clearThumbState();
+            renderDemos();
+            toast('Perubahan disimpan ke demos.json.', 'success');
+            logActivity('✓ Katalog diperbarui: ' + project, 'var(--accent-2)');
+          } catch (e) {
+            const msg = handleGitHubError(e);
+            toast('Gagal menyimpan katalog: ' + msg, 'error');
+            logActivity('✗ edit gagal: ' + msg, 'var(--danger)');
+          } finally {
+            btn.disabled = false;
+            btn.innerHTML = prev;
           }
         }
 
@@ -1120,8 +1459,9 @@
               currentThumbUrl = up.url;
               logActivity('✓ Thumbnail ter-upload: ' + up.path, 'var(--accent-2)');
             } catch (err) {
-              toast('Gagal upload thumbnail — lanjut deploy tanpa thumbnail. ' + err.message, 'error');
-              logActivity('⚠ thumbnail gagal: ' + err.message, 'var(--warn)');
+              const msg = handleGitHubError(err);
+              toast('Gagal upload thumbnail — lanjut deploy tanpa thumbnail. ' + msg, 'error');
+              logActivity('⚠ thumbnail gagal: ' + msg, 'var(--warn)');
             }
           }
 
@@ -1238,9 +1578,150 @@
           });
         }
 
+        // ================= MODE SWITCH: Deploy / Upload Galeri =================
+        function setPortalMode(mode) {
+          document.querySelectorAll('.mode-pill').forEach(p => p.classList.toggle('active', p.dataset.mode === mode));
+          $('#deploy-form-section').classList.toggle('hidden', mode !== 'deploy');
+          $('#demo-list-section').classList.toggle('hidden', mode !== 'deploy');
+          $('#gallery-upload-section').classList.toggle('hidden', mode !== 'gallery');
+          if (mode === 'gallery' && editingProject) cancelEdit();
+        }
+        document.querySelectorAll('.mode-pill').forEach(p => p.addEventListener('click', () => setPortalMode(p.dataset.mode)));
+
+        // ================= GALLERY UPLOAD =================
+        const GALLERY_PATH = 'assets/kerjakami';
+        const GALLERY_MANIFEST = GALLERY_PATH + '/gallery.json';
+        let galleryFiles = [];
+
+        function fileSizeLabel(bytes) {
+          if (bytes < 1024) return bytes + ' B';
+          if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(0) + ' KB';
+          return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+        }
+
+        function galleryLog(msg, color = 'var(--text)') {
+          const el = document.createElement('div');
+          el.className = 'text-sm mono p-2.5 rounded-lg';
+          el.style.background = 'rgba(255,255,255,0.02)';
+          el.style.color = color;
+          el.innerHTML = `<span style="color:var(--accent)">› </span>${esc(msg)}`;
+          $('#gallery-log').prepend(el);
+        }
+
+        function renderGalleryPreviews() {
+          const listEl = $('#gallery-list');
+          listEl.innerHTML = galleryFiles.map((item, i) => {
+            const src = item.preview || '';
+            const thumb = src
+              ? `<img src="${src}" alt="Preview ${i + 1}" class="w-full aspect-square object-cover rounded-lg" style="border:1px solid var(--border)" />`
+              : '<div class="w-full aspect-square rounded-lg flex items-center justify-center text-[var(--muted-2)]" style="background:rgba(255,255,255,0.03);border:1px solid var(--border)">…</div>';
+            return `<div class="relative">
+              ${thumb}
+              <span class="absolute top-1.5 left-1.5 text-[10px] mono font-semibold px-1.5 py-0.5 rounded" style="background:rgba(10,10,11,0.8);color:var(--accent-2);border:1px solid var(--border)">${i + 1}</span>
+              <button type="button" class="gallery-remove absolute top-1.5 right-1.5 w-6 h-6 flex items-center justify-center rounded-full text-[var(--danger)]" style="background:rgba(10,10,11,0.8);border:1px solid rgba(255,180,171,0.35)" data-i="${i}" title="Hapus">${icon('x', '13px')}</button>
+            </div>`;
+          }).join('');
+          $('#gallery-empty').classList.toggle('hidden', galleryFiles.length > 0);
+          $('#gallery-count').textContent = galleryFiles.length ? galleryFiles.length + ' gambar' : '0';
+          listEl.querySelectorAll('.gallery-remove').forEach(btn => {
+            btn.addEventListener('click', () => {
+              galleryFiles.splice(Number(btn.dataset.i), 1);
+              renderGalleryPreviews();
+            });
+          });
+        }
+
+        $('#gallery-files').addEventListener('change', (e) => {
+          const files = Array.from(e.target.files || []);
+          e.target.value = '';
+          files.forEach(f => {
+            if (!f.type || f.type.indexOf('image/') !== 0) { toast(f.name + ' bukan gambar.', 'error'); return; }
+            if (f.size > 10 * 1024 * 1024) { toast(f.name + ' terlalu besar (>10MB).', 'error'); return; }
+            galleryFiles.push({ file: f, preview: '' });
+          });
+          renderGalleryPreviews();
+          galleryFiles.forEach((item) => {
+            if (!item.preview) readFileAsDataURL(item.file).then(u => { item.preview = u; renderGalleryPreviews(); }).catch(() => { item.preview = null; });
+          });
+          if (files.length) toast(files.length + ' gambar ditambahkan.', 'success');
+        });
+
+        // Baca manifest gallery.json dari GitHub (buat baru jika belum ada)
+        async function readGalleryManifest() {
+          try {
+            const res = await ghFetch(API_REPO_PATH + '/contents/' + GALLERY_MANIFEST);
+            const txt = atob((res.content || '').replace(/\s/g, ''));
+            let items = [];
+            try { items = JSON.parse(txt).items || []; } catch (e) { items = []; }
+            if (!Array.isArray(items)) items = [];
+            return { items, sha: res.sha };
+          } catch (e) {
+            if (String(e.message).includes('Not Found') || String(e.message).includes('404')) return { items: [], sha: null };
+            throw e;
+          }
+        }
+
+        async function uploadGalleryBatch() {
+          if (!galleryFiles.length) { toast('Pilih minimal 1 gambar dulu.', 'error'); return; }
+          if (!(await ensureTokenModal())) return;
+
+          const caption = ($('#gallery-caption').value || '').trim() || 'Momen tim';
+          const btn = $('#btn-gallery-upload');
+          const prev = btn.innerHTML;
+          btn.disabled = true;
+          btn.innerHTML = '<span class="spinner"></span> Mengupload...';
+
+          const base = (caption + '').replace(/[^a-z0-9]+/gi, '-').replace(/^-+|-+$/g, '').toLowerCase() || 'momen-tim';
+          const ts = new Date().toISOString().replace(/[-:T]/g, '').slice(0, 14);
+          const newItems = [];
+          try {
+            for (let i = 0; i < galleryFiles.length; i++) {
+              const item = galleryFiles[i];
+              galleryLog('Upload ' + (i + 1) + '/' + galleryFiles.length + ' — ' + item.file.name + '...', 'var(--accent)');
+              const { ext, dataUrl } = await resizeThumb(item.file, 1600, 0.85);
+              const content = dataUrl.split(',')[1];
+              const approx = Math.round(content.length * 3 / 4);
+              if (approx > 900 * 1024) throw new Error('Hasil kompresi melebihi 900KB — pilih gambar lebih kecil (' + item.file.name + ').');
+              const fname = base + '-' + ts + (galleryFiles.length > 1 ? '-' + (i + 1) : '') + '.' + ext;
+              await ghFetch(API_REPO_PATH + '/contents/' + GALLERY_PATH + '/' + fname, {
+                method: 'PUT',
+                body: JSON.stringify({ message: 'galeri: tambah ' + fname, content: content, branch: 'main' })
+              });
+              newItems.push({ src: GALLERY_PATH + '/' + fname, label: caption + (galleryFiles.length > 1 ? ' (' + (i + 1) + ')' : ''), at: new Date().toISOString() });
+              galleryLog('✓ Ter-upload: ' + GALLERY_PATH + '/' + fname, 'var(--accent-2)');
+            }
+
+            const manifest = await readGalleryManifest();
+            const items = newItems.concat(manifest.items);
+            const payload = {
+              message: 'galeri: update gallery.json (' + newItems.length + ' gambar baru)',
+              content: btoa(unescape(encodeURIComponent(JSON.stringify({ updated: new Date().toISOString(), items: items }, null, 2) + '\n'))),
+              branch: 'main'
+            };
+            if (manifest.sha) payload.sha = manifest.sha;
+            await ghFetch(API_REPO_PATH + '/contents/' + GALLERY_MANIFEST, { method: 'PUT', body: JSON.stringify(payload) });
+
+            galleryLog('✓ Gallery manifest diperbarui — total ' + items.length + ' momen.', 'var(--accent-2)');
+            toast('Upload galeri selesai — ' + newItems.length + ' gambar.', 'success');
+            galleryFiles = [];
+            $('#gallery-caption').value = '';
+            renderGalleryPreviews();
+          } catch (err) {
+            const msg = handleGitHubError(err);
+            galleryLog('✗ Upload galeri gagal: ' + msg, 'var(--danger)');
+            toast('Gagal upload galeri: ' + msg, 'error');
+          } finally {
+            btn.disabled = false;
+            btn.innerHTML = prev;
+          }
+        }
+
+        $('#btn-gallery-upload').addEventListener('click', uploadGalleryBatch);
+
         // ================= EVENTS =================
         $('#deploy-form').addEventListener('submit', (e) => {
           e.preventDefault();
+          if (editingProject) { saveCatalogEdit(); return; }
           triggerDeploy();
         });
 
@@ -1252,17 +1733,32 @@
         $('#search-input').addEventListener('input', renderDemos);
         $('#filter-category').addEventListener('change', renderDemos);
 
-        // Token setup (opsional) — simpan di localStorage agar tidak ketik ulang
-        // Hidden: jika token belum ada, tampilkan prompt kecil via modal sederhana
-        function ensureToken() {
-          if (!GITHUB_TOKEN) {
-            const tk = prompt('Masukkan GitHub Personal Access Token untuk mengaktifkan auto-deploy:\n(scope: repo — hanya untuk trigger workflow). Kosongkan jika belum punya.');
-            if (tk && tk.trim()) {
-              GITHUB_TOKEN = tk.trim();
-              localStorage.setItem('uroo_gh_token', GITHUB_TOKEN);
-              toast('Token disimpan di browser ini.', 'success');
-            }
-          }
+        // Modal pengaturan token — otomatis muncul sebelum aksi menulis ke
+        // GitHub (simpan edit katalog, hapus katalog, upload galeri).
+        // Promise resolve true hanya jika token tersedia.
+        function ensureTokenModal() {
+          return new Promise((resolve) => {
+            if (GITHUB_TOKEN) { resolve(true); return; }
+            openModal({
+              kind: 'info',
+              kicker: 'github access',
+              title: 'Atur GitHub Token',
+              html:
+                '<p class="text-sm text-[var(--muted)] leading-relaxed">Menyimpan perubahan ke <span class="mono">demos.json</span> butuh GitHub token. Buat di <a href="https://github.com/settings/tokens" target="_blank" rel="noopener" class="underline text-[var(--accent-2)]">github.com/settings/tokens</a> (scope: <span class="mono">repo</span>) lalu tempel di bawah.</p>' +
+                '<p class="text-xs text-[var(--muted)] mt-2 leading-relaxed">Token disimpan hanya di browser ini (localStorage) — tidak dikirim ke server lain.</p>' +
+                '<input id="token-input" type="password" class="mt-3 w-full text-sm px-3 py-2.5 rounded-lg bg-white/5 border border-white/15 focus:border-[var(--accent-2)] outline-none mono" placeholder="ghp_..." autocomplete="off" />',
+              confirmLabel: 'Simpan Token',
+              onConfirm: () => {
+                const tk = ($('#token-input').value || '').trim();
+                if (!tk) { toast('Token kosong — aksi dibatalkan.', 'error'); resolve(false); return; }
+                GITHUB_TOKEN = tk;
+                localStorage.setItem('uroo_gh_token', GITHUB_TOKEN);
+                toast('Token disimpan di browser ini.', 'success');
+                resolve(true);
+              },
+              onCancel: () => resolve(false)
+            });
+          });
         }
 
         // Show token notice if missing
@@ -1279,7 +1775,7 @@
               </div>
             `;
             el.style.cursor = 'pointer';
-            el.addEventListener('click', () => { ensureToken(); el.remove(); });
+            el.addEventListener('click', () => { ensureTokenModal().then(() => el.remove()); });
             $('#toast-container').appendChild(el);
             setTimeout(() => { el.classList.remove('show'); setTimeout(() => el.remove(), 300); }, 8000);
           }, 800);

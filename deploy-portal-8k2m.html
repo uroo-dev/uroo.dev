@@ -929,7 +929,7 @@
 
         async function readCatalogFromGitHub() {
           const res = await ghFetch(API_REPO_PATH + '/contents/' + DEMOS_PATH);
-          const txt = atob((res.content || '').replace(/\s/g, ''));
+          const txt = new TextDecoder().decode(Uint8Array.from(atob((res.content || '').replace(/\s/g, '')), c => c.charCodeAt(0)));
           let items = [];
           try { items = JSON.parse(txt); } catch (e) { throw new Error('demos.json korup: ' + e.message); }
           if (!Array.isArray(items)) items = [];
@@ -1659,7 +1659,7 @@
         async function readGalleryManifest() {
           try {
             const res = await ghFetch(API_REPO_PATH + '/contents/' + GALLERY_MANIFEST);
-            const txt = atob((res.content || '').replace(/\s/g, ''));
+            const txt = new TextDecoder().decode(Uint8Array.from(atob((res.content || '').replace(/\s/g, '')), c => c.charCodeAt(0)));
             let items = [];
             try { items = JSON.parse(txt).items || []; } catch (e) { items = []; }
             if (!Array.isArray(items)) items = [];

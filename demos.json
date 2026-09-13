@@ -1,1 +1,30 @@
-[]
+[
+  {
+    "project": "usahaku-app",
+    "title": "Usahaku App",
+    "description": "Offline-first business app untuk membantu UMKM Indonesia tumbuh lewat teknologi sederhana.",
+    "category": "Mobile App",
+    "price": 500000,
+    "caseStudy": {
+      "masalah": "Banyak pelaku UMKM Indonesia belum terbantu teknologi untuk mencatat keuangan dan stok karena aplikasi yang ada terasa rumit atau sangat bergantung pada kuota internet.",
+      "solusi": "Aplikasi bisnis offline-first yang dibuat khusus untuk UMKM: catat transaksi, pelanggan, dan stok dengan ringan, tetap berfungsi tanpa internet, lalu menyinkronkan data saat online.",
+      "fitur": [
+        "Bekerja offline penuh",
+        "Catat transaksi & pelanggan dengan cepat",
+        "Pantau stok barang",
+        "Laporan sederhana untuk keputusan usaha",
+        "Ringan dan hemat kuota"
+      ],
+      "teknologi": [
+        "Flutter",
+        "Dart",
+        "Penyimpanan lokal (offline-first)",
+        "GitHub Pages",
+        "GitHub Actions"
+      ],
+      "hasil": "Pelaku usaha dapat menjalankan pembukuan sederhana langsung dari HP murah tanpa khawatir kuota, dengan data yang tetap aman dan siap disinkronkan."
+    },
+    "status": "live",
+    "deployedAt": "2026-09-13T16:41:14.588Z"
+  }
+]

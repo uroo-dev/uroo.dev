@@ -11,7 +11,7 @@
     "status": "live",
     "deployedAt": "2026-09-07T16:47:41.162229+00:00",
     "thumbnail": "https://uroo.my.id/thumbnails/demo-mouric.jpg",
-    "price": 150000,
+    "price": 200000,
     "caseStudy": {
       "masalah": "Portofolio online sangat penting bagi pekerja kreatif, tetapi kebanyakan template mahal dan sulit dikustomisasi. Tanpa portofolio yang profesional, peluang klien sering hilang.",
       "solusi": "Kami membangun landing page portofolio modern dengan satu halaman yang cepat, responsif, dan mudah diperbarui. Desain menerapkan dark glassmorphism dan animasi halus untuk kesan premium.",
@@ -92,7 +92,7 @@
   },
   {
     "project": "uroo-ui",
-    "title": "Uroo UI — Design System",
+    "title": "Uroo UI â Design System",
     "description": "Design system & UI toolkit monochromatic liquid glassmorphism, murni HTML/CSS/JS.",
     "category": "UI Kit",
     "url": "https://uroo-dev.github.io/uroo-ui/",
@@ -162,7 +162,7 @@
     "deployedAt": "2026-08-25T05:08:55Z",
     "price": 0,
     "caseStudy": {
-      "masalah": "Pemesanan meja atau ruang kerja di kantor masih manual — sering terjadi jadwal bentrok dan pemakaian sulit dipantau.",
+      "masalah": "Pemesanan meja atau ruang kerja di kantor masih manual â sering terjadi jadwal bentrok dan pemakaian sulit dipantau.",
       "solusi": "Aplikasi booking meja kerja (desk booking) agar setiap pemakaian tercatat, terlihat ketersediaannya, dan terjadwal rapi.",
       "fitur": [
         "Booking meja per hari/jam",
@@ -192,11 +192,11 @@
     "deployedAt": "2026-08-06T17:50:01Z",
     "price": 0,
     "caseStudy": {
-      "masalah": "Bisnis laundry masih mencatat order di buku — rawan salah hitung, lupa status cucian, dan sulit memantau omzet.",
+      "masalah": "Bisnis laundry masih mencatat order di buku â rawan salah hitung, lupa status cucian, dan sulit memantau omzet.",
       "solusi": "Aplikasi kasir laundry modern: input order, update status pengerjaan, simpan data pelanggan, dan rekap omzet otomatis.",
       "fitur": [
         "Input order cepat",
-        "Status pengerjaan (dicuci → kering → siap)",
+        "Status pengerjaan (dicuci â kering â siap)",
         "Riwayat pelanggan",
         "Rekap omzet harian/bulanan",
         "UI mobile friendly"
@@ -271,7 +271,7 @@
   {
     "project": "egg-timer",
     "title": "Egg Timer",
-    "description": "Timer telur sederhana — web app ringan siap pakai.",
+    "description": "Timer telur sederhana â web app ringan siap pakai.",
     "category": "Alat",
     "url": "https://uroo-dev.github.io/Egg-Timer/",
     "repo": "uroo-dev/Egg-Timer",
@@ -280,7 +280,7 @@
     "deployedAt": "2026-04-09T00:17:22Z",
     "price": 0,
     "caseStudy": {
-      "masalah": "Merebus telur sering kelupaan — telur jadi kurang atau terlalu matang apalagi sambil mengerjakan hal lain.",
+      "masalah": "Merebus telur sering kelupaan â telur jadi kurang atau terlalu matang apalagi sambil mengerjakan hal lain.",
       "solusi": "Web app timer telur paling sederhana dengan preset tingkat kematangan plus alarm ketika waktunya selesai.",
       "fitur": [
         "Preset rebus (setengah matang, medium, matang)",

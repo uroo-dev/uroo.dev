@@ -895,11 +895,17 @@
               ...(options.headers || {})
             }
           });
+          // Baca teks dulu — banyak endpoint (mis. POST /dispatches) membalas
+          // 204 No Content tanpa body; memaksa res.json() memicu
+          // "Unexpected end of JSON input".
+          const text = await res.text();
           if (!res.ok) {
-            const err = await res.json().catch(() => ({}));
+            let err = {};
+            try { err = text ? JSON.parse(text) : {}; } catch (e) { err = {}; }
             throw new Error(err.message || 'GitHub API error ' + res.status);
           }
-          return res.json();
+          if (!text) return undefined;
+          return JSON.parse(text);
         }
 
         // Tangani error GitHub API dengan pesan yang jelas. Jika 401
@@ -1229,8 +1235,10 @@
               if (!d) return;
               editingProject = d.project;
 
-              // Sumber repositori dikunci: edit hanya mengubah KATALOG (demos.json), bukan repo GitHub
-              $('#repo').value = d.repo_display || d.repo || '';
+              // Sumber repositori dikunci: edit hanya mengubah KATALOG (demos.json), bukan repo GitHub.
+              // Isi SELALU format URL penuh agar konsisten dengan placeholder & validasi deploy.
+              const repoOrig = (d.repo_display || d.repo || '').replace(/^https?:\/\/github\.com\//, '').replace(/\.git$/, '');
+              $('#repo').value = repoOrig ? 'https://github.com/' + repoOrig : '';
               $('#repo').readOnly = true;
               $('#project').value = d.project;
               $('#project').readOnly = true;
@@ -1412,7 +1420,6 @@
 
         // ================= DEPLOY =================
         async function triggerDeploy() {
-          const repo = $('#repo').value.trim();
           const project = $('#project').value.trim().toLowerCase();
           const ref = $('#ref').value.trim() || 'main';
           const title = $('#title').value.trim();
@@ -1430,9 +1437,11 @@
           if (teknologi.length) cs.teknologi = teknologi;
           if ($('#hasil').value.trim()) cs.hasil = $('#hasil').value.trim();
 
-          // validasi
-          const repoMatch = repo.match(/^https:\/\/github\.com\/([\w.-]+)\/([\w.-]+)\/?$/);
-          if (!repoMatch) { toast('Format GitHub URL tidak valid. Contoh: https://github.com/uroo-dev/demo-cms', 'error'); return; }
+          // validasi — terima format URL penuh MAUPUN "owner/repo" pendek
+          let repoRaw = $('#repo').value.trim().replace(/\.git$/, '');
+          const repoMatch = repoRaw.match(/^https:\/\/github\.com\/([\w.-]+)\/([\w.-]+)\/?$/)
+            || repoRaw.match(/^([\w.-]+)\/([\w.-]+)$/);
+          if (!repoMatch) { toast('Format GitHub URL tidak valid. Contoh: https://github.com/uroo-dev/demo-cms atau uroo-dev/demo-cms', 'error'); return; }
           if (!/^[a-z0-9-]+$/.test(project)) { toast('Subdomain hanya huruf kecil, angka, dan strip.', 'error'); return; }
           if (!title) { toast('Judul wajib diisi.', 'error'); return; }
 

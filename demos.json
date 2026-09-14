@@ -69,7 +69,7 @@
     "repo_display": "uroo-dev/usahaku-app",
     "status": "live",
     "deployedAt": "2026-09-07T00:09:21Z",
-    "price": 390000,
+    "price": 500000,
     "caseStudy": {
       "masalah": "Banyak pelaku UMKM Indonesia belum terbantu teknologi untuk mencatat keuangan dan stok karena aplikasi yang ada terasa rumit atau sangat bergantung pada kuota internet.",
       "solusi": "Aplikasi bisnis offline-first yang dibuat khusus untuk UMKM: catat transaksi, pelanggan, dan stok dengan ringan, tetap berfungsi tanpa internet, lalu menyinkronkan data saat online.",

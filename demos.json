@@ -95,7 +95,7 @@
     "project": "uroo-ui",
     "title": "Uroo UI — Design System",
     "description": "Design system & UI toolkit monochromatic liquid glassmorphism, murni HTML/CSS/JS.",
-    "category": "UI Kit",
+    "category": "Demo",
     "url": "https://uroo-dev.github.io/uroo-ui/",
     "repo": "uroo-dev/uroo-ui",
     "repo_display": "uroo-dev/uroo-ui",
@@ -119,7 +119,8 @@
         "GitHub Pages"
       ],
       "hasil": "Kecepatan membangun halaman naik tajam dan semua produk uroo dev kini memakai satu bahasa visual yang konsisten."
-    }
+    },
+    "thumbnail": "https://uroo.my.id/thumbnails/uroo-ui.png"
   },
   {
     "project": "uroo-admin",

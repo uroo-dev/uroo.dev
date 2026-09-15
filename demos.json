@@ -88,7 +88,8 @@
         "GitHub Actions"
       ],
       "hasil": "Pelaku usaha dapat menjalankan pembukuan sederhana langsung dari HP murah tanpa khawatir kuota, dengan data yang tetap aman dan siap disinkronkan."
-    }
+    },
+    "thumbnail": "https://uroo.my.id/thumbnails/usahaku-app.png"
   },
   {
     "project": "uroo-ui",

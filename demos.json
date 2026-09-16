@@ -184,35 +184,6 @@
     "thumbnail": "https://uroo.my.id/thumbnails/laundry-app.png"
   },
   {
-    "project": "50-project-client",
-    "title": "50 Project Client",
-    "description": "Katalog kerja 50 project dari uroo dev.",
-    "category": "Katalog",
-    "url": "https://uroo-dev.github.io/50-Project-Client/",
-    "repo": "uroo-dev/50-Project-Client",
-    "repo_display": "uroo-dev/50-Project-Client",
-    "status": "live",
-    "deployedAt": "2026-08-04T17:27:32Z",
-    "price": 0,
-    "caseStudy": {
-      "masalah": "Calon klien kesulitan melihat pengalaman uroo dev karena portofolio tersebar di banyak tempat dan sulit diakses.",
-      "solusi": "Katalog satu pintu berisi 50 project klien yang pernah dikerjakan, dengan tautan langsung ke hasil akhir setiap project.",
-      "fitur": [
-        "Galeri project dengan kategori",
-        "Tautan langsung ke hasil",
-        "Filter mudah",
-        "Responsive di semua layar"
-      ],
-      "teknologi": [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "GitHub Pages"
-      ],
-      "hasil": "Klien baru mendapat gambaran kemampuan uroo dev secara instan, sehingga peluang closing semakin besar."
-    }
-  },
-  {
     "project": "gym-client",
     "title": "Gym Client",
     "description": "Aplikasi management GYM dengan QR member",

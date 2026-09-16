@@ -241,35 +241,5 @@
       ],
       "hasil": "Telur selalu direbus sesuai selera tanpa perlu mengingat-ingat waktu di tengah kesibukan."
     }
-  },
-  {
-    "project": "portofolio",
-    "title": "Portofolio D.Euro",
-    "description": "Portofolio pribadi Dimas Euro Dwi Prasetyo.",
-    "category": "Portfolio",
-    "url": "https://uroo-dev.github.io/Portofolio/",
-    "repo": "uroo-dev/Portofolio",
-    "repo_display": "uroo-dev/Portofolio",
-    "status": "live",
-    "deployedAt": "2026-04-09T00:17:18Z",
-    "price": 0,
-    "caseStudy": {
-      "masalah": "Personal branding Dimas Euro belum terwakili secara profesional di dunia digital untuk dilirik calon klien maupun rekruter.",
-      "solusi": "Portofolio pribadi modern untuk menampilkan karya, perjalanan karier, dan cara menghubungi dengan tampilan premium.",
-      "fitur": [
-        "Showcase karya interaktif",
-        "Halaman tentang & kontak",
-        "Desain premium responsive",
-        "Tautan ke media sosial"
-      ],
-      "teknologi": [
-        "Laravel/Blade",
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "GitHub Pages"
-      ],
-      "hasil": "Identitas profesional yang rapi dan mudah dibagikan, membantu membuka peluang kerja sama dan karier."
-    }
   }
 ]

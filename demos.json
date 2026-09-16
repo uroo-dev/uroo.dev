@@ -217,7 +217,7 @@
     "project": "egg-timer",
     "title": "Egg Timer",
     "description": "Timer telur sederhana — web app ringan siap pakai.",
-    "category": "Alat",
+    "category": "Lainnya",
     "url": "https://uroo-dev.github.io/Egg-Timer/",
     "repo": "uroo-dev/Egg-Timer",
     "repo_display": "uroo-dev/Egg-Timer",
@@ -240,6 +240,7 @@
         "GitHub Pages"
       ],
       "hasil": "Telur selalu direbus sesuai selera tanpa perlu mengingat-ingat waktu di tengah kesibukan."
-    }
+    },
+    "thumbnail": "https://uroo.my.id/thumbnails/egg-timer.png"
   }
 ]

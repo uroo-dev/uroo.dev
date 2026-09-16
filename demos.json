@@ -185,14 +185,14 @@
   {
     "project": "laundry-app",
     "title": "Laundry App",
-    "description": "Aplikasi Flutter modern untuk memudahkan bisnis laundry.",
-    "category": "Aplikasi",
+    "description": "Aplikasi modern untuk memudahkan bisnis laundry.",
+    "category": "Mobile App",
     "url": "https://uroo-dev.github.io/Laundry-app/",
     "repo": "uroo-dev/Laundry-app",
     "repo_display": "uroo-dev/Laundry-app",
     "status": "live",
     "deployedAt": "2026-08-06T17:50:01Z",
-    "price": 0,
+    "price": 300000,
     "caseStudy": {
       "masalah": "Bisnis laundry masih mencatat order di buku — rawan salah hitung, lupa status cucian, dan sulit memantau omzet.",
       "solusi": "Aplikasi kasir laundry modern: input order, update status pengerjaan, simpan data pelanggan, dan rekap omzet otomatis.",
@@ -210,7 +210,8 @@
         "GitHub Actions"
       ],
       "hasil": "Antrian dan pembayaran lebih terkontrol, omzet terpantau tiap hari, dan pelanggan lebih puas karena status cucian selalu jelas."
-    }
+    },
+    "thumbnail": "https://uroo.my.id/thumbnails/laundry-app.png"
   },
   {
     "project": "50-project-client",

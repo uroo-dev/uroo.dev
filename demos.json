@@ -245,14 +245,14 @@
   {
     "project": "gym-client",
     "title": "Gym Client",
-    "description": "Aplikasi client gym dari uroo dev.",
-    "category": "Aplikasi",
+    "description": "Aplikasi management GYM dengan QR member",
+    "category": "Web Development",
     "url": "https://uroo-dev.github.io/Gym-client/",
     "repo": "uroo-dev/Gym-client",
     "repo_display": "uroo-dev/Gym-client",
     "status": "live",
     "deployedAt": "2026-06-01T14:07:48Z",
-    "price": 0,
+    "price": 300000,
     "caseStudy": {
       "masalah": "Pengelola gym kesulitan membagikan jadwal dan informasi program latihan kepada member secara kekinian dan praktis.",
       "solusi": "Halaman klien gym modern: jadwal latihan yang terbaca, info program/kelas, dan visual brand yang meyakinkan.",
@@ -269,7 +269,8 @@
         "GitHub Pages"
       ],
       "hasil": "Member mendapat informasi cepat dari gawai dan pengelola tidak perlu menerangkan hal yang sama berulang-ulang."
-    }
+    },
+    "thumbnail": "https://uroo.my.id/thumbnails/gym-client.png"
   },
   {
     "project": "egg-timer",

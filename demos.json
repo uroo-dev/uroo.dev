@@ -123,36 +123,6 @@
     "thumbnail": "https://uroo.my.id/thumbnails/uroo-ui.png"
   },
   {
-    "project": "uroo-admin",
-    "title": "Uroo Admin",
-    "description": "Admin app untuk mengelola uroo dev.",
-    "category": "Dashboard",
-    "url": "https://uroo-dev.github.io/uroo-admin/",
-    "repo": "uroo-dev/uroo-admin",
-    "repo_display": "uroo-dev/uroo-admin",
-    "status": "live",
-    "deployedAt": "2026-08-25T13:57:49Z",
-    "price": 0,
-    "caseStudy": {
-      "masalah": "Mengelola produk, demo, dan konten katalog uroo dev masih dilakukan manual dan tersebar di banyak tempat, rawan salah dan lambat.",
-      "solusi": "Admin app terpusat untuk tim uroo dev: dashboard untuk mengelola produk, deployment, dan konten situs dari satu panel.",
-      "fitur": [
-        "Dashboard ringkas",
-        "Kelola produk & status deploy",
-        "Kelola konten katalog",
-        "Tampilan admin modern",
-        "Akses terbatas untuk tim"
-      ],
-      "teknologi": [
-        "Laravel/Blade",
-        "JavaScript",
-        "Database MySQL",
-        "Cloudflare"
-      ],
-      "hasil": "Tim dapat mengelola seluruh produk dari satu panel sehingga proses operasional lebih cepat, rapi, dan terkontrol."
-    }
-  },
-  {
     "project": "mydesk",
     "title": "MyDesk",
     "description": "Aplikasi web MyDesk dari uroo dev.",

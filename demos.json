@@ -125,14 +125,14 @@
   {
     "project": "mydesk",
     "title": "MyDesk",
-    "description": "Aplikasi web MyDesk dari uroo dev.",
-    "category": "Aplikasi",
+    "description": "Aplikasi Shortcut Deck",
+    "category": "Lainnya",
     "url": "https://uroo-dev.github.io/MyDesk/",
     "repo": "uroo-dev/MyDesk",
     "repo_display": "uroo-dev/MyDesk",
     "status": "live",
     "deployedAt": "2026-08-25T05:08:55Z",
-    "price": 0,
+    "price": 685000,
     "caseStudy": {
       "masalah": "Pemesanan meja atau ruang kerja di kantor masih manual — sering terjadi jadwal bentrok dan pemakaian sulit dipantau.",
       "solusi": "Aplikasi booking meja kerja (desk booking) agar setiap pemakaian tercatat, terlihat ketersediaannya, dan terjadwal rapi.",
@@ -150,7 +150,8 @@
         "GitHub Actions"
       ],
       "hasil": "Tidak ada lagi jadwal bentrok, dan penggunaan ruang kerja kantor menjadi lebih efisien serta terdokumentasi."
-    }
+    },
+    "thumbnail": "https://uroo.my.id/thumbnails/mydesk.png"
   },
   {
     "project": "laundry-app",

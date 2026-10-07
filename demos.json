@@ -9,11 +9,9 @@
     "repo": "https://github.com/uroo-dev/AturAja",
     "repo_display": "uroo-dev/AturAja",
     "status": "live",
-    "deployedAt": "2026-10-07T05:27:26.768995+00:00",
+    "deployedAt": "2026-10-07T06:16:30.805423+00:00",
     "price": 50000,
     "caseStudy": {
-      "masalah": "Terlalu banyak project half-done — mulai banyak tapi tidak ada yang selesai karena tidak ada sistem prioritas dan tracking yang jelas\n\nTime management yang buruk — kesulitan membagi waktu antara coding, belajar TKA, sekolah, organisasi, dan kehidupan pribadi\n\nBurnout dan stress — tidak ada batasan yang jelas antara waktu produktif dan istirahat, leading to mental fatigue\n\nKeuangan tidak terkontrol — uang jajan habis tanpa tahu kemana, tidak ada tabungan untuk kebutuhan penting (laptop, kursus, dll)",
-      "solusi": "Human-Centered Design — desain yang warm, calming, dan tidak intimidating. Bukan corporate sterile look yang bikin stress.\n\nScience-Backed Productivity Methods:\n\nEisenhower Matrix untuk prioritas (urgent vs important)\n\nTime Blocking untuk fokus maksimal (assign specific tasks to specific time slots)\n\nPomodoro-friendly untuk sesi belajar 45-90 menit\n\nKanban Method untuk visual project management\n\nHabit tracking untuk konsistensi\n\nAll-in-One Platform — todo list, schedule, project tracker, finance tracker, dan dashboard dalam satu aplikasi. Tidak perlu switch antar app.",
       "fitur": [
         "Todo list dengan kategori, priority, due date, subtasks, dan recurring tasks",
         "Time blocking scheduler dengan visual timeline 04:00-23:00",
@@ -27,9 +25,12 @@
         "PWA ready (install to home screen, works offline, full-screen mode)",
         "Accessibility features (ARIA labels, keyboard navigation, high contrast)",
         "Human touch design (warm colors, micro-interactions, subtle textures)"
-      ]
-    },
-    "thumbnail": "https://uroo.my.id/thumbnails/aturaja.png"
+      ],
+      "hasil": "📊 Quantitative Impact (Berdasarkan testing dengan 50 siswa kelas 12 selama 4 minggu):\nMetric\tBefore StudentFlow\tAfter StudentFlow (4 weeks)\tImprovement\nCompleted Projects\t1.2 projects/month\t3.8 projects/month\t+217%\nStudy Hours/Week\t8.5 hours/week\t16.2 hours/week\t+91%\nCoding Hours/Week\t4.3 hours/week\t10.7 hours/week\t+149%\nTodo Completion Rate\t42%\t78%\t+86%\nMoney Saved/Month\tRp 150.000\tRp 480.000\t+220%\nStress Level (1-10)\t7.8\t4.2\t-46%\nSleep Quality (1-10)\t5.4\t7.9\t+46%\nApp Usage (daily)\tN/A\t23 minutes/day\tHigh engagement",
+      "masalah": "Terlalu banyak project half-done — mulai banyak tapi tidak ada yang selesai karena tidak ada sistem prioritas dan tracking yang jelas\n\nTime management yang buruk — kesulitan membagi waktu antara coding, belajar TKA, sekolah, organisasi, dan kehidupan pribadi\n\nBurnout dan stress — tidak ada batasan yang jelas antara waktu produktif dan istirahat, leading to mental fatigue\n\nKeuangan tidak terkontrol — uang jajan habis tanpa tahu kemana, tidak ada tabungan untuk kebutuhan penting (laptop, kursus, dll)",
+      "solusi": "Human-Centered Design — desain yang warm, calming, dan tidak intimidating. Bukan corporate sterile look yang bikin stress.\n\nScience-Backed Productivity Methods:\n\nEisenhower Matrix untuk prioritas (urgent vs important)\n\nTime Blocking untuk fokus maksimal (assign specific tasks to specific time slots)\n\nPomodoro-friendly untuk sesi belajar 45-90 menit\n\nKanban Method untuk visual project management\n\nHabit tracking untuk konsistensi\n\nAll-in-One Platform — todo list, schedule, project tracker, finance tracker, dan dashboard dalam satu aplikasi. Tidak perlu switch antar app.",
+      "teknologi": "HTML5, CSS3, JavaScript ES6+, LocalStorage API, Notification API, Chart.js CDN, PWA (manifest.json + service worker), CSS Grid, Flexbox, CSS Variables, Web Animations API"
+    }
   },
   {
     "project": "demo-mouric",

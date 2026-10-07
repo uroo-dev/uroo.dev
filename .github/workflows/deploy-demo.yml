@@ -232,31 +232,20 @@ jobs:
       - name: Register demo in catalog
         working-directory: catalog-repo
         env:
-          CAT_PROJECT: ${{ github.event.client_payload.project }}
-          CAT_REPO: ${{ github.event.client_payload.repo }}
-          CAT_TITLE: ${{ github.event.client_payload.title }}
-          CAT_DESC: ${{ github.event.client_payload.description }}
-          CAT_CATEGORY: ${{ github.event.client_payload.category }}
-          CAT_THUMB: ${{ github.event.client_payload.thumbnail }}
-          CAT_PRICE: ${{ github.event.client_payload.price }}
-          CAT_CASE: ${{ github.event.client_payload.caseStudy }}
-          CAT_FIELDS: ${{ github.event.client_payload.checkoutFields }}
+          CAT_PAYLOAD: ${{ toJson(github.event.client_payload) }}
         run: |
-          # Buat demos.json jika belum ada
-          [ -f "demos.json" ] || echo '[]' > demos.json
-
           python3 - <<'PY'
           import json, os, datetime
-
-          project = os.environ["CAT_PROJECT"]
-          repo = os.environ["CAT_REPO"]
-          title = os.environ["CAT_TITLE"]
-          description = os.environ["CAT_DESC"]
-          category = os.environ["CAT_CATEGORY"]
-          thumbnail = os.environ.get("CAT_THUMB", "")
-          price_raw = os.environ.get("CAT_PRICE", "")
-          case_str = os.environ.get("CAT_CASE", "")
-          fields_str = os.environ.get("CAT_FIELDS", "")
+          payload = json.loads(os.environ["CAT_PAYLOAD"])
+          project = payload.get("project", "")
+          repo = payload.get("repo", "")
+          title = payload.get("title", "")
+          description = payload.get("description", "")
+          category = payload.get("category", "")
+          thumbnail = payload.get("thumbnail", "")
+          price_raw = payload.get("price", "")
+          case_study = payload.get("caseStudy", {})
+          checkout_fields = payload.get("checkoutFields", [])
           repo_display = repo.replace("https://github.com/", "")
 
           try:
@@ -264,23 +253,10 @@ jobs:
           except (ValueError, TypeError):
               price = 0
 
-          case_study = {}
-          if case_str.strip():
-              try:
-                  case_study = json.loads(case_str)
-                  if not isinstance(case_study, dict):
-                      case_study = {}
-              except json.JSONDecodeError:
-                  case_study = {}
-
-          checkout_fields = []
-          if fields_str.strip():
-              try:
-                  checkout_fields = json.loads(fields_str)
-                  if not isinstance(checkout_fields, list):
-                      checkout_fields = []
-              except json.JSONDecodeError:
-                  checkout_fields = []
+          if not isinstance(case_study, dict):
+              case_study = {}
+          if not isinstance(checkout_fields, list):
+              checkout_fields = []
 
           subdomain = f"{project}.uroo.my.id"
 
@@ -290,7 +266,6 @@ jobs:
               except json.JSONDecodeError:
                   demos = []
 
-          # Hapus entri lama dengan project sama (re-deploy)
           demos = [d for d in demos if d.get("project") != project]
 
           now = datetime.datetime.now(datetime.timezone.utc).isoformat()

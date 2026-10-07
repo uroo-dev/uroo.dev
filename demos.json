@@ -1,5 +1,18 @@
 [
   {
+    "project": "gofit",
+    "title": "GOFIT",
+    "description": "Platform kebugaran digital interaktif untuk melacak rutinitas latihan, menghitung repetisi, dan mengelola program workout harian dari mana saja.",
+    "category": "Web Development",
+    "subdomain": "gofit.uroo.my.id",
+    "url": "https://gofit.uroo.my.id",
+    "repo": "https://github.com/uroo-dev/Gofit",
+    "repo_display": "uroo-dev/Gofit",
+    "status": "live",
+    "deployedAt": "2026-10-07T06:18:41.568802+00:00",
+    "price": 150000
+  },
+  {
     "project": "aturaja",
     "title": "Atur Aja",
     "description": "aplikasi manajemen produktivitas all-in-one yang dirancang khusus untuk membuat urutan kegiatan kehidupan sehari-hari. Dengan desain yang humanis dan fitur lengkap, Atur Aja membantu kamu tetap terorganisir, termotivasi, dan finish semua project tanpa burnout.",

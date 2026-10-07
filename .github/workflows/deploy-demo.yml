@@ -14,10 +14,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # 1. Checkout repo target (repo demo milik user)
+      - name: Normalize repository format
+        id: normalize-repo
+        run: |
+          REPO="${{ github.event.client_payload.repo }}"
+          # Strip https://github.com/ prefix if present
+          REPO="${REPO#https://github.com/}"
+          # Strip trailing .git
+          REPO="${REPO%.git}"
+          echo "repo=$REPO" >> $GITHUB_OUTPUT
+
       - name: Checkout target repository
         uses: actions/checkout@v4
         with:
-          repository: ${{ github.event.client_payload.repo }}
+          repository: ${{ steps.normalize-repo.outputs.repo }}
           ref: ${{ github.event.client_payload.ref || 'main' }}
           token: ${{ secrets.DISPATCH_TOKEN }}
 

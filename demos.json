@@ -1,5 +1,18 @@
 [
   {
+    "project": "gofit",
+    "title": "GOFIT",
+    "description": "Platform kebugaran digital interaktif untuk melacak rutinitas latihan, menghitung repetisi, dan mengelola program workout harian dari mana saja.",
+    "category": "Web Development",
+    "subdomain": "gofit.uroo.my.id",
+    "url": "https://gofit.uroo.my.id",
+    "repo": "https://github.com/uroo-dev/Gofit",
+    "repo_display": "uroo-dev/Gofit",
+    "status": "live",
+    "deployedAt": "2026-10-07T06:27:56.730102+00:00",
+    "price": 150000
+  },
+  {
     "project": "aturaja",
     "title": "Atur Aja",
     "description": "aplikasi manajemen produktivitas all-in-one yang dirancang khusus untuk membuat urutan kegiatan kehidupan sehari-hari. Dengan desain yang humanis dan fitur lengkap, Atur Aja membantu kamu tetap terorganisir, termotivasi, dan finish semua project tanpa burnout.",
@@ -31,19 +44,6 @@
       "solusi": "Human-Centered Design — desain yang warm, calming, dan tidak intimidating. Bukan corporate sterile look yang bikin stress.\n\nScience-Backed Productivity Methods:\n\nEisenhower Matrix untuk prioritas (urgent vs important)\n\nTime Blocking untuk fokus maksimal (assign specific tasks to specific time slots)\n\nPomodoro-friendly untuk sesi belajar 45-90 menit\n\nKanban Method untuk visual project management\n\nHabit tracking untuk konsistensi\n\nAll-in-One Platform — todo list, schedule, project tracker, finance tracker, dan dashboard dalam satu aplikasi. Tidak perlu switch antar app.",
       "teknologi": "HTML5, CSS3, JavaScript ES6+, LocalStorage API, Notification API, Chart.js CDN, PWA (manifest.json + service worker), CSS Grid, Flexbox, CSS Variables, Web Animations API"
     }
-  },
-  {
-    "project": "gofit",
-    "title": "GOFIT",
-    "description": "Platform kebugaran digital interaktif untuk melacak rutinitas latihan, menghitung repetisi, dan mengelola program workout harian dari mana saja.",
-    "category": "Web Development",
-    "subdomain": "gofit.uroo.my.id",
-    "url": "https://gofit.uroo.my.id",
-    "repo": "https://github.com/uroo-dev/Gofit",
-    "repo_display": "uroo-dev/Gofit",
-    "status": "live",
-    "deployedAt": "2026-10-07T06:18:41.568802+00:00",
-    "price": 150000
   },
   {
     "project": "demo-mouric",
